@@ -6,6 +6,7 @@ public class StaticContent {
     {
         public static final String HOME = "Home";
         public static final String MY_ACCOUNT = "My Account";
+        public static final String APPOINTMENT = " My Appointment";
         public static final String LOGOUT = "Logout";
 
     }

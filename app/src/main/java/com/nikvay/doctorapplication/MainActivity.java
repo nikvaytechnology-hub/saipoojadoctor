@@ -21,7 +21,9 @@ import com.nikvay.doctorapplication.utils.Logout_Application;
 import com.nikvay.doctorapplication.utils.RecyclerItemClickListener;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
+import com.nikvay.doctorapplication.view.fragment.AppointmentFragment;
 import com.nikvay.doctorapplication.view.fragment.HomeFragment;
+import com.nikvay.doctorapplication.view.fragment.NotificationFragment;
 import com.nikvay.doctorapplication.view.fragment.ProfileFragment;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private DrawerLayout drawerLayout;
-    private ImageView iv_menu_toolbar;
+    private ImageView iv_menu_toolbar, iv_notification;
     String fragmentName = null;
     Fragment fragmentInstance;
     FragmentManager fragmentManager;
@@ -55,18 +57,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void find_All_IDs() {
         drawerLayout = findViewById(R.id.drawer_layout);
-        iv_menu_toolbar=findViewById(R.id.iv_menu_toolbar);
-        drawerLayout=findViewById(R.id.drawer_layout);
-        recyclerViewDrawer=findViewById(R.id.recyclerViewDrawer);
-
-
+        iv_menu_toolbar = findViewById(R.id.iv_menu_toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        recyclerViewDrawer = findViewById(R.id.recyclerViewDrawer);
+        iv_notification = findViewById(R.id.iv_notification);
 
 
         drawerItemArrayList = new ArrayList<>();
         drawerItemArrayList.add(new DrawerItem(R.drawable.home, StaticContent.DrawerItem.HOME));
-         drawerItemArrayList.add(new DrawerItem(R.drawable.profile_image, StaticContent.DrawerItem.MY_ACCOUNT));
+        drawerItemArrayList.add(new DrawerItem(R.drawable.profile_image, StaticContent.DrawerItem.MY_ACCOUNT));
+        drawerItemArrayList.add(new DrawerItem(R.drawable.appointment, StaticContent.DrawerItem.APPOINTMENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.logout, StaticContent.DrawerItem.LOGOUT));
-
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
+
     private void events() {
         iv_menu_toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +113,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
         );
+
+        iv_notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new NotificationFragment());
+            }
+        });
+
     }
+
     private void displayActivity(String name) {
 
 
@@ -124,12 +135,19 @@ public class MainActivity extends AppCompatActivity {
                 loadFragment(new ProfileFragment());
                 break;
 
+
+            case StaticContent.DrawerItem.APPOINTMENT:
+                loadFragment(new AppointmentFragment());
+                break;
+
+
             case StaticContent.DrawerItem.LOGOUT:
                 logoutApplication();
                 break;
 
         }
     }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -164,8 +182,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     private void logoutApplication() {
-        Logout_Application logout_application=new Logout_Application(MainActivity.this);
+        Logout_Application logout_application = new Logout_Application(MainActivity.this);
         logout_application.showDialog();
     }
 
