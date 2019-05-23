@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nikvay.doctorapplication.model.DrawerItem;
@@ -24,6 +25,7 @@ import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
 import com.nikvay.doctorapplication.view.fragment.AppointmentFragment;
 import com.nikvay.doctorapplication.view.fragment.HomeFragment;
 import com.nikvay.doctorapplication.view.fragment.NotificationFragment;
+import com.nikvay.doctorapplication.view.fragment.PatientFragment;
 import com.nikvay.doctorapplication.view.fragment.ProfileFragment;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     String fragmentName = null;
     Fragment fragmentInstance;
     FragmentManager fragmentManager;
+    TextView textTitleName;
 
     private boolean doubleBackToExitPressedOnce = false;
     ArrayList<DrawerItem> drawerItemArrayList;
@@ -61,12 +64,14 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         recyclerViewDrawer = findViewById(R.id.recyclerViewDrawer);
         iv_notification = findViewById(R.id.iv_notification);
+        textTitleName = findViewById(R.id.textTitleName);
 
 
         drawerItemArrayList = new ArrayList<>();
-        drawerItemArrayList.add(new DrawerItem(R.drawable.home, StaticContent.DrawerItem.HOME));
+        drawerItemArrayList.add(new DrawerItem(R.drawable.home, StaticContent.DrawerItem.DASHBOARD));
         drawerItemArrayList.add(new DrawerItem(R.drawable.profile_image, StaticContent.DrawerItem.MY_ACCOUNT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.appointment, StaticContent.DrawerItem.APPOINTMENT));
+        drawerItemArrayList.add(new DrawerItem(R.drawable.my_customer, StaticContent.DrawerItem.MY_PATIENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.logout, StaticContent.DrawerItem.LOGOUT));
 
 
@@ -86,6 +91,39 @@ public class MainActivity extends AppCompatActivity {
     public void loadFragment(Fragment fragment) {
         fragmentInstance = fragment;
         fragmentName = fragment.getClass().getSimpleName();
+        switch (fragmentName) {
+
+            case "NotificationFragment":
+                textTitleName.setText(StaticContent.DrawerItem.NOTIFICATION);
+                break;
+
+            case "HomeFragment":
+                textTitleName.setText(StaticContent.DrawerItem.DASHBOARD);
+                break;
+
+            case "PatientFragment":
+                textTitleName.setText(StaticContent.DrawerItem.MY_PATIENT);
+                break;
+
+
+            case "ProfileFragment":
+                textTitleName.setText(StaticContent.DrawerItem.MY_ACCOUNT);
+                break;
+
+            case "AppointmentFragment":
+                textTitleName.setText(StaticContent.DrawerItem.APPOINTMENT);
+                break;
+
+            case "ActivityFragment":
+                textTitleName.setText(StaticContent.DrawerItem.ACTIVITY);
+                break;
+
+            default:
+                textTitleName.setText(" ");
+
+        }
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
@@ -127,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         switch (name) {
-            case StaticContent.DrawerItem.HOME:
+            case StaticContent.DrawerItem.DASHBOARD:
                 loadFragment(new HomeFragment());
                 break;
 
@@ -135,6 +173,9 @@ public class MainActivity extends AppCompatActivity {
                 loadFragment(new ProfileFragment());
                 break;
 
+            case StaticContent.DrawerItem.MY_PATIENT:
+                loadFragment(new PatientFragment());
+                break;
 
             case StaticContent.DrawerItem.APPOINTMENT:
                 loadFragment(new AppointmentFragment());

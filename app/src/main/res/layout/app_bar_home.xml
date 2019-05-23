@@ -20,7 +20,7 @@
             android:src="@drawable/ic_vector_menu" />
 
         <TextView
-            android:id="@+id/tv_title_name"
+            android:id="@+id/textTitleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
