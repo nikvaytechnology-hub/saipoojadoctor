@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nikvay.doctorapplication.model.DrawerItem;
-import com.nikvay.doctorapplication.utils.Logout_Application;
+import com.nikvay.doctorapplication.utils.LogoutApplicationDialog;
 import com.nikvay.doctorapplication.utils.RecyclerItemClickListener;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logoutApplication() {
-        Logout_Application logout_application = new Logout_Application(MainActivity.this);
+        LogoutApplicationDialog logout_application = new LogoutApplicationDialog(MainActivity.this);
         logout_application.showDialog();
     }
 

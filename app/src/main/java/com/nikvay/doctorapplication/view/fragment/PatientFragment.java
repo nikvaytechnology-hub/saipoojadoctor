@@ -3,6 +3,7 @@ package com.nikvay.doctorapplication.view.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
@@ -25,6 +27,7 @@ public class PatientFragment extends Fragment {
     private RecyclerView recyclerPatientList;
     ArrayList<PatientModel> patientModelArrayList=new ArrayList<>();
     private PatientAdapter patientAdapter;
+    private FloatingActionButton fabAddPatient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +42,7 @@ public class PatientFragment extends Fragment {
 
     private void find_All_IDs(View view) {
         recyclerPatientList=view.findViewById(R.id.recyclerPatientList);
+        fabAddPatient=view.findViewById(R.id.fabAddPatient);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
         recyclerPatientList.setLayoutManager(linearLayoutManager);
@@ -57,6 +61,12 @@ public class PatientFragment extends Fragment {
     }
 
     private void events() {
+        fabAddPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Add Patient", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

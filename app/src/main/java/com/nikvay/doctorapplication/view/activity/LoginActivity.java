@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
+import com.nikvay.doctorapplication.utils.LogoutApplicationDialog;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.SnackbarCommon;
 
@@ -17,6 +19,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button btn_login;
     private TextInputEditText textEmail,textPassword;
+    ErrorMessageDialog errorMessageDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,19 +39,23 @@ public class LoginActivity extends AppCompatActivity {
                 String password=textPassword.getText().toString().trim();
                 if(email.equalsIgnoreCase(""))
                 {
-                    SnackbarCommon.displayValidation(v,"Email ID Can't Be Empty");
+                    errorMessageDialog.showDialog("Email ID Can't Be Empty");
+                   // SnackbarCommon.displayValidation(v,"Email ID Can't Be Empty");
                 }
                 else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(textEmail.getText().toString()).matches())
                 {
-                    SnackbarCommon.displayValidation(v,"Enter valid Email");
+                    errorMessageDialog.showDialog("Enter valid Email");
+                   // SnackbarCommon.displayValidation(v,"Enter valid Email");
                 }
                 else if(password.equalsIgnoreCase(""))
                 {
-                    SnackbarCommon.displayValidation(v,"Password Can't Be Empty");
+                    errorMessageDialog.showDialog("Password Can't Be Empty");
+                    //SnackbarCommon.displayValidation(v,"Password Can't Be Empty");
                 }
                 else if(password.length()>15||password.length()<5)
                 {
-                    SnackbarCommon.displayValidation(v,"Password Length Between 5 to 15");
+                    errorMessageDialog.showDialog("Password Length Between 5 to 15");
+                    //SnackbarCommon.displayValidation(v,"Password Length Between 5 to 15");
                 }
                 else
                 {
@@ -65,6 +73,8 @@ public class LoginActivity extends AppCompatActivity {
         textEmail=findViewById(R.id.textEmail);
         textPassword=findViewById(R.id.textPassword);
         btn_login=findViewById(R.id.btn_login);
+
+        errorMessageDialog= new ErrorMessageDialog(LoginActivity.this);
 
     }
 }
