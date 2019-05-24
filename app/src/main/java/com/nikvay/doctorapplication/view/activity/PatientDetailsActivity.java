@@ -26,7 +26,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
     private TextView textName,textEmail,textContact,textTitleName,textEdit;
     private RelativeLayout relativeLayoutAppointment,relativeLayoutPrescription,relativeLayoutPayment;
     private PatientModel patientModel;
-    private String mTitle;
+    private String mTitle="Add Customer";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
