@@ -1,6 +1,8 @@
 package com.nikvay.doctorapplication.model;
 
-public class PatientModel {
+import java.io.Serializable;
+
+public class PatientModel implements Serializable {
 
     private  String id;
     private  String name;

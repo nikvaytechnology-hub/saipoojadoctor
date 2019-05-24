@@ -1,15 +1,18 @@
 package com.nikvay.doctorapplication.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.PatientModel;
+import com.nikvay.doctorapplication.view.activity.PatientDetailsActivity;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,14 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
 
         holder.textName.setText(name);
         holder.textContact.setText(contact);
+        holder.relativeLayoutPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, PatientDetailsActivity.class);
+                mContext.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -50,11 +61,13 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textName,textContact;
+        private RelativeLayout relativeLayoutPatient;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textName=itemView.findViewById(R.id.textName);
             textContact=itemView.findViewById(R.id.textContact);
+            relativeLayoutPatient=itemView.findViewById(R.id.relativeLayoutPatient);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.nikvay.doctorapplication.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.PatientModel;
+import com.nikvay.doctorapplication.view.activity.NewPatientActivity;
 import com.nikvay.doctorapplication.view.adapter.PatientAdapter;
 
 import java.util.ArrayList;
@@ -64,7 +66,10 @@ public class PatientFragment extends Fragment {
         fabAddPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Add Patient", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext, "Add Patient", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(mContext, NewPatientActivity.class);
+                startActivity(intent);
+
             }
         });
     }
