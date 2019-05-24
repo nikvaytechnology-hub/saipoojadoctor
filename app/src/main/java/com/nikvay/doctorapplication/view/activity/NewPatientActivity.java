@@ -9,18 +9,21 @@ import android.widget.TextView;
 
 import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.model.PatientModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.SharedUtils;
+import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
 import com.nikvay.doctorapplication.view.fragment.HomeFragment;
 
 public class NewPatientActivity extends AppCompatActivity {
 
     private TextView textName, textEmail, textPhone, textAddress, textSave,textTitleName;
-    private String email, name, address, phone,edit;
+    private String email, name, address, phone,mTitle;
     ErrorMessageDialog errorMessageDialog;
     SuccessMessageDialog successMessageDialog;
     private ImageView iv_close_activity;
+    private PatientModel patientModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +45,30 @@ public class NewPatientActivity extends AppCompatActivity {
 
         if(bundle!=null)
         {
-            edit=bundle.getString("EDIT");
-            textTitleName.setText("Update Customer");
-            textSave.setText("Update");
+            patientModel= (PatientModel) bundle.getSerializable(StaticContent.IntentKey.PATIENT_DETAIL);
+            mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
+            textTitleName.setText(mTitle);
         }
+
+        if(mTitle.equals(StaticContent.IntentValue.ACTIVITY_EDIT_PATIENT))
+        {
+            textName.setText(patientModel.getName());
+            textEmail.setText(patientModel.getEmail());
+            textPhone.setText(patientModel.getContact());
+            textAddress.setText(patientModel.getAddress());
+            textSave.setText("Update");
+            disableFields();
+
+        }
+
 
         errorMessageDialog = new ErrorMessageDialog(NewPatientActivity.this);
         successMessageDialog = new SuccessMessageDialog(NewPatientActivity.this);
 
+    }
+    private void disableFields() {
+        textName.setEnabled(false);
+        textName.setTextColor(getResources().getColor(android.R.color.darker_gray));
     }
 
     private void events() {

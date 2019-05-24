@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.PatientModel;
+import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.activity.PatientDetailsActivity;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         PatientModel patientModel=patientModelArrayList.get(position);
 
         String name=patientModel.getName();
@@ -47,6 +48,9 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, PatientDetailsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, patientModelArrayList.get(position));
+                intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_EDIT_PATIENT);
                 mContext.startActivity(intent);
 
             }

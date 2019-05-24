@@ -48,7 +48,9 @@ public class SplashActivity extends AppCompatActivity {
                         Manifest.permission.WRITE_CALENDAR,
                         Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_NETWORK_STATE)
+                        Manifest.permission.ACCESS_NETWORK_STATE,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.SEND_SMS)
                 .subscribe(new Action1<Boolean>() {
                     @Override
                     public void call(Boolean aBoolean) {
