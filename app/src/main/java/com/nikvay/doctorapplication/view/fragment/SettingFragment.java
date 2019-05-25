@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
@@ -16,7 +17,7 @@ import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
 public class SettingFragment extends Fragment {
 
     Context mContext;
-    private RelativeLayout relativeLayoutService;
+    private RelativeLayout relativeLayoutService,relativeLayoutStaff,relativeLayoutSetting;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +37,8 @@ public class SettingFragment extends Fragment {
 
     private void find_All_IDs(View view) {
         relativeLayoutService=view.findViewById(R.id.relativeLayoutService);
+        relativeLayoutStaff=view.findViewById(R.id.relativeLayoutStaff);
+        relativeLayoutSetting=view.findViewById(R.id.relativeLayoutSetting);
     }
 
 
@@ -45,6 +48,18 @@ public class SettingFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, ServiceListActivity.class);
                 startActivity(intent);
+            }
+        });
+        relativeLayoutSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Setting Under Development", Toast.LENGTH_SHORT).show();
+            }
+        });
+        relativeLayoutStaff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Staff Under Development", Toast.LENGTH_SHORT).show();
             }
         });
     }
