@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.PatientModel;
@@ -21,6 +23,7 @@ public class ServiceListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewServiceList;
     ArrayList<ServiceModel> serviceModelArrayList=new ArrayList<>();
     private ServiceListAdapter serviceListAdapter;
+    private ImageView  iv_close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,19 @@ public class ServiceListActivity extends AppCompatActivity {
     }
 
     private void events() {
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
     private void find_All_IDs() {
 
-        recyclerViewServiceList=findViewById(R.id.recyclerPatientList);
+        recyclerViewServiceList=findViewById(R.id.recyclerViewServiceList);
+        iv_close=findViewById(R.id.iv_close);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ServiceListActivity.this);
         recyclerViewServiceList.setLayoutManager(linearLayoutManager);

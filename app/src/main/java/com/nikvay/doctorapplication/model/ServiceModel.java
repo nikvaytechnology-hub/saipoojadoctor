@@ -1,6 +1,8 @@
 package com.nikvay.doctorapplication.model;
 
-public class ServiceModel {
+import java.io.Serializable;
+
+public class ServiceModel  implements Serializable {
     private String id;
     private String service_name;
     private String  duration;

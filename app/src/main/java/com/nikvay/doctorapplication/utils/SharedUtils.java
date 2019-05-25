@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class SharedUtils {
     private static final String IS_LOGIN="IS_LOGIN";
-    private static final String MY_PREFERENCE="CNP_MAINTENANCE";
+    private static final String MY_PREFERENCE="DOCTOR_APPLICATION";
     private static SharedPreferences preferences;
     private static SharedPreferences.Editor editor;
 
