@@ -24,7 +24,7 @@ public class ClassActivity extends AppCompatActivity {
     private ImageView iv_close;
     private ArrayList<ClassModel> classModelArrayList=new ArrayList<>();
     private ClassAdapter classAdapter;
-    private FloatingActionButton fabAddPatient;
+    private FloatingActionButton fabAddClass;
 
 
     @Override
@@ -45,7 +45,7 @@ public class ClassActivity extends AppCompatActivity {
         });
 
 
-        fabAddPatient.setOnClickListener(new View.OnClickListener() {
+        fabAddClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -58,7 +58,7 @@ public class ClassActivity extends AppCompatActivity {
     private void find_All_IDs() {
         recyclerClassList=findViewById(R.id.recyclerClassList);
         iv_close=findViewById(R.id.iv_close);
-        fabAddPatient=findViewById(R.id.fabAddPatient);
+        fabAddClass=findViewById(R.id.fabAddClass);
 
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ClassActivity.this);

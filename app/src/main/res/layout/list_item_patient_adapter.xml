@@ -22,7 +22,7 @@
                 android:id="@+id/img_icon"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:src="@drawable/my_customer"
                 app:civ_border_color="@color/app_color"
                 app:civ_circle_background_color="@color/app_color" />
