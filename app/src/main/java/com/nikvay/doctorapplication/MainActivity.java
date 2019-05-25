@@ -27,6 +27,7 @@ import com.nikvay.doctorapplication.view.fragment.HomeFragment;
 import com.nikvay.doctorapplication.view.fragment.NotificationFragment;
 import com.nikvay.doctorapplication.view.fragment.PatientFragment;
 import com.nikvay.doctorapplication.view.fragment.ProfileFragment;
+import com.nikvay.doctorapplication.view.fragment.SettingFragment;
 
 import java.util.ArrayList;
 
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         drawerItemArrayList.add(new DrawerItem(R.drawable.profile_image, StaticContent.DrawerItem.MY_ACCOUNT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.appointment, StaticContent.DrawerItem.APPOINTMENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.my_customer, StaticContent.DrawerItem.MY_PATIENT));
+        drawerItemArrayList.add(new DrawerItem(R.drawable.ic_vector_settings, StaticContent.DrawerItem.MY_PATIENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.logout, StaticContent.DrawerItem.LOGOUT));
 
 
@@ -116,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
 
             case "ActivityFragment":
                 textTitleName.setText(StaticContent.DrawerItem.ACTIVITY);
+                break;
+
+
+            case "SettingFragment":
+                textTitleName.setText(StaticContent.DrawerItem.SETTINGS);
                 break;
 
             default:
@@ -181,6 +188,9 @@ public class MainActivity extends AppCompatActivity {
                 loadFragment(new AppointmentFragment());
                 break;
 
+            case StaticContent.DrawerItem.SETTINGS:
+                loadFragment(new SettingFragment());
+                break;
 
             case StaticContent.DrawerItem.LOGOUT:
                 logoutApplication();
