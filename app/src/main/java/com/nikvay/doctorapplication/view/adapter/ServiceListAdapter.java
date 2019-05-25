@@ -13,10 +13,8 @@ import android.widget.TextView;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.utils.StaticContent;
-import com.nikvay.doctorapplication.view.activity.PatientDetailsActivity;
 import com.nikvay.doctorapplication.view.activity.ServiceDetailsActivity;
 
-import java.security.Provider;
 import java.util.ArrayList;
 
 public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.MyViewHolder> {
@@ -33,7 +31,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row_service_adapter, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_service_adapter, parent, false);
         return new MyViewHolder(view);
     }
 

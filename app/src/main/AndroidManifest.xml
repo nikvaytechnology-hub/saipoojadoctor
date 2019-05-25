@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.ServiceDetailsActivity"></activity>
+        <activity android:name=".view.activity.ClassActivity"></activity>
+        <activity android:name=".view.activity.ServiceDetailsActivity" />
         <activity android:name=".view.activity.ServiceListActivity" />
         <activity android:name=".view.activity.PatientDetailsActivity" />
         <activity android:name=".view.activity.NewPatientActivity" />

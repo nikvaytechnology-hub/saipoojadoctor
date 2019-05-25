@@ -12,12 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.view.activity.ClassActivity;
 import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
 
 public class SettingFragment extends Fragment {
 
     Context mContext;
-    private RelativeLayout relativeLayoutService,relativeLayoutStaff,relativeLayoutSetting;
+    private RelativeLayout relativeLayoutService,relativeLayoutStaff,relativeLayoutSetting,relativeLayoutClass;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +40,7 @@ public class SettingFragment extends Fragment {
         relativeLayoutService=view.findViewById(R.id.relativeLayoutService);
         relativeLayoutStaff=view.findViewById(R.id.relativeLayoutStaff);
         relativeLayoutSetting=view.findViewById(R.id.relativeLayoutSetting);
+        relativeLayoutClass=view.findViewById(R.id.relativeLayoutClass);
     }
 
 
@@ -62,6 +64,16 @@ public class SettingFragment extends Fragment {
                 Toast.makeText(mContext, "Staff Under Development", Toast.LENGTH_SHORT).show();
             }
         });
+        relativeLayoutClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent=new Intent(mContext, ClassActivity.class);
+               startActivity(intent);
+            }
+        });
+
+
+
     }
 
 
