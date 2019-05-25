@@ -1,5 +1,7 @@
 package com.nikvay.doctorapplication.view.activity;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -22,6 +24,7 @@ public class ClassActivity extends AppCompatActivity {
     private ImageView iv_close;
     private ArrayList<ClassModel> classModelArrayList=new ArrayList<>();
     private ClassAdapter classAdapter;
+    private FloatingActionButton fabAddPatient;
 
 
     @Override
@@ -40,11 +43,22 @@ public class ClassActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
+        fabAddPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(ClassActivity.this,NewClassActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void find_All_IDs() {
         recyclerClassList=findViewById(R.id.recyclerClassList);
         iv_close=findViewById(R.id.iv_close);
+        fabAddPatient=findViewById(R.id.fabAddPatient);
 
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ClassActivity.this);

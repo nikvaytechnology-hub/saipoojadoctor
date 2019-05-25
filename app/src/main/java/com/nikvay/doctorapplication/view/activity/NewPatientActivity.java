@@ -20,8 +20,8 @@ public class NewPatientActivity extends AppCompatActivity {
 
     private TextView textName, textEmail, textPhone, textAddress, textSave,textTitleName;
     private String email, name, address, phone,mTitle="Add Customer";
-    ErrorMessageDialog errorMessageDialog;
-    SuccessMessageDialog successMessageDialog;
+    private ErrorMessageDialog errorMessageDialog;
+    private SuccessMessageDialog successMessageDialog;
     private ImageView iv_close_activity;
     private PatientModel patientModel;
 

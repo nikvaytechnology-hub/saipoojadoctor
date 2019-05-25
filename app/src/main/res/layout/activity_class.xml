@@ -43,6 +43,19 @@
             android:id="@+id/recyclerClassList"
             />
 
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/fabAddClass"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/app_color"
+            android:background="@color/app_color"
+            android:src="@drawable/add"
+            android:layout_marginBottom="10dp"/>
+
     </RelativeLayout>
 
 
