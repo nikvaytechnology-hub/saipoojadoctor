@@ -3,47 +3,67 @@ package com.nikvay.doctorapplication.model;
 import java.io.Serializable;
 
 public class ServiceModel  implements Serializable {
-    private String id;
-    private String service_name;
-    private String  duration;
-    private String cost;
+   String doctor_id;
+   String service_id;
+   String name;
+   String s_name;
+   String service_cost;
+   String service_time;
 
-    public ServiceModel(String id, String service_name, String duration, String cost) {
-        this.id = id;
-        this.service_name = service_name;
-        this.duration = duration;
-        this.cost = cost;
+    public ServiceModel(String doctor_id, String service_id, String name, String s_name, String service_cost, String service_time) {
+        this.doctor_id = doctor_id;
+        this.service_id = service_id;
+        this.name = name;
+        this.s_name = s_name;
+        this.service_cost = service_cost;
+        this.service_time = service_time;
     }
 
-    public String getId() {
-        return id;
+    public String getDoctor_id() {
+        return doctor_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDoctor_id(String doctor_id) {
+        this.doctor_id = doctor_id;
     }
 
-    public String getService_name() {
-        return service_name;
+    public String getService_id() {
+        return service_id;
     }
 
-    public void setService_name(String service_name) {
-        this.service_name = service_name;
+    public void setService_id(String service_id) {
+        this.service_id = service_id;
     }
 
-    public String getDuration() {
-        return duration;
+    public String getName() {
+        return name;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCost() {
-        return cost;
+    public String getS_name() {
+        return s_name;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
+    public void setS_name(String s_name) {
+        this.s_name = s_name;
+    }
+
+    public String getService_cost() {
+        return service_cost;
+    }
+
+    public void setService_cost(String service_cost) {
+        this.service_cost = service_cost;
+    }
+
+    public String getService_time() {
+        return service_time;
+    }
+
+    public void setService_time(String service_time) {
+        this.service_time = service_time;
     }
 }

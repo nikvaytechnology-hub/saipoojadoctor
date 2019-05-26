@@ -19,6 +19,7 @@ import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
+import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
 
@@ -79,11 +80,10 @@ public class LoginActivity extends AppCompatActivity {
                 else
                 {
 
-                    callLogin(email,password);
-                   /* SharedUtils.putSharedUtils(LoginActivity.this);
-                    Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();*/
+                    if (NetworkUtils.isNetworkAvailable(LoginActivity.this))
+                        callLogin(email,password);
+                    else
+                        NetworkUtils.isNetworkNotAvailable(LoginActivity.this);
 
                 }
 
@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Call<SuccessModel> call = apiInterface.loginCall(email, password, device_token);
+
 
         call.enqueue(new Callback<SuccessModel>() {
             @Override
@@ -135,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
                 errorMessageDialog.showDialog(t.getMessage());
             }
         });
-
 
     }
 

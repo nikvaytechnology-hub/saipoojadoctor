@@ -39,9 +39,9 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         ServiceModel serviceModel=serviceModelArrayList.get(position);
 
-        holder.textServiceName.setText(serviceModel.getService_name());
-        holder.textTime.setText(serviceModel.getDuration());
-        holder.textCost.setText(serviceModel.getCost());
+        holder.textServiceName.setText(serviceModel.getS_name());
+        holder.textTime.setText(serviceModel.getService_time());
+        holder.textCost.setText(serviceModel.getService_cost());
         holder.relativeLayoutService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

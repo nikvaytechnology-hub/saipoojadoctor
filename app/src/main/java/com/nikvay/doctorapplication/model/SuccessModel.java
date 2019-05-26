@@ -12,6 +12,11 @@ public class SuccessModel {
     @SerializedName("doctor_login")
      ArrayList<DoctorModel> doctorModelArrayList;
 
+
+    @SerializedName("service")
+    ArrayList<ServiceModel> serviceModelArrayList;
+
+
     public String getError_code() {
         return error_code;
     }
@@ -34,5 +39,13 @@ public class SuccessModel {
 
     public void setDoctorModelArrayList(ArrayList<DoctorModel> doctorModelArrayList) {
         this.doctorModelArrayList = doctorModelArrayList;
+    }
+
+    public ArrayList<ServiceModel> getServiceModelArrayList() {
+        return serviceModelArrayList;
+    }
+
+    public void setServiceModelArrayList(ArrayList<ServiceModel> serviceModelArrayList) {
+        this.serviceModelArrayList = serviceModelArrayList;
     }
 }

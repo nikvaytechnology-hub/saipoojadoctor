@@ -17,5 +17,7 @@ public interface ApiInterface {
                                  @Field("device_token") String device_token);
 
 
-
+    @POST(EndApi.SERVICE_LIST)
+    @FormUrlEncoded
+    Call<SuccessModel> serviceList(@Field("doctor_id") String doctor_id);
 }

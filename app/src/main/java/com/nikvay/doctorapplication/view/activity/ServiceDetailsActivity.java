@@ -60,9 +60,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
         if(mTitle.equals(StaticContent.IntentValue.ACTIVITY_SERVICE_DETAILS))
         {
-            textService.setText(serviceModel.getService_name());
-            textDuration.setText(serviceModel.getDuration());
-            textCost.setText(serviceModel.getCost());
+            textService.setText(serviceModel.getS_name());
+            textDuration.setText(serviceModel.getService_time());
+            textCost.setText(serviceModel.getService_cost());
         }
 
     }
