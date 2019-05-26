@@ -32,5 +32,24 @@ public class StaticContent {
 
     }
 
+    public class DeviceToken
+    {
+        public static final String DEVICE_TOKEN = "DEVICE";
+    }
+    public class UserData
+    {
+        public static final String DOCTOR_ID = "DEVICE_ID";
+        public static final String USER_ID = "USER_ID";
+        public static final String NAME = "NAME";
+        public static final String EMAIL = "EMAIL";
+        public static final String ADDRESS = "ADDRESS";
+        public static final String DEPARTMENT_ID = "DEPARTMENT_ID";
+        public static final String PROFILE = "PROFILE";
+
+
+
+    }
+
+
 
 }

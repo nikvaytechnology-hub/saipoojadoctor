@@ -23,13 +23,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.AppointmentListActivity"></activity>
-        <activity android:name=".view.activity.NewClassActivity" />
-        <activity android:name=".view.activity.ClassActivity" />
-        <activity android:name=".view.activity.ServiceDetailsActivity" />
-        <activity android:name=".view.activity.ServiceListActivity" />
-        <activity android:name=".view.activity.PatientDetailsActivity" />
-        <activity android:name=".view.activity.NewPatientActivity" />
+        <activity
+            android:name=".view.activity.AppointmentListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.NewClassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ClassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ServiceDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ServiceListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.PatientDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.NewPatientActivity"
+            android:screenOrientation="portrait" />
+
+
+        <service
+            android:name=".firebaseservice.MyFirebaseMessagingService"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".view.activity.LoginActivity"
             android:screenOrientation="portrait" />

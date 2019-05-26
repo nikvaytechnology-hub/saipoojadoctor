@@ -65,7 +65,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Nehal Jathar"
+                                    android:id="@+id/textName"
                                     android:textColor="@color/black"
                                     android:maxLines="1"
                                     android:textSize="15sp"
@@ -75,8 +75,8 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="jatharnihalp@gmail.com"
                                     android:maxLines="1"
+                                    android:id="@+id/textEmail"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
@@ -84,7 +84,6 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Department"
                                     android:textColor="@color/black"
                                     android:maxLines="1"
                                     android:textStyle="bold" />

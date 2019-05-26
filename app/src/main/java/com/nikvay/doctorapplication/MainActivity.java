@@ -17,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.DrawerItem;
 import com.nikvay.doctorapplication.utils.LogoutApplicationDialog;
 import com.nikvay.doctorapplication.utils.RecyclerItemClickListener;
+import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
 import com.nikvay.doctorapplication.view.fragment.AppointmentFragment;
@@ -36,15 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ImageView iv_menu_toolbar, iv_notification;
-    String fragmentName = null;
-    Fragment fragmentInstance;
-    FragmentManager fragmentManager;
-    TextView textTitleName;
+    private String fragmentName = null,doctor_id;
+    private Fragment fragmentInstance;
+    private FragmentManager fragmentManager;
+    private TextView textTitleName,textName,textEmail;
 
     private boolean doubleBackToExitPressedOnce = false;
     ArrayList<DrawerItem> drawerItemArrayList;
     public static RecyclerView.Adapter drawerItemAdapter;
     private RecyclerView recyclerViewDrawer;
+    private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewDrawer = findViewById(R.id.recyclerViewDrawer);
         iv_notification = findViewById(R.id.iv_notification);
         textTitleName = findViewById(R.id.textTitleName);
+        textName = findViewById(R.id.textName);
+        textEmail = findViewById(R.id.textEmail);
 
 
         drawerItemArrayList = new ArrayList<>();
@@ -86,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
         drawerItemAdapter = new DrawerItemAdapter(MainActivity.this, drawerItemArrayList);
         recyclerViewDrawer.setAdapter(drawerItemAdapter);
         drawerItemAdapter.notifyDataSetChanged();
+
+
+        doctorModelArrayList= SharedUtils.getUserDetails(MainActivity.this);
+        doctor_id=doctorModelArrayList.get(0).getDoctor_id();
+        textName.setText(doctorModelArrayList.get(0).getName());
+        textEmail.setText(doctorModelArrayList.get(0).getEmail());
 
 
     }
