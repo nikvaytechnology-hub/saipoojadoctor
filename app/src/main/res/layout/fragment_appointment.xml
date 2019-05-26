@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,14 +8,231 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Appointment"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewPending"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/app_color"
+            app:cardCornerRadius="10dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_vector_pending" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Pending:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_patient_profile"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="12"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:id="@+id/textPendingCount"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewConfirmed"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/cardViewPending"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/app_color"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_vector_confirm" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Confirmed:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_patient_profile"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="12"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:id="@+id/textConfirmCount"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewCancelled"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/cardViewConfirmed"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/app_color"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_vector_cancel" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Cancelled:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_patient_profile"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="12"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:id="@+id/textCancelCount"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewArchive"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/cardViewCancelled"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/app_color"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_vector_archive" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Archive:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_patient_profile"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="12"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:id="@+id/textArchiveCount"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
 
     </RelativeLayout>
 </FrameLayout>
