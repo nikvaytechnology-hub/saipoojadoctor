@@ -18,16 +18,16 @@
 
 
       <android.support.design.widget.FloatingActionButton
+          android:id="@+id/fabAddPatient"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
           android:layout_alignParentEnd="true"
-          android:id="@+id/fabAddPatient"
+          android:layout_alignParentBottom="true"
           android:layout_marginEnd="10dp"
-          android:backgroundTint="@color/app_color"
+          android:layout_marginBottom="10dp"
           android:background="@color/app_color"
-          android:src="@drawable/add"
-          android:layout_marginBottom="10dp"/>
+          android:backgroundTint="@color/app_color"
+          android:src="@drawable/add" />
 
 
 

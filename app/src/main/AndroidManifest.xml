@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.NewClassActivity"></activity>
+        <activity android:name=".view.activity.AppointmentListActivity"></activity>
+        <activity android:name=".view.activity.NewClassActivity" />
         <activity android:name=".view.activity.ClassActivity" />
         <activity android:name=".view.activity.ServiceDetailsActivity" />
         <activity android:name=".view.activity.ServiceListActivity" />
