@@ -1,5 +1,6 @@
 package com.nikvay.doctorapplication.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -9,29 +10,27 @@ import java.util.ArrayList;
 
 public class SharedUtils {
 
-    private static final String IS_LOGIN="IS_LOGIN";
-    private static final String MY_PREFERENCE="DOCTOR_APPLICATION";
     private static SharedPreferences preferences;
     private static SharedPreferences.Editor editor;
     private static String DEVICE_TOKEN = "DEVICE_TOKEN";
 
     public static String getSharedUtils(Context mContext)
     {
-         preferences=mContext.getSharedPreferences(MY_PREFERENCE,mContext.MODE_PRIVATE);
-         return preferences.getString(IS_LOGIN,"");
+         preferences=mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE,mContext.MODE_PRIVATE);
+         return preferences.getString(StaticContent.UserData.IS_LOGIN,"");
     }
     public static void putSharedUtils(Context mContext) {
-        preferences = mContext.getSharedPreferences(MY_PREFERENCE, mContext.MODE_PRIVATE);
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, mContext.MODE_PRIVATE);
         editor= preferences.edit();
-        editor.putString(IS_LOGIN, "true");
+        editor.putString(StaticContent.UserData.IS_LOGIN, "true");
         editor.commit();
     }
 
     public static void removeSharedUtils(Context mContext)
     {
-        preferences = mContext.getSharedPreferences(MY_PREFERENCE, mContext.MODE_PRIVATE);
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, mContext.MODE_PRIVATE);
         editor= preferences.edit();
-        editor.putString(IS_LOGIN, "false");
+        editor.putString(StaticContent.UserData.IS_LOGIN, "false");
         editor.commit();
     }
 
@@ -49,7 +48,7 @@ public class SharedUtils {
 
     public static void addUserUtils(Context mContext, ArrayList<DoctorModel> doctorModelArrayList) {
 
-        preferences = mContext.getSharedPreferences(MY_PREFERENCE, mContext.MODE_PRIVATE);
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, mContext.MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString(StaticContent.UserData.DOCTOR_ID,doctorModelArrayList.get(0).getDoctor_id());
         editor.putString(StaticContent.UserData.USER_ID, doctorModelArrayList.get(0).getUser_id());
@@ -65,7 +64,7 @@ public class SharedUtils {
     public static ArrayList<DoctorModel> getUserDetails(Context mContext) {
         ArrayList<DoctorModel> userDetailsModuleArrayList = new ArrayList<>();
         DoctorModel doctorModel = new DoctorModel();
-        preferences = mContext.getSharedPreferences(MY_PREFERENCE, mContext.MODE_PRIVATE);
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, mContext.MODE_PRIVATE);
         doctorModel.setDoctor_id(preferences.getString(StaticContent.UserData.DOCTOR_ID, ""));
         doctorModel.setUser_id(preferences.getString(StaticContent.UserData.USER_ID, ""));
         doctorModel.setName(preferences.getString(StaticContent.UserData.NAME, ""));
@@ -78,5 +77,10 @@ public class SharedUtils {
         return userDetailsModuleArrayList;
     }
 
-
+    public static boolean clearShareUtils(Context mContext){
+        SharedPreferences settings = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.clear();
+        return editor.commit();
+    }
 }

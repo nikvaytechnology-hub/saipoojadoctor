@@ -38,6 +38,8 @@ public class StaticContent {
     }
     public class UserData
     {
+       static final String IS_LOGIN="IS_LOGIN";
+        public static final String MY_PREFERENCE="DOCTOR_APPLICATION";
         public static final String DOCTOR_ID = "DEVICE_ID";
         public static final String USER_ID = "USER_ID";
         public static final String NAME = "NAME";

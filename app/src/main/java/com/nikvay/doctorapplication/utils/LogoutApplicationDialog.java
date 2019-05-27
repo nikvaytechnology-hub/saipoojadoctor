@@ -49,6 +49,7 @@ public class LogoutApplicationDialog {
             @Override
             public void onClick(View view) {
                 SharedUtils.removeSharedUtils(mContext);
+                SharedUtils.clearShareUtils(mContext);
                 Intent intent=new Intent(mContext, LoginActivity.class);
                 mContext.startActivity(intent);
                 ((Activity)mContext).finish();
