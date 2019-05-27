@@ -153,7 +153,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         {
             textName.setText(patientModel.getName());
             textEmail.setText(patientModel.getEmail());
-            textContact.setText(patientModel.getContact());
+            textContact.setText(patientModel.getPhone_no());
             textTitleName.setText(patientModel.getName());
         }
 

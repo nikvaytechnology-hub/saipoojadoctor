@@ -4,28 +4,36 @@ import java.io.Serializable;
 
 public class PatientModel implements Serializable {
 
-    private  String id;
+    private  String patient_id;
     private  String name;
     private  String email;
-    private  String contact;
+    private  String phone_no;
     private  String address;
     private  String appointment;
 
-    public PatientModel(String id, String name, String email, String contact, String address, String appointment) {
-        this.id = id;
+    public PatientModel(String patient_id, String name, String email, String phone_no, String address, String appointment) {
+        this.patient_id = patient_id;
         this.name = name;
         this.email = email;
-        this.contact = contact;
+        this.phone_no = phone_no;
         this.address = address;
         this.appointment = appointment;
     }
 
-    public String getId() {
-        return id;
+    public String getPatient_id() {
+        return patient_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPatient_id(String patient_id) {
+        this.patient_id = patient_id;
+    }
+
+    public String getPhone_no() {
+        return phone_no;
+    }
+
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
     }
 
     public String getName() {
@@ -42,14 +50,6 @@ public class PatientModel implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
     }
 
     public String getAddress() {

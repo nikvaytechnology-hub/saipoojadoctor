@@ -39,7 +39,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
         PatientModel patientModel=patientModelArrayList.get(position);
 
         String name=patientModel.getName();
-        String contact=patientModel.getContact();
+        String contact=patientModel.getPhone_no();
 
 
         holder.textName.setText(name);

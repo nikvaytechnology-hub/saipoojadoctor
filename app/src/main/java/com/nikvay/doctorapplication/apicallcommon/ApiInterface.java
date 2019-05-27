@@ -20,4 +20,32 @@ public interface ApiInterface {
     @POST(EndApi.SERVICE_LIST)
     @FormUrlEncoded
     Call<SuccessModel> serviceList(@Field("doctor_id") String doctor_id);
+
+
+    @POST(EndApi.ADD_NEW_PATIENT)
+    @FormUrlEncoded
+    Call<SuccessModel> addNewPatient(@Field("doctor_id") String doctor_id,
+                                 @Field("name") String name,
+                                 @Field("email") String email,
+                                 @Field("user_id") String user_id,
+                                 @Field("address") String address,
+                                 @Field("phone_no") String phone);
+
+
+    @POST(EndApi.UPDATE_PATIENT)
+    @FormUrlEncoded
+    Call<SuccessModel> updatePatient(@Field("doctor_id") String doctor_id,
+                                     @Field("patient_id") String patient_id,
+                                     @Field("name") String name,
+                                     @Field("email") String email,
+                                     @Field("user_id") String user_id,
+                                     @Field("address") String address,
+                                     @Field("phone_no") String phone);
+
+
+
+    @POST(EndApi.PATIENT_LIST)
+    @FormUrlEncoded
+    Call<SuccessModel> patientList(@Field("doctor_id") String doctor_id);
+
 }
