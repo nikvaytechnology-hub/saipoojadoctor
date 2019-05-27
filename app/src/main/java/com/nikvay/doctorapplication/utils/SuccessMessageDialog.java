@@ -1,6 +1,7 @@
 package com.nikvay.doctorapplication.utils;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -40,10 +41,10 @@ public class SuccessMessageDialog {
             @Override
             public void run() {
                 dialog.dismiss();
-
+                ((Activity)mContext).finish();
             }
         }, 3000);
-        
+
 
     }
 }

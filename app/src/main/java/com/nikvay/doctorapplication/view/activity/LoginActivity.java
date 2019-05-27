@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (code.equalsIgnoreCase("1")) {
                                 doctorModelArrayList=successModel.getDoctorModelArrayList();
-                                successMessageDialog.showDialog("Login Successfully");
+//                                successMessageDialog.showDialog("Login Successfully");
                                 SharedUtils.putSharedUtils(LoginActivity.this);
                                 SharedUtils.addUserUtils(LoginActivity.this,doctorModelArrayList);
                                 loginIntent();

@@ -76,13 +76,13 @@ public class PatientFragment extends Fragment {
 
 
         if (NetworkUtils.isNetworkAvailable(mContext))
-            callListPatient(doctor_id);
+            callListPatient();
         else
             NetworkUtils.isNetworkNotAvailable(mContext);
 
     }
 
-    private void callListPatient(String doctor_id) {
+    private void callListPatient() {
 
         Call<SuccessModel> call = apiInterface.patientList(doctor_id);
 
@@ -150,5 +150,12 @@ public class PatientFragment extends Fragment {
         });
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (NetworkUtils.isNetworkAvailable(mContext))
+            callListPatient();
+        else
+            NetworkUtils.isNetworkNotAvailable(mContext);
+    }
 }
