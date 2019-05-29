@@ -13,10 +13,8 @@ import android.widget.TextView;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.utils.StaticContent;
-import com.nikvay.doctorapplication.view.activity.DateTimeSelectActivity;
 import com.nikvay.doctorapplication.view.activity.PatientActivity;
-import com.nikvay.doctorapplication.view.activity.ServiceDetailsActivity;
-import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
+
 
 import java.util.ArrayList;
 
@@ -39,14 +37,22 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         SelectDateTimeModel selectDateTimeModel=selectDateTimeModelArrayList.get(position);
+
+        if (selectDateTimeModelArrayList.get(position).isSelected()) {
+            holder.linearLayoutTime.setBackgroundColor(mContext.getResources().getColor(R.color.app_color));
+        } else {
+            holder.linearLayoutTime.setBackgroundColor(mContext.getResources().getColor(R.color.white));
+        }
 
         holder.textTime.setText(selectDateTimeModel.getTime());
         holder.linearLayoutTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.linearLayoutTime.setBackgroundColor(mContext.getResources().getColor(R.color.app_color));
+
+
+
                 Intent intent = new Intent(mContext,PatientActivity.class);
                 intent.putExtra(StaticContent.IntentKey.APPOINTMENT,StaticContent.IntentValue.APPOINTMENT);
                 mContext.startActivity(intent);

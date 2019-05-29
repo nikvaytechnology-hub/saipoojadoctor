@@ -30,7 +30,6 @@ public class StaticContent {
         public static final String ACTIVITY_EDIT_PATIENT = "Edit Customer";
         public static final String ACTIVITY_SERVICE_DETAILS = "Service Details";
         public static final String APPOINTMENT = "New Appointment";
-
     }
 
     public class DeviceToken

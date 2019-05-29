@@ -45,8 +45,17 @@
             android:layout_height="match_parent" />
 
 
-
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAddService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/app_color"
+            android:backgroundTint="@color/app_color"
+            android:src="@drawable/add" />
 
 
     </RelativeLayout>

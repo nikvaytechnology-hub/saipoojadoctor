@@ -1,5 +1,6 @@
 package com.nikvay.doctorapplication.view.activity;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class ServiceListActivity extends AppCompatActivity {
     private ErrorMessageDialog errorMessageDialog;
     private String device_token,TAG = getClass().getSimpleName(),doctor_id,appointmentName="Service List";
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
+    private FloatingActionButton fabAddService;
 
 
     @Override
@@ -71,6 +73,14 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
+        fabAddService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ServiceListActivity.this,NewAddServiceActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void find_All_IDs() {
@@ -78,6 +88,7 @@ public class ServiceListActivity extends AppCompatActivity {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         recyclerViewServiceList=findViewById(R.id.recyclerViewServiceList);
         iv_close=findViewById(R.id.iv_close);
+        fabAddService=findViewById(R.id.fabAddService);
 
         doctorModelArrayList= SharedUtils.getUserDetails(ServiceListActivity.this);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
@@ -155,4 +166,9 @@ public class ServiceListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        callServiceList();
+    }
 }

@@ -17,7 +17,7 @@ import com.nikvay.doctorapplication.utils.StaticContent;
 public class ServiceDetailsActivity extends AppCompatActivity {
 
 
-    private  TextView textService,textDuration,textCost;
+    private  TextView textService,textDuration,textCost,textEdit;
     private ImageView iv_close;
     private String mTitle="Service Details";
     private ServiceModel serviceModel;
@@ -40,6 +40,16 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             }
         });
 
+        textEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ServiceDetailsActivity.this, NewAddServiceActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(StaticContent.IntentKey.SERVICE_DETAIL,serviceModel);
+                intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE,StaticContent.IntentValue.ACTIVITY_SERVICE_DETAILS);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -48,6 +58,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         textService = findViewById(R.id.textService);
         textDuration = findViewById(R.id.textDuration);
         textCost = findViewById(R.id.textCost);
+        textEdit = findViewById(R.id.textEdit);
 
 
         Bundle bundle = getIntent().getExtras();
