@@ -23,6 +23,7 @@ import com.nikvay.doctorapplication.utils.LogoutApplicationDialog;
 import com.nikvay.doctorapplication.utils.RecyclerItemClickListener;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
+import com.nikvay.doctorapplication.view.activity.PatientActivity;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
 import com.nikvay.doctorapplication.view.fragment.AppointmentFragment;
 import com.nikvay.doctorapplication.view.fragment.HomeFragment;
@@ -192,7 +193,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case StaticContent.DrawerItem.MY_PATIENT:
-                loadFragment(new PatientFragment());
+                Intent intent=new Intent(MainActivity.this, PatientActivity.class);
+                startActivity(intent);
                 break;
 
             case StaticContent.DrawerItem.APPOINTMENT:

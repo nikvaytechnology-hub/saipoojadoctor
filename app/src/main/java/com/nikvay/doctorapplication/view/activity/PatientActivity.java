@@ -1,5 +1,7 @@
 package com.nikvay.doctorapplication.view.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,20 +13,17 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
-import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.PatientModel;
-import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.PatientAdapter;
-import com.nikvay.doctorapplication.view.adapter.ServiceListAdapter;
 
 import java.util.ArrayList;
 
@@ -32,58 +31,58 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ServiceListActivity extends AppCompatActivity {
+public class PatientActivity extends AppCompatActivity {
 
-
-    private RecyclerView recyclerViewServiceList;
-    ArrayList<ServiceModel> serviceModelArrayList=new ArrayList<>();
-    private ServiceListAdapter serviceListAdapter;
-    private ImageView  iv_close;
+    private RecyclerView recyclerPatientList;
+    ArrayList<PatientModel> patientModelArrayList = new ArrayList<>();
+    private PatientAdapter patientAdapter;
+    private FloatingActionButton fabAddPatient;
+    ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
-    private String device_token,TAG = getClass().getSimpleName(),doctor_id,appointmentName="Service List";
-    private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
-
+    private String doctor_id, TAG = getClass().getSimpleName(),appointmentName="Service List";
+    private ImageView iv_close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_list);
-
-
+        setContentView(R.layout.activity_patient);
         find_All_IDs();
         events();
-
-        if (NetworkUtils.isNetworkAvailable(ServiceListActivity.this))
-            callServiceList();
-        else
-            NetworkUtils.isNetworkNotAvailable(ServiceListActivity.this);
-
     }
 
-
-
     private void events() {
+        fabAddPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(mContext, "Add Patient", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PatientActivity.this, NewPatientActivity.class);
+                startActivity(intent);
+
+            }
+        });
         iv_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+
             }
         });
 
     }
 
     private void find_All_IDs() {
-
+        recyclerPatientList = findViewById(R.id.recyclerPatientList);
+        fabAddPatient = findViewById(R.id.fabAddPatient);
+        iv_close = findViewById(R.id.iv_close);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        recyclerViewServiceList=findViewById(R.id.recyclerViewServiceList);
-        iv_close=findViewById(R.id.iv_close);
+        errorMessageDialog = new ErrorMessageDialog(PatientActivity.this);
 
-        doctorModelArrayList= SharedUtils.getUserDetails(ServiceListActivity.this);
-        doctor_id=doctorModelArrayList.get(0).getDoctor_id();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PatientActivity.this);
+        recyclerPatientList.setLayoutManager(linearLayoutManager);
 
-        errorMessageDialog= new ErrorMessageDialog(ServiceListActivity.this);
-
+        doctorModelArrayList = SharedUtils.getUserDetails(PatientActivity.this);
+        doctor_id = doctorModelArrayList.get(0).getDoctor_id();
 
         Bundle bundle = getIntent().getExtras();
 
@@ -92,15 +91,17 @@ public class ServiceListActivity extends AppCompatActivity {
         }
 
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ServiceListActivity.this);
-        recyclerViewServiceList.setLayoutManager(linearLayoutManager);
-
+        if (NetworkUtils.isNetworkAvailable(PatientActivity.this))
+            callListPatient();
+        else
+            NetworkUtils.isNetworkNotAvailable(PatientActivity.this);
 
 
     }
-    private void callServiceList() {
 
-        Call<SuccessModel> call = apiInterface.serviceList(doctor_id);
+    private void callListPatient() {
+
+        Call<SuccessModel> call = apiInterface.patientList(doctor_id);
 
 
         call.enqueue(new Callback<SuccessModel>() {
@@ -121,17 +122,15 @@ public class ServiceListActivity extends AppCompatActivity {
 
                             if (code.equalsIgnoreCase("1")) {
 
-                                serviceModelArrayList=successModel.getServiceModelArrayList();
+                                patientModelArrayList = successModel.getPatientModelArrayList();
 
-                                if(doctorModelArrayList.size()!=0) {
+                                if (doctorModelArrayList.size() != 0) {
 
-                                    serviceListAdapter = new ServiceListAdapter(ServiceListActivity.this, serviceModelArrayList,appointmentName);
-                                    recyclerViewServiceList.setAdapter(serviceListAdapter);
-                                    recyclerViewServiceList.addItemDecoration(new DividerItemDecoration(ServiceListActivity.this, DividerItemDecoration.VERTICAL));
-                                    recyclerViewServiceList.setHasFixedSize(true);
-                                }
-                                else
-                                {
+                                    patientAdapter = new PatientAdapter(PatientActivity.this, patientModelArrayList,appointmentName);
+                                    recyclerPatientList.setAdapter(patientAdapter);
+                                    recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
+                                    recyclerPatientList.setHasFixedSize(true);
+                                } else {
                                     errorMessageDialog.showDialog("List Not found");
                                 }
 
@@ -152,7 +151,5 @@ public class ServiceListActivity extends AppCompatActivity {
                 errorMessageDialog.showDialog(t.getMessage());
             }
         });
-
     }
-
 }

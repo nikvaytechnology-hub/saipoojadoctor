@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.PatientModel;
@@ -21,40 +22,54 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
 
     private Context mContext;
     private ArrayList<PatientModel> patientModelArrayList;
+    private String appointmentName;
 
-    public PatientAdapter(Context mContext, ArrayList<PatientModel> patientModelArrayList) {
-        this.mContext=mContext;
-        this.patientModelArrayList=patientModelArrayList;
+    public PatientAdapter(Context mContext, ArrayList<PatientModel> patientModelArrayList, String appointmentName) {
+        this.mContext = mContext;
+        this.patientModelArrayList = patientModelArrayList;
+        this.appointmentName = appointmentName;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_patient_adapter,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_patient_adapter, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        PatientModel patientModel=patientModelArrayList.get(position);
+        PatientModel patientModel = patientModelArrayList.get(position);
 
-        String name=patientModel.getName();
-        String contact=patientModel.getPhone_no();
+        String name = patientModel.getName();
+        String contact = patientModel.getPhone_no();
 
 
         holder.textName.setText(name);
         holder.textContact.setText(contact);
-        holder.relativeLayoutPatient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(mContext, PatientDetailsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, patientModelArrayList.get(position));
-                intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_EDIT_PATIENT);
-                mContext.startActivity(intent);
 
-            }
-        });
+        if (appointmentName.equalsIgnoreCase(StaticContent.IntentValue.APPOINTMENT)) {
+
+            holder.relativeLayoutPatient.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "New Appointment", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } else {
+            holder.relativeLayoutPatient.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, PatientDetailsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, patientModelArrayList.get(position));
+                    intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_EDIT_PATIENT);
+                    mContext.startActivity(intent);
+
+                }
+            });
+        }
     }
 
     @Override
@@ -64,14 +79,14 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textName,textContact;
+        private TextView textName, textContact;
         private RelativeLayout relativeLayoutPatient;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            textName=itemView.findViewById(R.id.textName);
-            textContact=itemView.findViewById(R.id.textContact);
-            relativeLayoutPatient=itemView.findViewById(R.id.relativeLayoutPatient);
+            textName = itemView.findViewById(R.id.textName);
+            textContact = itemView.findViewById(R.id.textContact);
+            relativeLayoutPatient = itemView.findViewById(R.id.relativeLayoutPatient);
         }
     }
 }

@@ -109,7 +109,7 @@ public class PatientFragment extends Fragment {
 
                                 if(doctorModelArrayList.size()!=0) {
 
-                                    patientAdapter=new PatientAdapter(mContext,patientModelArrayList);
+                                    patientAdapter=new PatientAdapter(mContext,patientModelArrayList,"");
                                     recyclerPatientList.setAdapter(patientAdapter);
                                     recyclerPatientList.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
                                     recyclerPatientList.setHasFixedSize(true);

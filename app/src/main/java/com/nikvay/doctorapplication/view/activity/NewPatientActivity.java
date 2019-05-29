@@ -39,7 +39,6 @@ public class NewPatientActivity extends AppCompatActivity {
     private PatientModel patientModel;
     private ApiInterface apiInterface;
     private String doctor_id, user_id, TAG = getClass().getSimpleName();
-    ;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
 
     @Override
