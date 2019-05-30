@@ -3,6 +3,7 @@ package com.nikvay.doctorapplication.model;
 public class SelectDateTimeModel {
 
     private String time;
+    private String status;
     boolean isSelected;
 
     public SelectDateTimeModel(String time) {
@@ -24,5 +25,13 @@ public class SelectDateTimeModel {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

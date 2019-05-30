@@ -8,4 +8,5 @@ public class EndApi extends BaseApi {
     public static final String PATIENT_LIST = "ws-listpatient";
     public static final String UPDATE_SERVICE_LIST = "ws-editservice";
     public static final String ADD_NEW_SERVICE = "ws-addservice";
+    public static final String APPOINTMENT_TIME_SLOT = "ws-appointmentPatient";
 }

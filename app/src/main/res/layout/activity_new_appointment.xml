@@ -46,279 +46,429 @@
 
     </RelativeLayout>
 
-
-    <RelativeLayout
-
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/ll_icon_appointment"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <RelativeLayout
 
-
-            <ImageView
-
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@drawable/appointment" />
-
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toEndOf="@+id/ll_icon_appointment"
-            android:orientation="vertical"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/textDateDay"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:maxLines="1"
-                android:textColor="@android:color/black"
-                android:textSize="17sp" />
-
-
-            <TextView
-                android:id="@+id/textTime"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_gravity="top"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:maxLines="1"
-
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayoutPatient"
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-
-        <LinearLayout
-            android:id="@+id/ll_icon_service"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_icon_service"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@drawable/my_customer"
-                app:civ_border_color="@color/app_color"
-                app:civ_circle_background_color="@color/app_color" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toEndOf="@+id/ll_icon_service"
-            android:orientation="vertical"
-            android:weightSum="3">
-
-            <TextView
-                android:id="@+id/textPatientName"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:maxLines="1"
-                android:text="Name"
-                android:textColor="@android:color/black"
-                android:textSize="17sp" />
-
-
-            <TextView
-                android:id="@+id/textEmail"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:text="Email"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/textContact"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:gravity="top"
-                android:maxLines="1"
-                android:text="Contact"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayoutService"
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-
-        <LinearLayout
-            android:id="@+id/ll_icon"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <ImageView
-                android:id="@+id/img_icon"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@drawable/ic_vector_service" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toEndOf="@+id/ll_icon"
-            android:orientation="vertical"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/textServiceName"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:maxLines="1"
-                android:text="Service Name"
-                android:textColor="@android:color/black"
-                android:textSize="17sp" />
+            android:layout_height="80dp">
 
 
             <LinearLayout
+                android:id="@+id/ll_icon_appointment"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/appointment" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/ll_icon_appointment"
+                android:orientation="vertical"
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/textDuration"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
+                    android:id="@+id/textDateDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
+                    android:gravity="bottom"
                     android:maxLines="1"
-                    android:text="Duration"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp" />
 
 
                 <TextView
-                    android:id="@+id/textServiceCost"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/textTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+
+                    android:textColor="@color/gray"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutPatient"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+
+            <LinearLayout
+                android:id="@+id/ll_icon_service"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_icon_service"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/my_customer"
+                    app:civ_border_color="@color/app_color"
+                    app:civ_circle_background_color="@color/app_color" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/ll_icon_service"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/textPatientName"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:maxLines="1"
+                    android:text="Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp" />
+
+
+                <TextView
+                    android:id="@+id/textEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="Email"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/textContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:maxLines="1"
+                    android:text="Contact"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutService"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+
+            <LinearLayout
+                android:id="@+id/ll_icon"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/img_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_vector_service" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/ll_icon"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/textServiceName"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:maxLines="1"
+                    android:text="Service Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/textDuration"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:text="Duration"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+
+                    <TextView
+                        android:id="@+id/textServiceCost"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:text="Cost"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutCommentsHide"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="80dp">
+
+
+            <LinearLayout
+                android:id="@+id/ll_iconComments"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/img_icon_comments"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_vector_comment" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toEndOf="@+id/ll_iconComments"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:maxLines="1"
+                    android:text="Comments"
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp" />
+
+
+                <TextView
+                    android:id="@+id/textcommentName"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_gravity="top"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="Cost"
+                    android:text="No Comment"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
 
             </LinearLayout>
-        </LinearLayout>
 
-    </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayoutComments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:padding="15dp">
+        </RelativeLayout>
 
 
-        <TextView
-            android:id="@+id/textcomment"
-            android:layout_width="wrap_content"
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutLabelHide"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="80dp">
+
+
+            <LinearLayout
+                android:id="@+id/ll_iconLabel"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/img_icon_Label"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_vector_label" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toEndOf="@+id/ll_iconLabel"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:maxLines="1"
+                    android:text="Label"
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp" />
+
+
+                <TextView
+                    android:id="@+id/textLabelName"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="top"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="No Label"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutComments"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:maxLines="1"
-            android:text="Add Comments"
-            android:textColor="@color/app_color"
-            android:textSize="15sp" />
+            android:layout_alignParentStart="true"
+            android:padding="15dp">
 
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/textcomment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:maxLines="1"
+                android:text="Add Comments"
+                android:textColor="@color/app_color"
+                android:textSize="15sp" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutLabel"
-        android:layout_width="match_parent"
-        android:padding="15dp"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/textLabel"
-            android:layout_width="wrap_content"
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutLabel"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:maxLines="1"
-            android:text="Add Labels"
-            android:textColor="@color/app_color"
-            android:textSize="15sp" />
-    </RelativeLayout>
+            android:padding="15dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
+            <TextView
+                android:id="@+id/textLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:maxLines="1"
+                android:text="Add Labels"
+                android:textColor="@color/app_color"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+
+    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

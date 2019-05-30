@@ -71,4 +71,9 @@ public interface ApiInterface {
                                          @Field("Cost") String Cost,
                                          @Field("Description") String Description);
 
+
+    @POST(EndApi.APPOINTMENT_TIME_SLOT)
+    @FormUrlEncoded
+    Call<SuccessModel> appointmentTimeSlot(@Field("service_id") String service_id ,
+                                         @Field("date") String date);
 }

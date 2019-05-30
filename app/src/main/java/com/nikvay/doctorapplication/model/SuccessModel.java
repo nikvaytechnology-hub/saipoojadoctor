@@ -19,6 +19,23 @@ public class SuccessModel {
     @SerializedName("patient")
     ArrayList<PatientModel> patientModelArrayList;
 
+    @SerializedName("time")
+    ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList;
+
+
+
+
+
+    public ArrayList<SelectDateTimeModel> getSelectDateTimeModelArrayList() {
+        return selectDateTimeModelArrayList;
+    }
+
+    public void setSelectDateTimeModelArrayList(ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList) {
+        this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
+    }
+
+
+
     public String getError_code() {
         return error_code;
     }

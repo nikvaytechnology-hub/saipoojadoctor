@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
     private ServiceModel serviceModel;
     private PatientModel patientModel;
     private  String date="",time="",service_id,patient_id;
-
+    private RelativeLayout relativeLayoutComments,relativeLayoutLabel,relativeLayoutCommentsHide,relativeLayoutLabelHide;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,30 @@ public class NewAppointmentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        relativeLayoutComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                commentDialog();
+            }
+        });
 
+        relativeLayoutLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+                callLabelDialog();
+
+            }
+        });
+
+    }
+
+    private void callLabelDialog() {
+    }
+
+    private void commentDialog() {
+        
+        
     }
 
     private void find_All_IDs() {
@@ -56,6 +80,10 @@ public class NewAppointmentActivity extends AppCompatActivity {
         textServiceName=findViewById(R.id.textServiceName);
         textDuration=findViewById(R.id.textDuration);
         textServiceCost=findViewById(R.id.textServiceCost);
+        relativeLayoutComments=findViewById(R.id.relativeLayoutComments);
+        relativeLayoutLabel=findViewById(R.id.relativeLayoutLabel);
+        relativeLayoutCommentsHide=findViewById(R.id.relativeLayoutCommentsHide);
+        relativeLayoutLabelHide=findViewById(R.id.relativeLayoutLabelHide);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -78,9 +106,9 @@ public class NewAppointmentActivity extends AppCompatActivity {
             textContact.setText(patientModel.getPhone_no());
 
             textDateDay.setText(date);
-            textTime.setText(time+" "+"->"+" "+serviceModel.getService_time());
+            textTime.setText(time);
 
-            Toast.makeText(this, serviceModel.getS_name()+""+patientModel.getPatient_id()+" "+date+" "+time, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, serviceModel.getS_name()+""+patientModel.getPatient_id()+" "+date+" "+time, Toast.LENGTH_SHORT).show();
 
         }
 
