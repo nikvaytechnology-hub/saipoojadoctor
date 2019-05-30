@@ -6,15 +6,22 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
+import android.text.format.Time;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.view.adapter.PatientAdapter;
 import com.nikvay.doctorapplication.view.adapter.SelectDateTimeAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class DateTimeSelectActivity extends AppCompatActivity {
 
@@ -23,7 +30,8 @@ public class DateTimeSelectActivity extends AppCompatActivity {
     private SelectDateTimeAdapter selectDateTimeAdapter;
     private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList=new ArrayList<>();
     private ImageView  iv_close;
-
+    private CalendarView calendarView;
+    private String date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +48,32 @@ public class DateTimeSelectActivity extends AppCompatActivity {
             }
         });
 
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+
+
+                CharSequence strDate = null;
+                Time chosenDate = new Time();
+                chosenDate.set(dayOfMonth, month, year);
+
+                long dateAppointment = chosenDate.toMillis(true);
+                strDate = DateFormat.format("dd-MM-yyyy", dateAppointment);
+                date= (String) strDate;
+                Toast.makeText(DateTimeSelectActivity.this, date, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     private void find_All_Ids() {
         recyclerViewTime=findViewById(R.id.recyclerViewTime);
         iv_close=findViewById(R.id.iv_close);
+        calendarView=findViewById(R.id.calendarView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(DateTimeSelectActivity.this,3);
         recyclerViewTime.setLayoutManager(gridLayoutManager);
+        date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
 
         for (int i=0;i<=20;i++)

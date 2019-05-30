@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -42,7 +43,7 @@ public class PatientActivity extends AppCompatActivity {
     private ErrorMessageDialog errorMessageDialog;
     private String doctor_id, TAG = getClass().getSimpleName(),appointmentName="Service List";
     private ImageView iv_close;
-
+    private TextView textTitlePatientName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +76,7 @@ public class PatientActivity extends AppCompatActivity {
         recyclerPatientList = findViewById(R.id.recyclerPatientList);
         fabAddPatient = findViewById(R.id.fabAddPatient);
         iv_close = findViewById(R.id.iv_close);
+        textTitlePatientName = findViewById(R.id.textTitlePatientName);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         errorMessageDialog = new ErrorMessageDialog(PatientActivity.this);
 
@@ -88,6 +90,7 @@ public class PatientActivity extends AppCompatActivity {
 
         if (bundle != null) {
             appointmentName = bundle.getString(StaticContent.IntentKey.APPOINTMENT);
+            textTitlePatientName.setText("Select Patient");
         }
 
 
@@ -151,5 +154,11 @@ public class PatientActivity extends AppCompatActivity {
                 errorMessageDialog.showDialog(t.getMessage());
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        callListPatient();
+        super.onResume();
     }
 }
