@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class SharedUtils {
 
     private static SharedPreferences preferences;
+
     private static SharedPreferences.Editor editor;
     private static String DEVICE_TOKEN = "DEVICE_TOKEN";
 
@@ -83,4 +84,14 @@ public class SharedUtils {
         editor.clear();
         return editor.commit();
     }
+
+ /*   public static  void serviceData(Context mContext)
+    {
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.APPOINTMENT, mContext.MODE_PRIVATE);
+        editor = preferences.edit();
+        editor.commit();
+
+    }
+*/
+
 }

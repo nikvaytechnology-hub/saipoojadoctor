@@ -23,7 +23,8 @@ public class StaticContent {
         public static final String ACTIVITY_TYPE = "activity-type";
         public static final String STATUS = "STATUS";
         public static final String APPOINTMENT = "APPOINTMENT";
-
+        public static final  String DATE="DATE";
+        public static final  String TIME="TIME";
     }
 
     public class IntentValue {
@@ -40,6 +41,7 @@ public class StaticContent {
     {
         public  static final String IS_LOGIN="IS_LOGIN";
         public static final String MY_PREFERENCE="DOCTOR_APPLICATION";
+        public static final String APPOINTMENT="APPOINTMENT";
         public static final String DOCTOR_ID = "DEVICE_ID";
         public static final String USER_ID = "USER_ID";
         public static final String NAME = "NAME";

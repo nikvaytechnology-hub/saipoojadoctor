@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.PatientModel;
+import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.utils.StaticContent;
+import com.nikvay.doctorapplication.view.activity.NewAppointmentActivity;
 import com.nikvay.doctorapplication.view.activity.PatientDetailsActivity;
 
 import java.util.ArrayList;
@@ -23,11 +25,16 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
     private Context mContext;
     private ArrayList<PatientModel> patientModelArrayList;
     private String appointmentName;
+    private ServiceModel serviceModel;
+    private String date,time;
 
-    public PatientAdapter(Context mContext, ArrayList<PatientModel> patientModelArrayList, String appointmentName) {
+    public PatientAdapter(Context mContext, ArrayList<PatientModel> patientModelArrayList, String appointmentName, ServiceModel serviceModel,String date,String time) {
         this.mContext = mContext;
         this.patientModelArrayList = patientModelArrayList;
         this.appointmentName = appointmentName;
+        this.serviceModel=serviceModel;
+        this.date=date;
+        this.time=time;
     }
 
     @NonNull
@@ -43,17 +50,27 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
 
         String name = patientModel.getName();
         String contact = patientModel.getPhone_no();
+        String email = patientModel.getEmail();
 
 
         holder.textName.setText(name);
         holder.textContact.setText(contact);
+        holder.textEmail.setText(email);
 
         if (appointmentName.equalsIgnoreCase(StaticContent.IntentValue.APPOINTMENT)) {
 
             holder.relativeLayoutPatient.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext, "New Appointment", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, NewAppointmentActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, patientModelArrayList.get(position));
+                    intent.putExtra(StaticContent.IntentKey.SERVICE_DETAIL,serviceModel);
+                    intent.putExtra(StaticContent.IntentKey.DATE,date);
+                    intent.putExtra(StaticContent.IntentKey.TIME,time);
+                    intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_EDIT_PATIENT);
+                    mContext.startActivity(intent);
+
                 }
             });
 
@@ -79,13 +96,14 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textName, textContact;
+        private TextView textName, textContact,textEmail;
         private RelativeLayout relativeLayoutPatient;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.textName);
             textContact = itemView.findViewById(R.id.textContact);
+            textEmail = itemView.findViewById(R.id.textEmail);
             relativeLayoutPatient = itemView.findViewById(R.id.relativeLayoutPatient);
         }
     }

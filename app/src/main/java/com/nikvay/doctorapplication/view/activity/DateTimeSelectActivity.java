@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
+import com.nikvay.doctorapplication.model.ServiceModel;
+import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.PatientAdapter;
 import com.nikvay.doctorapplication.view.adapter.SelectDateTimeAdapter;
 
@@ -31,7 +33,10 @@ public class DateTimeSelectActivity extends AppCompatActivity {
     private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList=new ArrayList<>();
     private ImageView  iv_close;
     private CalendarView calendarView;
-    private String date;
+    private String date,selectedDate;
+    private ServiceModel serviceModel;
+    private String mTitle="Service Details";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +65,15 @@ public class DateTimeSelectActivity extends AppCompatActivity {
                 long dateAppointment = chosenDate.toMillis(true);
                 strDate = DateFormat.format("dd-MM-yyyy", dateAppointment);
                 date= (String) strDate;
+                callAdapter(date);
                 Toast.makeText(DateTimeSelectActivity.this, date, Toast.LENGTH_SHORT).show();
             }
         });
 
+
+    }
+
+    private void callAdapter(String date) {
 
     }
 
@@ -76,12 +86,25 @@ public class DateTimeSelectActivity extends AppCompatActivity {
         date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
 
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null)
+        {
+            serviceModel= (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
+            mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
+        }
+
+
+
         for (int i=0;i<=20;i++)
         {
 
          selectDateTimeModelArrayList.add(new SelectDateTimeModel("10 AM"));
         }
-        selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this,selectDateTimeModelArrayList);
+        selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this,selectDateTimeModelArrayList,serviceModel,date);
+        recyclerViewTime.setAdapter(selectDateTimeAdapter);
+        recyclerViewTime.addItemDecoration(new DividerItemDecoration(DateTimeSelectActivity.this, DividerItemDecoration.HORIZONTAL));
+        recyclerViewTime.addItemDecoration(new DividerItemDecoration(DateTimeSelectActivity.this, DividerItemDecoration.VERTICAL));
+        recyclerViewTime.setHasFixedSize(true); selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this,selectDateTimeModelArrayList,serviceModel,date);
         recyclerViewTime.setAdapter(selectDateTimeAdapter);
         recyclerViewTime.addItemDecoration(new DividerItemDecoration(DateTimeSelectActivity.this, DividerItemDecoration.HORIZONTAL));
         recyclerViewTime.addItemDecoration(new DividerItemDecoration(DateTimeSelectActivity.this, DividerItemDecoration.VERTICAL));

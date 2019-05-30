@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -19,6 +20,7 @@ import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.PatientModel;
+import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
@@ -41,9 +43,11 @@ public class PatientActivity extends AppCompatActivity {
     ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
-    private String doctor_id, TAG = getClass().getSimpleName(),appointmentName="Service List";
+    private String doctor_id, TAG = getClass().getSimpleName(),appointmentName="Service List",date="",time="";
     private ImageView iv_close;
     private TextView textTitlePatientName;
+    private ServiceModel serviceModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +94,10 @@ public class PatientActivity extends AppCompatActivity {
 
         if (bundle != null) {
             appointmentName = bundle.getString(StaticContent.IntentKey.APPOINTMENT);
+            serviceModel= (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
+            date=bundle.getString(StaticContent.IntentKey.DATE);
+            time=bundle.getString(StaticContent.IntentKey.TIME);
+            //Toast.makeText(this, serviceModel.getS_name()+" "+date+" "+time, Toast.LENGTH_SHORT).show();
             textTitlePatientName.setText("Select Patient");
         }
 
@@ -129,7 +137,7 @@ public class PatientActivity extends AppCompatActivity {
 
                                 if (doctorModelArrayList.size() != 0) {
 
-                                    patientAdapter = new PatientAdapter(PatientActivity.this, patientModelArrayList,appointmentName);
+                                    patientAdapter = new PatientAdapter(PatientActivity.this, patientModelArrayList,appointmentName,serviceModel,date,time);
                                     recyclerPatientList.setAdapter(patientAdapter);
                                     recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                     recyclerPatientList.setHasFixedSize(true);
