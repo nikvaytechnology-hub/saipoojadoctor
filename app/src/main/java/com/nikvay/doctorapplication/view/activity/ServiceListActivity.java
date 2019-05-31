@@ -42,7 +42,7 @@ public class ServiceListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewServiceList;
     ArrayList<ServiceModel> serviceModelArrayList=new ArrayList<>();
     private ServiceListAdapter serviceListAdapter;
-    private ImageView  iv_close;
+    private ImageView  iv_close,iv_no_data_found;
     private ApiInterface apiInterface;
     ProgressDialog pd;
     private ShowProgress showProgress;
@@ -96,6 +96,7 @@ public class ServiceListActivity extends AppCompatActivity {
         iv_close=findViewById(R.id.iv_close);
         fabAddService=findViewById(R.id.fabAddService);
         textTitleServiceName=findViewById(R.id.textTitleServiceName);
+        iv_no_data_found=findViewById(R.id.iv_no_data_found);
 
         doctorModelArrayList= SharedUtils.getUserDetails(ServiceListActivity.this);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
@@ -158,11 +159,11 @@ public class ServiceListActivity extends AppCompatActivity {
                                 }
                                 else
                                 {
-                                    errorMessageDialog.showDialog("List Not found");
+                                    iv_no_data_found.setVisibility(View.VISIBLE);
                                 }
 
                             } else {
-                                errorMessageDialog.showDialog("List Not found");
+                                errorMessageDialog.showDialog("Response Not Working");
                             }
 
                         }

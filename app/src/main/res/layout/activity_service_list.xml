@@ -45,6 +45,16 @@
             android:layout_height="match_parent" />
 
 
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_no_data_found"
+            android:visibility="gone"
+            android:src="@drawable/nodatafound"/>
+
+
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabAddService"
             android:layout_width="wrap_content"

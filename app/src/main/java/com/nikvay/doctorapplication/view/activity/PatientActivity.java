@@ -44,7 +44,7 @@ public class PatientActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
     private String doctor_id, TAG = getClass().getSimpleName(),appointmentName="Service List",date="",time="";
-    private ImageView iv_close;
+    private ImageView iv_close,iv_no_data_found;
     private TextView textTitlePatientName;
     private ServiceModel serviceModel;
 
@@ -81,6 +81,7 @@ public class PatientActivity extends AppCompatActivity {
         fabAddPatient = findViewById(R.id.fabAddPatient);
         iv_close = findViewById(R.id.iv_close);
         textTitlePatientName = findViewById(R.id.textTitlePatientName);
+        iv_no_data_found = findViewById(R.id.iv_no_data_found);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         errorMessageDialog = new ErrorMessageDialog(PatientActivity.this);
 
@@ -142,11 +143,11 @@ public class PatientActivity extends AppCompatActivity {
                                     recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                     recyclerPatientList.setHasFixedSize(true);
                                 } else {
-                                    errorMessageDialog.showDialog("List Not found");
+                                    iv_no_data_found.setVisibility(View.VISIBLE);
                                 }
 
                             } else {
-                                errorMessageDialog.showDialog("List Not found");
+                                errorMessageDialog.showDialog("Response Not Working");
                             }
 
                         }

@@ -34,7 +34,7 @@ public class AppointmentListActivity extends AppCompatActivity {
 
 
     private String label,appointmentName,doctor_id,TAG = getClass().getSimpleName(),user_id;
-    private ImageView iv_close;
+    private ImageView iv_close,iv_no_data_found;
     private TextView textAppointmentTitleName;
     private RecyclerView recyclerViewAppointmentList;
     private ErrorMessageDialog errorMessageDialog;
@@ -76,6 +76,7 @@ public class AppointmentListActivity extends AppCompatActivity {
         iv_close = findViewById(R.id.iv_close);
         textAppointmentTitleName = findViewById(R.id.textAppointmentTitleName);
         recyclerViewAppointmentList = findViewById(R.id.recyclerViewAppointmentList);
+        iv_no_data_found = findViewById(R.id.iv_no_data_found);
 
         errorMessageDialog = new ErrorMessageDialog(AppointmentListActivity.this);
 
@@ -130,11 +131,11 @@ public class AppointmentListActivity extends AppCompatActivity {
                                 }
                                 else
                                 {
-                                    errorMessageDialog.showDialog("List Not found");
+                                    iv_no_data_found.setVisibility(View.VISIBLE);
                                 }
 
                             } else {
-                                errorMessageDialog.showDialog("List Not found");
+                                errorMessageDialog.showDialog("Response Not Working");
                             }
 
                         }
