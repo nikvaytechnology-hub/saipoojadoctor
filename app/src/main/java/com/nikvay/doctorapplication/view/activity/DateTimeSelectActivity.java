@@ -78,7 +78,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
                 chosenDate.set(dayOfMonth, month, year);
 
                 long dateAppointment = chosenDate.toMillis(true);
-                strDate = DateFormat.format("yyyy-mm-dd", dateAppointment);
+                strDate = DateFormat.format("yyyy-MM-dd", dateAppointment);
                 date= (String) strDate;
 
                 if (NetworkUtils.isNetworkAvailable(DateTimeSelectActivity.this))
@@ -102,7 +102,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
         recyclerViewTime.hasFixedSize();
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        date = new SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).format(new Date());
+        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         errorMessageDialog= new ErrorMessageDialog(DateTimeSelectActivity.this);
 
         Bundle bundle = getIntent().getExtras();

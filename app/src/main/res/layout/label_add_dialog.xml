@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/ll_pending"
         android:padding="10dp">
 
 
@@ -33,6 +34,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/ll_Confirm"
         android:padding="10dp">
 
 
@@ -56,6 +58,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/ll_Cancel"
         android:padding="10dp">
 
 
@@ -79,6 +82,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/ll_Complete"
         android:padding="10dp">
 
 
@@ -101,7 +105,7 @@
 
 
 
-    <Button
+   <!-- <Button
         android:id="@+id/btn_done"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -114,7 +118,7 @@
         android:text="Done"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="22sp" />
+        android:textSize="22sp" />-->
 
 
 </LinearLayout>

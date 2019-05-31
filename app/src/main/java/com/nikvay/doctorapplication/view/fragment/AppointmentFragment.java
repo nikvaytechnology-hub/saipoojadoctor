@@ -97,7 +97,7 @@ public class AppointmentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AppointmentListActivity.class);
-                intent.putExtra(StaticContent.IntentKey.STATUS, 0);
+                intent.putExtra(StaticContent.IntentKey.STATUS, "0");
                 intent.putExtra(StaticContent.IntentKey.APPOINTMENT,textPending.getText().toString().trim());
                 startActivity(intent);
             }
@@ -108,7 +108,7 @@ public class AppointmentFragment extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(mContext, AppointmentListActivity.class);
-                intent.putExtra(StaticContent.IntentKey.STATUS, 3);
+                intent.putExtra(StaticContent.IntentKey.STATUS, "3");
                 intent.putExtra(StaticContent.IntentKey.APPOINTMENT,textArchive.getText().toString().trim());
                 startActivity(intent);
 
@@ -118,7 +118,7 @@ public class AppointmentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AppointmentListActivity.class);
-                intent.putExtra(StaticContent.IntentKey.STATUS, 2);
+                intent.putExtra(StaticContent.IntentKey.STATUS, "2");
                 intent.putExtra(StaticContent.IntentKey.APPOINTMENT,textCancelled.getText().toString().trim());
                 startActivity(intent);
             }
@@ -129,7 +129,7 @@ public class AppointmentFragment extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(mContext, AppointmentListActivity.class);
-                intent.putExtra(StaticContent.IntentKey.STATUS, 1);
+                intent.putExtra(StaticContent.IntentKey.STATUS, "1");
                 intent.putExtra(StaticContent.IntentKey.APPOINTMENT,textConfirmed.getText().toString().trim());
                 startActivity(intent);
 

@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class AppointmentListActivity extends AppCompatActivity {
 
 
-    private String label,appointmentName,doctor_id,TAG = getClass().getSimpleName();
+    private String label,appointmentName,doctor_id,TAG = getClass().getSimpleName(),user_id;
     private ImageView iv_close;
     private TextView textAppointmentTitleName;
     private RecyclerView recyclerViewAppointmentList;
@@ -91,13 +91,14 @@ public class AppointmentListActivity extends AppCompatActivity {
 
         doctorModelArrayList = SharedUtils.getUserDetails(AppointmentListActivity.this);
         doctor_id = doctorModelArrayList.get(0).getDoctor_id();
+        user_id = doctorModelArrayList.get(0).getUser_id();
 
         recyclerViewAppointmentList.setHasFixedSize(true);
         recyclerViewAppointmentList.setLayoutManager(new LinearLayoutManager(this));
 
     }
     private void appoinmentListCall() {
-        Call<SuccessModel> call = apiInterface.appointmentList(doctor_id,label);
+        Call<SuccessModel> call = apiInterface.appointmentList(doctor_id,label,user_id);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {

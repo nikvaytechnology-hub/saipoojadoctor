@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -41,7 +42,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
 
 
     private ImageView iv_close;
-    private TextView textDone,textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textcommentName;
+    private TextView textDone,textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textcommentName,textLabelName;
     private ServiceModel serviceModel;
     private PatientModel patientModel;
     private  String date="",time="",service_id,patient_id,TAG = getClass().getSimpleName(),user_id,doctor_id,comment="",label="1";
@@ -150,12 +151,62 @@ public class NewAppointmentActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(NewAppointmentActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.label_add_dialog);
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        final TextInputEditText textComment= dialog.findViewById(R.id.textComment);
-        Button btn_done =dialog.findViewById(R.id.btn_done);
+        final LinearLayout ll_pending= dialog.findViewById(R.id.ll_pending);
+        final LinearLayout ll_Confirm= dialog.findViewById(R.id.ll_Confirm);
+        final LinearLayout ll_Cancel= dialog.findViewById(R.id.ll_Cancel);
+        final LinearLayout ll_Complete= dialog.findViewById(R.id.ll_Complete);
+        final TextView textPending= dialog.findViewById(R.id.textPending);
+        final TextView textConfirm= dialog.findViewById(R.id.textConfirm);
+        final TextView textCancel= dialog.findViewById(R.id.textCancel);
+        final TextView textComplete= dialog.findViewById(R.id.textComplete);
 
+
+        //Button btn_done =dialog.findViewById(R.id.btn_done);
+
+
+        ll_pending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="0";
+                textLabelName.setText(textPending.getText());
+                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+
+            }
+        });
+
+        ll_Confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="1";
+                textLabelName.setText(textConfirm.getText());
+                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            }
+        });
+        ll_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="2";
+                textLabelName.setText(textCancel.getText());
+                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            }
+        });
+        ll_Complete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="3";
+                textLabelName.setText(textComplete.getText());
+                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            }
+        });
+
+/*
 
         btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +220,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
 
             }
         });
+*/
 
         dialog.show();
 
@@ -222,6 +274,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
         relativeLayoutCommentsHide=findViewById(R.id.relativeLayoutCommentsHide);
         relativeLayoutLabelHide=findViewById(R.id.relativeLayoutLabelHide);
         textcommentName=findViewById(R.id.textcommentName);
+        textLabelName=findViewById(R.id.textLabelName);
 
         errorMessageDialog= new ErrorMessageDialog(NewAppointmentActivity.this);
         appointmentDialog= new AppointmentDialog(NewAppointmentActivity.this);
