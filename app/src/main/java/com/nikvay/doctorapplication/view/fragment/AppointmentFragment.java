@@ -44,7 +44,7 @@ public class AppointmentFragment extends Fragment {
     private TextView textPending, textConfirmed, textCancelled, textArchive,textPendingCount,textConfirmCount,textCancelCount,textArchiveCount;
     private ApiInterface apiInterface;
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
-    private String doctor_id,TAG = getClass().getSimpleName();
+    private String doctor_id,TAG = getClass().getSimpleName(),user_id;
     private ErrorMessageDialog errorMessageDialog;
 
     @Override
@@ -89,6 +89,7 @@ public class AppointmentFragment extends Fragment {
 
         doctorModelArrayList= SharedUtils.getUserDetails(mContext);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
+        user_id=doctorModelArrayList.get(0).getUser_id();
 
     }
 
@@ -146,7 +147,7 @@ public class AppointmentFragment extends Fragment {
         });
     }
     private void callAppointmentCount() {
-        Call<SuccessModel> call = apiInterface.appointmentListCount(doctor_id);
+        Call<SuccessModel> call = apiInterface.appointmentListCount(doctor_id,user_id);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
