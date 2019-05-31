@@ -99,6 +99,8 @@ public class DateTimeSelectActivity extends AppCompatActivity {
         calendarView=findViewById(R.id.calendarView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(DateTimeSelectActivity.this,3);
         recyclerViewTime.setLayoutManager(gridLayoutManager);
+        recyclerViewTime.hasFixedSize();
+
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         date = new SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).format(new Date());
         errorMessageDialog= new ErrorMessageDialog(DateTimeSelectActivity.this);
@@ -139,6 +141,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
                         if (successModel != null) {
                             message = successModel.getMsg();
                             code = successModel.getError_code();
+
                             selectDateTimeModelArrayList.clear();
                             selectDateTimeModelArrayListSend.clear();
                             
@@ -156,9 +159,9 @@ public class DateTimeSelectActivity extends AppCompatActivity {
                                 if(selectDateTimeModelArrayListSend.size()!=0) {
                                     selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this, selectDateTimeModelArrayListSend, serviceModel, date);
                                     recyclerViewTime.setAdapter(selectDateTimeAdapter);
+                                    selectDateTimeAdapter.notifyDataSetChanged();
                                     recyclerViewTime.addItemDecoration(new DividerItemDecoration(DateTimeSelectActivity.this, DividerItemDecoration.HORIZONTAL));
                                     recyclerViewTime.addItemDecoration(new DividerItemDecoration(DateTimeSelectActivity.this, DividerItemDecoration.VERTICAL));
-                                    recyclerViewTime.setHasFixedSize(true);
                                 }
                                 else
                                 {

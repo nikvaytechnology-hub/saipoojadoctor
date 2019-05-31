@@ -1,82 +1,138 @@
 package com.nikvay.doctorapplication.model;
 
 public class AppoinmentListModel {
-    String week_of_apppoinment;
-    String day_of_month;
-    String date_of_Time;
-    String appoinment_service;
-    String appoinment_coast;
-    String doctor_name;
-    String appoinment_Duration;
+   private  String appointment_id;
+   private  String date;
+   private  String time;
+   private  String service_id;
+   private  String label;
+   private  String s_name;
+   private  String service_cost;
+   private  String patient_id;
+   private  String name;
+   private  String email;
+   private  String address;
+   private  String phone_no;
+   private  String service_time;
 
-    public AppoinmentListModel(String week_of_apppoinment, String day_of_month, String date_of_Time, String doctor_name, String appoinment_Duration, String appoinment_service, String appoinment_coast)
-    {
-        this.week_of_apppoinment = week_of_apppoinment;
-        this.day_of_month = day_of_month;
-        this.date_of_Time = date_of_Time;
-        this.doctor_name = doctor_name;
-        this.appoinment_Duration = appoinment_Duration;
-        this.appoinment_service = appoinment_service;
-        this.appoinment_coast = appoinment_coast;
+
+    public AppoinmentListModel(String appointment_id, String date, String time, String service_id, String label, String s_name, String service_cost, String patient_id, String name, String email, String address, String phone_no,String service_time) {
+        this.appointment_id = appointment_id;
+        this.date = date;
+        this.time = time;
+        this.service_id = service_id;
+        this.label = label;
+        this.s_name = s_name;
+        this.service_cost = service_cost;
+        this.patient_id = patient_id;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.phone_no = phone_no;
+        this.service_time = service_time;
     }
 
-
-
-    public String getWeek_of_apppoinment() {
-        return week_of_apppoinment;
+    public String getAppointment_id() {
+        return appointment_id;
     }
 
-    public void setWeek_of_apppoinment(String week_of_apppoinment) {
-        this.week_of_apppoinment = week_of_apppoinment;
+    public void setAppointment_id(String appointment_id) {
+        this.appointment_id = appointment_id;
     }
 
-    public String getDay_of_month() {
-        return day_of_month;
+    public String getDate() {
+        return date;
     }
 
-    public void setDay_of_month(String day_of_month) {
-        this.day_of_month = day_of_month;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getDate_of_Time() {
-        return date_of_Time;
+    public String getTime() {
+        return time;
     }
 
-    public void setDate_of_Time(String date_of_Time) {
-        this.date_of_Time = date_of_Time;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getDoctor_name() {
-        return doctor_name;
+    public String getService_id() {
+        return service_id;
     }
 
-    public void setDoctor_name(String doctor_name) {
-        this.doctor_name = doctor_name;
+    public void setService_id(String service_id) {
+        this.service_id = service_id;
     }
 
-    public String getAppoinment_Duration() {
-        return appoinment_Duration;
+    public String getLabel() {
+        return label;
     }
 
-    public void setAppoinment_Duration(String appoinment_Duration) {
-        this.appoinment_Duration = appoinment_Duration;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-    public String getAppoinment_service() {
-        return appoinment_service;
+    public String getS_name() {
+        return s_name;
     }
 
-    public void setAppoinment_service(String appoinment_service) {
-        this.appoinment_service = appoinment_service;
+    public void setS_name(String s_name) {
+        this.s_name = s_name;
     }
 
-    public String getAppoinment_coast() {
-        return appoinment_coast;
+    public String getService_cost() {
+        return service_cost;
     }
 
-    public void setAppoinment_coast(String appoinment_coast) {
-        this.appoinment_coast = appoinment_coast;
+    public void setService_cost(String service_cost) {
+        this.service_cost = service_cost;
     }
 
+    public String getPatient_id() {
+        return patient_id;
+    }
 
+    public void setPatient_id(String patient_id) {
+        this.patient_id = patient_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone_no() {
+        return phone_no;
+    }
+
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
+    }
+
+    public String getService_time() {
+        return service_time;
+    }
+
+    public void setService_time(String service_time) {
+        this.service_time = service_time;
+    }
 }

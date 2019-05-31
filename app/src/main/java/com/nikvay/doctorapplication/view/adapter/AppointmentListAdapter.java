@@ -37,13 +37,12 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
         AppoinmentListModel appoinmentListModel= appoinmentListModelArrayList.get(position);
 
 
-        holder.week_of_apppoinment.setText(appoinmentListModel.getWeek_of_apppoinment());
-        holder.date_of_Time.setText(String.valueOf(appoinmentListModel.getDate_of_Time()));
-        holder.doctor_name.setText(String.valueOf(appoinmentListModel .getDoctor_name()));
-
-        holder.appoinment_Duration.setText(String.valueOf(appoinmentListModel.getAppoinment_Duration()));
-        holder.appoinment_service.setText(String.valueOf(appoinmentListModel .getAppoinment_service()));
-        holder.appoinment_coast.setText(String.valueOf(appoinmentListModel.getAppoinment_coast()));
+        holder.textDay.setText(appoinmentListModel.getDate());
+        holder.textTime.setText(String.valueOf(appoinmentListModel.getTime()));
+        holder.textPatientName.setText(String.valueOf(appoinmentListModel.getName()));
+        holder.textService.setText(String.valueOf(appoinmentListModel.getS_name()));
+        holder.textServiceCost.setText(String.valueOf(appoinmentListModel.getService_cost())+" "+"RS");
+        holder.textServiceTime.setText(String.valueOf(appoinmentListModel.getService_time()));
 
 
     }
@@ -55,18 +54,17 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView week_of_apppoinment, day_of_month, date_of_Time, doctor_name, appoinment_Duration, appoinment_service, appoinment_coast;
+        private TextView textDay, textTime, textPatientName, textServiceTime, textService, textServiceCost;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            week_of_apppoinment = itemView.findViewById(R.id.week_of_apppoinment);
-            // day_of_month = itemView.findViewById(R.id.day_of_month);
-            date_of_Time = itemView.findViewById(R.id.date_of_Time);
-            doctor_name = itemView.findViewById(R.id.doctor_name);
-            appoinment_Duration = itemView.findViewById(R.id.appoinment_Duration);
-            appoinment_service = itemView.findViewById(R.id.appoinment_service);
-            appoinment_coast = itemView.findViewById(R.id.appoinment_coast);
+            textDay = itemView.findViewById(R.id.textDay);
+            textTime = itemView.findViewById(R.id.textTime);
+            textPatientName = itemView.findViewById(R.id.textPatientName);
+            textServiceTime = itemView.findViewById(R.id.textServiceTime);
+            textService = itemView.findViewById(R.id.textService);
+            textServiceCost = itemView.findViewById(R.id.textServiceCost);
         }
     }
 }

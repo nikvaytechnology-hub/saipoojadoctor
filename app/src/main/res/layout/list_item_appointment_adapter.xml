@@ -25,7 +25,7 @@
 
 
             <TextView
-                android:id="@+id/week_of_apppoinment"
+                android:id="@+id/textDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="monday 23"
@@ -69,7 +69,7 @@
                     android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/date_of_Time"
+                        android:id="@+id/textTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -81,7 +81,7 @@
 
 
                     <TextView
-                        android:id="@+id/doctor_name"
+                        android:id="@+id/textPatientName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -101,31 +101,31 @@
                     android:weightSum="3">
 
                     <TextView
-                        android:id="@+id/appoinment_Duration"
+                        android:id="@+id/textServiceTime"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="Durvation"
+                        android:text="Service Time"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 
 
                     <TextView
-                        android:id="@+id/appoinment_service"
+                        android:id="@+id/textService"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="monday 23"
+                        android:text="Service Name"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 
 
                     <TextView
-                        android:id="@+id/appoinment_coast"
+                        android:id="@+id/textServiceCost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

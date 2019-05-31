@@ -31,7 +31,7 @@
             android:textColor="#FFFFFF"
             android:textSize="17sp" />
     </RelativeLayout>
-    <LinearLayout
+  <!--  <LinearLayout
         android:id="@+id/linearTotalAppoinment"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -83,11 +83,11 @@
             android:text="To Date"
             android:textColor="@android:color/white" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/recyclerViewAppointmentList"/>
 
 </LinearLayout>
