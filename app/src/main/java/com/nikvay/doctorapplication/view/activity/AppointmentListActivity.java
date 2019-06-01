@@ -1,5 +1,6 @@
 package com.nikvay.doctorapplication.view.activity;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -20,6 +21,7 @@ import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
+import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.AppointmentListAdapter;
 import com.nikvay.doctorapplication.view.adapter.ServiceListAdapter;
@@ -32,7 +34,6 @@ import retrofit2.Response;
 
 public class AppointmentListActivity extends AppCompatActivity {
 
-
     private String label,appointmentName,doctor_id,TAG = getClass().getSimpleName(),user_id;
     private ImageView iv_close,iv_no_data_found;
     private TextView textAppointmentTitleName;
@@ -41,8 +42,8 @@ public class AppointmentListActivity extends AppCompatActivity {
     private ArrayList<AppoinmentListModel> appoinmentListModelArrayList = new ArrayList<>();
     private AppointmentListAdapter appointmentListAdapter;
     private ApiInterface apiInterface;
+    private ShowProgress showProgress;
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +78,7 @@ public class AppointmentListActivity extends AppCompatActivity {
         textAppointmentTitleName = findViewById(R.id.textAppointmentTitleName);
         recyclerViewAppointmentList = findViewById(R.id.recyclerViewAppointmentList);
         iv_no_data_found = findViewById(R.id.iv_no_data_found);
-
+        showProgress=new ShowProgress(AppointmentListActivity.this);
         errorMessageDialog = new ErrorMessageDialog(AppointmentListActivity.this);
 
         Bundle bundle = getIntent().getExtras();
@@ -99,12 +100,12 @@ public class AppointmentListActivity extends AppCompatActivity {
 
     }
     private void appoinmentListCall() {
+        showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.appointmentList(doctor_id,label,user_id);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
-                // showProgress.dismissDialog();
-                // pd.dismiss();
+                 showProgress.dismissDialog();
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);
 
@@ -112,7 +113,7 @@ public class AppointmentListActivity extends AppCompatActivity {
                 try {
                     if (response.isSuccessful()) {
                         SuccessModel successModel = response.body();
-
+                        appoinmentListModelArrayList.clear();
                         String message = null, code = null;
                         if (successModel != null) {
                             message = successModel.getMsg();
@@ -148,7 +149,7 @@ public class AppointmentListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SuccessModel> call, Throwable t) {
-                //showProgress.dismissDialog();
+               showProgress.dismissDialog();
                 errorMessageDialog.showDialog(t.getMessage());
             }
         });

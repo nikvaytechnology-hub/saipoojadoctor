@@ -1,6 +1,6 @@
 package com.nikvay.doctorapplication.view.activity;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -25,6 +25,7 @@ import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
+import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.PatientAdapter;
 
@@ -47,6 +48,7 @@ public class PatientActivity extends AppCompatActivity {
     private ImageView iv_close,iv_no_data_found;
     private TextView textTitlePatientName;
     private ServiceModel serviceModel;
+    ShowProgress showProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class PatientActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PatientActivity.this);
         recyclerPatientList.setLayoutManager(linearLayoutManager);
+        recyclerPatientList.setHasFixedSize(true);
+        showProgress=new ShowProgress(PatientActivity.this);
 
         doctorModelArrayList = SharedUtils.getUserDetails(PatientActivity.this);
         doctor_id = doctorModelArrayList.get(0).getDoctor_id();
@@ -112,20 +116,20 @@ public class PatientActivity extends AppCompatActivity {
     }
 
     private void callListPatient() {
-
+        showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.patientList(doctor_id);
-
 
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+                showProgress.dismissDialog();
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);
 
                 try {
                     if (response.isSuccessful()) {
                         SuccessModel successModel = response.body();
-
+                        patientModelArrayList.clear();
                         String message = null, code = null;
                         if (successModel != null) {
                             message = successModel.getMsg();
@@ -140,8 +144,8 @@ public class PatientActivity extends AppCompatActivity {
 
                                     patientAdapter = new PatientAdapter(PatientActivity.this, patientModelArrayList,appointmentName,serviceModel,date,time);
                                     recyclerPatientList.setAdapter(patientAdapter);
+                                    patientAdapter.notifyDataSetChanged();
                                     recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
-                                    recyclerPatientList.setHasFixedSize(true);
                                 } else {
                                     iv_no_data_found.setVisibility(View.VISIBLE);
                                 }
@@ -160,6 +164,7 @@ public class PatientActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SuccessModel> call, Throwable t) {
+                showProgress.dismissDialog();
                 errorMessageDialog.showDialog(t.getMessage());
             }
         });
@@ -167,7 +172,7 @@ public class PatientActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        callListPatient();
+        //callListPatient();
         super.onResume();
     }
 }

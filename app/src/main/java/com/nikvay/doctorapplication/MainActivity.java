@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     private void find_All_IDs() {
         drawerLayout = findViewById(R.id.drawer_layout);
         iv_menu_toolbar = findViewById(R.id.iv_menu_toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
         recyclerViewDrawer = findViewById(R.id.recyclerViewDrawer);
         iv_notification = findViewById(R.id.iv_notification);
         textTitleName = findViewById(R.id.textTitleName);

@@ -1,6 +1,6 @@
 package com.nikvay.doctorapplication.view.activity;
 
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -12,14 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
-import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
 import com.nikvay.doctorapplication.model.DoctorModel;
-import com.nikvay.doctorapplication.model.PatientModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
@@ -27,7 +24,6 @@ import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.StaticContent;
-import com.nikvay.doctorapplication.view.adapter.PatientAdapter;
 import com.nikvay.doctorapplication.view.adapter.ServiceListAdapter;
 
 import java.util.ArrayList;
@@ -44,14 +40,12 @@ public class ServiceListActivity extends AppCompatActivity {
     private ServiceListAdapter serviceListAdapter;
     private ImageView  iv_close,iv_no_data_found;
     private ApiInterface apiInterface;
-    ProgressDialog pd;
-    private ShowProgress showProgress;
     private ErrorMessageDialog errorMessageDialog;
     private String device_token,TAG = getClass().getSimpleName(),doctor_id,appointmentName="Service List";
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private FloatingActionButton fabAddService;
     private TextView textTitleServiceName;
-
+    ShowProgress showProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +96,6 @@ public class ServiceListActivity extends AppCompatActivity {
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
 
         errorMessageDialog= new ErrorMessageDialog(ServiceListActivity.this);
-
         showProgress=new ShowProgress(ServiceListActivity.this);
 
         Bundle bundle = getIntent().getExtras();
@@ -115,23 +108,19 @@ public class ServiceListActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ServiceListActivity.this);
         recyclerViewServiceList.setLayoutManager(linearLayoutManager);
+        recyclerViewServiceList.setHasFixedSize(true);
 
 
 
     }
     private void callServiceList() {
+       showProgress.showDialog();
 
-        /*showProgress.showDialog();*/
-        /*pd = new ProgressDialog(this);
-        pd.setMessage("Loading Please Wait...");
-        pd.setCancelable(false);
-        pd.show();*/
         Call<SuccessModel> call = apiInterface.serviceList(doctor_id);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
-               // showProgress.dismissDialog();
-               // pd.dismiss();
+                showProgress.dismissDialog();
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);
 
@@ -139,7 +128,7 @@ public class ServiceListActivity extends AppCompatActivity {
                 try {
                     if (response.isSuccessful()) {
                         SuccessModel successModel = response.body();
-
+                        serviceModelArrayList.clear();
                         String message = null, code = null;
                         if (successModel != null) {
                             message = successModel.getMsg();
@@ -154,8 +143,9 @@ public class ServiceListActivity extends AppCompatActivity {
 
                                     serviceListAdapter = new ServiceListAdapter(ServiceListActivity.this, serviceModelArrayList,appointmentName);
                                     recyclerViewServiceList.setAdapter(serviceListAdapter);
+                                    serviceListAdapter.notifyDataSetChanged();
                                     recyclerViewServiceList.addItemDecoration(new DividerItemDecoration(ServiceListActivity.this, DividerItemDecoration.VERTICAL));
-                                    recyclerViewServiceList.setHasFixedSize(true);
+
                                 }
                                 else
                                 {
@@ -176,8 +166,7 @@ public class ServiceListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SuccessModel> call, Throwable t) {
-                //showProgress.dismissDialog();
-               pd.dismiss();
+                showProgress.dismissDialog();
                 errorMessageDialog.showDialog(t.getMessage());
             }
         });
@@ -187,6 +176,6 @@ public class ServiceListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        callServiceList();
+        //callServiceList();
     }
 }

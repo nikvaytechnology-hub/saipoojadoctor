@@ -21,6 +21,7 @@ import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
+import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private String device_token,TAG = getClass().getSimpleName();
     private ApiInterface apiInterface;
     ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
+    private ShowProgress showProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +96,12 @@ public class LoginActivity extends AppCompatActivity {
     private void callLogin(String email, String password) {
 
 
+        showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.loginCall(email, password, device_token);
-
-
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+                showProgress.dismissDialog();
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);
 
@@ -133,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SuccessModel> call, Throwable t) {
+                showProgress.dismissDialog();
                 errorMessageDialog.showDialog(t.getMessage());
             }
         });
@@ -157,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
         textEmail=findViewById(R.id.textEmail);
         textPassword=findViewById(R.id.textPassword);
         btn_login=findViewById(R.id.btn_login);
-
+        showProgress=new ShowProgress(LoginActivity.this);
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
