@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,6 +46,7 @@ public class AppointmentListActivity extends AppCompatActivity {
     private AppointmentListAdapter appointmentListAdapter;
     private ApiInterface apiInterface;
     private ShowProgress showProgress;
+    private EditText edt_search_appointment;
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +74,30 @@ public class AppointmentListActivity extends AppCompatActivity {
             }
         });
 
+        edt_search_appointment.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                appointmentListAdapter.getFilter().filter(edt_search_appointment.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void find_All_IDs() {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         iv_close = findViewById(R.id.iv_close);
+        edt_search_appointment = findViewById(R.id.edt_search_appointment);
         textAppointmentTitleName = findViewById(R.id.textAppointmentTitleName);
         recyclerViewAppointmentList = findViewById(R.id.recyclerViewAppointmentList);
         iv_no_data_found = findViewById(R.id.iv_no_data_found);

@@ -163,7 +163,7 @@ public class PatientActivity extends AppCompatActivity {
 
                                 patientModelArrayList = successModel.getPatientModelArrayList();
 
-                                if (doctorModelArrayList.size() != 0) {
+                                if (patientModelArrayList.size() != 0) {
 
                                     patientAdapter = new PatientAdapter(PatientActivity.this, patientModelArrayList,appointmentName,serviceModel,date,time);
                                     recyclerPatientList.setAdapter(patientAdapter);

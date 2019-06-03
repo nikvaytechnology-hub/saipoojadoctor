@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ public class ServiceListActivity extends AppCompatActivity {
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private FloatingActionButton fabAddService;
     private TextView textTitleServiceName;
+    private ArrayList<String> arrayListAutoCompleteTextView =new ArrayList<>();
     private EditText edt_search_service;
     ShowProgress showProgress;
 
@@ -162,7 +164,7 @@ public class ServiceListActivity extends AppCompatActivity {
 
                                 serviceModelArrayList=successModel.getServiceModelArrayList();
 
-                                if(doctorModelArrayList.size()!=0) {
+                                if(serviceModelArrayList.size()!=0) {
 
                                     serviceListAdapter = new ServiceListAdapter(ServiceListActivity.this, serviceModelArrayList,appointmentName);
                                     recyclerViewServiceList.setAdapter(serviceListAdapter);

@@ -6,21 +6,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.AppoinmentListModel;
+import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.view.activity.AppointmentListActivity;
 
 import java.util.ArrayList;
 
-public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentListAdapter.MyViewHolder> {
+public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentListAdapter.MyViewHolder> implements Filterable {
     private Context mContext;
     private ArrayList<AppoinmentListModel> appoinmentListModelArrayList;
-
+    private ArrayList<AppoinmentListModel> arrayListFiltered;
     public AppointmentListAdapter(Context mContext, ArrayList<AppoinmentListModel> appoinmentListModelArrayList) {
         this.mContext = mContext;
         this.appoinmentListModelArrayList = appoinmentListModelArrayList;
+        this.arrayListFiltered = appoinmentListModelArrayList;
     }
 
     @NonNull
@@ -51,6 +55,46 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
     public int getItemCount() {
         return appoinmentListModelArrayList.size();
     }
+
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString().replaceAll("\\s","").toLowerCase().trim();
+                if (charString.isEmpty() || charSequence.equals("")) {
+                    appoinmentListModelArrayList = arrayListFiltered;
+                } else {
+                    ArrayList<AppoinmentListModel> filteredList = new ArrayList<>();
+                    for (int i = 0; i < appoinmentListModelArrayList.size(); i++) {
+
+                        String serviceName=appoinmentListModelArrayList.get(i).getDate().replaceAll("\\s","").toLowerCase().trim();
+                        if (serviceName.contains(charString)) {
+                            filteredList.add(appoinmentListModelArrayList.get(i));
+                        }
+                    }
+                    if (filteredList.size() > 0) {
+                        appoinmentListModelArrayList = filteredList;
+                    } else {
+                        appoinmentListModelArrayList = arrayListFiltered;
+                    }
+
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = appoinmentListModelArrayList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                appoinmentListModelArrayList = (ArrayList<AppoinmentListModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 

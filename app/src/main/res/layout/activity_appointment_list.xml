@@ -87,6 +87,18 @@
     </LinearLayout>-->
 
 
+    <EditText
+        android:id="@+id/edt_search_appointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_edt_text"
+        android:drawableEnd="@drawable/ic_vector_search"
+        android:hint="Search Appointment List"
+        android:inputType="text"
+        android:padding="10dp" />
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -100,11 +112,10 @@
             android:id="@+id/iv_no_data_found"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/nodatafound"
-          />
+            android:visibility="gone" />
 
     </RelativeLayout>
 
