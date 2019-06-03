@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,10 +20,11 @@ import com.nikvay.doctorapplication.view.activity.ServiceDetailsActivity;
 
 import java.util.ArrayList;
 
-public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.MyViewHolder> {
+public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.MyViewHolder> implements Filterable {
 
     private Context mContext;
     private ArrayList<ServiceModel> serviceModelArrayList;
+    private ArrayList<ServiceModel> arrayListFiltered;
     private String appointmentName;
 
 
@@ -29,6 +32,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
         this.mContext = mContext;
         this.serviceModelArrayList = serviceModelArrayList;
         this.appointmentName=appointmentName;
+        this.arrayListFiltered=serviceModelArrayList;
     }
 
     @NonNull
@@ -84,6 +88,47 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
     public int getItemCount() {
         return serviceModelArrayList.size();
     }
+
+
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString().replaceAll("\\s","").toLowerCase().trim();
+                if (charString.isEmpty() || charSequence.equals("")) {
+                    serviceModelArrayList = arrayListFiltered;
+                } else {
+                    ArrayList<ServiceModel> filteredList = new ArrayList<>();
+                    for (int i = 0; i < serviceModelArrayList.size(); i++) {
+
+                        String serviceName=serviceModelArrayList.get(i).getS_name().replaceAll("\\s","").toLowerCase().trim();
+                        if (serviceName.contains(charString)) {
+                            filteredList.add(serviceModelArrayList.get(i));
+                        }
+                    }
+                    if (filteredList.size() > 0) {
+                        serviceModelArrayList = filteredList;
+                    } else {
+                        serviceModelArrayList = arrayListFiltered;
+                    }
+
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = serviceModelArrayList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                serviceModelArrayList = (ArrayList<ServiceModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 

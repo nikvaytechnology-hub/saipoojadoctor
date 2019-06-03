@@ -34,10 +34,23 @@
             android:textSize="17sp" />
     </RelativeLayout>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Service"
+        android:padding="10dp"
+        android:layout_margin="5dp"
+        android:inputType="text"
+        android:background="@drawable/shape_edt_text"
+        android:drawableEnd="@drawable/ic_vector_search"
+        android:id="@+id/edt_search_service"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewServiceList"

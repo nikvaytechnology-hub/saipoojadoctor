@@ -42,8 +42,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewTime;
     private SelectDateTimeAdapter selectDateTimeAdapter;
-    private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList=new ArrayList<>();
-    private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayListSend=new ArrayList<>();
+    private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList=new ArrayList<>();;
     private ImageView  iv_close;
     private CalendarView calendarView;
     private String date,selectedDate;
@@ -143,25 +142,13 @@ public class DateTimeSelectActivity extends AppCompatActivity {
                             code = successModel.getError_code();
 
                             selectDateTimeModelArrayList.clear();
-                            selectDateTimeModelArrayListSend.clear();
                             
                             if (code.equalsIgnoreCase("1")) {
                                 selectDateTimeModelArrayList=successModel.getSelectDateTimeModelArrayList();
-
-                                for(int i=0;i<selectDateTimeModelArrayList.size();i++)
-                                {
-                                   SelectDateTimeModel selectDateTimeModel=selectDateTimeModelArrayList.get(i);
-                                    if(selectDateTimeModel.getStatus().equals("0"))
-                                    {
-                                        selectDateTimeModelArrayListSend.add(selectDateTimeModelArrayList.get(i));
-                                    }
-                                }
-                                if(selectDateTimeModelArrayListSend.size()!=0) {
-                                    selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this, selectDateTimeModelArrayListSend, serviceModel, date);
+                                if(selectDateTimeModelArrayList.size()!=0) {
+                                    selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this, selectDateTimeModelArrayList, serviceModel, date);
                                     recyclerViewTime.setAdapter(selectDateTimeAdapter);
                                     selectDateTimeAdapter.notifyDataSetChanged();
-                                    recyclerViewTime.addItemDecoration(new DividerItemDecoration(DateTimeSelectActivity.this, DividerItemDecoration.HORIZONTAL));
-                                    recyclerViewTime.addItemDecoration(new DividerItemDecoration(DateTimeSelectActivity.this, DividerItemDecoration.VERTICAL));
                                 }
                                 else
                                 {

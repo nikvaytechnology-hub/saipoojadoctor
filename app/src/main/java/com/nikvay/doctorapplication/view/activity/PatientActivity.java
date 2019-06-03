@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,6 +52,7 @@ public class PatientActivity extends AppCompatActivity {
     private TextView textTitlePatientName;
     private ServiceModel serviceModel;
     ShowProgress showProgress;
+    private EditText edt_search_patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,24 @@ public class PatientActivity extends AppCompatActivity {
             }
         });
 
+        edt_search_patient.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                patientAdapter.getFilter().filter(edt_search_patient.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void find_All_IDs() {
@@ -84,6 +106,7 @@ public class PatientActivity extends AppCompatActivity {
         iv_close = findViewById(R.id.iv_close);
         textTitlePatientName = findViewById(R.id.textTitlePatientName);
         iv_no_data_found = findViewById(R.id.iv_no_data_found);
+        edt_search_patient = findViewById(R.id.edt_search_patient);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         errorMessageDialog = new ErrorMessageDialog(PatientActivity.this);
 

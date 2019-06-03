@@ -1,20 +1,372 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.HomeFragment">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Home Screen"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/alice_blue">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp"
+                        android:background="@color/app_color"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/doctor" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Doctor Application"
+                            android:textSize="25sp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold|italic"/>
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="215dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="135dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginBottom="10dp">
+                            
+                            
+                            
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:id="@+id/cardViewMyProfile"
+                                android:layout_marginRight="5dp"
+                                app:cardCornerRadius="5dp"
+                                android:gravity="center">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/profile_image"
+                                        android:layout_centerInParent="true"
+                                        android:id="@+id/iv_user_profile"/>
+
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="MY PROFILE"
+                                        android:textSize="16sp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_below="@+id/iv_user_profile"/>
+
+
+                                </RelativeLayout>
+
+
+
+                            </android.support.v7.widget.CardView>
+
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                app:cardCornerRadius="5dp"
+                                android:id="@+id/cardViewAppointment"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/appointment"
+                                        android:layout_centerInParent="true"
+                                        android:id="@+id/iv_my_appointment"/>
+
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="MY APPOINTMENT"
+                                        android:textSize="16sp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_below="@+id/iv_my_appointment"/>
+
+
+                                </RelativeLayout>
+
+
+
+                            </android.support.v7.widget.CardView>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="135dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginBottom="10dp">
+
+
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="5dp"
+                                android:id="@+id/cardViewMyPatient"
+                                android:layout_marginRight="5dp"
+                                android:gravity="center">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+
+                                    <ImageView
+                                        android:id="@+id/iv_my_patient"
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:layout_centerInParent="true"
+                                        android:src="@drawable/my_patient" />
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/iv_my_patient"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:text="MY PATIENT"
+                                        android:textSize="16sp" />
+
+
+                                </RelativeLayout>
+
+
+
+                            </android.support.v7.widget.CardView>
+
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1"
+                                android:id="@+id/cardViewService"
+                                app:cardCornerRadius="5dp"
+                                android:gravity="center">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/ic_vector_service"
+                                        android:layout_centerInParent="true"
+                                        android:id="@+id/iv_my_service"/>
+
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SERVICE"
+                                        android:textSize="16sp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_below="@+id/iv_my_service"/>
+
+
+                                </RelativeLayout>
+
+
+
+                            </android.support.v7.widget.CardView>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="135dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginBottom="10dp">
+
+
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="5dp"
+                                android:id="@+id/cardViewPayment"
+                                android:layout_marginRight="5dp"
+                                android:gravity="center">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/ic_vector_payment"
+                                        android:layout_centerInParent="true"
+                                        android:id="@+id/iv_payment_history"/>
+
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="PAYMENT"
+                                        android:textSize="16sp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_below="@+id/iv_payment_history"/>
+
+
+                                </RelativeLayout>
+
+
+
+                            </android.support.v7.widget.CardView>
+
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1"
+                                android:id="@+id/cardViewPrescription"
+                                app:cardCornerRadius="5dp"
+                                android:gravity="center">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/ic_vector_prescription"
+                                        android:layout_centerInParent="true"
+                                        android:id="@+id/iv_prescription"/>
+
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="PRESCRIPTION"
+                                        android:textSize="16sp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_below="@+id/iv_prescription"/>
+
+
+                                </RelativeLayout>
+
+
+
+                            </android.support.v7.widget.CardView>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
 
     </RelativeLayout>
 </FrameLayout>

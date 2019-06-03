@@ -151,7 +151,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(NewAppointmentActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.label_add_dialog);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         final LinearLayout ll_pending= dialog.findViewById(R.id.ll_pending);

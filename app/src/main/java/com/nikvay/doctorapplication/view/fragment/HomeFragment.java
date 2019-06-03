@@ -1,20 +1,27 @@
 package com.nikvay.doctorapplication.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.view.activity.PatientActivity;
+import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
 
 public class HomeFragment extends Fragment {
 
 
-    Context mContext;
+    private Context mContext;
+    private CardView cardViewPrescription, cardViewPayment, cardViewService, cardViewMyPatient, cardViewAppointment, cardViewMyProfile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,10 +36,57 @@ public class HomeFragment extends Fragment {
     }
 
     private void find_All_IDs(View view) {
+        cardViewPrescription = view.findViewById(R.id.cardViewPrescription);
+        cardViewPayment = view.findViewById(R.id.cardViewPayment);
+        cardViewService = view.findViewById(R.id.cardViewService);
+        cardViewMyPatient = view.findViewById(R.id.cardViewMyPatient);
+        cardViewAppointment = view.findViewById(R.id.cardViewAppointment);
+        cardViewMyProfile = view.findViewById(R.id.cardViewMyProfile);
+
     }
 
 
     private void events() {
+        cardViewMyPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, PatientActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardViewAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) mContext).loadFragment(new AppointmentFragment());
+            }
+        });
+
+        cardViewService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, ServiceListActivity.class);
+                startActivity(intent);
+            }
+        });
+        cardViewMyProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) mContext).loadFragment(new ProfileFragment());
+            }
+        });
+        cardViewPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Under Development", Toast.LENGTH_SHORT).show();
+            }
+        });
+        cardViewPrescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Under Development", Toast.LENGTH_SHORT).show();
+             }
+        });
     }
 
 

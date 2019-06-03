@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.Gson;
@@ -45,6 +48,7 @@ public class ServiceListActivity extends AppCompatActivity {
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private FloatingActionButton fabAddService;
     private TextView textTitleServiceName;
+    private EditText edt_search_service;
     ShowProgress showProgress;
 
     @Override
@@ -81,6 +85,24 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
+        edt_search_service.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                serviceListAdapter.getFilter().filter(edt_search_service.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void find_All_IDs() {
@@ -91,6 +113,7 @@ public class ServiceListActivity extends AppCompatActivity {
         fabAddService=findViewById(R.id.fabAddService);
         textTitleServiceName=findViewById(R.id.textTitleServiceName);
         iv_no_data_found=findViewById(R.id.iv_no_data_found);
+        edt_search_service=findViewById(R.id.edt_search_service);
 
         doctorModelArrayList= SharedUtils.getUserDetails(ServiceListActivity.this);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();

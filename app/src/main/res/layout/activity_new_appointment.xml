@@ -389,7 +389,7 @@
                     android:layout_weight="1"
                     android:gravity="bottom"
                     android:maxLines="1"
-                    android:text="Label"
+                    android:text="Status"
                     android:textColor="@android:color/black"
                     android:textSize="17sp" />
 
@@ -458,7 +458,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:maxLines="1"
-                android:text="Add Labels"
+                android:text="Add Status"
                 android:textColor="@color/app_color"
                 android:textSize="15sp" />
         </RelativeLayout>

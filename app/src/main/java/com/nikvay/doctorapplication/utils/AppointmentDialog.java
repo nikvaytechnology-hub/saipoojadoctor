@@ -24,8 +24,8 @@ public class AppointmentDialog {
         this.mContext = mContext;
         this.dialog = new Dialog(mContext);
         this.dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.dialog.setContentView(R.layout.dialog_success);
-        this.textMessage =dialog.findViewById(R.id.textSuccessMessage);
+        this.dialog.setContentView(R.layout.dialog_appointment_success);
+        this.textMessage =dialog.findViewById(R.id.textMessage);
         this.dialog.setCancelable(false);
         this.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 

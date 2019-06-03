@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:id="@+id/linearLayoutTime"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewTime"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="3dp"
     android:layout_height="wrap_content">
 
     <TextView
@@ -10,9 +13,10 @@
         android:padding="15dp"
         android:text="10:AM"
         android:textSize="17dp"
+        android:maxLines="1"
         android:gravity="center"
         android:textColor="@color/black"
         android:id="@+id/textTime"/>
 
 
-</LinearLayout>
+</android.support.v7.widget.CardView>
