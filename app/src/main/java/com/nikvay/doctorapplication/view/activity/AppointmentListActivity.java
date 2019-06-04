@@ -58,7 +58,7 @@ public class AppointmentListActivity extends AppCompatActivity {
 
 
         if (NetworkUtils.isNetworkAvailable(AppointmentListActivity.this))
-            appoinmentListCall();
+            appointmentListCall();
         else
             NetworkUtils.isNetworkNotAvailable(AppointmentListActivity.this);
 
@@ -122,7 +122,7 @@ public class AppointmentListActivity extends AppCompatActivity {
         recyclerViewAppointmentList.setLayoutManager(new LinearLayoutManager(this));
 
     }
-    private void appoinmentListCall() {
+    private void appointmentListCall() {
         showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.appointmentList(doctor_id,label,user_id);
         call.enqueue(new Callback<SuccessModel>() {
