@@ -1,6 +1,8 @@
 package com.nikvay.doctorapplication.model;
 
-public class AppoinmentListModel {
+import java.io.Serializable;
+
+public class AppoinmentListModel implements Serializable {
    private  String appointment_id;
    private  String date;
    private  String time;
