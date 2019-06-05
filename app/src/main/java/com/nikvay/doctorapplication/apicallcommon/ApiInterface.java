@@ -98,7 +98,8 @@ public interface ApiInterface {
     @POST(EndApi.APPOINTMENT_LIST_COUNT)
     @FormUrlEncoded
     Call<SuccessModel> appointmentListCount(@Field("doctor_id") String doctor_id,
-                                            @Field("user_id") String user_id);
+                                            @Field("user_id") String user_id,
+                                            @Field("date") String date);
 
     @POST(EndApi.APPOINTMENT_EDIT)
     @FormUrlEncoded

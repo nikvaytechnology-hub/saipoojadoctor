@@ -119,8 +119,6 @@ public class DateTimeSelectActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
 
-            reschedule = bundle.getString(StaticContent.IntentKey.RESCHEDULE);
-            if(reschedule!=null)
             serviceModel = (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
             service_id = serviceModel.getService_id();
             mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);

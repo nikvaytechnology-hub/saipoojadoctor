@@ -106,9 +106,9 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         relativeLayoutReschedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(AppointmentDetailsActivity.this,DateTimeSelectActivity.class);
+                /*Intent intent=new Intent(AppointmentDetailsActivity.this,DateTimeSelectActivity.class);
                 intent.putExtra(StaticContent.IntentKey.RESCHEDULE,StaticContent.IntentValue.RESCHEDULE);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
 

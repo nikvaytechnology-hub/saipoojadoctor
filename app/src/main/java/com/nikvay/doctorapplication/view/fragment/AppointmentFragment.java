@@ -29,7 +29,10 @@ import com.nikvay.doctorapplication.view.activity.AppointmentListActivity;
 import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
 import com.nikvay.doctorapplication.view.adapter.ServiceListAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +49,7 @@ public class AppointmentFragment extends Fragment {
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private String doctor_id,TAG = getClass().getSimpleName(),user_id;
     private ErrorMessageDialog errorMessageDialog;
+    private String date;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,6 +91,7 @@ public class AppointmentFragment extends Fragment {
 
         errorMessageDialog= new ErrorMessageDialog(mContext);
 
+        date= new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         doctorModelArrayList= SharedUtils.getUserDetails(mContext);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
         user_id=doctorModelArrayList.get(0).getUser_id();
@@ -147,7 +152,7 @@ public class AppointmentFragment extends Fragment {
         });
     }
     private void callAppointmentCount() {
-        Call<SuccessModel> call = apiInterface.appointmentListCount(doctor_id,user_id);
+        Call<SuccessModel> call = apiInterface.appointmentListCount(doctor_id,user_id,date);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {

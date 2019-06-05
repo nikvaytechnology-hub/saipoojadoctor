@@ -45,8 +45,8 @@ import retrofit2.Response;
 
 public class AppointmentListActivity extends AppCompatActivity {
 
-    private String label,appointmentName,doctor_id,TAG = getClass().getSimpleName(),user_id;
-    private ImageView iv_close,iv_no_data_found,iv_date;
+    private String label, appointmentName, doctor_id, TAG = getClass().getSimpleName(), user_id;
+    private ImageView iv_close, iv_no_data_found, iv_date;
     private TextView textAppointmentTitleName;
     private RecyclerView recyclerViewAppointmentList;
     private ErrorMessageDialog errorMessageDialog;
@@ -55,8 +55,9 @@ public class AppointmentListActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private ShowProgress showProgress;
     private EditText edt_search_appointment;
-    private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
+    private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private String date;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +73,6 @@ public class AppointmentListActivity extends AppCompatActivity {
             NetworkUtils.isNetworkNotAvailable(AppointmentListActivity.this);
 
     }
-
 
 
     private void events() {
@@ -120,7 +120,12 @@ public class AppointmentListActivity extends AppCompatActivity {
                         long dateAttendance = chosenDate.toMillis(true);
                         strDate = DateFormat.format("yyyy-MM-dd", dateAttendance);
 
-                        date= (String) strDate;
+                        date = (String) strDate;
+
+                        if (NetworkUtils.isNetworkAvailable(AppointmentListActivity.this))
+                            appointmentListCall();
+                        else
+                            NetworkUtils.isNetworkNotAvailable(AppointmentListActivity.this);
 
                     }
                 }, year, month, day);
@@ -139,10 +144,10 @@ public class AppointmentListActivity extends AppCompatActivity {
         textAppointmentTitleName = findViewById(R.id.textAppointmentTitleName);
         recyclerViewAppointmentList = findViewById(R.id.recyclerViewAppointmentList);
         iv_no_data_found = findViewById(R.id.iv_no_data_found);
-        showProgress=new ShowProgress(AppointmentListActivity.this);
+        showProgress = new ShowProgress(AppointmentListActivity.this);
         errorMessageDialog = new ErrorMessageDialog(AppointmentListActivity.this);
 
-        date= new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
@@ -161,13 +166,14 @@ public class AppointmentListActivity extends AppCompatActivity {
         recyclerViewAppointmentList.setLayoutManager(new LinearLayoutManager(this));
 
     }
+
     private void appointmentListCall() {
         showProgress.showDialog();
-        Call<SuccessModel> call = apiInterface.appointmentList(doctor_id,label,user_id,date);
+        Call<SuccessModel> call = apiInterface.appointmentList(doctor_id, label, user_id, date);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
-                 showProgress.dismissDialog();
+                showProgress.dismissDialog();
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);
 
@@ -175,26 +181,23 @@ public class AppointmentListActivity extends AppCompatActivity {
                 try {
                     if (response.isSuccessful()) {
                         SuccessModel successModel = response.body();
-                        appoinmentListModelArrayList.clear();
                         String message = null, code = null;
                         if (successModel != null) {
                             message = successModel.getMsg();
                             code = successModel.getError_code();
-
-
+                            appoinmentListModelArrayList.clear();
                             if (code.equalsIgnoreCase("1")) {
 
-                                appoinmentListModelArrayList=successModel.getAppoinmentListModelArrayList();
+                                appoinmentListModelArrayList = successModel.getAppoinmentListModelArrayList();
 
-                                if(appoinmentListModelArrayList.size()!=0) {
+                                if (appoinmentListModelArrayList.size() != 0) {
 
-                                    appointmentListAdapter=new AppointmentListAdapter(AppointmentListActivity.this,appoinmentListModelArrayList);
+                                    appointmentListAdapter = new AppointmentListAdapter(AppointmentListActivity.this, appoinmentListModelArrayList);
                                     recyclerViewAppointmentList.setAdapter(appointmentListAdapter);
                                     appointmentListAdapter.notifyDataSetChanged();
-                                }
-                                else
-                                {
+                                } else {
                                     iv_no_data_found.setVisibility(View.VISIBLE);
+                                    appointmentListAdapter.notifyDataSetChanged();
                                 }
 
                             } else {
@@ -211,7 +214,7 @@ public class AppointmentListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SuccessModel> call, Throwable t) {
-               showProgress.dismissDialog();
+                showProgress.dismissDialog();
                 errorMessageDialog.showDialog(t.getMessage());
             }
         });

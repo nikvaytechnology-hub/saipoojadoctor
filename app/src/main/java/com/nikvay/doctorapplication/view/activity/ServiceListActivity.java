@@ -169,11 +169,11 @@ public class ServiceListActivity extends AppCompatActivity {
                                     recyclerViewServiceList.setAdapter(serviceListAdapter);
                                     serviceListAdapter.notifyDataSetChanged();
                                     recyclerViewServiceList.addItemDecoration(new DividerItemDecoration(ServiceListActivity.this, DividerItemDecoration.VERTICAL));
-
                                 }
                                 else
                                 {
                                     iv_no_data_found.setVisibility(View.VISIBLE);
+                                    serviceListAdapter.notifyDataSetChanged();
                                 }
 
                             } else {

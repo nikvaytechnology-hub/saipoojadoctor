@@ -171,6 +171,7 @@ public class PatientActivity extends AppCompatActivity {
                                     recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
                                     iv_no_data_found.setVisibility(View.VISIBLE);
+                                    patientAdapter.notifyDataSetChanged();
                                 }
 
                             } else {
