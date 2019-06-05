@@ -38,6 +38,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
+            android:id="@+id/iv_date"
             android:src="@drawable/ic_vector_select_appointment_calendar"/>
     </RelativeLayout>
 

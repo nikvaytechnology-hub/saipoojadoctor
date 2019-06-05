@@ -4,12 +4,14 @@ package com.nikvay.doctorapplication.utils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
 
 public class SuccessMessageDialog {
@@ -41,7 +43,8 @@ public class SuccessMessageDialog {
             @Override
             public void run() {
                 dialog.dismiss();
-                ((Activity)mContext).finish();
+                Intent intent=new Intent(mContext, MainActivity.class);
+                mContext.startActivity(intent);
             }
         }, 3000);
 

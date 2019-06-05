@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
@@ -50,7 +51,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
         holder.textServiceCost.setText(String.valueOf("RS"+" "+appoinmentListModel.getService_cost()));
         holder.textServiceTime.setText(String.valueOf("time"+" "+appoinmentListModel.getService_time()));
 
-        holder.ll_appointment_list.setOnClickListener(new View.OnClickListener() {
+        holder.rl_Appointment_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AppointmentDetailsActivity.class);
@@ -111,7 +112,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textDay, textTime, textPatientName, textServiceTime, textService, textServiceCost;
-        private LinearLayout ll_appointment_list;
+        private RelativeLayout rl_Appointment_list;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -122,7 +123,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
             textServiceTime = itemView.findViewById(R.id.textServiceTime);
             textService = itemView.findViewById(R.id.textService);
             textServiceCost = itemView.findViewById(R.id.textServiceCost);
-            ll_appointment_list = itemView.findViewById(R.id.ll_appointment_list);
+            rl_Appointment_list = itemView.findViewById(R.id.rl_Appointment_list);
         }
     }
 }

@@ -12,12 +12,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
+import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
@@ -42,14 +44,17 @@ public class DateTimeSelectActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewTime;
     private SelectDateTimeAdapter selectDateTimeAdapter;
-    private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList=new ArrayList<>();;
-    private ImageView  iv_close;
+    private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList = new ArrayList<>();
+    ;
+    private ImageView iv_close;
     private CalendarView calendarView;
-    private String date,selectedDate;
+    private TextView textSlotNotFound;
+    private String date;
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
     private ServiceModel serviceModel;
-    private String mTitle="Service Details",service_id,TAG = getClass().getSimpleName();
+    private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
+    private String mTitle = "Service Details", reschedule = "", service_id, TAG = getClass().getSimpleName(), doctor_id, user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +83,13 @@ public class DateTimeSelectActivity extends AppCompatActivity {
 
                 long dateAppointment = chosenDate.toMillis(true);
                 strDate = DateFormat.format("yyyy-MM-dd", dateAppointment);
-                date= (String) strDate;
+                date = (String) strDate;
 
                 if (NetworkUtils.isNetworkAvailable(DateTimeSelectActivity.this))
                     callTimeSlot();
                 else
                     NetworkUtils.isNetworkNotAvailable(DateTimeSelectActivity.this);
-               // Toast.makeText(DateTimeSelectActivity.this, date, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(DateTimeSelectActivity.this, date, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -93,22 +98,31 @@ public class DateTimeSelectActivity extends AppCompatActivity {
 
 
     private void find_All_Ids() {
-        recyclerViewTime=findViewById(R.id.recyclerViewTime);
-        iv_close=findViewById(R.id.iv_close);
-        calendarView=findViewById(R.id.calendarView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(DateTimeSelectActivity.this,3);
+        recyclerViewTime = findViewById(R.id.recyclerViewTime);
+        iv_close = findViewById(R.id.iv_close);
+        calendarView = findViewById(R.id.calendarView);
+        textSlotNotFound = findViewById(R.id.textSlotNotFound);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(DateTimeSelectActivity.this, 3);
         recyclerViewTime.setLayoutManager(gridLayoutManager);
         recyclerViewTime.hasFixedSize();
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        errorMessageDialog= new ErrorMessageDialog(DateTimeSelectActivity.this);
+        errorMessageDialog = new ErrorMessageDialog(DateTimeSelectActivity.this);
+
+
+        doctorModelArrayList = SharedUtils.getUserDetails(DateTimeSelectActivity.this);
+        doctor_id = doctorModelArrayList.get(0).getDoctor_id();
+        user_id = doctorModelArrayList.get(0).getUser_id();
+
 
         Bundle bundle = getIntent().getExtras();
-        if(bundle!=null)
-        {
-            serviceModel= (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
-            service_id=serviceModel.getService_id();
+        if (bundle != null) {
+
+            reschedule = bundle.getString(StaticContent.IntentKey.RESCHEDULE);
+            if(reschedule!=null)
+            serviceModel = (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
+            service_id = serviceModel.getService_id();
             mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
         }
 
@@ -120,10 +134,11 @@ public class DateTimeSelectActivity extends AppCompatActivity {
 
 
     }
+
     private void callTimeSlot() {
 
 
-        Call<SuccessModel> call = apiInterface.appointmentTimeSlot(service_id,date);
+        Call<SuccessModel> call = apiInterface.appointmentTimeSlot(date, doctor_id);
 
 
         call.enqueue(new Callback<SuccessModel>() {
@@ -142,17 +157,15 @@ public class DateTimeSelectActivity extends AppCompatActivity {
                             code = successModel.getError_code();
 
                             selectDateTimeModelArrayList.clear();
-                            
+
                             if (code.equalsIgnoreCase("1")) {
-                                selectDateTimeModelArrayList=successModel.getSelectDateTimeModelArrayList();
-                                if(selectDateTimeModelArrayList.size()!=0) {
+                                selectDateTimeModelArrayList = successModel.getSelectDateTimeModelArrayList();
+                                if (selectDateTimeModelArrayList.size() != 0) {
                                     selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this, selectDateTimeModelArrayList, serviceModel, date);
                                     recyclerViewTime.setAdapter(selectDateTimeAdapter);
                                     selectDateTimeAdapter.notifyDataSetChanged();
-                                }
-                                else
-                                {
-
+                                } else {
+                                    textSlotNotFound.setVisibility(View.VISIBLE);
                                 }
 
                             } else {

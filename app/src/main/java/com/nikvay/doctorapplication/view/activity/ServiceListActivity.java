@@ -49,7 +49,6 @@ public class ServiceListActivity extends AppCompatActivity {
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private FloatingActionButton fabAddService;
     private TextView textTitleServiceName;
-    private ArrayList<String> arrayListAutoCompleteTextView =new ArrayList<>();
     private EditText edt_search_service;
     ShowProgress showProgress;
 

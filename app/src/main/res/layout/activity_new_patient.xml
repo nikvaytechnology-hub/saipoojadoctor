@@ -39,7 +39,7 @@
            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
 

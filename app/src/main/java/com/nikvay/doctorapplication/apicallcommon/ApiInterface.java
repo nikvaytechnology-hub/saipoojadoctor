@@ -73,8 +73,8 @@ public interface ApiInterface {
 
     @POST(EndApi.APPOINTMENT_TIME_SLOT)
     @FormUrlEncoded
-    Call<SuccessModel> appointmentTimeSlot(@Field("service_id") String service_id,
-                                           @Field("date") String date);
+    Call<SuccessModel> appointmentTimeSlot(@Field("date") String date,
+                                           @Field("doctor_id") String doctor_id);
 
 
     @POST(EndApi.ADD_APPOINTMENT)
@@ -90,12 +90,23 @@ public interface ApiInterface {
 
     @POST(EndApi.LIST_APPOINTMENT)
     @FormUrlEncoded
-    Call<SuccessModel> appointmentList(@Field("doctor_id") String doctor_id ,
-                                           @Field("label") String label,
-                                           @Field("user_id") String user_id);
+    Call<SuccessModel> appointmentList(@Field("doctor_id") String doctor_id,
+                                       @Field("label") String label,
+                                       @Field("user_id") String user_id,
+                                       @Field("date") String date);
 
     @POST(EndApi.APPOINTMENT_LIST_COUNT)
     @FormUrlEncoded
     Call<SuccessModel> appointmentListCount(@Field("doctor_id") String doctor_id,
                                             @Field("user_id") String user_id);
+
+    @POST(EndApi.APPOINTMENT_EDIT)
+    @FormUrlEncoded
+    Call<SuccessModel> editAppointment(@Field("doctor_id") String doctor_id,
+                                       @Field("patient_id") String patient_id,
+                                       @Field("appointment_id") String appointment_id,
+                                       @Field("date") String date,
+                                       @Field("time") String time,
+                                       @Field("comment") String comment,
+                                       @Field("label") String label);
 }

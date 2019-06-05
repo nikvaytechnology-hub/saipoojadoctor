@@ -23,6 +23,7 @@ public class StaticContent {
         public static final String ACTIVITY_TYPE = "activity-type";
         public static final String STATUS = "STATUS";
         public static final String APPOINTMENT = "APPOINTMENT";
+        public static final String RESCHEDULE = "RESCHEDULE";
         public static final  String DATE="DATE";
         public static final  String TIME="TIME";
     }
@@ -31,6 +32,7 @@ public class StaticContent {
         public static final String ACTIVITY_EDIT_PATIENT = "Edit Customer";
         public static final String ACTIVITY_SERVICE_DETAILS = "Service Details";
         public static final String APPOINTMENT = "New Appointment";
+        public static final String RESCHEDULE = "Reschedule";
     }
 
     public class DeviceToken

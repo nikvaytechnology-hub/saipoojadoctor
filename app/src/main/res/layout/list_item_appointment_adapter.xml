@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/ll_appointment_list"
     android:orientation="vertical">
 
 
@@ -45,6 +44,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:id="@+id/rl_Appointment_list"
             android:padding="5dp">
 
 
