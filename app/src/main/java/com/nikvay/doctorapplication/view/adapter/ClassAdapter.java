@@ -1,6 +1,7 @@
 package com.nikvay.doctorapplication.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.ClassModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
+import com.nikvay.doctorapplication.utils.StaticContent;
+import com.nikvay.doctorapplication.view.activity.ClassDetailsActivity;
+import com.nikvay.doctorapplication.view.activity.ServiceDetailsActivity;
 
 import java.util.ArrayList;
 
@@ -38,9 +42,21 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         ClassModel classModel=classModelArrayList.get(position);
         holder.textClassName.setText(classModel.getName());
+        holder.textClassDate.setText(classModel.getDate());
+
+        holder.relativeLayoutClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ClassDetailsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL, classModelArrayList.get(position));
+                intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 
@@ -90,12 +106,13 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textClassName;
+        private TextView textClassName,textClassDate;
         private RelativeLayout relativeLayoutClass;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textClassName=itemView.findViewById(R.id.textClassName);
+            textClassDate=itemView.findViewById(R.id.textClassDate);
             relativeLayoutClass=itemView.findViewById(R.id.relativeLayoutClass);
         }
     }

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class ClassModel implements Serializable {
     private String class_id;
     private String name;
+    private String description;
     private String duration;
     private String seats;
     private String cost;
@@ -13,7 +14,7 @@ public class ClassModel implements Serializable {
     public ClassModel(String class_id, String name, String duration, String seats, String cost,String date) {
         this.class_id = class_id;
         this.name = name;
-        this.duration = duration;
+        this.description = duration;
         this.seats = seats;
         this.cost = cost;
         this.date = date;
@@ -25,6 +26,14 @@ public class ClassModel implements Serializable {
 
     public void setClass_id(String class_id) {
         this.class_id = class_id;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public String getName() {
@@ -43,12 +52,12 @@ public class ClassModel implements Serializable {
         this.date = date;
     }
 
-    public String getDuration() {
-        return duration;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getSeats() {

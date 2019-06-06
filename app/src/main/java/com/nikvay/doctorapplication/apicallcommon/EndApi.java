@@ -14,5 +14,6 @@ public class EndApi extends BaseApi {
     public static final String APPOINTMENT_LIST_COUNT = "ws-listAppointmentCount";
     public static final String APPOINTMENT_EDIT = "ws-editAppointment";
     public static final String ADD_CLASS = "ws-classes";
+    public static final String UPDATE_CLASS = "ws-classes";
     public static final String LIST_CLASS = "ws-classesList";
 }

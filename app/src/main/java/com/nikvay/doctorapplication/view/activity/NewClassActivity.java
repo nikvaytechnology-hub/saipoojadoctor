@@ -11,11 +11,15 @@ import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
+import com.nikvay.doctorapplication.model.ClassModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
+import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
+import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.ShowProgress;
+import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
 import com.nikvay.doctorapplication.view.adapter.AppointmentListAdapter;
 
@@ -29,12 +33,11 @@ public class NewClassActivity extends AppCompatActivity {
 
     private TextView textClass, textDuration, textSeats, textCost, textSave, textTitleName, textDescription, textDate;
     private ImageView iv_close_activity;
-    private String textClassName, textClassDuration, textClassSeats, textClassCost, textClassDescription, doctor_id, user_id, TAG = getClass().getSimpleName(), textClassDate;
+    private String textClassName, textClassDuration, textClassSeats, textClassCost, textClassDescription, doctor_id, user_id, TAG = getClass().getSimpleName(), textClassDate,mTitle="Class Details",class_id;
     private ErrorMessageDialog errorMessageDialog;
     private SuccessMessageDialog successMessageDialog;
     private ShowProgress showProgress;
-
-
+    private ClassModel classModel;
     private ApiInterface apiInterface;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
 
@@ -63,19 +66,69 @@ public class NewClassActivity extends AppCompatActivity {
         textSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textClassName = textClass.getText().toString().trim();
-                textClassDuration = textDuration.getText().toString().trim();
-                textClassCost = textCost.getText().toString().trim();
-                textClassSeats = textSeats.getText().toString().trim();
-                textClassDescription = textDescription.getText().toString().trim();
-                textClassDate = textDate.getText().toString().trim();
 
                 if (validation()) {
                     callAddClass();
+
+                    if (textSave.getText().equals(StaticContent.ButtonContent.UPDATE)) {
+                        if (NetworkUtils.isNetworkAvailable(NewClassActivity.this)) {
+                            callUpdateClass();
+                        } else
+                            NetworkUtils.isNetworkNotAvailable(NewClassActivity.this);
+                    } else {
+                        if (NetworkUtils.isNetworkAvailable(NewClassActivity.this)) {
+                            callAddClass();
+                        } else
+                            NetworkUtils.isNetworkNotAvailable(NewClassActivity.this);
+                    }
                 }
 
             }
         });
+
+    }
+
+    private void callUpdateClass() {
+
+        showProgress.showDialog();
+        Call<SuccessModel> call = apiInterface.updateClass(class_id,doctor_id, user_id, textClassName, textClassCost, textClassDuration, textClassDescription, textClassSeats, textClassDate);
+        call.enqueue(new Callback<SuccessModel>() {
+            @Override
+            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+                showProgress.dismissDialog();
+                String str_response = new Gson().toJson(response.body());
+                Log.e("" + TAG, "Response >>>>" + str_response);
+
+
+                try {
+                    if (response.isSuccessful()) {
+                        SuccessModel successModel = response.body();
+                        String message = null, code = null;
+                        if (successModel != null) {
+                            message = successModel.getMsg();
+                            code = successModel.getError_code();
+                            if (code.equalsIgnoreCase("1")) {
+                                successMessageDialog.showDialog("Class Update Successfully");
+                            } else {
+                                errorMessageDialog.showDialog("Response Not Working");
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<SuccessModel> call, Throwable t) {
+                showProgress.dismissDialog();
+                errorMessageDialog.showDialog(t.getMessage());
+            }
+        });
+
+
 
     }
 
@@ -124,6 +177,12 @@ public class NewClassActivity extends AppCompatActivity {
 
     private boolean validation() {
 
+        textClassName = textClass.getText().toString().trim();
+        textClassDuration = textDuration.getText().toString().trim();
+        textClassCost = textCost.getText().toString().trim();
+        textClassSeats = textSeats.getText().toString().trim();
+        textClassDescription = textDescription.getText().toString().trim();
+        textClassDate = textDate.getText().toString().trim();
 
         if (textClassName.equalsIgnoreCase("")) {
             errorMessageDialog.showDialog("Class Name Can't Empty");
@@ -171,5 +230,24 @@ public class NewClassActivity extends AppCompatActivity {
         errorMessageDialog = new ErrorMessageDialog(NewClassActivity.this);
         successMessageDialog = new SuccessMessageDialog(NewClassActivity.this);
 
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            classModel = (ClassModel) bundle.getSerializable(StaticContent.IntentKey.CLASS_DETAIL);
+            mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
+            textTitleName.setText("Update Class");
+        }
+
+        if (mTitle.equals(StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS)) {
+            textClass.setText(classModel.getName());
+            textDuration.setText(classModel.getDuration());
+            textCost.setText(classModel.getCost());
+            textDescription.setText(classModel.getDescription());
+            textDate.setText(classModel.getDate());
+            textSeats.setText(classModel.getSeats());
+            textSave.setText(StaticContent.ButtonContent.UPDATE);
+            class_id=classModel.getClass_id();
+        }
     }
 }

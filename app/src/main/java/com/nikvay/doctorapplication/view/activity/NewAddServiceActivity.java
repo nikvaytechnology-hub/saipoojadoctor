@@ -73,7 +73,7 @@ public class NewAddServiceActivity extends AppCompatActivity {
         if (bundle != null) {
             serviceModel = (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
             mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
-            serviceTitle_name.setText(mTitle);
+            serviceTitle_name.setText("Update Service");
         }
 
         if (mTitle.equals(StaticContent.IntentValue.ACTIVITY_SERVICE_DETAILS)) {

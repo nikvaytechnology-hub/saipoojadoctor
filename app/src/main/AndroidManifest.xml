@@ -26,7 +26,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.AppointmentDetailsActivity"></activity>
+        <activity android:name=".view.activity.ClassDetailsActivity"></activity>
+        <activity android:name=".view.activity.AppointmentDetailsActivity" />
         <activity android:name=".view.activity.NewAppointmentActivity" />
         <activity android:name=".view.activity.NewAddServiceActivity" />
         <activity android:name=".view.activity.PatientActivity" />

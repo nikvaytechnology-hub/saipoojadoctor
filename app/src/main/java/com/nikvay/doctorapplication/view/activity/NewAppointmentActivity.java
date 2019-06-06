@@ -65,7 +65,6 @@ public class NewAppointmentActivity extends AppCompatActivity {
         iv_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent=new Intent(NewAppointmentActivity.this, MainActivity.class);
                 finish();
                 startActivity(intent);

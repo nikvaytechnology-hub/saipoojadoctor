@@ -20,6 +20,7 @@ public class StaticContent {
         public static final String PATIENT_ID = "quotation-count";
         public static final String PATIENT_DETAIL = "customer-detail";
         public static final String SERVICE_DETAIL = "service-detail";
+        public static final String CLASS_DETAIL = "class-detail";
         public static final String ACTIVITY_TYPE = "activity-type";
         public static final String STATUS = "STATUS";
         public static final String APPOINTMENT = "APPOINTMENT";
@@ -31,6 +32,7 @@ public class StaticContent {
     public class IntentValue {
         public static final String ACTIVITY_EDIT_PATIENT = "Edit Customer";
         public static final String ACTIVITY_SERVICE_DETAILS = "Service Details";
+        public static final String ACTIVITY_CLASS_DETAILS = "Class Details";
         public static final String APPOINTMENT = "New Appointment";
         public static final String RESCHEDULE = "Reschedule";
     }
