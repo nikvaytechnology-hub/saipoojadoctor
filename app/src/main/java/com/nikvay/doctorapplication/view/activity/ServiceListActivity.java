@@ -45,7 +45,7 @@ public class ServiceListActivity extends AppCompatActivity {
     private ImageView  iv_close,iv_no_data_found;
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
-    private String device_token,TAG = getClass().getSimpleName(),doctor_id,appointmentName="Service List";
+    private String TAG = getClass().getSimpleName(),doctor_id,appointmentName="Service List";
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private FloatingActionButton fabAddService;
     private TextView textTitleServiceName;
@@ -107,7 +107,6 @@ public class ServiceListActivity extends AppCompatActivity {
     }
 
     private void find_All_IDs() {
-
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         recyclerViewServiceList=findViewById(R.id.recyclerViewServiceList);
         iv_close=findViewById(R.id.iv_close);
@@ -167,6 +166,7 @@ public class ServiceListActivity extends AppCompatActivity {
 
                                     serviceListAdapter = new ServiceListAdapter(ServiceListActivity.this, serviceModelArrayList,appointmentName);
                                     recyclerViewServiceList.setAdapter(serviceListAdapter);
+                                    iv_no_data_found.setVisibility(View.GONE);
                                     serviceListAdapter.notifyDataSetChanged();
                                     recyclerViewServiceList.addItemDecoration(new DividerItemDecoration(ServiceListActivity.this, DividerItemDecoration.VERTICAL));
                                 }

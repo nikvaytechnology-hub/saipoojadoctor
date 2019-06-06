@@ -30,6 +30,11 @@ public class SuccessModel {
     @SerializedName("appointment")
     ArrayList<AppoinmentListModel> appoinmentListModelArrayList;
 
+    @SerializedName("classList")
+    ArrayList<ClassModel> classModelArrayList;
+
+
+
 
     public ArrayList<SelectDateTimeModel> getSelectDateTimeModelArrayList() {
         return selectDateTimeModelArrayList;
@@ -115,6 +120,14 @@ public class SuccessModel {
 
     public void setAppointment_for_Completed(String appointment_for_Completed) {
         this.appointment_for_Completed = appointment_for_Completed;
+    }
+
+    public ArrayList<ClassModel> getClassModelArrayList() {
+        return classModelArrayList;
+    }
+
+    public void setClassModelArrayList(ArrayList<ClassModel> classModelArrayList) {
+        this.classModelArrayList = classModelArrayList;
     }
 
     public void setPatientModelArrayList(ArrayList<PatientModel> patientModelArrayList) {

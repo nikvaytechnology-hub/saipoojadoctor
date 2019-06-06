@@ -194,7 +194,9 @@ public class AppointmentListActivity extends AppCompatActivity {
 
                                     appointmentListAdapter = new AppointmentListAdapter(AppointmentListActivity.this, appoinmentListModelArrayList);
                                     recyclerViewAppointmentList.setAdapter(appointmentListAdapter);
+                                    iv_no_data_found.setVisibility(View.GONE);
                                     appointmentListAdapter.notifyDataSetChanged();
+
                                 } else {
                                     iv_no_data_found.setVisibility(View.VISIBLE);
                                     appointmentListAdapter.notifyDataSetChanged();

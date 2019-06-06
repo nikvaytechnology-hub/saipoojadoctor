@@ -110,4 +110,19 @@ public interface ApiInterface {
                                        @Field("time") String time,
                                        @Field("comment") String comment,
                                        @Field("label") String label);
+    @POST(EndApi.ADD_CLASS)
+    @FormUrlEncoded
+    Call<SuccessModel> addClass(@Field("doctor_id") String doctor_id,
+                                @Field("user_id") String user_id,
+                                @Field("name") String textClassName,
+                                @Field("cost") String textClassCost,
+                                @Field("duration") String textClassDuration,
+                                @Field("description") String textClassDescription,
+                                @Field("seats") String textClassSeats,
+                                @Field("date") String textClassDate);
+
+    @POST(EndApi.LIST_CLASS)
+    @FormUrlEncoded
+    Call<SuccessModel> listClass(@Field("doctor_id") String doctor_id,
+                                @Field("user_id") String user_id);
 }

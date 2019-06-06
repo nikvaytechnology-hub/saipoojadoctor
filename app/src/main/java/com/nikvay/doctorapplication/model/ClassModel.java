@@ -3,34 +3,44 @@ package com.nikvay.doctorapplication.model;
 import java.io.Serializable;
 
 public class ClassModel implements Serializable {
-    private String id;
-    private String class_name;
+    private String class_id;
+    private String name;
     private String duration;
     private String seats;
     private String cost;
+    private String date;
 
-    public ClassModel(String id, String class_name, String duration, String seats, String cost) {
-        this.id = id;
-        this.class_name = class_name;
+    public ClassModel(String class_id, String name, String duration, String seats, String cost,String date) {
+        this.class_id = class_id;
+        this.name = name;
         this.duration = duration;
         this.seats = seats;
         this.cost = cost;
+        this.date = date;
     }
 
-    public String getId() {
-        return id;
+    public String getClass_id() {
+        return class_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
     }
 
-    public String getClass_name() {
-        return class_name;
+    public String getName() {
+        return name;
     }
 
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getDuration() {

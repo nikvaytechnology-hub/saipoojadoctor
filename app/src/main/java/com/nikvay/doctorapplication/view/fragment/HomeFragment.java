@@ -10,18 +10,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.model.DoctorModel;
+import com.nikvay.doctorapplication.utils.SharedUtils;
+import com.nikvay.doctorapplication.view.activity.AppointmentListActivity;
 import com.nikvay.doctorapplication.view.activity.PatientActivity;
 import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
 
     private Context mContext;
     private CardView cardViewPrescription, cardViewPayment, cardViewService, cardViewMyPatient, cardViewAppointment, cardViewMyProfile;
+    private TextView textDoctorName;
+    private String doctorName;
+    private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +51,13 @@ public class HomeFragment extends Fragment {
         cardViewMyPatient = view.findViewById(R.id.cardViewMyPatient);
         cardViewAppointment = view.findViewById(R.id.cardViewAppointment);
         cardViewMyProfile = view.findViewById(R.id.cardViewMyProfile);
+        textDoctorName = view.findViewById(R.id.textDoctorName);
+
+
+        doctorModelArrayList = SharedUtils.getUserDetails(mContext);
+        doctorName = doctorModelArrayList.get(0).getName();
+        textDoctorName.setText("Hello"+" "+doctorName);
+
 
     }
 
@@ -50,7 +66,7 @@ public class HomeFragment extends Fragment {
         cardViewMyPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext, PatientActivity.class);
+                Intent intent = new Intent(mContext, PatientActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,7 +81,7 @@ public class HomeFragment extends Fragment {
         cardViewService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext, ServiceListActivity.class);
+                Intent intent = new Intent(mContext, ServiceListActivity.class);
                 startActivity(intent);
             }
         });
@@ -85,7 +101,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Under Development", Toast.LENGTH_SHORT).show();
-             }
+            }
         });
     }
 
