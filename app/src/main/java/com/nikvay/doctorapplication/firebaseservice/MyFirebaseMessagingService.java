@@ -59,7 +59,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String title = null, description = null, redirectId = null;
         try {
             JSONObject json = new JSONObject(remoteMessage.getData().get("data"));
-
             title = json.getString("title");
             description = json.getString("description");
             redirectId = json.getString("redirect_id");
