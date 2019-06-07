@@ -56,7 +56,7 @@ public class AppointmentListActivity extends AppCompatActivity {
     private ShowProgress showProgress;
     private EditText edt_search_appointment;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
-    private String date;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,38 +101,6 @@ public class AppointmentListActivity extends AppCompatActivity {
             }
         });
 
-        iv_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AppointmentListActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-
-                        CharSequence strDate = null;
-                        Time chosenDate = new Time();
-                        chosenDate.set(day, month, year);
-
-                        long dateAttendance = chosenDate.toMillis(true);
-                        strDate = DateFormat.format("yyyy-MM-dd", dateAttendance);
-
-                        date = (String) strDate;
-
-                        if (NetworkUtils.isNetworkAvailable(AppointmentListActivity.this))
-                            appointmentListCall();
-                        else
-                            NetworkUtils.isNetworkNotAvailable(AppointmentListActivity.this);
-
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
-
-            }
-        });
 
     }
 
@@ -147,7 +115,6 @@ public class AppointmentListActivity extends AppCompatActivity {
         showProgress = new ShowProgress(AppointmentListActivity.this);
         errorMessageDialog = new ErrorMessageDialog(AppointmentListActivity.this);
 
-        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
@@ -169,7 +136,7 @@ public class AppointmentListActivity extends AppCompatActivity {
 
     private void appointmentListCall() {
         showProgress.showDialog();
-        Call<SuccessModel> call = apiInterface.appointmentList(doctor_id, label, user_id, date);
+        Call<SuccessModel> call = apiInterface.appointmentList(doctor_id, label, user_id);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {

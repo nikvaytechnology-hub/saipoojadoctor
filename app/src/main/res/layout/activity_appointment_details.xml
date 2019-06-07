@@ -50,7 +50,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,8 +60,8 @@
 
             <RelativeLayout
 
-                android:layout_width="match_parent"
                 android:id="@+id/relativeLayoutReschedule"
+                android:layout_width="match_parent"
                 android:layout_height="80dp">
 
 
@@ -116,10 +117,10 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_vector_forward"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/ic_vector_forward" />
 
             </RelativeLayout>
 
@@ -296,9 +297,7 @@
             <RelativeLayout
                 android:id="@+id/relativeLayoutCommentsHide"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="80dp">
-
 
                 <LinearLayout
                     android:id="@+id/ll_iconComments"
@@ -348,24 +347,20 @@
                         android:textSize="15sp" />
 
 
-
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:layout_alignParentBottom="true"/>
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray" />
 
             </RelativeLayout>
-
-
 
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutLabelHide"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="80dp">
 
 
@@ -387,16 +382,17 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_toEndOf="@+id/ll_iconLabel"
-                    android:orientation="vertical"
-                    android:weightSum="2">
+                    android:orientation="horizontal"
+                    android:layout_centerVertical="true"
+                    android:weightSum="3">
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="bottom"
                         android:maxLines="1"
@@ -407,13 +403,12 @@
 
                     <TextView
                         android:id="@+id/textLabelName"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="top"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:maxLines="1"
                         android:text="No Label"
-                        android:textColor="@color/black"
                         android:textSize="15sp" />
 
 
@@ -426,8 +421,6 @@
                     android:background="@color/gray" />
 
             </RelativeLayout>
-
-
 
 
             <RelativeLayout
@@ -457,7 +450,7 @@
                 android:background="@color/gray" />
 
 
-            <RelativeLayout
+            <!--  <RelativeLayout
                 android:id="@+id/relativeLayoutLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -477,7 +470,67 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/gray" />
+                android:background="@color/gray" />-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/textPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_text_pending_button"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Pending"
+                    android:drawableStart="@drawable/ic_vector_pending"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/textConfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_vector_confirm"
+                    android:background="@drawable/shape_text_confirm_button"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Confirm"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/textCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_vector_cancel"
+                    android:background="@drawable/shape_text_cancel_button"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Cancel"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/textComplete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_text_complete_button"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:drawableStart="@drawable/ic_vector_archive"
+                    android:text="Complete"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
 
         </LinearLayout>

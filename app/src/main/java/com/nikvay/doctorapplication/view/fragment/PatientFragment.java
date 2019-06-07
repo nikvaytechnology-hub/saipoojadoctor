@@ -101,13 +101,13 @@ public class PatientFragment extends Fragment {
                         if (successModel != null) {
                             message = successModel.getMsg();
                             code = successModel.getError_code();
-
+                            patientModelArrayList.clear();
 
                             if (code.equalsIgnoreCase("1")) {
 
                                 patientModelArrayList=successModel.getPatientModelArrayList();
 
-                                if(doctorModelArrayList.size()!=0) {
+                                if(patientModelArrayList.size()!=0) {
 
                                    // patientAdapter=new PatientAdapter(mContext,patientModelArrayList,"","","","");
                                     recyclerPatientList.setAdapter(patientAdapter);

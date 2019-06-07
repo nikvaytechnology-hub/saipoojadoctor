@@ -16,9 +16,10 @@ public class AppoinmentListModel implements Serializable {
    private  String address;
    private  String phone_no;
    private  String service_time;
+   private  String comment;
 
 
-    public AppoinmentListModel(String appointment_id, String date, String time, String service_id, String label, String s_name, String service_cost, String patient_id, String name, String email, String address, String phone_no,String service_time) {
+    public AppoinmentListModel(String appointment_id, String date, String time, String service_id, String label, String s_name, String service_cost, String patient_id, String name, String email, String address, String phone_no,String service_time,String comment) {
         this.appointment_id = appointment_id;
         this.date = date;
         this.time = time;
@@ -32,6 +33,7 @@ public class AppoinmentListModel implements Serializable {
         this.address = address;
         this.phone_no = phone_no;
         this.service_time = service_time;
+        this.comment = comment;
     }
 
     public String getAppointment_id() {
@@ -136,5 +138,13 @@ public class AppoinmentListModel implements Serializable {
 
     public void setService_time(String service_time) {
         this.service_time = service_time;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

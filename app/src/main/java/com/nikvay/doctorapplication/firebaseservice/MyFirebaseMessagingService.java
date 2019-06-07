@@ -30,7 +30,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private Context mContext;
     private static final String TAG = "FCM Service";
     public static final String CHANNEL_ID = "mychannelid";
-
     NotificationManager notificationManager;
     NotificationCompat.Builder builder;
     int m;
@@ -68,7 +67,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             e.printStackTrace();
         }
 
-//        EventBus.getDefault().post(new HomeActivity.MessageEvent(title,description));
 
         sendNotification(title, description, redirectId);
 
@@ -81,40 +79,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         m = random.nextInt(9999 - 1000) + 1000;
         long[] v = {500, 1000};
 
-        Intent intent;
-
-        intent = new Intent(this, MainActivity.class);
+        Intent intent= new Intent(this, MainActivity.class);
         intent.putExtra("TITLE", title);
         intent.putExtra("DESCRIPTION", description);
         intent.putExtra("REDIRECT_ID", redirectId);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-//        PendingIntent  pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-//        RemoteViews notificationSmall = new RemoteViews(getPackageName(), R.layout.notificaton_small);
-//        RemoteViews notificationBig = new RemoteViews(getPackageName(), R.layout.notificaton_big);
 
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-//        notificationSmall.setTextViewText(R.id.tv_notification_name_small, "Hey " + userName + " new notification received.");
-//        notificationSmall.setTextViewText(R.id.tv_notification_title_small, title);
-//        notificationSmall.setTextViewText(R.id.tv_notification_desc_small, description);
-//
-//        notificationBig.setTextViewText(R.id.tv_notification_name_big, "Hey " + userName + " new notification received.");
-//        notificationBig.setTextViewText(R.id.tv_notification_title_big, title);
-//        notificationBig.setTextViewText(R.id.tv_notification_desc_big, description);
-//        notificationBig.setImageViewResource(R.id.iv_notification_image_big, R.drawable.app_background);
-
         builder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.splash_image)
                 .setContentTitle(title)
                 .setContentText(description)
-//                .setCustomContentView(notificationSmall)
-//                .setCustomBigContentView(notificationBig)
-//                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .setAutoCancel(true)
                 .setSound(uri)
                 .setVibrate(v)
                 .setChannelId(NOTIFICATION_CHANNEL_ID)
@@ -136,7 +117,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationChannel adminChannel;
         adminChannel = new NotificationChannel(CHANNEL_ID, "NOTIFICATION_CHANNEL_NAME", NotificationManager.IMPORTANCE_LOW);
-//        adminChannel.setDescription(adminChannelDescription);
         adminChannel.enableLights(true);
         adminChannel.setLightColor(Color.RED);
         adminChannel.enableVibration(true);

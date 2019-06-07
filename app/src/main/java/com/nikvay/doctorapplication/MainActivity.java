@@ -98,6 +98,19 @@ public class MainActivity extends AppCompatActivity {
         textName.setText(doctorModelArrayList.get(0).getName());
         textEmail.setText(doctorModelArrayList.get(0).getEmail());
 
+        Intent intent = getIntent();
+
+        if (intent != null) {
+            String title = intent.getStringExtra("TITLE");
+            String description = intent.getStringExtra("DESCRIPTION");
+            String redirectId = intent.getStringExtra("REDIRECT_ID");
+
+            //Toast.makeText(this,title+" "+" "+description, Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
 
     }
 

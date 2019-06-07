@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
 
         doctorModelArrayList = SharedUtils.getUserDetails(mContext);
         doctorName = doctorModelArrayList.get(0).getName();
-        textDoctorName.setText("Hello"+" "+doctorName);
+        textDoctorName.setText(doctorName);
 
 
     }

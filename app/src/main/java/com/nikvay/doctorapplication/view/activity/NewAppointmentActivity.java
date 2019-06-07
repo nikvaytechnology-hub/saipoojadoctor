@@ -42,12 +42,13 @@ public class NewAppointmentActivity extends AppCompatActivity {
 
 
     private ImageView iv_close;
-    private TextView textDone,textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textcommentName,textLabelName;
+    private TextView textDone,textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textcommentName,textLabelName
+            ,textPending,textConfirm;
     private ServiceModel serviceModel;
     private PatientModel patientModel;
     private  String date="",time="",service_id,patient_id,TAG = getClass().getSimpleName(),user_id,doctor_id,comment="",label="1";
     private ApiInterface apiInterface;
-    private RelativeLayout relativeLayoutComments,relativeLayoutLabel,relativeLayoutCommentsHide,relativeLayoutLabelHide;
+    private RelativeLayout relativeLayoutComments,relativeLayoutCommentsHide,relativeLayoutLabelHide;
     private ErrorMessageDialog errorMessageDialog;
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private AppointmentDialog appointmentDialog;
@@ -77,14 +78,6 @@ public class NewAppointmentActivity extends AppCompatActivity {
             }
         });
 
-        relativeLayoutLabel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-                callLabelDialog();
-
-            }
-        });
 
         textDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +87,25 @@ public class NewAppointmentActivity extends AppCompatActivity {
                 else
                     NetworkUtils.isNetworkNotAvailable(NewAppointmentActivity.this);
 
+            }
+        });
+
+
+        textPending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="0";
+                textLabelName.setText("Pending");
+                textLabelName.setTextColor(getResources().getColor(R.color.pending));
+
+            }
+        });
+        textConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="1";
+                textLabelName.setText("Confirm");
+                textLabelName.setTextColor(getResources().getColor(R.color.confirm));
             }
         });
 
@@ -144,87 +156,6 @@ public class NewAppointmentActivity extends AppCompatActivity {
 
     }
 
-    private void callLabelDialog() {
-
-
-        final Dialog dialog = new Dialog(NewAppointmentActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.label_add_dialog);
-        dialog.setCancelable(true);
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-        final LinearLayout ll_pending= dialog.findViewById(R.id.ll_pending);
-        final LinearLayout ll_Confirm= dialog.findViewById(R.id.ll_Confirm);
-        final LinearLayout ll_Cancel= dialog.findViewById(R.id.ll_Cancel);
-        final LinearLayout ll_Complete= dialog.findViewById(R.id.ll_Complete);
-        final TextView textPending= dialog.findViewById(R.id.textPending);
-        final TextView textConfirm= dialog.findViewById(R.id.textConfirm);
-        final TextView textCancel= dialog.findViewById(R.id.textCancel);
-        final TextView textComplete= dialog.findViewById(R.id.textComplete);
-
-
-        //Button btn_done =dialog.findViewById(R.id.btn_done);
-
-
-        ll_pending.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                label="0";
-                textLabelName.setText(textPending.getText());
-                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-
-            }
-        });
-
-        ll_Confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                label="1";
-                textLabelName.setText(textConfirm.getText());
-                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-            }
-        });
-        ll_Cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                label="2";
-                textLabelName.setText(textCancel.getText());
-                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-            }
-        });
-        ll_Complete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                label="3";
-                textLabelName.setText(textComplete.getText());
-                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-            }
-        });
-
-/*
-
-        btn_done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                comment=textComment.getText().toString().trim();
-                dialog.dismiss();
-                relativeLayoutCommentsHide.setVisibility(View.VISIBLE);
-                textcommentName.setText(comment);
-
-
-            }
-        });
-*/
-
-        dialog.show();
-
-
-    }
 
     private void commentDialog() {
 
@@ -269,11 +200,12 @@ public class NewAppointmentActivity extends AppCompatActivity {
         textDuration=findViewById(R.id.textDuration);
         textServiceCost=findViewById(R.id.textServiceCost);
         relativeLayoutComments=findViewById(R.id.relativeLayoutComments);
-        relativeLayoutLabel=findViewById(R.id.relativeLayoutLabel);
         relativeLayoutCommentsHide=findViewById(R.id.relativeLayoutCommentsHide);
         relativeLayoutLabelHide=findViewById(R.id.relativeLayoutLabelHide);
         textcommentName=findViewById(R.id.textcommentName);
         textLabelName=findViewById(R.id.textLabelName);
+        textPending=findViewById(R.id.textPending);
+        textConfirm=findViewById(R.id.textConfirm);
 
         errorMessageDialog= new ErrorMessageDialog(NewAppointmentActivity.this);
         appointmentDialog= new AppointmentDialog(NewAppointmentActivity.this);
@@ -307,6 +239,8 @@ public class NewAppointmentActivity extends AppCompatActivity {
             //Toast.makeText(this, serviceModel.getS_name()+""+patientModel.getPatient_id()+" "+date+" "+time, Toast.LENGTH_SHORT).show();
 
         }
+        textLabelName.setTextColor(getResources().getColor(R.color.confirm));
+        textLabelName.setText("Confirm");
 
 
 

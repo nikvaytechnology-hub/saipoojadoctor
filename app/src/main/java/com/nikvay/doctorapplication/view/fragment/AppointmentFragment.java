@@ -49,7 +49,6 @@ public class AppointmentFragment extends Fragment {
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private String doctor_id,TAG = getClass().getSimpleName(),user_id;
     private ErrorMessageDialog errorMessageDialog;
-    private String date;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,7 +90,7 @@ public class AppointmentFragment extends Fragment {
 
         errorMessageDialog= new ErrorMessageDialog(mContext);
 
-        date= new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
         doctorModelArrayList= SharedUtils.getUserDetails(mContext);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
         user_id=doctorModelArrayList.get(0).getUser_id();
@@ -152,7 +151,7 @@ public class AppointmentFragment extends Fragment {
         });
     }
     private void callAppointmentCount() {
-        Call<SuccessModel> call = apiInterface.appointmentListCount(doctor_id,user_id,date);
+        Call<SuccessModel> call = apiInterface.appointmentListCount(doctor_id,user_id);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {

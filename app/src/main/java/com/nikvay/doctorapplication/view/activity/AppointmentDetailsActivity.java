@@ -38,10 +38,11 @@ import retrofit2.Response;
 public class AppointmentDetailsActivity extends AppCompatActivity {
 
     private AppoinmentListModel appoinmentListModel;
-    private TextView textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textUpdate,textcommentName,textLabelName;
+    private TextView textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textUpdate,textcommentName,textLabelName
+            ,textPending,textConfirm,textCancel,textComplete;
     private ApiInterface apiInterface;
     private ImageView iv_close;
-    private RelativeLayout relativeLayoutComments,relativeLayoutLabel,relativeLayoutCommentsHide,relativeLayoutLabelHide,relativeLayoutReschedule;
+    private RelativeLayout relativeLayoutComments,relativeLayoutCommentsHide,relativeLayoutLabelHide,relativeLayoutReschedule;
     private ErrorMessageDialog errorMessageDialog;
     private AppointmentDialog appointmentDialog;
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
@@ -69,10 +70,36 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             textServiceName.setText(appoinmentListModel.getS_name());
             textDuration.setText("Time"+" "+appoinmentListModel.getService_time());
             textServiceCost.setText("Rs"+" "+appoinmentListModel.getService_cost());
+            //textcommentName.setText(appoinmentListModel.getde);
             label=appoinmentListModel.getLabel();
             service_id=appoinmentListModel.getService_id();
             patient_id=appoinmentListModel.getPatient_id();
             appointment_id=appoinmentListModel.getAppointment_id();
+
+            if(label.equalsIgnoreCase("0"))
+            {
+                textLabelName.setText("Pending");
+                textLabelName.setTextColor(getResources().getColor(R.color.pending));
+                textPending.setVisibility(View.GONE);
+            }else if(label.equalsIgnoreCase("1"))
+            {
+                textLabelName.setText("Confirm");
+                textLabelName.setTextColor(getResources().getColor(R.color.confirm));
+                textConfirm.setVisibility(View.GONE);
+
+            }else if(label.equalsIgnoreCase("2"))
+            {
+                textLabelName.setText("Canceled");
+                textLabelName.setTextColor(getResources().getColor(R.color.cancel));
+                textCancel.setVisibility(View.GONE);
+            }
+            else
+            {
+                textLabelName.setText("Completed");
+                textLabelName.setTextColor(getResources().getColor(R.color.complete));
+                textComplete.setVisibility(View.GONE);
+            }
+            textcommentName.setText(appoinmentListModel.getComment());
         }
 
     }
@@ -85,14 +112,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             }
         });
 
-        relativeLayoutLabel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                callLabelDialog();
-
-            }
-        });
         textUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,6 +136,41 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+
+        textPending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="0";
+                textLabelName.setText("Pending");
+                textLabelName.setTextColor(getResources().getColor(R.color.pending));
+
+            }
+        });
+        textConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="1";
+                textLabelName.setText("Confirm");
+                textLabelName.setTextColor(getResources().getColor(R.color.confirm));
+            }
+        });
+        textCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="2";
+                textLabelName.setText("Cancel");
+                textLabelName.setTextColor(getResources().getColor(R.color.cancel));
+            }
+        });
+        textComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="3";
+                textLabelName.setText("Completed");
+                textLabelName.setTextColor(getResources().getColor(R.color.complete));
             }
         });
 
@@ -182,8 +237,12 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         textLabelName=findViewById(R.id.textLabelName);
         iv_close=findViewById(R.id.iv_close);
 
+        textPending=findViewById(R.id.textPending);
+        textConfirm=findViewById(R.id.textConfirm);
+        textCancel=findViewById(R.id.textCancel);
+        textComplete=findViewById(R.id.textComplete);
+
         relativeLayoutComments=findViewById(R.id.relativeLayoutComments);
-        relativeLayoutLabel=findViewById(R.id.relativeLayoutLabel);
         relativeLayoutCommentsHide=findViewById(R.id.relativeLayoutCommentsHide);
         relativeLayoutLabelHide=findViewById(R.id.relativeLayoutLabelHide);
         relativeLayoutReschedule=findViewById(R.id.relativeLayoutReschedule);
@@ -195,87 +254,6 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         doctorModelArrayList= SharedUtils.getUserDetails(AppointmentDetailsActivity.this);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
         user_id=doctorModelArrayList.get(0).getUser_id();
-
-    }
-    private void callLabelDialog() {
-
-
-        final Dialog dialog = new Dialog(AppointmentDetailsActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.label_add_dialog);
-        dialog.setCancelable(true);
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-        final LinearLayout ll_pending= dialog.findViewById(R.id.ll_pending);
-        final LinearLayout ll_Confirm= dialog.findViewById(R.id.ll_Confirm);
-        final LinearLayout ll_Cancel= dialog.findViewById(R.id.ll_Cancel);
-        final LinearLayout ll_Complete= dialog.findViewById(R.id.ll_Complete);
-        final TextView textPending= dialog.findViewById(R.id.textPending);
-        final TextView textConfirm= dialog.findViewById(R.id.textConfirm);
-        final TextView textCancel= dialog.findViewById(R.id.textCancel);
-        final TextView textComplete= dialog.findViewById(R.id.textComplete);
-
-
-        //Button btn_done =dialog.findViewById(R.id.btn_done);
-
-
-        ll_pending.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                label="0";
-                textLabelName.setText(textPending.getText());
-                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-
-            }
-        });
-
-        ll_Confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                label="1";
-                textLabelName.setText(textConfirm.getText());
-                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-            }
-        });
-        ll_Cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                label="2";
-                textLabelName.setText(textCancel.getText());
-                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-            }
-        });
-        ll_Complete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                label="3";
-                textLabelName.setText(textComplete.getText());
-                relativeLayoutLabelHide.setVisibility(View.VISIBLE);
-                dialog.dismiss();
-            }
-        });
-
-/*
-
-        btn_done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                comment=textComment.getText().toString().trim();
-                dialog.dismiss();
-                relativeLayoutCommentsHide.setVisibility(View.VISIBLE);
-                textcommentName.setText(comment);
-
-
-            }
-        });
-*/
-
-        dialog.show();
-
 
     }
 

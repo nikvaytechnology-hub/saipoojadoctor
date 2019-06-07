@@ -34,6 +34,8 @@ public class SuccessModel {
     ArrayList<ClassModel> classModelArrayList;
 
 
+    @SerializedName("AptNotificetionlist")
+    ArrayList<NotificationListModel> notificationListModelArrayList;
 
 
     public ArrayList<SelectDateTimeModel> getSelectDateTimeModelArrayList() {
@@ -128,6 +130,14 @@ public class SuccessModel {
 
     public void setClassModelArrayList(ArrayList<ClassModel> classModelArrayList) {
         this.classModelArrayList = classModelArrayList;
+    }
+
+    public ArrayList<NotificationListModel> getNotificationListModelArrayList() {
+        return notificationListModelArrayList;
+    }
+
+    public void setNotificationListModelArrayList(ArrayList<NotificationListModel> notificationListModelArrayList) {
+        this.notificationListModelArrayList = notificationListModelArrayList;
     }
 
     public void setPatientModelArrayList(ArrayList<PatientModel> patientModelArrayList) {

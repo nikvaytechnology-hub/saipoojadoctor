@@ -150,4 +150,13 @@
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
 
+
+    <color name="pending">#F7AB21</color>
+    <color name="confirm">#6CB744</color>
+    <color name="cancel">#E7796B</color>
+    <color name="complete">#008000</color>
+
+
+
+
 </resources>

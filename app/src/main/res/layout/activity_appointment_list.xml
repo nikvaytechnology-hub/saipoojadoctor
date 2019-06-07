@@ -32,14 +32,14 @@
             android:textSize="17sp" />
 
 
-        <ImageView
+  <!--      <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:id="@+id/iv_date"
-            android:src="@drawable/ic_vector_select_appointment_calendar"/>
+            android:src="@drawable/ic_vector_select_appointment_calendar"/>-->
     </RelativeLayout>
 
     <!--  <LinearLayout
@@ -104,7 +104,7 @@
         android:layout_margin="5dp"
         android:background="@drawable/shape_edt_text"
         android:drawableEnd="@drawable/ic_vector_search"
-        android:hint="Search Appointment List"
+        android:hint="Search Appointment List Using Date"
         android:inputType="text"
         android:padding="10dp" />
 

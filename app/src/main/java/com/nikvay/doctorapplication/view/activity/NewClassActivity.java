@@ -33,7 +33,7 @@ public class NewClassActivity extends AppCompatActivity {
 
     private TextView textClass, textDuration, textSeats, textCost, textSave, textTitleName, textDescription, textDate;
     private ImageView iv_close_activity;
-    private String textClassName, textClassDuration, textClassSeats, textClassCost, textClassDescription, doctor_id, user_id, TAG = getClass().getSimpleName(), textClassDate,mTitle="Class Details",class_id;
+    private String textClassName, textClassDuration, textClassSeats, textClassCost, textClassDescription, doctor_id, user_id, TAG = getClass().getSimpleName(), textClassDate,mTitle="Update Details",class_id;
     private ErrorMessageDialog errorMessageDialog;
     private SuccessMessageDialog successMessageDialog;
     private ShowProgress showProgress;

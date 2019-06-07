@@ -92,14 +92,12 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<SuccessModel> appointmentList(@Field("doctor_id") String doctor_id,
                                        @Field("label") String label,
-                                       @Field("user_id") String user_id,
-                                       @Field("date") String date);
+                                       @Field("user_id") String user_id);
 
     @POST(EndApi.APPOINTMENT_LIST_COUNT)
     @FormUrlEncoded
     Call<SuccessModel> appointmentListCount(@Field("doctor_id") String doctor_id,
-                                            @Field("user_id") String user_id,
-                                            @Field("date") String date);
+                                            @Field("user_id") String user_id);
 
     @POST(EndApi.APPOINTMENT_EDIT)
     @FormUrlEncoded
@@ -139,4 +137,11 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<SuccessModel> listClass(@Field("doctor_id") String doctor_id,
                                 @Field("user_id") String user_id);
+
+
+    @POST(EndApi.NOTIFICATION_LIST)
+    @FormUrlEncoded
+    Call<SuccessModel> notificationList(@Field("doctor_id") String doctor_id,
+                                 @Field("user_id") String user_id);
+
 }
