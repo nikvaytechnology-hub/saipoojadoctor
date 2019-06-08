@@ -33,18 +33,6 @@
             android:textColor="#FFFFFF"
             android:textSize="17sp" />
 
-
-        <TextView
-        android:id="@+id/textUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:textColor="@color/white"
-        android:text="Update"
-        android:textSize="17sp" />
-
         
     </RelativeLayout>
 
@@ -383,11 +371,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_toEndOf="@+id/ll_iconLabel"
                     android:orientation="horizontal"
-                    android:layout_centerVertical="true"
                     android:weightSum="3">
 
                     <TextView
@@ -476,7 +464,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:weightSum="4">
 
                 <TextView
@@ -486,11 +474,12 @@
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_text_pending_button"
+                    android:drawableStart="@drawable/ic_vector_pending_appointment"
                     android:gravity="center"
                     android:padding="5dp"
+                    android:visibility="gone"
                     android:text="Pending"
-                    android:drawableStart="@drawable/ic_vector_pending"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/textConfirm"
@@ -498,12 +487,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_vector_confirm"
                     android:background="@drawable/shape_text_confirm_button"
+                    android:drawableStart="@drawable/ic_vector_confirm_appointment"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:padding="5dp"
                     android:text="Confirm"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/textCancel"
@@ -511,29 +501,49 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_vector_cancel"
                     android:background="@drawable/shape_text_cancel_button"
+                    android:drawableStart="@drawable/ic_vector_cancel_appointment"
                     android:gravity="center"
                     android:padding="5dp"
+                    android:visibility="gone"
                     android:text="Cancel"
                     android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/textComplete"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_text_complete_button"
+                    android:drawableStart="@drawable/ic_vector_completed_appointment"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:drawableStart="@drawable/ic_vector_archive"
+                    android:visibility="gone"
                     android:text="Complete"
                     android:textColor="@color/white" />
             </LinearLayout>
 
 
+            <Button
+                android:id="@+id/btnUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/shape_btn"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+
         </LinearLayout>
+
+
+
+
     </ScrollView>
 
 

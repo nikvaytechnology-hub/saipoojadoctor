@@ -38,10 +38,11 @@ import retrofit2.Response;
 public class AppointmentDetailsActivity extends AppCompatActivity {
 
     private AppoinmentListModel appoinmentListModel;
-    private TextView textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textUpdate,textcommentName,textLabelName
+    private TextView textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textcommentName,textLabelName
             ,textPending,textConfirm,textCancel,textComplete;
     private ApiInterface apiInterface;
     private ImageView iv_close;
+    private Button btnUpdate;
     private RelativeLayout relativeLayoutComments,relativeLayoutCommentsHide,relativeLayoutLabelHide,relativeLayoutReschedule;
     private ErrorMessageDialog errorMessageDialog;
     private AppointmentDialog appointmentDialog;
@@ -79,25 +80,26 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             if(label.equalsIgnoreCase("0"))
             {
                 textLabelName.setText("Pending");
-                textLabelName.setTextColor(getResources().getColor(R.color.pending));
-                textPending.setVisibility(View.GONE);
+                textLabelName.setTextColor(getResources().getColor(R.color.black));
+                textConfirm.setVisibility(View.VISIBLE);
+
             }else if(label.equalsIgnoreCase("1"))
             {
                 textLabelName.setText("Confirm");
                 textLabelName.setTextColor(getResources().getColor(R.color.confirm));
-                textConfirm.setVisibility(View.GONE);
+                textPending.setVisibility(View.VISIBLE);
+                textComplete.setVisibility(View.VISIBLE);
+                textCancel.setVisibility(View.VISIBLE);
 
             }else if(label.equalsIgnoreCase("2"))
             {
                 textLabelName.setText("Canceled");
                 textLabelName.setTextColor(getResources().getColor(R.color.cancel));
-                textCancel.setVisibility(View.GONE);
             }
             else
             {
                 textLabelName.setText("Completed");
                 textLabelName.setTextColor(getResources().getColor(R.color.complete));
-                textComplete.setVisibility(View.GONE);
             }
             textcommentName.setText(appoinmentListModel.getComment());
         }
@@ -113,7 +115,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         });
 
 
-        textUpdate.setOnClickListener(new View.OnClickListener() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (NetworkUtils.isNetworkAvailable(AppointmentDetailsActivity.this))
@@ -145,7 +147,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 label="0";
                 textLabelName.setText("Pending");
-                textLabelName.setTextColor(getResources().getColor(R.color.pending));
+                textLabelName.setTextColor(getResources().getColor(R.color.black));
 
             }
         });
@@ -232,7 +234,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         textServiceName=findViewById(R.id.textServiceName);
         textDuration=findViewById(R.id.textDuration);
         textServiceCost=findViewById(R.id.textServiceCost);
-        textUpdate=findViewById(R.id.textUpdate);
+        btnUpdate=findViewById(R.id.btnUpdate);
         textcommentName=findViewById(R.id.textcommentName);
         textLabelName=findViewById(R.id.textLabelName);
         iv_close=findViewById(R.id.iv_close);

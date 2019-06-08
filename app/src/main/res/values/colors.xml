@@ -151,10 +151,10 @@
     <color name="black">#000000</color>
 
 
-    <color name="pending">#F7AB21</color>
-    <color name="confirm">#6CB744</color>
-    <color name="cancel">#E7796B</color>
-    <color name="complete">#008000</color>
+    <color name="pending">#FFFF00</color>
+    <color name="confirm">#A4C639</color>
+    <color name="cancel">#FF0000</color>
+    <color name="complete">#0000FF</color>
 
 
 

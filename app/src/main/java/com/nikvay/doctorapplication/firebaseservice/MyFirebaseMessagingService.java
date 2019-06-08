@@ -93,7 +93,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         builder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
-                .setSmallIcon(R.drawable.splash_image)
+                .setSmallIcon(R.drawable.my_patient)
                 .setContentTitle(title)
                 .setContentText(description)
                 .setSound(uri)

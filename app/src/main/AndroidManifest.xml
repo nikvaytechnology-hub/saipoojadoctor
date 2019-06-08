@@ -26,12 +26,24 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.ClassDetailsActivity"></activity>
-        <activity android:name=".view.activity.AppointmentDetailsActivity" />
-        <activity android:name=".view.activity.NewAppointmentActivity" />
-        <activity android:name=".view.activity.NewAddServiceActivity" />
-        <activity android:name=".view.activity.PatientActivity" />
-        <activity android:name=".view.activity.DateTimeSelectActivity" />
+        <activity
+            android:name=".view.activity.ClassDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.AppointmentDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.NewAppointmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.NewAddServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.PatientActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.DateTimeSelectActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.AppointmentListActivity"
             android:screenOrientation="portrait" />

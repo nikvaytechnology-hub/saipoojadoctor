@@ -96,7 +96,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 label="0";
                 textLabelName.setText("Pending");
-                textLabelName.setTextColor(getResources().getColor(R.color.pending));
+                textLabelName.setTextColor(getResources().getColor(R.color.black));
 
             }
         });
