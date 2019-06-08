@@ -144,4 +144,11 @@ public interface ApiInterface {
     Call<SuccessModel> notificationList(@Field("doctor_id") String doctor_id,
                                  @Field("user_id") String user_id);
 
+    @POST(EndApi.NOTIFICATION_CLEAR)
+    @FormUrlEncoded
+    Call<SuccessModel> notificationClear(@Field("doctor_id") String doctor_id,
+                                        @Field("user_id") String user_id);
+
+
+
 }

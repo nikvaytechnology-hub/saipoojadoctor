@@ -8,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.model.AppoinmentListModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
@@ -29,12 +31,15 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
     private ServiceModel serviceModel;
     private String date;
     private ErrorMessageDialog errorMessageDialog;
-
-    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, ServiceModel serviceModel, String date) {
+    private String reschedule;
+    private AppoinmentListModel appoinmentListModel;
+    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, ServiceModel serviceModel, String date, String reschedule,AppoinmentListModel appoinmentListModel) {
         this.mContext = context;
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
         this.serviceModel = serviceModel;
         this.date = date;
+        this.reschedule = reschedule;
+        this.appoinmentListModel=appoinmentListModel;
         errorMessageDialog = new ErrorMessageDialog(mContext);
 
     }
@@ -64,8 +69,14 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
 
                 if (selectDateTimeModel.getStatus().equals("1")) {
                     errorMessageDialog.showDialog("This slot Already Booked");
-                }
-               else {
+                } else if (reschedule.equalsIgnoreCase(StaticContent.IntentValue.RESCHEDULE)) {
+                    Intent intent = new Intent(mContext, AppointmentDetailsActivity.class);
+                    intent.putExtra(StaticContent.IntentKey.DATE, date);
+                    intent.putExtra(StaticContent.IntentKey.TIME, selectDateTimeModel.getTime());
+                    intent.putExtra(StaticContent.IntentKey.RESCHEDULE,StaticContent.IntentValue.RESCHEDULE);
+                    intent.putExtra(StaticContent.IntentKey.APPOINTMENT,appoinmentListModel);
+                    mContext.startActivity(intent);
+                } else {
                     Intent intent = new Intent(mContext, PatientActivity.class);
                     intent.putExtra(StaticContent.IntentKey.APPOINTMENT, StaticContent.IntentValue.APPOINTMENT);
                     intent.putExtra(StaticContent.IntentKey.SERVICE_DETAIL, serviceModel);

@@ -35,8 +35,8 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         NotificationListModel notificationListModel=notificationListModelArrayList.get(position);
 
-        holder.textTitle.setText(notificationListModel.getName());
-        holder.textDate.setText(notificationListModel.getTitle());
+        holder.textTitle.setText(notificationListModel.getPatient_name());
+        holder.textDate.setText(notificationListModel.getDate());
 
     }
 

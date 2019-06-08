@@ -20,5 +20,17 @@
             android:src="@drawable/nodatafound"
             android:id="@+id/iv_notification"
             android:visibility="gone"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnNotificationClear"
+            android:background="@drawable/shape_btn"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/white"
+            android:text="Clear Notification"/>
+
     </RelativeLayout>
+
 </FrameLayout>

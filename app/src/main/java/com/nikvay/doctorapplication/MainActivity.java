@@ -24,6 +24,7 @@ import com.nikvay.doctorapplication.utils.RecyclerItemClickListener;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.activity.PatientActivity;
+import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
 import com.nikvay.doctorapplication.view.fragment.AppointmentFragment;
 import com.nikvay.doctorapplication.view.fragment.HomeFragment;
@@ -57,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         find_All_IDs();
-        loadFragment(new HomeFragment());
         events();
 
 
@@ -98,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
         textName.setText(doctorModelArrayList.get(0).getName());
         textEmail.setText(doctorModelArrayList.get(0).getEmail());
 
+
+        loadFragment(new HomeFragment());
+
         Bundle bundle = getIntent().getExtras();
 
         Intent intent = getIntent();
@@ -106,9 +109,11 @@ public class MainActivity extends AppCompatActivity {
             String title = intent.getStringExtra("TITLE");
             String description = intent.getStringExtra("DESCRIPTION");
             String redirectId = intent.getStringExtra("REDIRECT_ID");
-            Toast.makeText(this, redirectId, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, redirectId, Toast.LENGTH_SHORT).show();
             redirectNotification(redirectId);
         }
+
+
     }
 
 
@@ -268,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
         if (redirectId != null) {
             switch (redirectId) {
                 case "1":
-                    loadFragment(new AppointmentFragment());
+                 loadFragment(new AppointmentFragment());
                     break;
             }
         }

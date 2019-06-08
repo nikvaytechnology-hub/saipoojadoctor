@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -24,6 +25,8 @@ import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.ShowProgress;
+import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
+import com.nikvay.doctorapplication.view.activity.NewAddServiceActivity;
 import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
 import com.nikvay.doctorapplication.view.adapter.NotificationListAdapter;
 
@@ -44,8 +47,9 @@ public class NotificationFragment extends Fragment {
     private ApiInterface apiInterface;
     private ImageView iv_notification;
     private ErrorMessageDialog errorMessageDialog;
+    private Button btnNotificationClear;
     ShowProgress showProgress;
-
+    private SuccessMessageDialog successMessageDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,6 +64,7 @@ public class NotificationFragment extends Fragment {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         recyclerViewNotification=view.findViewById(R.id.recyclerViewNotification);
         iv_notification=view.findViewById(R.id.iv_notification);
+        btnNotificationClear=view.findViewById(R.id.btnNotificationClear);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
         recyclerViewNotification.setLayoutManager(linearLayoutManager);
         recyclerViewNotification.setHasFixedSize(true);
@@ -68,6 +73,7 @@ public class NotificationFragment extends Fragment {
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
         user_id=doctorModelArrayList.get(0).getUser_id();
         errorMessageDialog= new ErrorMessageDialog(mContext);
+        successMessageDialog = new SuccessMessageDialog(mContext);
         showProgress=new ShowProgress(mContext);
         if (NetworkUtils.isNetworkAvailable(mContext))
            notificationList();
@@ -136,6 +142,54 @@ public class NotificationFragment extends Fragment {
     }
 
     private void events() {
+        btnNotificationClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notificationClear();
+            }
+        });
+    }
+
+    private void notificationClear() {
+        showProgress.showDialog();
+        Call<SuccessModel> call = apiInterface.notificationClear(doctor_id,user_id);
+        call.enqueue(new Callback<SuccessModel>() {
+            @Override
+            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+                showProgress.dismissDialog();
+                String str_response = new Gson().toJson(response.body());
+                Log.e("" + TAG, "Response >>>>" + str_response);
+
+                try {
+                    if (response.isSuccessful()) {
+                        SuccessModel successModel = response.body();
+
+                        String message = null, code = null;
+                        if (successModel != null) {
+                            message = successModel.getMsg();
+                            code = successModel.getError_code();
+
+
+                            if (code.equalsIgnoreCase("1")) {
+                                successMessageDialog.showDialog("Notification Clear Successfully");
+                            } else {
+                                errorMessageDialog.showDialog("Response Not Found");
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<SuccessModel> call, Throwable t) {
+                showProgress.dismissDialog();
+                errorMessageDialog.showDialog(t.getMessage());
+            }
+        });
     }
 
 }

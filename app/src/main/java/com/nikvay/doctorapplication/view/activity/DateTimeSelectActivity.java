@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
+import com.nikvay.doctorapplication.model.AppoinmentListModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
@@ -45,7 +46,6 @@ public class DateTimeSelectActivity extends AppCompatActivity {
     private RecyclerView recyclerViewTime;
     private SelectDateTimeAdapter selectDateTimeAdapter;
     private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList = new ArrayList<>();
-    ;
     private ImageView iv_close;
     private CalendarView calendarView;
     private TextView textSlotNotFound;
@@ -53,8 +53,9 @@ public class DateTimeSelectActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
     private ServiceModel serviceModel;
+    private AppoinmentListModel appoinmentListModel;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
-    private String mTitle, reschedule, service_id, TAG = getClass().getSimpleName(), doctor_id, user_id;
+    private String mTitle, reschedule="", service_id, TAG = getClass().getSimpleName(), doctor_id, user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,9 +121,13 @@ public class DateTimeSelectActivity extends AppCompatActivity {
         if (bundle != null) {
 
             mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
-            serviceModel = (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
-            service_id = serviceModel.getService_id();
-
+            if (mTitle.equalsIgnoreCase(StaticContent.IntentValue.RESCHEDULE)) {
+                reschedule = StaticContent.IntentKey.RESCHEDULE;
+                appoinmentListModel= (AppoinmentListModel) bundle.getSerializable(StaticContent.IntentKey.APPOINTMENT);
+            } else {
+                serviceModel = (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
+                service_id = serviceModel.getService_id();
+            }
 
         }
 
@@ -161,7 +166,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
                             if (code.equalsIgnoreCase("1")) {
                                 selectDateTimeModelArrayList = successModel.getSelectDateTimeModelArrayList();
                                 if (selectDateTimeModelArrayList.size() != 0) {
-                                    selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this, selectDateTimeModelArrayList, serviceModel, date);
+                                    selectDateTimeAdapter = new SelectDateTimeAdapter(DateTimeSelectActivity.this, selectDateTimeModelArrayList, serviceModel, date, reschedule,appoinmentListModel);
                                     recyclerViewTime.setAdapter(selectDateTimeAdapter);
                                     selectDateTimeAdapter.notifyDataSetChanged();
                                 } else {

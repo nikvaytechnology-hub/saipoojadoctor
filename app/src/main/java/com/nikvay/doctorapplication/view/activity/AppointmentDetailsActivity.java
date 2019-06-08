@@ -38,16 +38,16 @@ import retrofit2.Response;
 public class AppointmentDetailsActivity extends AppCompatActivity {
 
     private AppoinmentListModel appoinmentListModel;
-    private TextView textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textcommentName,textLabelName
-            ,textPending,textConfirm,textCancel,textComplete;
+    private TextView textDateDay, textTime, textPatientName, textEmail, textContact, textServiceName, textDuration, textServiceCost, textcommentName, textLabelName, textPending, textConfirm, textCancel, textComplete;
     private ApiInterface apiInterface;
     private ImageView iv_close;
     private Button btnUpdate;
-    private RelativeLayout relativeLayoutComments,relativeLayoutCommentsHide,relativeLayoutLabelHide,relativeLayoutReschedule;
+    private RelativeLayout relativeLayoutComments, relativeLayoutCommentsHide, relativeLayoutLabelHide, relativeLayoutReschedule;
     private ErrorMessageDialog errorMessageDialog;
     private AppointmentDialog appointmentDialog;
-    private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
-    private  String date="",time="",service_id,patient_id,TAG = getClass().getSimpleName(),user_id,doctor_id,comment="",label="",appointment_id="";
+    private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
+    private String date = "", time = "", service_id, patient_id, TAG = getClass().getSimpleName(), user_id, doctor_id, comment = "", label = "", appointment_id = "", reschedule = "",rescheduleDate="",rescheduleTime="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,47 +58,58 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        if(bundle!=null)
-        {
+        if (bundle != null) {
 
-            appoinmentListModel= (AppoinmentListModel) bundle.getSerializable(StaticContent.IntentKey.APPOINTMENT);
-            date=appoinmentListModel.getDate();
-            time=appoinmentListModel.getTime();
-            textDateDay.setText(date);
-            textTime.setText(time);
+            reschedule = bundle.getString(StaticContent.IntentKey.RESCHEDULE);
+            if (reschedule != null) {
+                rescheduleDate = bundle.getString(StaticContent.IntentKey.DATE);
+                rescheduleTime = bundle.getString(StaticContent.IntentKey.TIME);
+
+            }
+
+            appoinmentListModel = (AppoinmentListModel) bundle.getSerializable(StaticContent.IntentKey.APPOINTMENT);
+
+            date = appoinmentListModel.getDate();
+            time = appoinmentListModel.getTime();
+
+            if(rescheduleDate.equalsIgnoreCase("")&&rescheduleTime.equalsIgnoreCase("")) {
+                textDateDay.setText(date);
+                textTime.setText(time);
+            }
+            else
+            {
+                textDateDay.setText(rescheduleDate);
+                textTime.setText(rescheduleTime);
+                date=rescheduleDate;
+                time=rescheduleTime;
+            }
             textPatientName.setText(appoinmentListModel.getName());
             textEmail.setText(appoinmentListModel.getEmail());
             textContact.setText(appoinmentListModel.getPhone_no());
             textServiceName.setText(appoinmentListModel.getS_name());
-            textDuration.setText("Time"+" "+appoinmentListModel.getService_time());
-            textServiceCost.setText("Rs"+" "+appoinmentListModel.getService_cost());
-            //textcommentName.setText(appoinmentListModel.getde);
-            label=appoinmentListModel.getLabel();
-            service_id=appoinmentListModel.getService_id();
-            patient_id=appoinmentListModel.getPatient_id();
-            appointment_id=appoinmentListModel.getAppointment_id();
+            textDuration.setText("Time" + " " + appoinmentListModel.getService_time());
+            textServiceCost.setText("Rs" + " " + appoinmentListModel.getService_cost());
+            label = appoinmentListModel.getLabel();
+            service_id = appoinmentListModel.getService_id();
+            patient_id = appoinmentListModel.getPatient_id();
+            appointment_id = appoinmentListModel.getAppointment_id();
 
-            if(label.equalsIgnoreCase("0"))
-            {
+            if (label.equalsIgnoreCase("0")) {
                 textLabelName.setText("Pending");
                 textLabelName.setTextColor(getResources().getColor(R.color.black));
                 textConfirm.setVisibility(View.VISIBLE);
 
-            }else if(label.equalsIgnoreCase("1"))
-            {
+            } else if (label.equalsIgnoreCase("1")) {
                 textLabelName.setText("Confirm");
                 textLabelName.setTextColor(getResources().getColor(R.color.confirm));
                 textPending.setVisibility(View.VISIBLE);
                 textComplete.setVisibility(View.VISIBLE);
                 textCancel.setVisibility(View.VISIBLE);
 
-            }else if(label.equalsIgnoreCase("2"))
-            {
+            } else if (label.equalsIgnoreCase("2")) {
                 textLabelName.setText("Canceled");
                 textLabelName.setTextColor(getResources().getColor(R.color.cancel));
-            }
-            else
-            {
+            } else {
                 textLabelName.setText("Completed");
                 textLabelName.setTextColor(getResources().getColor(R.color.complete));
             }
@@ -130,11 +141,13 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               /* if(label.equalsIgnoreCase("0")||label.equalsIgnoreCase("1")) {
+                if (label.equalsIgnoreCase("0") || label.equalsIgnoreCase("1")) {
                     Intent intent = new Intent(AppointmentDetailsActivity.this, DateTimeSelectActivity.class);
                     intent.putExtra(StaticContent.IntentKey.RESCHEDULE, StaticContent.IntentValue.RESCHEDULE);
+                    intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.RESCHEDULE);
+                    intent.putExtra(StaticContent.IntentKey.APPOINTMENT, appoinmentListModel);
                     startActivity(intent);
-                }*/
+                }
             }
         });
 
@@ -149,7 +162,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         textPending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                label="0";
+                label = "0";
                 textLabelName.setText("Pending");
                 textLabelName.setTextColor(getResources().getColor(R.color.black));
 
@@ -158,7 +171,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         textConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                label="1";
+                label = "1";
                 textLabelName.setText("Confirm");
                 textLabelName.setTextColor(getResources().getColor(R.color.confirm));
             }
@@ -166,7 +179,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         textCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                label="2";
+                label = "2";
                 textLabelName.setText("Cancel");
                 textLabelName.setTextColor(getResources().getColor(R.color.cancel));
             }
@@ -174,7 +187,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         textComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                label="3";
+                label = "3";
                 textLabelName.setText("Completed");
                 textLabelName.setTextColor(getResources().getColor(R.color.complete));
             }
@@ -183,7 +196,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
     }
 
     private void editAppointment() {
-        Call<SuccessModel> call = apiInterface.editAppointment(doctor_id,patient_id,appointment_id,date,time,comment,label);
+        Call<SuccessModel> call = apiInterface.editAppointment(doctor_id, patient_id, appointment_id, date, time, comment, label);
 
 
         call.enqueue(new Callback<SuccessModel>() {
@@ -225,41 +238,40 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     private void find_All_IDs() {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        textDateDay=findViewById(R.id.textDateDay);
-        textTime=findViewById(R.id.textTime);
-        textPatientName=findViewById(R.id.textPatientName);
-        textEmail=findViewById(R.id.textEmail);
-        textContact=findViewById(R.id.textContact);
-        textServiceName=findViewById(R.id.textServiceName);
-        textDuration=findViewById(R.id.textDuration);
-        textServiceCost=findViewById(R.id.textServiceCost);
-        btnUpdate=findViewById(R.id.btnUpdate);
-        textcommentName=findViewById(R.id.textcommentName);
-        textLabelName=findViewById(R.id.textLabelName);
-        iv_close=findViewById(R.id.iv_close);
+        textDateDay = findViewById(R.id.textDateDay);
+        textTime = findViewById(R.id.textTime);
+        textPatientName = findViewById(R.id.textPatientName);
+        textEmail = findViewById(R.id.textEmail);
+        textContact = findViewById(R.id.textContact);
+        textServiceName = findViewById(R.id.textServiceName);
+        textDuration = findViewById(R.id.textDuration);
+        textServiceCost = findViewById(R.id.textServiceCost);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        textcommentName = findViewById(R.id.textcommentName);
+        textLabelName = findViewById(R.id.textLabelName);
+        iv_close = findViewById(R.id.iv_close);
 
-        textPending=findViewById(R.id.textPending);
-        textConfirm=findViewById(R.id.textConfirm);
-        textCancel=findViewById(R.id.textCancel);
-        textComplete=findViewById(R.id.textComplete);
+        textPending = findViewById(R.id.textPending);
+        textConfirm = findViewById(R.id.textConfirm);
+        textCancel = findViewById(R.id.textCancel);
+        textComplete = findViewById(R.id.textComplete);
 
-        relativeLayoutComments=findViewById(R.id.relativeLayoutComments);
-        relativeLayoutCommentsHide=findViewById(R.id.relativeLayoutCommentsHide);
-        relativeLayoutLabelHide=findViewById(R.id.relativeLayoutLabelHide);
-        relativeLayoutReschedule=findViewById(R.id.relativeLayoutReschedule);
+        relativeLayoutComments = findViewById(R.id.relativeLayoutComments);
+        relativeLayoutCommentsHide = findViewById(R.id.relativeLayoutCommentsHide);
+        relativeLayoutLabelHide = findViewById(R.id.relativeLayoutLabelHide);
+        relativeLayoutReschedule = findViewById(R.id.relativeLayoutReschedule);
 
 
-        errorMessageDialog= new ErrorMessageDialog(AppointmentDetailsActivity.this);
-        appointmentDialog= new AppointmentDialog(AppointmentDetailsActivity.this);
+        errorMessageDialog = new ErrorMessageDialog(AppointmentDetailsActivity.this);
+        appointmentDialog = new AppointmentDialog(AppointmentDetailsActivity.this);
 
-        doctorModelArrayList= SharedUtils.getUserDetails(AppointmentDetailsActivity.this);
-        doctor_id=doctorModelArrayList.get(0).getDoctor_id();
-        user_id=doctorModelArrayList.get(0).getUser_id();
+        doctorModelArrayList = SharedUtils.getUserDetails(AppointmentDetailsActivity.this);
+        doctor_id = doctorModelArrayList.get(0).getDoctor_id();
+        user_id = doctorModelArrayList.get(0).getUser_id();
 
     }
 
@@ -271,15 +283,15 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         dialog.setCancelable(true);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        final TextInputEditText textComment= dialog.findViewById(R.id.textComment);
-        Button btn_done =dialog.findViewById(R.id.btn_done);
+        final TextInputEditText textComment = dialog.findViewById(R.id.textComment);
+        Button btn_done = dialog.findViewById(R.id.btn_done);
 
 
         btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                comment=textComment.getText().toString().trim();
+                comment = textComment.getText().toString().trim();
                 dialog.dismiss();
                 relativeLayoutCommentsHide.setVisibility(View.VISIBLE);
                 textcommentName.setText(comment);
