@@ -42,10 +42,11 @@ public class NewAppointmentActivity extends AppCompatActivity {
 
 
     private ImageView iv_close;
-    private TextView textDone,textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textcommentName,textLabelName
+    private TextView textDateDay,textTime,textPatientName,textEmail,textContact,textServiceName,textDuration,textServiceCost,textcommentName,textLabelName
             ,textPending,textConfirm;
     private ServiceModel serviceModel;
     private PatientModel patientModel;
+    private Button btnDone;
     private  String date="",time="",service_id,patient_id,TAG = getClass().getSimpleName(),user_id,doctor_id,comment="",label="1";
     private ApiInterface apiInterface;
     private RelativeLayout relativeLayoutComments,relativeLayoutCommentsHide,relativeLayoutLabelHide;
@@ -79,7 +80,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
         });
 
 
-        textDone.setOnClickListener(new View.OnClickListener() {
+        btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (NetworkUtils.isNetworkAvailable(NewAppointmentActivity.this))
@@ -190,7 +191,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
     private void find_All_IDs() {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         iv_close=findViewById(R.id.iv_close);
-        textDone=findViewById(R.id.textDone);
+        btnDone=findViewById(R.id.btnDone);
         textDateDay=findViewById(R.id.textDateDay);
         textTime=findViewById(R.id.textTime);
         textPatientName=findViewById(R.id.textPatientName);

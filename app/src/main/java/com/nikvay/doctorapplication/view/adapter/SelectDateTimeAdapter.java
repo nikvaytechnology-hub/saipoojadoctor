@@ -16,6 +16,7 @@ import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.StaticContent;
+import com.nikvay.doctorapplication.view.activity.AppointmentDetailsActivity;
 import com.nikvay.doctorapplication.view.activity.PatientActivity;
 
 
@@ -34,7 +35,7 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
         this.serviceModel = serviceModel;
         this.date = date;
-        errorMessageDialog=new ErrorMessageDialog(mContext);
+        errorMessageDialog = new ErrorMessageDialog(mContext);
 
     }
 
@@ -57,24 +58,24 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
         holder.textTime.setText(selectDateTimeModel.getTime());
 
 
+        holder.cardViewTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            holder.cardViewTime.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (selectDateTimeModel.getStatus().equals("1")) {
-                        errorMessageDialog.showDialog("This slot Already Booked");
-                    } else {
-                        Intent intent = new Intent(mContext, PatientActivity.class);
-                        intent.putExtra(StaticContent.IntentKey.APPOINTMENT, StaticContent.IntentValue.APPOINTMENT);
-                        intent.putExtra(StaticContent.IntentKey.SERVICE_DETAIL, serviceModel);
-                        intent.putExtra(StaticContent.IntentKey.DATE, date);
-                        intent.putExtra(StaticContent.IntentKey.TIME, selectDateTimeModel.getTime());
-                        mContext.startActivity(intent);
-                    }
-
+                if (selectDateTimeModel.getStatus().equals("1")) {
+                    errorMessageDialog.showDialog("This slot Already Booked");
                 }
-            });
+               else {
+                    Intent intent = new Intent(mContext, PatientActivity.class);
+                    intent.putExtra(StaticContent.IntentKey.APPOINTMENT, StaticContent.IntentValue.APPOINTMENT);
+                    intent.putExtra(StaticContent.IntentKey.SERVICE_DETAIL, serviceModel);
+                    intent.putExtra(StaticContent.IntentKey.DATE, date);
+                    intent.putExtra(StaticContent.IntentKey.TIME, selectDateTimeModel.getTime());
+                    mContext.startActivity(intent);
+                }
+
+            }
+        });
 
 
     }

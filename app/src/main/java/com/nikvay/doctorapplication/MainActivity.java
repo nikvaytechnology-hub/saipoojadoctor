@@ -98,21 +98,20 @@ public class MainActivity extends AppCompatActivity {
         textName.setText(doctorModelArrayList.get(0).getName());
         textEmail.setText(doctorModelArrayList.get(0).getEmail());
 
+        Bundle bundle = getIntent().getExtras();
+
         Intent intent = getIntent();
 
         if (intent != null) {
             String title = intent.getStringExtra("TITLE");
             String description = intent.getStringExtra("DESCRIPTION");
             String redirectId = intent.getStringExtra("REDIRECT_ID");
-
-            //Toast.makeText(this,title+" "+" "+description, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, redirectId, Toast.LENGTH_SHORT).show();
+            redirectNotification(redirectId);
         }
-
-
-
-
-
     }
+
+
 
     public void loadFragment(Fragment fragment) {
         fragmentInstance = fragment;
@@ -262,6 +261,17 @@ public class MainActivity extends AppCompatActivity {
     private void logoutApplication() {
         LogoutApplicationDialog logout_application = new LogoutApplicationDialog(MainActivity.this);
         logout_application.showDialog();
+    }
+
+    private void redirectNotification(String redirectId) {
+
+        if (redirectId != null) {
+            switch (redirectId) {
+                case "1":
+                    loadFragment(new AppointmentFragment());
+                    break;
+            }
+        }
     }
 
 }

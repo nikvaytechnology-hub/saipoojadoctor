@@ -54,7 +54,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
     private ErrorMessageDialog errorMessageDialog;
     private ServiceModel serviceModel;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
-    private String mTitle = "Service Details", reschedule = "", service_id, TAG = getClass().getSimpleName(), doctor_id, user_id;
+    private String mTitle, reschedule, service_id, TAG = getClass().getSimpleName(), doctor_id, user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,9 +119,11 @@ public class DateTimeSelectActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
 
+            mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
             serviceModel = (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
             service_id = serviceModel.getService_id();
-            mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
+
+
         }
 
 

@@ -60,6 +60,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
 
         if(bundle!=null)
         {
+
             appoinmentListModel= (AppoinmentListModel) bundle.getSerializable(StaticContent.IntentKey.APPOINTMENT);
             date=appoinmentListModel.getDate();
             time=appoinmentListModel.getTime();
@@ -128,9 +129,12 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         relativeLayoutReschedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent=new Intent(AppointmentDetailsActivity.this,DateTimeSelectActivity.class);
-                intent.putExtra(StaticContent.IntentKey.RESCHEDULE,StaticContent.IntentValue.RESCHEDULE);
-                startActivity(intent);*/
+
+               /* if(label.equalsIgnoreCase("0")||label.equalsIgnoreCase("1")) {
+                    Intent intent = new Intent(AppointmentDetailsActivity.this, DateTimeSelectActivity.class);
+                    intent.putExtra(StaticContent.IntentKey.RESCHEDULE, StaticContent.IntentValue.RESCHEDULE);
+                    startActivity(intent);
+                }*/
             }
         });
 
