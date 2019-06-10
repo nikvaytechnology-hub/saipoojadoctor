@@ -415,8 +415,7 @@
                 android:id="@+id/relativeLayoutComments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:padding="15dp">
+                android:layout_alignParentStart="true">
 
 
                 <TextView
@@ -425,17 +424,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:maxLines="1"
+                    android:padding="15dp"
                     android:text="Add Comments"
                     android:textColor="@color/app_color"
                     android:textSize="15sp" />
 
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/textcomment"
+                    android:background="@color/gray" />
+
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray" />
+
 
 
             <!--  <RelativeLayout

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,9 +24,10 @@ public class PatientDetailsActivity extends AppCompatActivity {
 
 
     private ImageView iv_close, iv_patient_call, iv_patient_service, iv_patient_message, iv_patient_email;
-    private TextView textName,textEmail,textContact,textTitleName,textEdit;
+    private TextView textName,textEmail,textContact,textTitleName;
     private RelativeLayout relativeLayoutAppointment,relativeLayoutPrescription,relativeLayoutPayment;
     private PatientModel patientModel;
+    private Button btnEdit;
     private String mTitle="Add Customer";
 
     @Override
@@ -105,7 +107,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(email, "Choose an Email client :"));
             }
         });
-        textEdit.setOnClickListener(new View.OnClickListener() {
+        btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(PatientDetailsActivity.this,NewPatientActivity.class);
@@ -131,7 +133,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         textEmail = findViewById(R.id.textEmail);
         textContact = findViewById(R.id.textContact);
         textTitleName = findViewById(R.id.textTitleName);
-        textEdit = findViewById(R.id.textEdit);
+        btnEdit = findViewById(R.id.btnEdit);
 
         relativeLayoutAppointment = findViewById(R.id.relativeLayoutAppointment);
         relativeLayoutPrescription = findViewById(R.id.relativeLayoutPrescription);

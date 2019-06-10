@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,13 +31,14 @@ import retrofit2.Response;
 public class NewAddServiceActivity extends AppCompatActivity {
 
 
-    private TextView serviceTitle_name, textName, textDuration, textBuffer, textCost, textSave, textDescription;
+    private TextView serviceTitle_name, textName, textDuration, textBuffer, textCost, textDescription;
     private String serviceTitle, name, Duration, BufferTime, Cost, Description, mTitle = "Add Customer", doctor_id, user_id, service_id;
-    ImageView rel_img_back;
+    private  ImageView rel_img_back;
     private ErrorMessageDialog errorMessageDialog;
     private SuccessMessageDialog successMessageDialog;
     ApiInterface apiInterface;
-    ServiceModel serviceModel;
+    private ServiceModel serviceModel;
+    private Button btnSave;
 
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     String TAG = getClass().getSimpleName();
@@ -57,7 +59,7 @@ public class NewAddServiceActivity extends AppCompatActivity {
         textName = findViewById(R.id.textName);
         textDuration = findViewById(R.id.textDuration);
         textBuffer = findViewById(R.id.textBuffer);
-        textSave = findViewById(R.id.textSave);
+        btnSave = findViewById(R.id.btnSave);
         textCost = findViewById(R.id.textCost);
         textDescription = findViewById(R.id.textDescription);
         rel_img_back = findViewById(R.id.rel_img_back);
@@ -83,7 +85,7 @@ public class NewAddServiceActivity extends AppCompatActivity {
             textDescription.setText(serviceModel.getDescription());
             textBuffer.setText(serviceModel.getService_time());
             service_id = serviceModel.getService_id();
-            textSave.setText(StaticContent.ButtonContent.UPDATE);
+            btnSave.setText(StaticContent.ButtonContent.UPDATE);
             //  disableFields();
 
         }
@@ -101,11 +103,11 @@ public class NewAddServiceActivity extends AppCompatActivity {
             }
         });
 
-        textSave.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (doValidation()) {
-                    if (textSave.getText().equals(StaticContent.ButtonContent.UPDATE)) {
+                    if (btnSave.getText().equals(StaticContent.ButtonContent.UPDATE)) {
                         if (NetworkUtils.isNetworkAvailable(NewAddServiceActivity.this)) {
                             callUpdateServiceList(doctor_id, name, Duration, BufferTime, Cost, Description);
                         } else

@@ -510,12 +510,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/shape_btn"
-            android:text="Update"
+            android:text="Save"
             android:textSize="17sp"
             android:id="@+id/btnDone"
             android:textColor="@color/white"
-            android:layout_marginEnd="10dp" />
+          />
 
     </LinearLayout>
     </ScrollView>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +15,9 @@ import com.nikvay.doctorapplication.utils.StaticContent;
 
 public class ClassDetailsActivity extends AppCompatActivity {
 
-    private TextView textClass,textCost,textDate,textSeats,textDescription,textEdit;
+    private TextView textClass,textCost,textDate,textSeats,textDescription;
     private ImageView iv_close;
+    private Button btnEdit;
     private ClassModel classModel;
     private String mTitle="Service Details";
     @Override
@@ -35,7 +37,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
             }
         });
 
-        textEdit.setOnClickListener(new View.OnClickListener() {
+        btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { Intent intent = new Intent(ClassDetailsActivity.this, NewClassActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -56,7 +58,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
         textSeats=findViewById(R.id.textSeats);
         textDescription=findViewById(R.id.textDescription);
         iv_close=findViewById(R.id.iv_close);
-        textEdit=findViewById(R.id.textEdit);
+        btnEdit=findViewById(R.id.btnEdit);
 
         Bundle bundle = getIntent().getExtras();
 

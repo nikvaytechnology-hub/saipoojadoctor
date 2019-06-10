@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,8 +32,9 @@ import retrofit2.Response;
 
 public class NewClassActivity extends AppCompatActivity {
 
-    private TextView textClass, textDuration, textSeats, textCost, textSave, textTitleName, textDescription, textDate;
+    private TextView textClass, textDuration, textSeats, textCost,textTitleName, textDescription, textDate;
     private ImageView iv_close_activity;
+    private Button btnSave;
     private String textClassName, textClassDuration, textClassSeats, textClassCost, textClassDescription, doctor_id, user_id, TAG = getClass().getSimpleName(), textClassDate,mTitle="Update Details",class_id;
     private ErrorMessageDialog errorMessageDialog;
     private SuccessMessageDialog successMessageDialog;
@@ -63,14 +65,14 @@ public class NewClassActivity extends AppCompatActivity {
             }
         });
 
-        textSave.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (validation()) {
                     callAddClass();
 
-                    if (textSave.getText().equals(StaticContent.ButtonContent.UPDATE)) {
+                    if (btnSave.getText().equals(StaticContent.ButtonContent.UPDATE)) {
                         if (NetworkUtils.isNetworkAvailable(NewClassActivity.this)) {
                             callUpdateClass();
                         } else
@@ -212,7 +214,7 @@ public class NewClassActivity extends AppCompatActivity {
         textDuration = findViewById(R.id.textDuration);
         textSeats = findViewById(R.id.textSeats);
         textCost = findViewById(R.id.textCost);
-        textSave = findViewById(R.id.textSave);
+        btnSave = findViewById(R.id.btnSave);
         textTitleName = findViewById(R.id.textTitleName);
         textDescription = findViewById(R.id.textDescription);
         textDate = findViewById(R.id.textDate);
@@ -246,7 +248,7 @@ public class NewClassActivity extends AppCompatActivity {
             textDescription.setText(classModel.getDescription());
             textDate.setText(classModel.getDate());
             textSeats.setText(classModel.getSeats());
-            textSave.setText(StaticContent.ButtonContent.UPDATE);
+            btnSave.setText(StaticContent.ButtonContent.UPDATE);
             class_id=classModel.getClass_id();
         }
     }

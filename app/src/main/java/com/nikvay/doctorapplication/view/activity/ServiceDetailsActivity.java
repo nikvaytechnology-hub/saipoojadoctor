@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,10 +18,11 @@ import com.nikvay.doctorapplication.utils.StaticContent;
 public class ServiceDetailsActivity extends AppCompatActivity {
 
 
-    private  TextView textService,textDuration,textCost,textEdit;
+    private  TextView textService,textDuration,textCost;
     private ImageView iv_close;
     private String mTitle="Service Details";
     private ServiceModel serviceModel;
+    private Button btnEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             }
         });
 
-        textEdit.setOnClickListener(new View.OnClickListener() {
+        btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ServiceDetailsActivity.this, NewAddServiceActivity.class);
@@ -58,7 +60,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         textService = findViewById(R.id.textService);
         textDuration = findViewById(R.id.textDuration);
         textCost = findViewById(R.id.textCost);
-        textEdit = findViewById(R.id.textEdit);
+        btnEdit = findViewById(R.id.btnEdit);
 
 
         Bundle bundle = getIntent().getExtras();

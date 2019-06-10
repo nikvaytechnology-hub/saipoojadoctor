@@ -98,6 +98,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
                 textLabelName.setText("Pending");
                 textLabelName.setTextColor(getResources().getColor(R.color.black));
                 textConfirm.setVisibility(View.VISIBLE);
+                textCancel.setVisibility(View.VISIBLE);
 
             } else if (label.equalsIgnoreCase("1")) {
                 textLabelName.setText("Confirm");
@@ -109,9 +110,13 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             } else if (label.equalsIgnoreCase("2")) {
                 textLabelName.setText("Canceled");
                 textLabelName.setTextColor(getResources().getColor(R.color.cancel));
+                btnUpdate.setVisibility(View.GONE);
+                relativeLayoutComments.setVisibility(View.GONE);
             } else {
                 textLabelName.setText("Completed");
                 textLabelName.setTextColor(getResources().getColor(R.color.complete));
+                btnUpdate.setVisibility(View.GONE);
+                relativeLayoutComments.setVisibility(View.GONE);
             }
             textcommentName.setText(appoinmentListModel.getComment());
         }

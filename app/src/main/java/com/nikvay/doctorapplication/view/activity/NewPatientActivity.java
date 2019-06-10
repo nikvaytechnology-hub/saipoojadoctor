@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,13 +32,14 @@ import retrofit2.Response;
 
 public class NewPatientActivity extends AppCompatActivity {
 
-    private TextView textName, textEmail, textPhone, textAddress, textSave, textTitleName;
+    private TextView textName, textEmail, textPhone, textAddress,textTitleName;
     private String email, name, address, phone, mTitle = "Add Customer",patient_id;
     private ErrorMessageDialog errorMessageDialog;
     private SuccessMessageDialog successMessageDialog;
     private ImageView iv_close_activity;
     private PatientModel patientModel;
     private ApiInterface apiInterface;
+    private Button btnSave;
     private String doctor_id, user_id, TAG = getClass().getSimpleName();
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
 
@@ -54,10 +56,10 @@ public class NewPatientActivity extends AppCompatActivity {
         textAddress = findViewById(R.id.textAddress);
         textEmail = findViewById(R.id.textEmail);
         textPhone = findViewById(R.id.textPhone);
-        textSave = findViewById(R.id.textSave);
+        btnSave = findViewById(R.id.btnSave);
         textTitleName = findViewById(R.id.textTitleName);
         iv_close_activity = findViewById(R.id.iv_close);
-        textSave.setText(StaticContent.ButtonContent.SAVE);
+        btnSave.setText(StaticContent.ButtonContent.SAVE);
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -79,7 +81,7 @@ public class NewPatientActivity extends AppCompatActivity {
             textPhone.setText(patientModel.getPhone_no());
             textAddress.setText(patientModel.getAddress());
             patient_id=patientModel.getPatient_id();
-            textSave.setText(StaticContent.ButtonContent.UPDATE);
+            btnSave.setText(StaticContent.ButtonContent.UPDATE);
             disableFields();
 
         }
@@ -94,7 +96,7 @@ public class NewPatientActivity extends AppCompatActivity {
     }
 
     private void events() {
-        textSave.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -105,7 +107,7 @@ public class NewPatientActivity extends AppCompatActivity {
 
                 if (validation()) {
 
-                    if (textSave.getText().equals(StaticContent.ButtonContent.SAVE)) {
+                    if (btnSave.getText().equals(StaticContent.ButtonContent.SAVE)) {
 
                         if (NetworkUtils.isNetworkAvailable(NewPatientActivity.this))
                             callAddNewPatient();
