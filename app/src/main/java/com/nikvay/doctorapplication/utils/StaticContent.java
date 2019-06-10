@@ -53,6 +53,7 @@ public class StaticContent {
         public static final String ADDRESS = "ADDRESS";
         public static final String DEPARTMENT_ID = "DEPARTMENT_ID";
         public static final String PROFILE = "PROFILE";
+        public static final String HOSPITAL_NAME = "HOSPITAL_NAME";
 
 
     }

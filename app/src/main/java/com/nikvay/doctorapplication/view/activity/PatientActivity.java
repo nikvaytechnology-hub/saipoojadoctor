@@ -168,7 +168,7 @@ public class PatientActivity extends AppCompatActivity {
                                     patientAdapter = new PatientAdapter(PatientActivity.this, patientModelArrayList,appointmentName,serviceModel,date,time);
                                     recyclerPatientList.setAdapter(patientAdapter);
                                     patientAdapter.notifyDataSetChanged();
-                                    recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
+                                   // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
                                     iv_no_data_found.setVisibility(View.VISIBLE);
                                     patientAdapter.notifyDataSetChanged();

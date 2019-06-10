@@ -154,7 +154,7 @@ public class ClassActivity extends AppCompatActivity {
                                     recyclerClassList.setAdapter(classAdapter);
                                     iv_no_data_found.setVisibility(View.GONE);
                                     classAdapter.notifyDataSetChanged();
-                                    recyclerClassList.addItemDecoration(new DividerItemDecoration(ClassActivity.this, DividerItemDecoration.VERTICAL));;
+                                   // recyclerClassList.addItemDecoration(new DividerItemDecoration(ClassActivity.this, DividerItemDecoration.VERTICAL));;
                                 }
                                 else
                                 {

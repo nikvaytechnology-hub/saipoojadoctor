@@ -28,8 +28,8 @@ public class HomeFragment extends Fragment {
 
     private Context mContext;
     private CardView cardViewPrescription, cardViewPayment, cardViewService, cardViewMyPatient, cardViewAppointment, cardViewMyProfile;
-    private TextView textDoctorName;
-    private String doctorName;
+    private TextView textDoctorName,textHospitalName;
+    private String doctorName,hospital_name;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
 
     @Override
@@ -52,12 +52,14 @@ public class HomeFragment extends Fragment {
         cardViewAppointment = view.findViewById(R.id.cardViewAppointment);
         cardViewMyProfile = view.findViewById(R.id.cardViewMyProfile);
         textDoctorName = view.findViewById(R.id.textDoctorName);
+        textHospitalName = view.findViewById(R.id.textHospitalName);
 
 
         doctorModelArrayList = SharedUtils.getUserDetails(mContext);
         doctorName = doctorModelArrayList.get(0).getName();
+        hospital_name = doctorModelArrayList.get(0).getTitle();
         textDoctorName.setText(doctorName);
-
+        textHospitalName.setText(hospital_name);
 
     }
 

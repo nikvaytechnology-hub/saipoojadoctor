@@ -58,6 +58,7 @@ public class SharedUtils {
         editor.putString(StaticContent.UserData.ADDRESS, doctorModelArrayList.get(0).getAddress());
         editor.putString(StaticContent.UserData.DEPARTMENT_ID, doctorModelArrayList.get(0).getDepartment_id());
         editor.putString(StaticContent.UserData.PROFILE, doctorModelArrayList.get(0).getProfile());
+        editor.putString(StaticContent.UserData.HOSPITAL_NAME, doctorModelArrayList.get(0).getTitle());
 
         editor.commit();
     }
@@ -73,6 +74,7 @@ public class SharedUtils {
         doctorModel.setAddress(preferences.getString(StaticContent.UserData.ADDRESS, ""));
         doctorModel.setDepartment_id(preferences.getString(StaticContent.UserData.DEPARTMENT_ID, ""));
         doctorModel.setProfile(preferences.getString(StaticContent.UserData.PROFILE, ""));
+        doctorModel.setTitle(preferences.getString(StaticContent.UserData.HOSPITAL_NAME, ""));
 
         userDetailsModuleArrayList.add(doctorModel);
         return userDetailsModuleArrayList;

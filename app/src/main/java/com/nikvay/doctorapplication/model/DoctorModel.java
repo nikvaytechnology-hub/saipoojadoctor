@@ -9,6 +9,7 @@ public class DoctorModel {
     private String address;
     private String department_id;
     private String profile;
+    private String title;
 
 
     public String getDoctor_id() {
@@ -68,4 +69,11 @@ public class DoctorModel {
         this.profile = profile;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
