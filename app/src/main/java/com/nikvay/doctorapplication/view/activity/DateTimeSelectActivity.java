@@ -143,7 +143,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
     private void callTimeSlot() {
 
 
-        Call<SuccessModel> call = apiInterface.appointmentTimeSlot(date, doctor_id);
+        Call<SuccessModel> call = apiInterface.appointmentTimeSlot(date, doctor_id,user_id);
 
 
         call.enqueue(new Callback<SuccessModel>() {

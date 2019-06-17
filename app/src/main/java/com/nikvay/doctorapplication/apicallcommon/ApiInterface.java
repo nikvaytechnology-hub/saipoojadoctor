@@ -74,7 +74,8 @@ public interface ApiInterface {
     @POST(EndApi.APPOINTMENT_TIME_SLOT)
     @FormUrlEncoded
     Call<SuccessModel> appointmentTimeSlot(@Field("date") String date,
-                                           @Field("doctor_id") String doctor_id);
+                                           @Field("doctor_id") String doctor_id,
+                                           @Field("user_id") String user_id);
 
 
     @POST(EndApi.ADD_APPOINTMENT)

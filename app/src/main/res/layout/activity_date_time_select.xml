@@ -44,65 +44,74 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <CalendarView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/calendarView"/>
-
-    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/light_grey"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set Available Time"
-            android:textSize="15sp"
-            android:textColor="@color/black"/>
-
-    </LinearLayout>
-
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/alice_blue"
+        android:layout_weight="2"
         android:orientation="vertical">
 
-
-        <android.support.v7.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recyclerViewTime"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Slot Not Found"
-        android:id="@+id/textSlotNotFound"
-        android:visibility="gone"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/app_color"
-        android:textSize="20sp" />
-
-
-    </RelativeLayout>
+        </LinearLayout>
 
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/alice_blue"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_grey"
+                android:id="@+id/calendarTitle"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set Available Time"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
 
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewTime"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/calendarTitle"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/textSlotNotFound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="Slot Not Found"
+                android:textColor="@color/app_color"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>

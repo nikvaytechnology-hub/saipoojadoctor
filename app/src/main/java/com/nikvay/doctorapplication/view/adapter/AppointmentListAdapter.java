@@ -49,7 +49,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
         holder.textPatientName.setText(String.valueOf(appoinmentListModel.getName()));
         holder.textService.setText(String.valueOf(appoinmentListModel.getS_name()));
         holder.textServiceCost.setText(String.valueOf("RS"+" "+appoinmentListModel.getService_cost()));
-        holder.textServiceTime.setText(String.valueOf("time"+" "+appoinmentListModel.getService_time()));
+        //holder.textServiceTime.setText(String.valueOf("time"+" "+appoinmentListModel.getService_time()));
 
         holder.rl_Appointment_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +120,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
             textDay = itemView.findViewById(R.id.textDay);
             textTime = itemView.findViewById(R.id.textTime);
             textPatientName = itemView.findViewById(R.id.textPatientName);
-            textServiceTime = itemView.findViewById(R.id.textServiceTime);
+           // textServiceTime = itemView.findViewById(R.id.textServiceTime);
             textService = itemView.findViewById(R.id.textService);
             textServiceCost = itemView.findViewById(R.id.textServiceCost);
             rl_Appointment_list = itemView.findViewById(R.id.rl_Appointment_list);

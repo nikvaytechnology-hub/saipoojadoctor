@@ -64,7 +64,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:padding="10dp"
-                android:src="@drawable/ic_vector_staff" />
+                android:src="@drawable/ic_change_password" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:textSize="20sp"
-                android:text="Staff"
+                android:text="Change Password"
                 android:textColor="@color/black" />
             <ImageView
                 android:layout_width="wrap_content"
