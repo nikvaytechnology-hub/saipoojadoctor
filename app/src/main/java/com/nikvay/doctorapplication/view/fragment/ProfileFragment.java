@@ -3,6 +3,7 @@ package com.nikvay.doctorapplication.view.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class ProfileFragment extends Fragment {
 
     private Context mContext;
-    private TextView textName, textEmail, textDoctorName, textDoctorEmail, textDoctorProfile, textDoctorAddress;
+    private TextInputEditText textName, textEmail, textDoctorName, textDoctorEmail, textDoctorProfile, textDoctorAddress;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private String TAG = getClass().getSimpleName();
     private ApiInterface apiInterface;

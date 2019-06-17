@@ -18,4 +18,5 @@ public class EndApi extends BaseApi {
     public static final String LIST_CLASS = "ws-classesList";
     public static final String NOTIFICATION_LIST = "ws-listAptNotificetion";
     public static final String NOTIFICATION_CLEAR = "ws-deleteNotificetion";
+    public static final String CHANGE_PASSWORD = "ws-userChangePasswordDoctor";
 }

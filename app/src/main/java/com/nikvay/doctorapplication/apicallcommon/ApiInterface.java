@@ -93,7 +93,8 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<SuccessModel> appointmentList(@Field("doctor_id") String doctor_id,
                                        @Field("label") String label,
-                                       @Field("user_id") String user_id);
+                                       @Field("user_id") String user_id,
+                                       @Field("date") String date);
 
     @POST(EndApi.APPOINTMENT_LIST_COUNT)
     @FormUrlEncoded
@@ -151,5 +152,13 @@ public interface ApiInterface {
                                         @Field("user_id") String user_id);
 
 
+
+    @POST(EndApi.CHANGE_PASSWORD)
+    @FormUrlEncoded
+    Call<SuccessModel> changePassword(@Field("doctor_id") String doctor_id,
+                                         @Field("user_id") String user_id,
+                                         @Field("email") String email,
+                                         @Field("old_password") String old_password,
+                                         @Field("new_password") String new_password);
 
 }

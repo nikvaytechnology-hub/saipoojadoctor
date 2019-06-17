@@ -45,7 +45,7 @@ import retrofit2.Response;
 
 public class AppointmentListActivity extends AppCompatActivity {
 
-    private String label, appointmentName, doctor_id, TAG = getClass().getSimpleName(), user_id;
+    private String label, appointmentName, doctor_id, TAG = getClass().getSimpleName(), user_id,date="";
     private ImageView iv_close, iv_no_data_found, iv_date;
     private TextView textAppointmentTitleName;
     private RecyclerView recyclerViewAppointmentList;
@@ -101,6 +101,39 @@ public class AppointmentListActivity extends AppCompatActivity {
             }
         });
 
+        iv_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AppointmentListActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+                        CharSequence strDate = null;
+                        Time chosenDate = new Time();
+                        chosenDate.set(day, month, year);
+
+                        long dateAttendance = chosenDate.toMillis(true);
+                        strDate = DateFormat.format("yyyy-MM-dd", dateAttendance);
+
+                        date = (String) strDate;
+
+                        if (NetworkUtils.isNetworkAvailable(AppointmentListActivity.this))
+                            appointmentListCall();
+                        else
+                            NetworkUtils.isNetworkNotAvailable(AppointmentListActivity.this);
+
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+
+            }
+        });
+
 
     }
 
@@ -136,7 +169,7 @@ public class AppointmentListActivity extends AppCompatActivity {
 
     private void appointmentListCall() {
         showProgress.showDialog();
-        Call<SuccessModel> call = apiInterface.appointmentList(doctor_id, label, user_id);
+        Call<SuccessModel> call = apiInterface.appointmentList(doctor_id, label, user_id,date);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
