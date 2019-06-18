@@ -26,7 +26,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.ChangePasswordActivity"></activity>
+        <activity android:name=".view.activity.PaymentActivity"></activity>
+        <activity android:name=".view.activity.PrescriptionActivity" />
+        <activity android:name=".view.activity.ChangePasswordActivity" />
         <activity
             android:name=".view.activity.ClassDetailsActivity"
             android:screenOrientation="portrait" />

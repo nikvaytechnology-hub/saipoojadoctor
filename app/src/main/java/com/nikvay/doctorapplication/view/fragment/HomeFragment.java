@@ -2,14 +2,12 @@ package com.nikvay.doctorapplication.view.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +15,8 @@ import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.utils.SharedUtils;
-import com.nikvay.doctorapplication.view.activity.AppointmentListActivity;
+import com.nikvay.doctorapplication.view.activity.PaymentActivity;
+import com.nikvay.doctorapplication.view.activity.PrescriptionActivity;
 import com.nikvay.doctorapplication.view.activity.PatientActivity;
 import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
 
@@ -96,13 +95,15 @@ public class HomeFragment extends Fragment {
         cardViewPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Under Development", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, PaymentActivity.class);
+                startActivity(intent);
             }
         });
         cardViewPrescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Under Development", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, PrescriptionActivity.class);
+                startActivity(intent);
             }
         });
     }
