@@ -17,12 +17,14 @@ import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.view.activity.NewAddServiceActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
 
     private Context mContext;
-    private TextInputEditText textName, textEmail, textDoctorName, textDoctorEmail, textDoctorProfile, textDoctorAddress;
+    private TextView textName, textEmail, textDoctorName, textDoctorEmail, textDoctorProfile, textDoctorAddress;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private String TAG = getClass().getSimpleName();
     private ApiInterface apiInterface;
