@@ -24,7 +24,7 @@ import rx.functions.Action1;
 
 public class SplashActivity extends AppCompatActivity {
 
-    String is_login,is_super_admin;
+    String is_login,is_super_admin="";
     Handler handler;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     @Override
@@ -36,6 +36,8 @@ public class SplashActivity extends AppCompatActivity {
         is_login = SharedUtils.getSharedUtils(getApplicationContext());
         doctorModelArrayList = SharedUtils.getUserDetails(getApplicationContext());
         is_super_admin=doctorModelArrayList.get(0).getIs_super_admin();
+        is_super_admin=is_super_admin==null?"":is_super_admin;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPermissions();
         } else {

@@ -17,11 +17,11 @@ public class SharedUtils {
 
     public static String getSharedUtils(Context mContext)
     {
-         preferences=mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE,mContext.MODE_PRIVATE);
+         preferences=mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, Context.MODE_PRIVATE);
          return preferences.getString(StaticContent.UserData.IS_LOGIN,"");
     }
     public static void putSharedUtils(Context mContext) {
-        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, mContext.MODE_PRIVATE);
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, Context.MODE_PRIVATE);
         editor= preferences.edit();
         editor.putString(StaticContent.UserData.IS_LOGIN, "true");
         editor.commit();
@@ -29,7 +29,7 @@ public class SharedUtils {
 
     public static void removeSharedUtils(Context mContext)
     {
-        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, mContext.MODE_PRIVATE);
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, Context.MODE_PRIVATE);
         editor= preferences.edit();
         editor.putString(StaticContent.UserData.IS_LOGIN, "false");
         editor.commit();
@@ -49,7 +49,7 @@ public class SharedUtils {
 
     public static void addUserUtils(Context mContext, ArrayList<DoctorModel> doctorModelArrayList) {
 
-        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, mContext.MODE_PRIVATE);
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, Context.MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString(StaticContent.UserData.DOCTOR_ID,doctorModelArrayList.get(0).getDoctor_id());
         editor.putString(StaticContent.UserData.USER_ID, doctorModelArrayList.get(0).getUser_id());
@@ -59,6 +59,8 @@ public class SharedUtils {
         editor.putString(StaticContent.UserData.DEPARTMENT_ID, doctorModelArrayList.get(0).getDepartment_id());
         editor.putString(StaticContent.UserData.PROFILE, doctorModelArrayList.get(0).getProfile());
         editor.putString(StaticContent.UserData.HOSPITAL_NAME, doctorModelArrayList.get(0).getTitle());
+        editor.putString(StaticContent.UserData.HOSPITAL_NAME, doctorModelArrayList.get(0).getTitle());
+        editor.putString(StaticContent.UserData.IS_SUPER_ADMIN, doctorModelArrayList.get(0).getIs_super_admin());
 
         editor.commit();
     }
@@ -66,7 +68,7 @@ public class SharedUtils {
     public static ArrayList<DoctorModel> getUserDetails(Context mContext) {
         ArrayList<DoctorModel> userDetailsModuleArrayList = new ArrayList<>();
         DoctorModel doctorModel = new DoctorModel();
-        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, mContext.MODE_PRIVATE);
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, Context.MODE_PRIVATE);
         doctorModel.setDoctor_id(preferences.getString(StaticContent.UserData.DOCTOR_ID, ""));
         doctorModel.setUser_id(preferences.getString(StaticContent.UserData.USER_ID, ""));
         doctorModel.setName(preferences.getString(StaticContent.UserData.NAME, ""));
@@ -75,6 +77,7 @@ public class SharedUtils {
         doctorModel.setDepartment_id(preferences.getString(StaticContent.UserData.DEPARTMENT_ID, ""));
         doctorModel.setProfile(preferences.getString(StaticContent.UserData.PROFILE, ""));
         doctorModel.setTitle(preferences.getString(StaticContent.UserData.HOSPITAL_NAME, ""));
+        doctorModel.setIs_super_admin(preferences.getString(StaticContent.UserData.IS_SUPER_ADMIN, ""));
 
         userDetailsModuleArrayList.add(doctorModel);
         return userDetailsModuleArrayList;

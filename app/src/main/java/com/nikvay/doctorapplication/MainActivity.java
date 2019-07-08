@@ -24,6 +24,7 @@ import com.nikvay.doctorapplication.utils.LogoutApplicationDialog;
 import com.nikvay.doctorapplication.utils.RecyclerItemClickListener;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
+import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AdminMainActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.EnquiryActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PatientActivity;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ImageView iv_menu_toolbar, iv_notification;
-    private String fragmentName = null,doctor_id;
+    private String fragmentName = null,doctor_id,is_super_admin;
     private Fragment fragmentInstance;
     private FragmentManager fragmentManager;
     private TextView textTitleName,textName,textEmail;
@@ -74,16 +75,29 @@ public class MainActivity extends AppCompatActivity {
         textEmail = findViewById(R.id.textEmail);
         ll_header_profile = findViewById(R.id.ll_header_profile);
 
+        doctorModelArrayList= SharedUtils.getUserDetails(MainActivity.this);
+        doctor_id=doctorModelArrayList.get(0).getDoctor_id();
+        is_super_admin=doctorModelArrayList.get(0).getIs_super_admin();
+        textName.setText(doctorModelArrayList.get(0).getName());
+        textEmail.setText(doctorModelArrayList.get(0).getEmail());
+
+        //Handle Null Pointer
+        is_super_admin=is_super_admin==null?"":is_super_admin;
+
 
         drawerItemArrayList = new ArrayList<>();
         drawerItemArrayList.add(new DrawerItem(R.drawable.home, StaticContent.DrawerItem.DASHBOARD));
         drawerItemArrayList.add(new DrawerItem(R.drawable.profile_image, StaticContent.DrawerItem.MY_ACCOUNT));
+        if(is_super_admin.equalsIgnoreCase("1"))
+        {
+            drawerItemArrayList.add(new DrawerItem(R.drawable.admin, StaticContent.DrawerItem.ADMIN_PANEL));
+        }
         drawerItemArrayList.add(new DrawerItem(R.drawable.appointment, StaticContent.DrawerItem.APPOINTMENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.my_customer, StaticContent.DrawerItem.MY_PATIENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.ic_vector_settings, StaticContent.DrawerItem.SETTINGS));
         drawerItemArrayList.add(new DrawerItem(R.drawable.enquiry, StaticContent.DrawerItem.ENQUIRY));
-        drawerItemArrayList.add(new DrawerItem(R.drawable.logout, StaticContent.DrawerItem.LOGOUT));
 
+        drawerItemArrayList.add(new DrawerItem(R.drawable.logout, StaticContent.DrawerItem.LOGOUT));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerViewDrawer.setLayoutManager(layoutManager);
@@ -96,10 +110,6 @@ public class MainActivity extends AppCompatActivity {
         drawerItemAdapter.notifyDataSetChanged();
 
 
-        doctorModelArrayList= SharedUtils.getUserDetails(MainActivity.this);
-        doctor_id=doctorModelArrayList.get(0).getDoctor_id();
-        textName.setText(doctorModelArrayList.get(0).getName());
-        textEmail.setText(doctorModelArrayList.get(0).getEmail());
 
 
         loadFragment(new HomeFragment());
@@ -155,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             case "SettingFragment":
                 textTitleName.setText(StaticContent.DrawerItem.SETTINGS);
                 break;
+
 
             default:
                 textTitleName.setText(" ");
@@ -242,6 +253,11 @@ public class MainActivity extends AppCompatActivity {
 
             case StaticContent.DrawerItem.LOGOUT:
                 logoutApplication();
+                break;
+
+            case StaticContent.DrawerItem.ADMIN_PANEL:
+                Intent admin_dashboard_intent=new Intent(MainActivity.this, AdminMainActivity.class);
+                startActivity(admin_dashboard_intent);
                 break;
 
         }

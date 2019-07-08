@@ -57,6 +57,7 @@ public class StaticContent {
         public static final String DEPARTMENT_ID = "DEPARTMENT_ID";
         public static final String PROFILE = "PROFILE";
         public static final String HOSPITAL_NAME = "HOSPITAL_NAME";
+        public static final String IS_SUPER_ADMIN = "ADMIN";
 
 
     }
@@ -69,8 +70,8 @@ public class StaticContent {
 
     public  class DrawerItemAdmin
     {
-        public static final String MY_DASHBOARD = "Dashboard";
-        public static final String DASHBOARD = "Admin Dashboard";
+        public static final String MY_DASHBOARD = "MY Dashboard";
+        public static final String DASHBOARD = "Dashboard";
         public static final String APPOINTMENT = " My Appointment";
         public static final String PATIENT = " My Patient";
         public static final String SETTINGS = " Settings";
