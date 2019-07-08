@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.SettingFragment">
+    tools:context=".view.fragment.doctor_fragment.SettingFragment">
 
 
     <ScrollView
@@ -100,7 +100,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/iv_service"
                 android:padding="10dp"
-                android:src="@drawable/ic_vector_service"/>
+                android:src="@drawable/service"/>
 
             <TextView
                 android:layout_width="wrap_content"

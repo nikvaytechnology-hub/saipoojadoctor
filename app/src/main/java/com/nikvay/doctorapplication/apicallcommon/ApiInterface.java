@@ -29,7 +29,9 @@ public interface ApiInterface {
                                      @Field("email") String email,
                                      @Field("user_id") String user_id,
                                      @Field("address") String address,
-                                     @Field("phone_no") String phone);
+                                     @Field("phone_no") String phone,
+                                     @Field("age") String age,
+                                     @Field("gender") String gender);
 
 
     @POST(EndApi.UPDATE_PATIENT)
@@ -40,8 +42,9 @@ public interface ApiInterface {
                                      @Field("email") String email,
                                      @Field("user_id") String user_id,
                                      @Field("address") String address,
-                                     @Field("phone_no") String phone);
-
+                                     @Field("phone_no") String phone,
+                                     @Field("age") String age,
+                                     @Field("gender") String gender);
 
     @POST(EndApi.PATIENT_LIST)
     @FormUrlEncoded
@@ -87,7 +90,8 @@ public interface ApiInterface {
                                       @Field("date") String date,
                                       @Field("time") String time,
                                       @Field("comment") String comment,
-                                      @Field("label") String label);
+                                      @Field("label") String label,
+                                      @Field("notification_type") String notification_type);
 
     @POST(EndApi.LIST_APPOINTMENT)
     @FormUrlEncoded
@@ -99,7 +103,8 @@ public interface ApiInterface {
     @POST(EndApi.APPOINTMENT_LIST_COUNT)
     @FormUrlEncoded
     Call<SuccessModel> appointmentListCount(@Field("doctor_id") String doctor_id,
-                                            @Field("user_id") String user_id);
+                                            @Field("user_id") String user_id,
+                                            @Field("date") String date);
 
     @POST(EndApi.APPOINTMENT_EDIT)
     @FormUrlEncoded
@@ -109,7 +114,9 @@ public interface ApiInterface {
                                        @Field("date") String date,
                                        @Field("time") String time,
                                        @Field("comment") String comment,
-                                       @Field("label") String label);
+                                       @Field("label") String label,
+                                       @Field("isReschedule") String isReschedule);
+
     @POST(EndApi.ADD_CLASS)
     @FormUrlEncoded
     Call<SuccessModel> addClass(@Field("doctor_id") String doctor_id,
@@ -122,43 +129,167 @@ public interface ApiInterface {
                                 @Field("date") String textClassDate);
 
 
-
     @POST(EndApi.UPDATE_CLASS)
     @FormUrlEncoded
     Call<SuccessModel> updateClass(@Field("class_id") String class_id,
-                                @Field("doctor_id") String doctor_id,
-                                @Field("user_id") String user_id,
-                                @Field("name") String textClassName,
-                                @Field("cost") String textClassCost,
-                                @Field("duration") String textClassDuration,
-                                @Field("description") String textClassDescription,
-                                @Field("seats") String textClassSeats,
-                                @Field("date") String textClassDate);
+                                   @Field("doctor_id") String doctor_id,
+                                   @Field("user_id") String user_id,
+                                   @Field("name") String textClassName,
+                                   @Field("cost") String textClassCost,
+                                   @Field("duration") String textClassDuration,
+                                   @Field("description") String textClassDescription,
+                                   @Field("seats") String textClassSeats,
+                                   @Field("date") String textClassDate);
 
     @POST(EndApi.LIST_CLASS)
     @FormUrlEncoded
     Call<SuccessModel> listClass(@Field("doctor_id") String doctor_id,
-                                @Field("user_id") String user_id);
+                                 @Field("user_id") String user_id);
 
 
     @POST(EndApi.NOTIFICATION_LIST)
     @FormUrlEncoded
     Call<SuccessModel> notificationList(@Field("doctor_id") String doctor_id,
-                                 @Field("user_id") String user_id);
+                                        @Field("user_id") String user_id);
 
     @POST(EndApi.NOTIFICATION_CLEAR)
     @FormUrlEncoded
     Call<SuccessModel> notificationClear(@Field("doctor_id") String doctor_id,
-                                        @Field("user_id") String user_id);
-
+                                         @Field("user_id") String user_id);
 
 
     @POST(EndApi.CHANGE_PASSWORD)
     @FormUrlEncoded
     Call<SuccessModel> changePassword(@Field("doctor_id") String doctor_id,
-                                         @Field("user_id") String user_id,
-                                         @Field("email") String email,
-                                         @Field("old_password") String old_password,
-                                         @Field("new_password") String new_password);
+                                      @Field("user_id") String user_id,
+                                      @Field("email") String email,
+                                      @Field("old_password") String old_password,
+                                      @Field("new_password") String new_password);
+
+
+    @POST(EndApi.ADDPAYMENT)
+    @FormUrlEncoded
+    Call<SuccessModel> paymentList(@Field("doctor_id") String doctor_id,
+                                   @Field("user_id") String user_id,
+                                   @Field("service_id") String service_id,
+                                   @Field("patient_id") String patient_id,
+                                   @Field("hospital_charges") String hospital_charges,
+                                   @Field("mode_of_payment") String mode_of_payment,
+                                   @Field("comment") String comment);
+
+
+    @POST(EndApi.LIST_PAYMENT)
+    @FormUrlEncoded
+    Call<SuccessModel> patientPaymentDetails(@Field("doctor_id") String doctor_id,
+                                             @Field("user_id") String user_id,
+                                             @Field("patient_id") String patient_id,
+                                             @Field("date") String date);
+
+
+    @POST(EndApi.APPOINTMENT_HISTORY)
+    @FormUrlEncoded
+    Call<SuccessModel> patientAppointmentHistory(@Field("doctor_id") String doctor_id,
+                                                 @Field("patient_id") String patient_id,
+                                                 @Field("date") String date);
+
+
+    @POST(EndApi.PRESCRIPTION_HISTORY)
+    @FormUrlEncoded
+    Call<SuccessModel> prescriptionHistory(@Field("doctor_id") String doctor_id,
+                                           @Field("patient_id") String patient_id,
+                                           @Field("user_id") String user_id);
+
+
+    @POST(EndApi.ADD_PRESCRIPTION)
+    @FormUrlEncoded
+    Call<SuccessModel> addPrescription(@Field("doctor_id") String doctor_id,
+                                       @Field("patient_id") String patient_id,
+                                       @Field("user_id") String user_id,
+                                       @Field("service_id") String service_id,
+                                       @Field("symptoms") String symptoms,
+                                       @Field("diagnosis") String diagnosis,
+                                       @Field("medication_name") String medication_name,
+                                       @Field("medication_note") String medication_note,
+                                       @Field("test_name") String test_name,
+                                       @Field("test_note") String test_note);
+
+    @POST(EndApi.ENQUIRY_LIST)
+    @FormUrlEncoded
+    Call<SuccessModel> enquiryList(@Field("doctor_id") String doctor_id);
+
+
+    @POST(EndApi.ENQUIRY_REPLY)
+    @FormUrlEncoded
+    Call<SuccessModel> enquiryReply(@Field("enquiry_id") String enquiry_id,
+                                    @Field("reply") String reply);
+
+
+    @POST(EndApi.ADD_PRESCRIPTION_DOCUMENT)
+    @FormUrlEncoded
+    Call<SuccessModel> addPrescriptionDocument(@Field("doctor_id") String doctor_id,
+                                               @Field("hospital_id") String hospital_id,
+                                               @Field("service_id") String service_id,
+                                               @Field("patient_id") String patient_id,
+                                               @Field("img_base") String img_base,
+                                               @Field("title") String title);
+
+
+    @POST(EndApi.LIST_PRESCRIPTION_DOCUMENT)
+    @FormUrlEncoded
+    Call<SuccessModel> listPrescriptionDocument(@Field("doctor_id") String doctor_id,
+                                                @Field("hospital_id") String hospital_id,
+                                                @Field("patient_id") String patient_id);
+
+
+    @POST(EndApi.DOCTORlIST)
+    Call<SuccessModel> doctorList();
+
+
+    @POST(EndApi.ADD_NEW_DOCTOR)
+    @FormUrlEncoded
+    Call<SuccessModel> addNewDoctor(@Field("super_doctor_id") String doctor_id,
+                                    @Field("user_id") String user_id,
+                                    @Field("name") String name,
+                                    @Field("email") String email,
+                                    @Field("phone_no") String phone_no,
+                                    @Field("address") String address,
+                                    @Field("profile") String profile,
+                                    @Field("department_id") String department_id,
+                                    @Field("Is_super_admin") String Is_super_admin,
+                                    @Field("gender") String gender);
+
+    @POST(EndApi.ADD_ADMIN_DEPARTMENT)
+    @FormUrlEncoded
+    Call<SuccessModel> addNewDepartment(@Field("super_doctor_id") String super_doctor_id,
+                                        @Field("user_id") String user_id,
+                                        @Field("name") String name,
+                                        @Field("description") String description);
+
+    @POST(EndApi.LIST_ADMIN_DEPARTMENT)
+    @FormUrlEncoded
+    Call<SuccessModel> listDepartment(@Field("user_id") String user_id);
+
+
+    @POST(EndApi.PATIENT_LIST_ADMIN)
+    @FormUrlEncoded
+    Call<SuccessModel> patientListAdmin(@Field("user_id") String user_id);
+
+
+    @POST(EndApi.ADD_PATIENT_ADMIN)
+    @FormUrlEncoded
+    Call<SuccessModel> addPatientAdmin(@Field("super_doctor_id") String super_doctor_id,
+                                       @Field("name") String name,
+                                       @Field("email") String email,
+                                       @Field("user_id") String user_id,
+                                       @Field("address") String address,
+                                       @Field("phone_no") String phone,
+                                       @Field("age") String age,
+                                       @Field("gender") String gender,
+                                       @Field("doctor_id") String doctor_id);
+
+
+    @POST(EndApi.LIST_ADMIN_SERVICE)
+    @FormUrlEncoded
+    Call<SuccessModel> listService(@Field("user_id") String user_id);
 
 }

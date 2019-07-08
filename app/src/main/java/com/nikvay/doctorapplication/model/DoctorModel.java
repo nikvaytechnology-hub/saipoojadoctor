@@ -10,6 +10,8 @@ public class DoctorModel {
     private String department_id;
     private String profile;
     private String title;
+    private String Is_super_admin;
+
 
 
     public String getDoctor_id() {
@@ -76,4 +78,13 @@ public class DoctorModel {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getIs_super_admin() {
+        return Is_super_admin;
+    }
+
+    public void setIs_super_admin(String is_super_admin) {
+        Is_super_admin = is_super_admin;
+    }
+
 }

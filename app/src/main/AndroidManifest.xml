@@ -26,48 +26,128 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.PaymentActivity"></activity>
-        <activity android:name=".view.activity.PrescriptionActivity" />
-        <activity android:name=".view.activity.ChangePasswordActivity" />
+
+
+        <service
+            android:name=".firebaseservice.MyFirebaseMessagingService"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
+        <activity android:name=".view.activity.admin_doctor_activity.AdminServiceListActivity"/>
+        <activity android:name=".view.activity.admin_doctor_activity.AddAdminAppointmentActivity" />
         <activity
-            android:name=".view.activity.ClassDetailsActivity"
+            android:name=".view.activity.admin_doctor_activity.AddDepartmentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.AppointmentDetailsActivity"
+            android:name=".view.activity.admin_doctor_activity.AdminAddPatientActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.NewAppointmentActivity"
+            android:name=".view.activity.admin_doctor_activity.AllPatientListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.NewAddServiceActivity"
+            android:name=".view.activity.admin_doctor_activity.AddDoctorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.PatientActivity"
+            android:name=".view.activity.admin_doctor_activity.AdminMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.DateTimeSelectActivity"
+            android:name=".view.activity.admin_doctor_activity.DoctorAppointmentListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.AppointmentListActivity"
+            android:name=".view.activity.admin_doctor_activity.DoctorPatientListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.NewClassActivity"
+            android:name=".view.activity.admin_doctor_activity.DoctorServiceListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.ClassActivity"
+            android:name=".view.activity.admin_doctor_activity.DoctorListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.ServiceDetailsActivity"
+            android:name=".view.activity.doctor_activity.SettingActivity"
+            android:screenOrientation="portrait" />
+
+
+
+
+        <activity
+            android:name=".view.activity.admin_doctor_activity.DoctorSuperAdminActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.ServiceListActivity"
+            android:name=".view.activity.doctor_activity.PatientDocumentListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.PatientDetailsActivity"
+            android:name=".view.activity.doctor_activity.PhotoAndVideoGalleryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.NewPatientActivity"
+            android:name=".view.activity.doctor_activity.EnquiryReplyActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.EnquiryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.PrescriptionHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.AppointmentHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.PaymentHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.PrescriptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.PaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.ClassDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.AppointmentDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.NewAppointmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.NewAddServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.PatientActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.DateTimeSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.AppointmentListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.NewClassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.ClassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.ServiceDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.ServiceListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.PatientDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.doctor_activity.NewPatientActivity"
+            android:screenOrientation="portrait" />
+
+
+
 
         <service
             android:name=".firebaseservice.MyFirebaseMessagingService"
@@ -78,10 +158,10 @@
         </service>
 
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".view.activity.common_activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.SplashActivity"
+            android:name=".view.activity.common_activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,6 +176,9 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="8231de6c0c7cdedee5183acb38f73cc9512671a5" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/splash_image" />
     </application>
 
 </manifest>

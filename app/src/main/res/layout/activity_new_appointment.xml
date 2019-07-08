@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.NewAppointmentActivity">
+    tools:context=".view.activity.doctor_activity.NewAppointmentActivity">
 
     <RelativeLayout
         android:id="@+id/rel_action_bar"
@@ -131,7 +131,6 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_icon_service"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"
@@ -215,7 +214,7 @@
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"
-                    android:src="@drawable/ic_vector_service" />
+                    android:src="@drawable/service" />
 
             </LinearLayout>
 
@@ -297,7 +296,6 @@
 
 
                 <ImageView
-                    android:id="@+id/img_icon_comments"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"
@@ -364,7 +362,6 @@
 
 
                 <ImageView
-                    android:id="@+id/img_icon_Label"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"

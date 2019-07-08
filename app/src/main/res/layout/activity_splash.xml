@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".view.activity.SplashActivity">
+    tools:context=".view.activity.common_activity.SplashActivity">
 
 
     <ImageView
@@ -24,6 +24,7 @@
         android:text="Sai Pooja Doctor Application"
         android:textColor="#020202"
         android:gravity="center"
+        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:textStyle="bold|italic"
         android:textSize="25sp" />

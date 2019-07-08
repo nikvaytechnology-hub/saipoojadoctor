@@ -2,8 +2,23 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@color/app_color_button" />
-    <corners android:radius="5dp"/>
+    <corners
+        android:bottomLeftRadius="15dp"
+        android:bottomRightRadius="15dp"
+        android:radius="30dp"
+        android:topLeftRadius="15dp"
+        android:topRightRadius="15dp" />
 
+    <solid android:color="#2F9AC5" />
+
+    <padding
+        android:bottom="0dp"
+        android:left="0dp"
+        android:right="0dp"
+        android:top="0dp" />
+
+    <size
+        android:height="40dp"
+        android:width="170dp" />
 
 </shape>

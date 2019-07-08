@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
-import com.nikvay.doctorapplication.view.activity.LoginActivity;
+import com.nikvay.doctorapplication.view.activity.common_activity.LoginActivity;
 
 
 public class LogoutApplicationDialog {
@@ -51,8 +51,13 @@ public class LogoutApplicationDialog {
                 SharedUtils.removeSharedUtils(mContext);
                 SharedUtils.clearShareUtils(mContext);
                 Intent intent=new Intent(mContext, LoginActivity.class);
+                intent.putExtra("finish", true);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 mContext.startActivity(intent);
                 ((Activity)mContext).finish();
+
+
+
             }
         });
 

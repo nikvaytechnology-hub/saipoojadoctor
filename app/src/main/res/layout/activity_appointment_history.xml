@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/app_color"
+        android:id="@+id/rel_action_bar">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_vector_back"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+            android:id="@+id/iv_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="Appointment Detail"
+            android:id="@+id/textTitleName"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:id="@+id/iv_date"
+            android:src="@drawable/ic_vector_select_appointment_calendar"/>
+
+    </RelativeLayout>
+
+
+    <!-- <EditText
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="Search By Patient Name"
+         android:padding="10dp"
+         android:layout_margin="5dp"
+         android:inputType="text"
+         android:background="@drawable/shape_edt_text"
+         android:drawableEnd="@drawable/ic_vector_search"
+         android:id="@+id/edt_search_service"/>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView_appointment">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_empty_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nodatafound"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/layout_drawer"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -37,7 +36,7 @@
             android:textColor="@android:color/black"
             android:layout_marginStart="5dp"
             android:gravity="center_vertical"
-            android:textSize="17sp"
+            android:textSize="14sp"
             android:text="text"
             android:layout_marginLeft="5dp" />
 

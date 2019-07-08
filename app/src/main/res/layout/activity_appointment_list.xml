@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.AppointmentListActivity">
+    android:background="@color/alice_blue"
+    tools:context=".view.activity.doctor_activity.AppointmentListActivity">
 
     <RelativeLayout
         android:id="@+id/rel_action_bar"
@@ -111,7 +112,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewAppointmentList"

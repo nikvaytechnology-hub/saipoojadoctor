@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.PaymentActivity">
+    tools:context=".view.activity.doctor_activity.PaymentActivity">
+
 
     <RelativeLayout
         android:id="@+id/rel_action_bar"
@@ -32,5 +33,318 @@
             android:textColor="#FFFFFF"
             android:textSize="17sp" />
     </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/cardview_light_background"
+                app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Patient"
+                        android:textSize="15sp"
+                        android:textColor="@color/app_color_text"
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.4dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/gray"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="7"
+                            android:padding="10dp"
+                            android:gravity="center|left"
+                            android:text="Select Patient"
+                            android:textSize="15sp"
+                            android:textColor="@color/app_color_text"
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/imgSelectPatient"
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:paddingRight="5dp"
+                            android:src="@drawable/click_here" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearPatient"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="4dp"
+                        android:visibility="gone">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/textHospitalPatient"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:gravity="center|left"
+                                android:hint="Patient Name"
+                                android:inputType="text"
+                                android:paddingLeft="20dp"
+                                android:singleLine="true"
+                                android:textColor="@color/colorPrimary" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/cardview_light_background"
+                app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Service"
+                        android:textSize="15sp"
+                        android:textColor="@color/app_color_text"
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.4dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/gray"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="7"
+                            android:padding="10dp"
+                            android:gravity="center|left"
+                            android:textSize="15sp"
+                            android:text="Select Service"
+                            android:textColor="@color/app_color_text"
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/imgHospitalService"
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:paddingRight="5dp"
+                            android:src="@drawable/click_here" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="4dp"
+                        android:visibility="gone">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/textServiceName"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:gravity="center|left"
+                                android:hint="Service Name"
+                                android:inputType="text"
+                                android:paddingLeft="20dp"
+                                android:singleLine="true"
+                                android:textColor="@color/colorPrimary" />
+                        </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/textServiceCost"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:gravity="center|left"
+                                android:hint="Service Cost"
+                                android:inputType="text"
+                                android:paddingLeft="20dp"
+                                android:singleLine="true"
+                                android:textColor="@color/colorPrimary" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:visibility="visible">
+
+
+
+                <EditText
+                    android:id="@+id/texthospital_charges"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:padding="8dp"
+                    android:gravity="center|left"
+                    android:hint="Hospital Charges"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:singleLine="true"
+                    android:background="@drawable/shape_edt_text"
+                    />
+
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/cardview_light_background"
+                app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Payment Type"
+                        android:textSize="15sp"
+                        android:textColor="@color/app_color_text" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.4dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/gray"/>
+
+                    <Spinner
+                        android:id="@+id/spinnePaymentType"
+                        android:layout_width="match_parent"
+                        android:entries="@array/payment_type"
+                        android:popupBackground="#E2CEECF0"
+                        android:outlineAmbientShadowColor="@color/gray"
+                        android:padding="10dp"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:visibility="visible">
+
+
+                <EditText
+                    android:id="@+id/textcomment_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:hint=" Note"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:maxLines="4"
+                    android:background="@drawable/shape_edt_text"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="Submit"
+                android:layout_margin="20dp"
+                android:textColor="@color/white"
+                android:id="@+id/submitBtnPayment"
+                android:background="@drawable/shape_btn"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

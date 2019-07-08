@@ -11,6 +11,8 @@ public class StaticContent {
         public static final String NOTIFICATION = " Notification";
         public static final String SETTINGS = " Settings";
         public static final String ACTIVITY = " Activity";
+        public static final String ENQUIRY = " Enquiry";
+        public static final String ADMIN_PANEL = "Admin Dashboard";
         public static final String LOGOUT = "Logout";
 
     }
@@ -20,6 +22,7 @@ public class StaticContent {
         public static final String PATIENT_ID = "quotation-count";
         public static final String PATIENT_DETAIL = "customer-detail";
         public static final String SERVICE_DETAIL = "service-detail";
+        public static final String ENQUIRY_REPLY = "Enquiry-reply";
         public static final String CLASS_DETAIL = "class-detail";
         public static final String ACTIVITY_TYPE = "activity-type";
         public static final String STATUS = "STATUS";
@@ -61,6 +64,17 @@ public class StaticContent {
     {
         public  static final String SAVE="Save";
         public static final String UPDATE="Update";
+
+    }
+
+    public  class DrawerItemAdmin
+    {
+        public static final String MY_DASHBOARD = "Dashboard";
+        public static final String DASHBOARD = "Admin Dashboard";
+        public static final String APPOINTMENT = " My Appointment";
+        public static final String PATIENT = " My Patient";
+        public static final String SETTINGS = " Settings";
+        public static final String LOGOUT = "Logout";
 
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.AppointmentDetailsActivity">
+    tools:context=".view.activity.doctor_activity.AppointmentDetailsActivity">
 
 
     <RelativeLayout
@@ -102,14 +102,14 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:textColor="@color/app_color"
-                    android:text="Reschedule"
+                    android:src="@drawable/reschedule"
                  />
 
             </RelativeLayout>
@@ -133,7 +133,6 @@
 
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/img_icon_service"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:padding="10dp"
@@ -217,7 +216,7 @@
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:padding="10dp"
-                        android:src="@drawable/ic_vector_service" />
+                        android:src="@drawable/service" />
 
                 </LinearLayout>
 
@@ -258,7 +257,7 @@
                             android:layout_weight="1"
                             android:maxLines="1"
                             android:text="Duration"
-                            android:textColor="@color/black"
+                            android:textColor="@color/black_faint"
                             android:textSize="15sp" />
 
 
@@ -270,7 +269,7 @@
                             android:layout_weight="1"
                             android:maxLines="1"
                             android:text="Cost"
-                            android:textColor="@color/black"
+                            android:textColor="@color/black_faint"
                             android:textSize="15sp" />
 
 
@@ -297,7 +296,6 @@
 
 
                     <ImageView
-                        android:id="@+id/img_icon_comments"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:padding="10dp"
@@ -362,7 +360,6 @@
 
 
                     <ImageView
-                        android:id="@+id/img_icon_Label"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:padding="10dp"

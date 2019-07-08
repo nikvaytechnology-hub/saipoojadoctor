@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.PatientDetailsActivity">
+    tools:context=".view.activity.doctor_activity.PatientDetailsActivity">
 
     <RelativeLayout
         android:id="@+id/rel_action_bar"
@@ -188,7 +188,6 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_icon_appointment"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"
@@ -205,14 +204,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textAppointments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:maxLines="1"
-                    android:text="Appointments"
+                    android:text="Appointment History"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -249,7 +247,6 @@
 
 
                 <ImageView
-                    android:id="@+id/img_icon_payment"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"
@@ -308,7 +305,6 @@
 
 
                 <ImageView
-                    android:id="@+id/img_icon_prescription"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"
@@ -323,7 +319,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textPrescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

@@ -25,6 +25,21 @@ public class ServiceModel  implements Serializable {
         this.status = status;
         this.description = description;
     }
+    public ServiceModel()
+    {
+
+    }
+
+
+    boolean isSelected;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
 
 

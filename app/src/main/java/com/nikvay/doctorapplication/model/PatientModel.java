@@ -10,6 +10,28 @@ public class PatientModel implements Serializable {
     private  String phone_no;
     private  String address;
     private  String appointment;
+    private String age;
+    private String gender;
+
+
+
+    boolean isSelected;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+
+
+
+    public PatientModel()
+    {
+
+    }
 
     public PatientModel(String patient_id, String name, String email, String phone_no, String address, String appointment) {
         this.patient_id = patient_id;
@@ -66,5 +88,21 @@ public class PatientModel implements Serializable {
 
     public void setAppointment(String appointment) {
         this.appointment = appointment;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

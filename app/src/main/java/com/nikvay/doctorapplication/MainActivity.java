@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,15 +24,14 @@ import com.nikvay.doctorapplication.utils.LogoutApplicationDialog;
 import com.nikvay.doctorapplication.utils.RecyclerItemClickListener;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
-import com.nikvay.doctorapplication.view.activity.PatientActivity;
-import com.nikvay.doctorapplication.view.activity.ServiceListActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.EnquiryActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.PatientActivity;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
-import com.nikvay.doctorapplication.view.fragment.AppointmentFragment;
-import com.nikvay.doctorapplication.view.fragment.HomeFragment;
-import com.nikvay.doctorapplication.view.fragment.NotificationFragment;
-import com.nikvay.doctorapplication.view.fragment.PatientFragment;
-import com.nikvay.doctorapplication.view.fragment.ProfileFragment;
-import com.nikvay.doctorapplication.view.fragment.SettingFragment;
+import com.nikvay.doctorapplication.view.fragment.doctor_fragment.AppointmentFragment;
+import com.nikvay.doctorapplication.view.fragment.doctor_fragment.HomeFragment;
+import com.nikvay.doctorapplication.view.fragment.doctor_fragment.NotificationFragment;
+import com.nikvay.doctorapplication.view.fragment.doctor_fragment.ProfileFragment;
+import com.nikvay.doctorapplication.view.fragment.doctor_fragment.SettingFragment;
 
 import java.util.ArrayList;
 
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public static RecyclerView.Adapter drawerItemAdapter;
     private RecyclerView recyclerViewDrawer;
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
+    private LinearLayout ll_header_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         textTitleName = findViewById(R.id.textTitleName);
         textName = findViewById(R.id.textName);
         textEmail = findViewById(R.id.textEmail);
+        ll_header_profile = findViewById(R.id.ll_header_profile);
 
 
         drawerItemArrayList = new ArrayList<>();
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         drawerItemArrayList.add(new DrawerItem(R.drawable.appointment, StaticContent.DrawerItem.APPOINTMENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.my_customer, StaticContent.DrawerItem.MY_PATIENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.ic_vector_settings, StaticContent.DrawerItem.SETTINGS));
+        drawerItemArrayList.add(new DrawerItem(R.drawable.enquiry, StaticContent.DrawerItem.ENQUIRY));
         drawerItemArrayList.add(new DrawerItem(R.drawable.logout, StaticContent.DrawerItem.LOGOUT));
 
 
@@ -194,6 +197,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ll_header_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                loadFragment(new ProfileFragment());
+            }
+        });
+
     }
 
     private void displayActivity(String name) {
@@ -219,6 +233,11 @@ public class MainActivity extends AppCompatActivity {
 
             case StaticContent.DrawerItem.SETTINGS:
                 loadFragment(new SettingFragment());
+                break;
+
+            case StaticContent.DrawerItem.ENQUIRY:
+                Intent intent_enquiry=new Intent(MainActivity.this, EnquiryActivity.class);
+                startActivity(intent_enquiry);
                 break;
 
             case StaticContent.DrawerItem.LOGOUT:

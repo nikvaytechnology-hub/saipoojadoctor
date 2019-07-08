@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.ServiceListActivity">
+    android:background="@color/alice_blue"
+    tools:context=".view.activity.doctor_activity.ServiceListActivity">
 
 
     <RelativeLayout
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Service List"
+            android:text="Services List"
             android:textColor="#FFFFFF"
             android:textSize="17sp" />
     </RelativeLayout>

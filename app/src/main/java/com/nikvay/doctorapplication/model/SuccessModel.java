@@ -12,6 +12,9 @@ public class SuccessModel {
      private  String appointment_for_Confirmed;
      private  String appointment_for_Cancelled;
      private  String appointment_for_Completed;
+     private  String todays_appointment_count;
+     private  String img_base_url;
+
 
     @SerializedName("doctor_login")
      ArrayList<DoctorModel> doctorModelArrayList;
@@ -37,6 +40,48 @@ public class SuccessModel {
     @SerializedName("AptNotificetionlist")
     ArrayList<NotificationListModel> notificationListModelArrayList;
 
+    @SerializedName("listpPaymentHistory")
+    ArrayList<PaymentDetailModel>paymentDetailModelArrayList ;
+
+    @SerializedName("appointment_list_for_doctor")
+    ArrayList<PatientAppointmentHistoryModel> patientAppointmentHistoryModelArrayList;
+
+
+
+    @SerializedName("listPrescription")
+    ArrayList<PatientPrescriptionHistoryModel> patientPrescriptionHistoryModelArrayList;
+
+    @SerializedName("list_enquiry")
+    ArrayList<EnquiryListModel> enquiryListModelArrayList;
+
+    @SerializedName("document_list")
+    ArrayList<PrescriptionDocumentModel> prescriptionDocumentModelArrayList;
+
+
+    @SerializedName("doctor_list")
+    ArrayList<DoctorListModel>doctorListModelArrayList ;
+
+    @SerializedName("department_list")
+    ArrayList<DepartmentModel> departmentModelArrayList;
+
+
+    @SerializedName("admin_patient_list")
+    ArrayList<PatientModel> patientModelArrayListAdmin;
+
+
+    @SerializedName("admin_service_list")
+    ArrayList<ServiceListModel>serviceListModelArrayList;
+
+
+
+    public ArrayList<PaymentDetailModel> getPaymentDetailModelArrayList() {
+        return paymentDetailModelArrayList;
+    }
+
+    public void setPaymentDetailModelArrayList(ArrayList<PaymentDetailModel> paymentDetailModelArrayList) {
+        this.paymentDetailModelArrayList = paymentDetailModelArrayList;
+    }
+
 
     public ArrayList<SelectDateTimeModel> getSelectDateTimeModelArrayList() {
         return selectDateTimeModelArrayList;
@@ -45,7 +90,6 @@ public class SuccessModel {
     public void setSelectDateTimeModelArrayList(ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList) {
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
     }
-
 
 
     public String getError_code() {
@@ -140,8 +184,89 @@ public class SuccessModel {
         this.notificationListModelArrayList = notificationListModelArrayList;
     }
 
+    public ArrayList<PatientAppointmentHistoryModel> getPatientAppointmentHistoryModelArrayList() {
+        return patientAppointmentHistoryModelArrayList;
+    }
+
+    public void setPatientAppointmentHistoryModelArrayList(ArrayList<PatientAppointmentHistoryModel> patientAppointmentHistoryModelArrayList) {
+        this.patientAppointmentHistoryModelArrayList = patientAppointmentHistoryModelArrayList;
+    }
+
+    public ArrayList<PatientPrescriptionHistoryModel> getPatientPrescriptionHistoryModelArrayList() {
+        return patientPrescriptionHistoryModelArrayList;
+    }
+
+    public void setPatientPrescriptionHistoryModelArrayList(ArrayList<PatientPrescriptionHistoryModel> patientPrescriptionHistoryModelArrayList) {
+        this.patientPrescriptionHistoryModelArrayList = patientPrescriptionHistoryModelArrayList;
+    }
+
+    public ArrayList<EnquiryListModel> getEnquiryListModelArrayList() {
+        return enquiryListModelArrayList;
+    }
+
+    public void setEnquiryListModelArrayList(ArrayList<EnquiryListModel> enquiryListModelArrayList) {
+        this.enquiryListModelArrayList = enquiryListModelArrayList;
+    }
+
+    public String getTodays_appointment_count() {
+        return todays_appointment_count;
+    }
+
+    public void setTodays_appointment_count(String todays_appointment_count) {
+        this.todays_appointment_count = todays_appointment_count;
+    }
+
+    public ArrayList<PrescriptionDocumentModel> getPrescriptionDocumentModelArrayList() {
+        return prescriptionDocumentModelArrayList;
+    }
+
+    public void setPrescriptionDocumentModelArrayList(ArrayList<PrescriptionDocumentModel> prescriptionDocumentModelArrayList) {
+        this.prescriptionDocumentModelArrayList = prescriptionDocumentModelArrayList;
+    }
+
+    public String getImg_base_url() {
+        return img_base_url;
+    }
+
+    public void setImg_base_url(String img_base_url) {
+        this.img_base_url = img_base_url;
+    }
+
+    public ArrayList<DoctorListModel> getDoctorListModelArrayList() {
+        return doctorListModelArrayList;
+    }
+
+    public void setDoctorListModelArrayList(ArrayList<DoctorListModel> doctorListModelArrayList) {
+        this.doctorListModelArrayList = doctorListModelArrayList;
+    }
+
+    public ArrayList<DepartmentModel> getDepartmentModelArrayList() {
+        return departmentModelArrayList;
+    }
+
+    public void setDepartmentModelArrayList(ArrayList<DepartmentModel> departmentModelArrayList) {
+        this.departmentModelArrayList = departmentModelArrayList;
+    }
+
+    public ArrayList<PatientModel> getPatientModelArrayListAdmin() {
+        return patientModelArrayListAdmin;
+    }
+
+    public void setPatientModelArrayListAdmin(ArrayList<PatientModel> patientModelArrayListAdmin) {
+        this.patientModelArrayListAdmin = patientModelArrayListAdmin;
+    }
+
+    public ArrayList<ServiceListModel> getServiceListModelArrayList() {
+        return serviceListModelArrayList;
+    }
+
+    public void setServiceListModelArrayList(ArrayList<ServiceListModel> serviceListModelArrayList) {
+        this.serviceListModelArrayList = serviceListModelArrayList;
+    }
+
     public void setPatientModelArrayList(ArrayList<PatientModel> patientModelArrayList) {
         this.patientModelArrayList = patientModelArrayList;
+
 
 
 

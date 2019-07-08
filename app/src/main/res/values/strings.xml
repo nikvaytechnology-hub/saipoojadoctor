@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">Doctor Application</string>
+    <string name="app_name">Sai Pooja Clinic</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="payment_type">
+        <item>Select Payment Type</item>
+        <item>Credit Card</item>
+        <item>Debit Card</item>
+        <item>Cash</item>
+    </string-array>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.HomeFragment">
+    tools:context=".view.fragment.doctor_fragment.HomeFragment">
 
 
     <RelativeLayout
@@ -99,8 +99,7 @@
                                     android:layout_height="0dp"
                                     android:layout_weight="1.5"
                                     android:padding="10dp"
-                                    android:src="@drawable/profile_image"
-                                    android:id="@+id/iv_user_profile" />
+                                    android:src="@drawable/profile_image" />
 
 
                                 <TextView
@@ -110,7 +109,7 @@
                                     android:layout_weight="0.5"
                                     android:layout_gravity="center_horizontal"
                                     android:text="MY PROFILE"
-                                    android:textSize="16sp" />
+                                    android:textSize="14sp" />
 
 
                             </LinearLayout>
@@ -142,8 +141,7 @@
                                     android:layout_height="0dp"
                                     android:layout_weight="1.5"
                                     android:padding="10dp"
-                                    android:src="@drawable/appointment"
-                                    android:id="@+id/iv_my_appointment" />
+                                    android:src="@drawable/appointment" />
 
 
                                 <TextView
@@ -152,8 +150,8 @@
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="10dp"
                                     android:layout_weight="0.5"
-                                    android:text="MY APPOINTMENT"
-                                    android:textSize="16sp" />
+                                    android:text="MY APPOINTMENTS"
+                                    android:textSize="14sp" />
 
 
                             </LinearLayout>
@@ -198,8 +196,7 @@
                                     android:layout_height="0dp"
                                     android:layout_weight="1.5"
                                     android:padding="10dp"
-                                    android:src="@drawable/my_patient"
-                                    android:id="@+id/iv_my_patient" />
+                                    android:src="@drawable/my_patient" />
 
 
                                 <TextView
@@ -208,8 +205,8 @@
                                     android:layout_weight="0.5"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="10dp"
-                                    android:text="MY PATIENT"
-                                    android:textSize="16sp" />
+                                    android:text="MY PATIENTS"
+                                    android:textSize="14sp" />
 
 
                             </LinearLayout>
@@ -244,8 +241,7 @@
                                     android:layout_weight="1.5"
                                     android:padding="10dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/ic_vector_service"
-                                    android:id="@+id/iv_my_service" />
+                                    android:src="@drawable/service" />
 
 
 
@@ -256,8 +252,8 @@
                                     android:layout_weight="0.5"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="10dp"
-                                    android:text="SERVICE"
-                                    android:textSize="16sp" />
+                                    android:text="SERVICES"
+                                    android:textSize="14sp" />
 
 
                             </LinearLayout>
@@ -282,7 +278,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             app:cardCornerRadius="5dp"
-                            android:id="@+id/cardViewPayment"
+                            android:id="@+id/cardViewPrescription"
                             android:layout_marginRight="5dp"
                             android:gravity="center">
 
@@ -302,8 +298,7 @@
                                     android:layout_weight="1.5"
                                     android:padding="10dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/ic_vector_payment"
-                                    android:id="@+id/iv_payment_history" />
+                                    android:src="@drawable/ic_vector_prescription" />
 
 
 
@@ -313,8 +308,8 @@
                                     android:layout_weight="0.5"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="10dp"
-                                    android:text="PAYMENT"
-                                    android:textSize="16sp" />
+                                    android:text="PRESCRIPTION"
+                                    android:textSize="14sp" />
 
 
                             </LinearLayout>
@@ -328,7 +323,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:layout_weight="1"
-                            android:id="@+id/cardViewPrescription"
+                            android:id="@+id/cardViewPayment"
                             app:cardCornerRadius="5dp"
                             android:gravity="center">
 
@@ -349,8 +344,7 @@
                                     android:layout_weight="1.5"
                                     android:padding="10dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/ic_vector_prescription"
-                                    android:id="@+id/iv_prescription" />
+                                    android:src="@drawable/ic_vector_payment" />
 
 
 
@@ -361,9 +355,8 @@
                                     android:layout_weight="0.5"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="10dp"
-                                    android:text="PRESCRIPTION"
-                                    android:textSize="16sp" />
-
+                                    android:text="PAYMENT"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
