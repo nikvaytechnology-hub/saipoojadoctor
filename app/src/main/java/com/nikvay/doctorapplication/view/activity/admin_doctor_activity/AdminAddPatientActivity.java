@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -168,22 +170,6 @@ public class AdminAddPatientActivity extends AppCompatActivity implements Select
 
 
 
-        //Select Service Start
-
-        selectServiceDialog = new Dialog(this);
-        selectServiceDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        selectServiceDialog.setContentView(R.layout.dialog_select_service);
-
-        btnCancelDialogDoctor = selectServiceDialog.findViewById(R.id.btnCancelDialogDoctor);
-        btnOkDialogDoctor = selectServiceDialog.findViewById(R.id.btnOkDialogDoctor);
-        editSearchDoctor = selectServiceDialog.findViewById(R.id.editSearchDoctor);
-        selectServiceDialog.setCancelable(false);
-        recyclerDialogService= selectServiceDialog.findViewById(R.id.recyclerDialogDoctor);
-
-        LinearLayoutManager linearLayoutManagerService = new LinearLayoutManager(getApplicationContext());
-        recyclerDialogService.setLayoutManager(linearLayoutManagerService);
-
-        //select Service End
 
 
         errorMessageDialog = new ErrorMessageDialog(AdminAddPatientActivity.this);
@@ -289,6 +275,28 @@ public class AdminAddPatientActivity extends AppCompatActivity implements Select
                 selectDoctorDialog.dismiss();
             }
         });
+
+
+        editSearchDoctor.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                doctorListAdapter.getFilter().filter(editSearchDoctor.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
 
 
 

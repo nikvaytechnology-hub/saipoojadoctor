@@ -94,6 +94,7 @@ public class DoctorListActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
+                edt_search_doctor.setText("");
                 if (NetworkUtils.isNetworkAvailable(DoctorListActivity.this))
                     callDoctorList();
                 else
@@ -159,11 +160,15 @@ public class DoctorListActivity extends AppCompatActivity {
                                     Collections.reverse(doctorListModelArrayList);
                                     doctorListAdapter = new DoctorListAdapter(DoctorListActivity.this, doctorListModelArrayList,false);
                                     recyclerViewDoctorList.setAdapter(doctorListAdapter);
+                                    edt_search_doctor.setEnabled(true);
+                                    iv_no_data_found.setVisibility(View.GONE);
                                     doctorListAdapter.notifyDataSetChanged();
                                     //recyclerViewDoctorList.addItemDecoration(new DividerItemDecoration(DoctorListActivity.this, DividerItemDecoration.VERTICAL));
 
                                 } else {
+                                    edt_search_doctor.setEnabled(false);
                                     iv_no_data_found.setVisibility(View.VISIBLE);
+                                    doctorListAdapter.notifyDataSetChanged();
                                 }
 
                             } else {
