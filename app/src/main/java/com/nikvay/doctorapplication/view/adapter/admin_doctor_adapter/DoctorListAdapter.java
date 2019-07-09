@@ -125,10 +125,11 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.My
                         selectDoctorInterface.getDoctor(doctorListModelArrayList.get(position));
 
                     } else {
-                        selectDoctorInterface.getDoctor(null);
                         doctorListModelArrayList.get(position).setSelected(false);
                     }
                     notifyDataSetChanged();
+
+
                 }
 
             });

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.interfaceutils.SelectTimeSlotInterface;
 import com.nikvay.doctorapplication.model.AppoinmentListModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
@@ -30,38 +31,40 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
     private ErrorMessageDialog errorMessageDialog;
     private String reschedule;
     private AppoinmentListModel appoinmentListModel;
+    private Boolean isDialog=false;
+    private SelectTimeSlotInterface selectTimeSlotInterface;
+
     public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, ServiceModel serviceModel, String date, String reschedule, AppoinmentListModel appoinmentListModel) {
         this.mContext = context;
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
         this.serviceModel = serviceModel;
         this.date = date;
         this.reschedule = reschedule;
-        this.appoinmentListModel=appoinmentListModel;
+        this.appoinmentListModel = appoinmentListModel;
         errorMessageDialog = new ErrorMessageDialog(mContext);
 
     }
 
-    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList,String date) {
+    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, String date) {
         this.mContext = context;
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
         this.serviceModel = serviceModel;
         this.date = date;
         this.reschedule = reschedule;
-        this.appoinmentListModel=appoinmentListModel;
+        this.appoinmentListModel = appoinmentListModel;
         errorMessageDialog = new ErrorMessageDialog(mContext);
 
     }
 
-    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList,boolean isDialog) {
+    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, boolean isDialog, SelectTimeSlotInterface selectTimeSlotInterface) {
         this.mContext = context;
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
-        this.serviceModel = serviceModel;
-        this.date = date;
-        this.reschedule = reschedule;
-        this.appoinmentListModel=appoinmentListModel;
         errorMessageDialog = new ErrorMessageDialog(mContext);
+        this.isDialog = isDialog;
+        this.selectTimeSlotInterface = selectTimeSlotInterface;
 
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
@@ -88,31 +91,53 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
         holder.textTime.setText(selectDateTimeModel.getTime());
 
 
-        holder.cardViewTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if (isDialog) {
+            holder.cardViewTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                if (selectDateTimeModel.getStatus().equals("1")) {
-                    errorMessageDialog.showDialog("This Slot Is Already Booked");
-                } else if (reschedule.equalsIgnoreCase(StaticContent.IntentValue.RESCHEDULE)) {
-                    Intent intent = new Intent(mContext, AppointmentDetailsActivity.class);
-                    intent.putExtra(StaticContent.IntentKey.DATE, date);
-                    intent.putExtra(StaticContent.IntentKey.TIME, selectDateTimeModel.getTime());
-                    intent.putExtra(StaticContent.IntentKey.RESCHEDULE, StaticContent.IntentValue.RESCHEDULE);
-                    intent.putExtra(StaticContent.IntentKey.APPOINTMENT,appoinmentListModel);
-                    mContext.startActivity(intent);
-                } else {
-                    Intent intent = new Intent(mContext, PatientActivity.class);
-                    intent.putExtra(StaticContent.IntentKey.APPOINTMENT, StaticContent.IntentValue.APPOINTMENT);
-                    intent.putExtra(StaticContent.IntentKey.SERVICE_DETAIL, serviceModel);
-                    intent.putExtra(StaticContent.IntentKey.DATE, date);
-                    intent.putExtra(StaticContent.IntentKey.TIME, selectDateTimeModel.getTime());
-                    mContext.startActivity(intent);
+                    if (!selectDateTimeModelArrayList.get(position).isSelected()) {
+                        for (int i = 0; i < selectDateTimeModelArrayList.size(); i++) {
+                            selectDateTimeModelArrayList.get(i).setSelected(false);
+                        }
+                        selectDateTimeModelArrayList.get(position).setSelected(true);
+                        selectTimeSlotInterface.getTimeSlotDetail(selectDateTimeModelArrayList.get(position));
+
+                    } else {
+                        selectTimeSlotInterface.getTimeSlotDetail(null);
+                        selectDateTimeModelArrayList.get(position).setSelected(false);
+                    }
+                    notifyDataSetChanged();
                 }
 
-            }
-        });
+            });
+        } else {
 
+            holder.cardViewTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (selectDateTimeModel.getStatus().equals("1")) {
+                        errorMessageDialog.showDialog("This Slot Is Already Booked");
+                    } else if (reschedule.equalsIgnoreCase(StaticContent.IntentValue.RESCHEDULE)) {
+                        Intent intent = new Intent(mContext, AppointmentDetailsActivity.class);
+                        intent.putExtra(StaticContent.IntentKey.DATE, date);
+                        intent.putExtra(StaticContent.IntentKey.TIME, selectDateTimeModel.getTime());
+                        intent.putExtra(StaticContent.IntentKey.RESCHEDULE, StaticContent.IntentValue.RESCHEDULE);
+                        intent.putExtra(StaticContent.IntentKey.APPOINTMENT, appoinmentListModel);
+                        mContext.startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(mContext, PatientActivity.class);
+                        intent.putExtra(StaticContent.IntentKey.APPOINTMENT, StaticContent.IntentValue.APPOINTMENT);
+                        intent.putExtra(StaticContent.IntentKey.SERVICE_DETAIL, serviceModel);
+                        intent.putExtra(StaticContent.IntentKey.DATE, date);
+                        intent.putExtra(StaticContent.IntentKey.TIME, selectDateTimeModel.getTime());
+                        mContext.startActivity(intent);
+                    }
+
+                }
+            });
+        }
 
     }
 

@@ -103,7 +103,6 @@ public class AllPatientListAdapter extends RecyclerView.Adapter<AllPatientListAd
                         selectAllPatientInterface.getPatientDetail(patientModelArrayList.get(position));
 
                     } else {
-                        selectAllPatientInterface.getPatientDetail(null);
                         patientModelArrayList.get(position).setSelected(false);
                     }
                     notifyDataSetChanged();

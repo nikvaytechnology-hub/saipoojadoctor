@@ -3,6 +3,7 @@ package com.nikvay.doctorapplication.view.activity.admin_doctor_activity;
 import android.app.Dialog;
 import android.opengl.Visibility;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -27,18 +29,23 @@ import com.nikvay.doctorapplication.interfaceutils.SelectAllPatientInterface;
 import com.nikvay.doctorapplication.interfaceutils.SelectDoctorInterface;
 import com.nikvay.doctorapplication.interfaceutils.SelectPatientInterface;
 import com.nikvay.doctorapplication.interfaceutils.SelectServiceInterface;
+import com.nikvay.doctorapplication.interfaceutils.SelectTimeSlotInterface;
 import com.nikvay.doctorapplication.model.DoctorListModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.PatientModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
+import com.nikvay.doctorapplication.utils.AppointmentDialog;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.ShowProgress;
+import com.nikvay.doctorapplication.utils.SuccessDialogClosed;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
+import com.nikvay.doctorapplication.utils.SuccessMessageDoctorDialog;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.DateTimeSelectActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.NewAppointmentActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PaymentActivity;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.AllPatientListAdapter;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.DoctorListAdapter;
@@ -55,8 +62,9 @@ import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.internal.util.LinkedArrayList;
 
-public class AddAdminAppointmentActivity extends AppCompatActivity implements SelectDoctorInterface, SelectServiceInterface, SelectAllPatientInterface {
+public class AddAdminAppointmentActivity extends AppCompatActivity implements SelectDoctorInterface, SelectServiceInterface, SelectAllPatientInterface, SelectTimeSlotInterface, SuccessDialogClosed {
 
     //Date And Time Slot List
     private ImageView iv_close;
@@ -64,13 +72,17 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
     private SelectDateTimeAdapter selectDateTimeAdapter;
     private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList = new ArrayList<>();
     private CalendarView calendarView;
-    private TextView textSlotNotFound;
+    private TextView textSlotNotFound,textcommentName;
     private String date;
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
-    private  String doctor_id="",service_id="",patient_id,user_id,super_admin_id,TAG = getClass().getSimpleName();
+    private  String doctor_id="",service_id="",patient_id="",label="1",notification_type="1",time="",comment="",user_id,super_admin_id,TAG = getClass().getSimpleName();
     private SuccessMessageDialog successMessageDialog;
+    private TextView textPending,textConfirm,textLabelName,textTimeSlot;
+    private Button btnDone;
+    private AppointmentDialog appointmentDialog;
+    private SuccessMessageDoctorDialog successMessageDoctorDialog;
 
 
     //Select Doctor
@@ -111,6 +123,12 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
     ArrayList<PatientModel> patientModelArrayList = new ArrayList<>();
     private AllPatientListAdapter allPatientListAdapter;
 
+
+    //Select Time Slot
+   private LinearLayout linearLayoutTimeSlot;
+
+   //Select Label
+    private RelativeLayout relativeLayoutLabelHide,relativeLayoutComments,relativeLayoutCommentsHide;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +143,15 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         iv_close = findViewById(R.id.iv_close);
         calendarView = findViewById(R.id.calendarView);
         textSlotNotFound = findViewById(R.id.textSlotNotFound);
+        textPending = findViewById(R.id.textPending);
+        textConfirm = findViewById(R.id.textConfirm);
+        textLabelName = findViewById(R.id.textLabelName);
+        textTimeSlot = findViewById(R.id.textTimeSlot);
+        btnDone = findViewById(R.id.btnDone);
+        relativeLayoutComments = findViewById(R.id.relativeLayoutComments);
+        relativeLayoutCommentsHide = findViewById(R.id.relativeLayoutCommentsHide);
+        textcommentName = findViewById(R.id.textcommentName);
+
         GridLayoutManager gridLayoutManager = new GridLayoutManager(AddAdminAppointmentActivity.this, 3);
         recyclerViewTime.setLayoutManager(gridLayoutManager);
         recyclerViewTime.hasFixedSize();
@@ -209,16 +236,20 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
 
 
 
+        //Select Time Slot
+        linearLayoutTimeSlot=findViewById(R.id.linearLayoutTimeSlot);
 
+        //Select Time Slot
+        relativeLayoutLabelHide=findViewById(R.id.relativeLayoutLabelHide);
 
 
         errorMessageDialog = new ErrorMessageDialog(AddAdminAppointmentActivity.this);
         successMessageDialog = new SuccessMessageDialog(AddAdminAppointmentActivity.this);
         showProgress = new ShowProgress(AddAdminAppointmentActivity.this);
-
-
-
-
+        appointmentDialog= new AppointmentDialog(AddAdminAppointmentActivity.this);
+        successMessageDoctorDialog=new SuccessMessageDoctorDialog(AddAdminAppointmentActivity.this,true);
+        textLabelName.setTextColor(getResources().getColor(R.color.confirm));
+        textLabelName.setText("Confirm");
 
 
     }
@@ -397,11 +428,65 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
             }
         });
 
+        textPending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="0";
+                textLabelName.setText("Pending");
+                textLabelName.setTextColor(getResources().getColor(R.color.black));
+
+            }
+        });
+        textConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                label="1";
+                textLabelName.setText("Confirm");
+                textLabelName.setTextColor(getResources().getColor(R.color.confirm));
+            }
+        });
+
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if(validation()) {
+                    if (NetworkUtils.isNetworkAvailable(AddAdminAppointmentActivity.this))
+                        callAddAppoitment();
+                    else
+                        NetworkUtils.isNetworkNotAvailable(AddAdminAppointmentActivity.this);
+                }
+
+            }
+        });
+
+
+        relativeLayoutComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                commentDialog();
+            }
+        });
 
 
     }
 
+    private boolean validation() {
+        if(doctor_id.equalsIgnoreCase(""))
+        {
+            errorMessageDialog.showDialog("Please Select Doctor");
+        }else if(service_id.equalsIgnoreCase(""))
+        {
 
+            errorMessageDialog.showDialog("Please Select Service");
+        }else if(time.equalsIgnoreCase(""))
+        {
+
+            errorMessageDialog.showDialog("Please Select Time");
+        }
+        return true;
+    }
 
 
     //===================All API Call========================================
@@ -433,12 +518,13 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
                             if (code.equalsIgnoreCase("1")) {
                                 selectDateTimeModelArrayList = successModel.getSelectDateTimeModelArrayList();
                                 if (selectDateTimeModelArrayList.size() != 0) {
-                                    selectDateTimeAdapter = new SelectDateTimeAdapter(AddAdminAppointmentActivity.this, selectDateTimeModelArrayList,date);
+                                    selectDateTimeAdapter = new SelectDateTimeAdapter(AddAdminAppointmentActivity.this, selectDateTimeModelArrayList,true,AddAdminAppointmentActivity.this);
                                     recyclerViewTime.setAdapter(selectDateTimeAdapter);
-                                    selectDateTimeAdapter.notifyDataSetChanged();
                                     textSlotNotFound.setVisibility(View.GONE);
+                                    selectDateTimeAdapter.notifyDataSetChanged();
                                 } else {
                                     textSlotNotFound.setVisibility(View.VISIBLE);
+                                    selectDateTimeAdapter.notifyDataSetChanged();
                                 }
 
                             } else {
@@ -643,12 +729,73 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
 
     }
 
+//Call Add New Appointment
+    private void callAddAppoitment() {
+        Call<SuccessModel> call = apiInterface.addAppointment(doctor_id,user_id,service_id,patient_id,date,time,comment,label,notification_type);
+
+
+        call.enqueue(new Callback<SuccessModel>() {
+            @Override
+            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+                String str_response = new Gson().toJson(response.body());
+                Log.e("" + TAG, "Response >>>>" + str_response);
+
+                try {
+                    if (response.isSuccessful()) {
+                        SuccessModel successModel = response.body();
+
+                        String message = null, code = null;
+                        if (successModel != null) {
+                            message = successModel.getMsg();
+                            code = successModel.getError_code();
+
+
+                            if (code.equalsIgnoreCase("1")) {
+
+                                successMessageDoctorDialog.showDialog("Add Appointment Successfully !",true);
+
+                            } else {
+                                errorMessageDialog.showDialog("Wrong Appointment");
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<SuccessModel> call, Throwable t) {
+                errorMessageDialog.showDialog(t.getMessage());
+            }
+        });
+
+
+    }
+
 
     @Override
     public void getDoctor(DoctorListModel DoctorListModel) {
         linearLayoutDoctor.setVisibility(View.VISIBLE);
         textDoctor.setText(DoctorListModel.getName());
         doctor_id=DoctorListModel.getDoctor_id();
+
+        service_id="";
+        textService.setText("");
+        linearLayoutService.setVisibility(View.GONE);
+
+
+        patient_id="";
+        textPatient.setText("");
+        linearLayoutPatient.setVisibility(View.GONE);
+
+
+        time="";
+        textTimeSlot.setText("");
+        linearLayoutTimeSlot.setVisibility(View.GONE);
+
 
         if (NetworkUtils.isNetworkAvailable(AddAdminAppointmentActivity.this))
             callTimeSlot();
@@ -671,5 +818,48 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         linearLayoutPatient.setVisibility(View.VISIBLE);
         textPatient.setText(patientModel.getName());
         patient_id=patientModel.getPatient_id();
+    }
+
+    @Override
+    public void getTimeSlotDetail(SelectDateTimeModel selectDateTimeModel) {
+        linearLayoutTimeSlot.setVisibility(View.VISIBLE);
+        textTimeSlot.setText(selectDateTimeModel.getTime());
+        time=selectDateTimeModel.getTime();
+    }
+
+
+    private void commentDialog() {
+
+        final Dialog dialog = new Dialog(AddAdminAppointmentActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.comment_add_dialog);
+        dialog.setCancelable(true);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        final TextInputEditText textComment= dialog.findViewById(R.id.textComment);
+        Button btn_done =dialog.findViewById(R.id.btn_done);
+
+
+        btn_done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                comment=textComment.getText().toString().trim();
+                dialog.dismiss();
+                relativeLayoutCommentsHide.setVisibility(View.VISIBLE);
+                textcommentName.setText(comment);
+
+
+            }
+        });
+
+        dialog.show();
+
+
+    }
+
+    @Override
+    public void dialogClosed(boolean mClosed) {
+        finish();
     }
 }
