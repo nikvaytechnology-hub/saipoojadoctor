@@ -24,6 +24,8 @@ import com.nikvay.doctorapplication.interfaceutils.SelectDoctorInterface;
 import com.nikvay.doctorapplication.model.DoctorListModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.PatientModel;
+import com.nikvay.doctorapplication.model.ServiceListModel;
+import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
@@ -32,6 +34,7 @@ import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.DoctorListAdapter;
+import com.nikvay.doctorapplication.view.adapter.doctor_adapter.ServiceListAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,10 +59,6 @@ public class AdminAddPatientActivity extends AppCompatActivity implements Select
     private RadioGroup rGenderGroup;
 
 
-    private LinearLayout linearLayoutDoctorList;
-    private TextView  textDoctor;
-    private LinearLayout linearLayoutDoctor;
-
     //Select Doctor
     private Dialog selectDoctorDialog;
     private EditText editSearchDoctor;
@@ -68,6 +67,27 @@ public class AdminAddPatientActivity extends AppCompatActivity implements Select
     private ArrayList<DoctorListModel> doctorListModelArrayList = new ArrayList<>();
     ShowProgress showProgress;
     private DoctorListAdapter doctorListAdapter;
+
+    private LinearLayout linearLayoutDoctorList;
+    private TextView  textDoctor;
+    private LinearLayout linearLayoutDoctor;
+
+
+    //Select Service
+    private Dialog selectServiceDialog;
+    private EditText editSearchService;
+    private Button btnCancelDialogService,btnOkDialogService;
+    private RecyclerView recyclerDialogService;
+    private ArrayList<ServiceModel> ServiceModelArrayList = new ArrayList<>();
+    private ServiceListAdapter serviceListAdapter;
+
+    private LinearLayout linearLayoutServiceList;
+    private TextView  textService;
+    private LinearLayout linearLayoutService;
+
+
+
+
 
 
 
@@ -144,6 +164,27 @@ public class AdminAddPatientActivity extends AppCompatActivity implements Select
         recyclerDialogDoctor.setLayoutManager(linearLayoutManagerDoctor);
 
         //select Doctor End
+
+
+
+
+        //Select Service Start
+
+        selectServiceDialog = new Dialog(this);
+        selectServiceDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        selectServiceDialog.setContentView(R.layout.dialog_select_service);
+
+        btnCancelDialogDoctor = selectServiceDialog.findViewById(R.id.btnCancelDialogDoctor);
+        btnOkDialogDoctor = selectServiceDialog.findViewById(R.id.btnOkDialogDoctor);
+        editSearchDoctor = selectServiceDialog.findViewById(R.id.editSearchDoctor);
+        selectServiceDialog.setCancelable(false);
+        recyclerDialogService= selectServiceDialog.findViewById(R.id.recyclerDialogDoctor);
+
+        LinearLayoutManager linearLayoutManagerService = new LinearLayoutManager(getApplicationContext());
+        recyclerDialogService.setLayoutManager(linearLayoutManagerService);
+
+        //select Service End
+
 
         errorMessageDialog = new ErrorMessageDialog(AdminAddPatientActivity.this);
         successMessageDialog = new SuccessMessageDialog(AdminAddPatientActivity.this);

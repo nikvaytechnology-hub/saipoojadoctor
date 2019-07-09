@@ -1,5 +1,6 @@
 package com.nikvay.doctorapplication.view.activity.admin_doctor_activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +35,7 @@ public class AdminServiceListActivity extends AppCompatActivity {
     RecyclerView recyclerServiceList;
     ArrayList<ServiceListModel> serviceListModelArrayList = new ArrayList<>();
     ServiceAdapter serviceAdapter;
-    ImageView iv_no_data_found;
+    ImageView iv_no_data_found,iv_close;
     ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
@@ -55,6 +56,7 @@ public class AdminServiceListActivity extends AppCompatActivity {
         recyclerServiceList=findViewById(R.id.recyclerServiceList);
         fabAddService=findViewById(R.id.fabAddService);
         iv_no_data_found=findViewById(R.id.iv_no_data_found);
+        iv_close=findViewById(R.id.iv_close);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
 
@@ -134,8 +136,15 @@ public class AdminServiceListActivity extends AppCompatActivity {
         fabAddService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /*  Intent intent_department=new Intent(AdminServiceListActivity.this, SuperAdminAddServiceActivity.class);
-                startActivity(intent_department);*/
+                Intent intent=new Intent(AdminServiceListActivity.this, AddServiceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

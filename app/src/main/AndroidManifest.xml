@@ -26,7 +26,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".view.activity.admin_doctor_activity.AddServiceActivity"></activity>
 
         <service
             android:name=".firebaseservice.MyFirebaseMessagingService"
@@ -36,8 +36,7 @@
             </intent-filter>
         </service>
 
-
-        <activity android:name=".view.activity.admin_doctor_activity.AdminServiceListActivity"/>
+        <activity android:name=".view.activity.admin_doctor_activity.AdminServiceListActivity" />
         <activity android:name=".view.activity.admin_doctor_activity.AddAdminAppointmentActivity" />
         <activity
             android:name=".view.activity.admin_doctor_activity.AddDepartmentActivity"
@@ -69,10 +68,6 @@
         <activity
             android:name=".view.activity.doctor_activity.SettingActivity"
             android:screenOrientation="portrait" />
-
-
-
-
         <activity
             android:name=".view.activity.admin_doctor_activity.DoctorSuperAdminActivity"
             android:screenOrientation="portrait" />
@@ -145,9 +140,6 @@
         <activity
             android:name=".view.activity.doctor_activity.NewPatientActivity"
             android:screenOrientation="portrait" />
-
-
-
 
         <service
             android:name=".firebaseservice.MyFirebaseMessagingService"

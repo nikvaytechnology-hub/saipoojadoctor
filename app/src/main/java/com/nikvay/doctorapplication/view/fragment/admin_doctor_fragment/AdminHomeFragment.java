@@ -14,7 +14,9 @@ import android.widget.Toast;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.utils.SharedUtils;
+import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddAdminAppointmentActivity;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AdminMainActivity;
+import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AdminServiceListActivity;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AllPatientListActivity;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.DoctorListActivity;
 
@@ -89,14 +91,16 @@ public class AdminHomeFragment extends Fragment {
         cardViewAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Work in Progress", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(mContext, AddAdminAppointmentActivity.class);
+                startActivity(intent);
             }
         });
 
         cardViewService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Work in Progress", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(mContext, AdminServiceListActivity.class);
+                startActivity(intent);
             }
         });
 

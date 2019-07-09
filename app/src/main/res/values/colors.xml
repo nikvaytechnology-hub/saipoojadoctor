@@ -151,7 +151,7 @@
     <color name="black">#000000</color>
 
 
-    <color name="pending">#FFFF00</color>
+    <color name="pending">#00FF00</color>
     <color name="confirm">#A4C639</color>
     <color name="cancel">#FF0000</color>
     <color name="complete">#0000FF</color>

@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.interfaceutils.SelectAllPatientInterface;
 import com.nikvay.doctorapplication.model.PatientModel;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.AppointmentHistoryActivity;
@@ -26,6 +28,8 @@ public class AllPatientListAdapter extends RecyclerView.Adapter<AllPatientListAd
     private Context mContext;
     private ArrayList<PatientModel> patientModelArrayList;
     private ArrayList<PatientModel> arrayListFiltered;
+    private boolean isDialog;
+    private  SelectAllPatientInterface selectAllPatientInterface;
 
     public AllPatientListAdapter(Context mContext, ArrayList<PatientModel> patientModelArrayList) {
         this.mContext = mContext;
@@ -33,6 +37,16 @@ public class AllPatientListAdapter extends RecyclerView.Adapter<AllPatientListAd
         this.arrayListFiltered = patientModelArrayList;
 
     }
+
+
+    public AllPatientListAdapter(Context mContext, ArrayList<PatientModel> patientModelArrayList, boolean isDialog, SelectAllPatientInterface selectAllPatientInterface) {
+        this.mContext = mContext;
+        this.patientModelArrayList = patientModelArrayList;
+        this.arrayListFiltered = patientModelArrayList;
+        this.isDialog = isDialog;
+        this.selectAllPatientInterface=selectAllPatientInterface;
+    }
+
 
     @NonNull
     @Override
@@ -44,7 +58,15 @@ public class AllPatientListAdapter extends RecyclerView.Adapter<AllPatientListAd
     @Override
     public void onBindViewHolder(@NonNull AllPatientListAdapter.MyViewHolder holder, final int position) {
         PatientModel patientModel = patientModelArrayList.get(position);
-       final String doctor_id=patientModel.getPatient_id();
+
+        if (patientModelArrayList.get(position).isSelected()) {
+            holder.linearLayoutPatient.setBackgroundColor(mContext.getResources().getColor(android.R.color.holo_green_light));
+        } else {
+            holder.linearLayoutPatient.setBackgroundColor(mContext.getResources().getColor(R.color.cardview_light_background));
+        }
+
+
+        final String doctor_id = patientModel.getPatient_id();
         String name = patientModel.getName();
         String contact = patientModel.getPhone_no();
         String email = patientModel.getEmail();
@@ -65,6 +87,32 @@ public class AllPatientListAdapter extends RecyclerView.Adapter<AllPatientListAd
                 mContext.startActivity(intent);
             }
         });*/
+
+
+        if (isDialog) {
+            holder.linearLayoutActionHide.setVisibility(View.GONE);
+            holder.linearLayoutPatient.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (!patientModelArrayList.get(position).isSelected()) {
+                        for (int i = 0; i < patientModelArrayList.size(); i++) {
+                            patientModelArrayList.get(i).setSelected(false);
+                        }
+                        patientModelArrayList.get(position).setSelected(true);
+                        selectAllPatientInterface.getPatientDetail(patientModelArrayList.get(position));
+
+                    } else {
+                        selectAllPatientInterface.getPatientDetail(null);
+                        patientModelArrayList.get(position).setSelected(false);
+                    }
+                    notifyDataSetChanged();
+                }
+
+            });
+        }
+
+
 
 
         holder.textPayment.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +139,7 @@ public class AllPatientListAdapter extends RecyclerView.Adapter<AllPatientListAd
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AppointmentHistoryActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL,doctor_id);
+                intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, doctor_id);
                 mContext.startActivity(intent);
             }
         });
@@ -146,7 +194,7 @@ public class AllPatientListAdapter extends RecyclerView.Adapter<AllPatientListAd
         private TextView textName, textContact, textEmail, textPayment, textDocument, textAppointment, textFirstName;
         private RelativeLayout relativeLayoutPatient;
         private ImageView iv_contact, iv_message, iv_mail;
-
+        LinearLayout linearLayoutPatient,linearLayoutActionHide;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.textName);
@@ -161,6 +209,8 @@ public class AllPatientListAdapter extends RecyclerView.Adapter<AllPatientListAd
             textDocument = itemView.findViewById(R.id.textDocument);
             textAppointment = itemView.findViewById(R.id.textAppointment);
             textFirstName = itemView.findViewById(R.id.textFirstName);
+            linearLayoutPatient = itemView.findViewById(R.id.linearLayoutPatient);
+            linearLayoutActionHide = itemView.findViewById(R.id.linearLayoutActionHide);
         }
     }
 

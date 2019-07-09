@@ -38,6 +38,7 @@ import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
+import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddAdminAppointmentActivity;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.MyPatientDialogAdapter;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.MyServiceDialogAdapter;
 
@@ -250,7 +251,13 @@ public class PaymentActivity extends AppCompatActivity implements SelectPatientI
         imgHospitalService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callServiceList();
+
+                if (NetworkUtils.isNetworkAvailable(PaymentActivity.this))
+                    callServiceList();
+                else
+                    NetworkUtils.isNetworkNotAvailable(PaymentActivity.this);
+
+
             }
         });
 

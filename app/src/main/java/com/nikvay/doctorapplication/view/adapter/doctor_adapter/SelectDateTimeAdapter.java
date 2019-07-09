@@ -41,6 +41,27 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
 
     }
 
+    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList,String date) {
+        this.mContext = context;
+        this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
+        this.serviceModel = serviceModel;
+        this.date = date;
+        this.reschedule = reschedule;
+        this.appoinmentListModel=appoinmentListModel;
+        errorMessageDialog = new ErrorMessageDialog(mContext);
+
+    }
+
+    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList,boolean isDialog) {
+        this.mContext = context;
+        this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
+        this.serviceModel = serviceModel;
+        this.date = date;
+        this.reschedule = reschedule;
+        this.appoinmentListModel=appoinmentListModel;
+        errorMessageDialog = new ErrorMessageDialog(mContext);
+
+    }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
@@ -57,6 +78,13 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
         } else {
             holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(R.color.white));
         }
+
+        if (selectDateTimeModelArrayList.get(position).isSelected()) {
+            holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(android.R.color.holo_green_light));
+        } else {
+            holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(R.color.cardview_light_background));
+        }
+
         holder.textTime.setText(selectDateTimeModel.getTime());
 
 
