@@ -2,6 +2,7 @@ package com.nikvay.doctorapplication.view.activity.doctor_activity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,6 +54,7 @@ public class AppointmentListActivity extends AppCompatActivity {
     private ShowProgress showProgress;
     private EditText edt_search_appointment;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
+    private SwipeRefreshLayout refreshAppointmentList;
 
 
     @Override
@@ -130,6 +132,16 @@ public class AppointmentListActivity extends AppCompatActivity {
 
             }
         });
+        refreshAppointmentList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (NetworkUtils.isNetworkAvailable(AppointmentListActivity.this))
+                    appointmentListCall();
+                else
+                    NetworkUtils.isNetworkNotAvailable(AppointmentListActivity.this);
+                refreshAppointmentList.setRefreshing(false);
+            }
+        });
 
 
     }
@@ -139,6 +151,7 @@ public class AppointmentListActivity extends AppCompatActivity {
         iv_close = findViewById(R.id.iv_close);
         edt_search_appointment = findViewById(R.id.edt_search_appointment);
         iv_date = findViewById(R.id.iv_date);
+        refreshAppointmentList = findViewById(R.id.refreshAppointmentList);
         textAppointmentTitleName = findViewById(R.id.textAppointmentTitleName);
         recyclerViewAppointmentList = findViewById(R.id.recyclerViewAppointmentList);
         iv_no_data_found = findViewById(R.id.iv_no_data_found);

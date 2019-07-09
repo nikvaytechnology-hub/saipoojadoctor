@@ -1,6 +1,7 @@
 package com.nikvay.doctorapplication.view.activity.doctor_activity;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,6 +43,7 @@ public class EnquiryActivity extends AppCompatActivity {
     private ErrorMessageDialog errorMessageDialog;
     private EnquiryListAdapter enquiryListAdapter;
     private EditText edt_search_enquiry;
+    private SwipeRefreshLayout refreshEnquiry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class EnquiryActivity extends AppCompatActivity {
         recyclerViewEnquiryList=findViewById(R.id.recyclerViewEnquiryList);
         iv_no_data_found=findViewById(R.id.iv_no_data_found);
         edt_search_enquiry=findViewById(R.id.edt_search_enquiry);
+        refreshEnquiry=findViewById(R.id.refreshEnquiry);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(EnquiryActivity.this);
         recyclerViewEnquiryList.setLayoutManager(linearLayoutManager);
@@ -105,6 +108,17 @@ public class EnquiryActivity extends AppCompatActivity {
             }
         });
 
+
+        refreshEnquiry.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (NetworkUtils.isNetworkAvailable(EnquiryActivity.this))
+                    enquiryList();
+                else
+                    NetworkUtils.isNetworkNotAvailable(EnquiryActivity.this);
+                refreshEnquiry.setRefreshing(false);
+            }
+        });
     }
 
     private void enquiryList() {

@@ -3,12 +3,16 @@ package com.nikvay.doctorapplication.view.activity.admin_doctor_activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -32,15 +36,16 @@ import retrofit2.Response;
 public class AdminServiceListActivity extends AppCompatActivity {
 
     private FloatingActionButton fabAddService;
-    RecyclerView recyclerServiceList;
-    ArrayList<ServiceListModel> serviceListModelArrayList = new ArrayList<>();
-    ServiceAdapter serviceAdapter;
-    ImageView iv_no_data_found,iv_close;
-    ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
+    private RecyclerView recyclerServiceList;
+    private ArrayList<ServiceListModel> serviceListModelArrayList = new ArrayList<>();
+    private ServiceAdapter serviceAdapter;
+    private ImageView iv_no_data_found,iv_close;
+    private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
     private String user_id,TAG = getClass().getSimpleName();
-
+    private SwipeRefreshLayout refreshServiceAdmin;
+    private EditText edt_search_service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,8 @@ public class AdminServiceListActivity extends AppCompatActivity {
         fabAddService=findViewById(R.id.fabAddService);
         iv_no_data_found=findViewById(R.id.iv_no_data_found);
         iv_close=findViewById(R.id.iv_close);
+        edt_search_service=findViewById(R.id.edt_search_service);
+        refreshServiceAdmin=findViewById(R.id.refreshServiceAdmin);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
 
@@ -105,7 +112,7 @@ public class AdminServiceListActivity extends AppCompatActivity {
 
                                     serviceAdapter=new ServiceAdapter(AdminServiceListActivity.this,serviceListModelArrayList);
                                     recyclerServiceList.setAdapter(serviceAdapter);
-                                    recyclerServiceList.addItemDecoration(new DividerItemDecoration(AdminServiceListActivity.this, DividerItemDecoration.VERTICAL));
+                                   // recyclerServiceList.addItemDecoration(new DividerItemDecoration(AdminServiceListActivity.this, DividerItemDecoration.VERTICAL));
                                     recyclerServiceList.setHasFixedSize(true);
                                 }
                                 else
@@ -145,6 +152,46 @@ public class AdminServiceListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+
+        refreshServiceAdmin.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                if (NetworkUtils.isNetworkAvailable(AdminServiceListActivity.this))
+                    callListService(user_id);
+                else
+                    NetworkUtils.isNetworkNotAvailable(AdminServiceListActivity.this);
+
+
+                refreshServiceAdmin.setRefreshing(false);
+            }
+        });
+
+
+        edt_search_service.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String search=edt_search_service.getText().toString().trim();
+                if(!search.equalsIgnoreCase(""))
+                {
+                    serviceAdapter.getFilter().filter(search);
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }

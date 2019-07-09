@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +52,7 @@ public class DepartmentFragment extends Fragment {
     private String user_id,TAG = getClass().getSimpleName();
     private EditText edt_search_patient;
     Context mContext;
+    private SwipeRefreshLayout refreshDepartment;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,12 +93,24 @@ public class DepartmentFragment extends Fragment {
 
             }
         });
+
+        refreshDepartment.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (NetworkUtils.isNetworkAvailable(mContext))
+                    callListDepartment();
+                else
+                    NetworkUtils.isNetworkNotAvailable(mContext);
+                refreshDepartment.setRefreshing(false);
+            }
+        });
     }
 
     private void find_All_IDs(View view) {
         recyclerDepartmentList=view.findViewById(R.id.recyclerDepartmentList);
         fabAddDepartment=view.findViewById(R.id.fabAddDepartment);
         edt_search_patient=view.findViewById(R.id.edt_search_patient);
+        refreshDepartment=view.findViewById(R.id.refreshDepartment);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         errorMessageDialog= new ErrorMessageDialog(mContext);
 
@@ -142,7 +156,7 @@ public class DepartmentFragment extends Fragment {
 
                                     departmentListAdapter=new DepartmentListAdapter(mContext,departmentModelArrayList,false);
                                     recyclerDepartmentList.setAdapter(departmentListAdapter);
-                                    recyclerDepartmentList.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+                                    //recyclerDepartmentList.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
                                     recyclerDepartmentList.setHasFixedSize(true);
                                 }
                                 else

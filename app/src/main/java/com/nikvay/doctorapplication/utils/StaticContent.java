@@ -73,6 +73,7 @@ public class StaticContent {
         public static final String MY_DASHBOARD = "MY Dashboard";
         public static final String DASHBOARD = "Dashboard";
         public static final String APPOINTMENT = " My Appointment";
+        public static final String DEPARTMENT = "Department";
         public static final String PATIENT = " My Patient";
         public static final String SETTINGS = " Settings";
         public static final String LOGOUT = "Logout";

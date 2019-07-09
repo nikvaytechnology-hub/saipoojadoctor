@@ -53,12 +53,20 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp">
 
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refreshEnquiry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-2dp">
+
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/recyclerViewEnquiryList" />
 
 
+        </android.support.v4.widget.SwipeRefreshLayout>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

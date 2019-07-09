@@ -4,57 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.admin_doctor_fragment.DepartmentFragment">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edt_search_patient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_edt_text"
-        android:drawableEnd="@drawable/ic_vector_search"
-        android:hint="Search Department"
-        android:inputType="text"
-        android:padding="10dp" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
         android:orientation="vertical">
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerDepartmentList"
+        <EditText
+            android:id="@+id/edt_search_patient"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_edt_text"
+            android:drawableEnd="@drawable/ic_vector_search"
+            android:hint="Search Department"
+            android:inputType="text"
+            android:padding="10dp" />
 
-
-        <ImageView
-            android:id="@+id/iv_no_data_found"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/app_empty_list"
-            android:visibility="gone" />
+            android:orientation="vertical"
+            android:padding="10dp">
 
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabAddDepartment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/app_color"
-            android:backgroundTint="@color/app_color"
-            android:src="@drawable/add" />
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/refreshDepartment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-2dp">
 
 
-    </RelativeLayout>
-</LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerDepartmentList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <ImageView
+                android:id="@+id/iv_no_data_found"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/app_empty_list"
+                android:visibility="gone" />
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabAddDepartment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/app_color"
+                android:backgroundTint="@color/app_color"
+                android:src="@drawable/add" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>

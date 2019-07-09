@@ -4,6 +4,7 @@ package com.nikvay.doctorapplication.view.activity.doctor_activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +52,7 @@ public class ServiceListActivity extends AppCompatActivity {
     private TextView textTitleServiceName;
     private EditText edt_search_service;
     ShowProgress showProgress;
+    private SwipeRefreshLayout refreshService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +106,20 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
+
+        refreshService.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (NetworkUtils.isNetworkAvailable(ServiceListActivity.this))
+                    callServiceList();
+                else
+                    NetworkUtils.isNetworkNotAvailable(ServiceListActivity.this);
+
+                refreshService.setRefreshing(false);
+
+            }
+        });
+
     }
 
     private void find_All_IDs() {
@@ -114,6 +130,7 @@ public class ServiceListActivity extends AppCompatActivity {
         textTitleServiceName=findViewById(R.id.textTitleServiceName);
         iv_no_data_found=findViewById(R.id.iv_no_data_found);
         edt_search_service=findViewById(R.id.edt_search_service);
+        refreshService=findViewById(R.id.refreshService);
 
         doctorModelArrayList= SharedUtils.getUserDetails(ServiceListActivity.this);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();

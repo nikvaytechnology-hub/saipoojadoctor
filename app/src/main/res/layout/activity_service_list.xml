@@ -51,11 +51,19 @@
         android:layout_height="match_parent"
         android:padding="10dp">
 
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refreshService"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-2dp">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewServiceList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <ImageView
             android:layout_width="match_parent"

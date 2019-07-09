@@ -136,6 +136,12 @@ public class AdminMainActivity extends AppCompatActivity {
                 break;
 
 
+            case "DepartmentFragment":
+                textTitleName.setText(StaticContent.DrawerItemAdmin.DEPARTMENT);
+                iv_notification.setVisibility(View.GONE);
+                break;
+
+
             default:
                 textTitleName.setText(" ");
 
