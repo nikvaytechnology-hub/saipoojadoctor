@@ -155,6 +155,7 @@
     <color name="confirm">#A4C639</color>
     <color name="cancel">#FF0000</color>
     <color name="complete">#0000FF</color>
+    <color name="today">#DEB887</color>
 
     <!-- Fast Connect  color file -->
 

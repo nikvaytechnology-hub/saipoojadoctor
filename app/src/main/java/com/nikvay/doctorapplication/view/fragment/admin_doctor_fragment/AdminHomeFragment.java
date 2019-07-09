@@ -15,6 +15,8 @@ import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddAdminAppointmentActivity;
+import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AdminAddClassActivity;
+import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AdminClassListActivity;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AdminMainActivity;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AdminServiceListActivity;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AllPatientListActivity;
@@ -31,7 +33,7 @@ public class AdminHomeFragment extends Fragment {
     private String  hospital_name;
     private TextView textHospitalName;
     private CardView cardViewDoctorList,cardViewDepartment,cardViewPatient,cardViewAppointment,
-            cardViewService;
+            cardViewService,cardViewClass;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +56,7 @@ public class AdminHomeFragment extends Fragment {
         cardViewPatient=view.findViewById(R.id.cardViewPatient);
         cardViewAppointment=view.findViewById(R.id.cardViewAppointment);
         cardViewService=view.findViewById(R.id.cardViewService);
+        cardViewClass=view.findViewById(R.id.cardViewClass);
 
 
         doctorModelArrayList = SharedUtils.getUserDetails(mContext);
@@ -100,6 +103,14 @@ public class AdminHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, AdminServiceListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardViewClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, AdminClassListActivity.class);
                 startActivity(intent);
             }
         });

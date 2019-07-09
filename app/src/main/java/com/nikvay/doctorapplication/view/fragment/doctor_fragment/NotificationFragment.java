@@ -3,6 +3,7 @@ package com.nikvay.doctorapplication.view.fragment.doctor_fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -46,6 +47,7 @@ public class NotificationFragment extends Fragment {
     private Button btnNotificationClear;
     ShowProgress showProgress;
     private SuccessMessageDialog successMessageDialog;
+    private SwipeRefreshLayout refreshNotification;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class NotificationFragment extends Fragment {
         recyclerViewNotification=view.findViewById(R.id.recyclerViewNotification);
         iv_notification=view.findViewById(R.id.iv_notification);
         btnNotificationClear=view.findViewById(R.id.btnNotificationClear);
+        refreshNotification=view.findViewById(R.id.refreshNotification);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
         recyclerViewNotification.setLayoutManager(linearLayoutManager);
         recyclerViewNotification.setHasFixedSize(true);
@@ -72,6 +75,7 @@ public class NotificationFragment extends Fragment {
         errorMessageDialog= new ErrorMessageDialog(mContext);
         successMessageDialog = new SuccessMessageDialog(mContext);
         showProgress=new ShowProgress(mContext);
+
         if (NetworkUtils.isNetworkAvailable(mContext))
            notificationList();
         else
@@ -114,6 +118,7 @@ public class NotificationFragment extends Fragment {
                                 }
                                 else
                                 {
+                                    btnNotificationClear.setVisibility(View.GONE);
                                     iv_notification.setVisibility(View.VISIBLE);
                                     notificationListAdapter.notifyDataSetChanged();
                                 }
@@ -143,6 +148,18 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 notificationClear();
+            }
+        });
+
+        refreshNotification.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                if (NetworkUtils.isNetworkAvailable(mContext))
+                    notificationList();
+                else
+                    NetworkUtils.isNetworkNotAvailable(mContext);
+                refreshNotification.setRefreshing(false);
             }
         });
     }

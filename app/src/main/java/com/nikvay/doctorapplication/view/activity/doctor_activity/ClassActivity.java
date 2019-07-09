@@ -3,6 +3,7 @@ package com.nikvay.doctorapplication.view.activity.doctor_activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,6 +46,7 @@ public class ClassActivity extends AppCompatActivity {
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private ApiInterface apiInterface;
     private EditText edt_search_class;
+    private SwipeRefreshLayout refreshClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,18 @@ public class ClassActivity extends AppCompatActivity {
 
             }
         });
+
+        refreshClass.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (NetworkUtils.isNetworkAvailable(ClassActivity.this))
+                    callClassList();
+                else
+                    NetworkUtils.isNetworkNotAvailable(ClassActivity.this);
+
+                refreshClass.setRefreshing(false);
+            }
+        });
     }
 
     private void find_All_IDs() {
@@ -104,6 +118,7 @@ public class ClassActivity extends AppCompatActivity {
         iv_close = findViewById(R.id.iv_close);
         iv_no_data_found = findViewById(R.id.iv_no_data_found);
         fabAddClass = findViewById(R.id.fabAddClass);
+        refreshClass = findViewById(R.id.refreshClass);
         edt_search_class = findViewById(R.id.edt_search_class);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ClassActivity.this);
         recyclerClassList.setLayoutManager(linearLayoutManager);

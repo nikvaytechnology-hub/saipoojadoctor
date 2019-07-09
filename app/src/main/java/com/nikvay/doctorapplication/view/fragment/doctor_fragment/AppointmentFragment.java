@@ -187,10 +187,16 @@ public class AppointmentFragment extends Fragment {
                             strCompleted=successModel.getAppointment_for_Completed();
                             strToday=successModel.getTodays_appointment_count();
                             textPendingCount.setText(strPending);
+                            textPendingCount.setTextColor(getResources().getColor(R.color.pending));
                             textArchiveCount.setText(strCompleted);
+                            textArchiveCount.setTextColor(getResources().getColor(R.color.complete));
                             textCancelCount.setText(strCancelled);
+                            textCancelCount.setTextColor(getResources().getColor(R.color.cancel));
                             textConfirmCount.setText(strConfirmed);
+                            textConfirmCount.setTextColor(getResources().getColor(R.color.white));
                             textTodayCount.setText(strToday);
+                            textTodayCount.setTextColor(getResources().getColor(R.color.black));
+
                         }
                     }
                 } catch (Exception e) {

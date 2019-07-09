@@ -26,7 +26,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.admin_doctor_activity.AddServiceActivity"></activity>
+        <activity android:name=".view.activity.admin_doctor_activity.AdminAddClassActivity"></activity>
+        <activity android:name=".view.activity.admin_doctor_activity.AdminClassListActivity" />
+        <activity android:name=".view.activity.admin_doctor_activity.AddServiceActivity" />
 
         <service
             android:name=".firebaseservice.MyFirebaseMessagingService"

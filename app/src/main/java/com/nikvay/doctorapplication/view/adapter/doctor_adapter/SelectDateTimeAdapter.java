@@ -31,7 +31,7 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
     private ErrorMessageDialog errorMessageDialog;
     private String reschedule;
     private AppoinmentListModel appoinmentListModel;
-    private Boolean isDialog=false;
+    private Boolean isDialog = false;
     private SelectTimeSlotInterface selectTimeSlotInterface;
 
     public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, ServiceModel serviceModel, String date, String reschedule, AppoinmentListModel appoinmentListModel) {
@@ -82,10 +82,15 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
             holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(R.color.white));
         }
 
-        if (selectDateTimeModelArrayList.get(position).isSelected()) {
-            holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(android.R.color.holo_green_light));
-        } else {
-            holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(R.color.cardview_light_background));
+        if (isDialog) {
+            if (selectDateTimeModelArrayList.get(position).isSelected()) {
+                holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(android.R.color.holo_green_light));
+            } else {
+                if (selectDateTimeModel.getStatus().equals("1"))
+                    holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(R.color.app_color));
+                else
+                    holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(R.color.cardview_light_background));
+            }
         }
 
         holder.textTime.setText(selectDateTimeModel.getTime());
@@ -95,19 +100,21 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
             holder.cardViewTime.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    if (!selectDateTimeModelArrayList.get(position).isSelected()) {
-                        for (int i = 0; i < selectDateTimeModelArrayList.size(); i++) {
-                            selectDateTimeModelArrayList.get(i).setSelected(false);
-                        }
-                        selectDateTimeModelArrayList.get(position).setSelected(true);
-                        selectTimeSlotInterface.getTimeSlotDetail(selectDateTimeModelArrayList.get(position));
-
+                    if (selectDateTimeModel.getStatus().equals("1")) {
+                        errorMessageDialog.showDialog("This Slot Is Already Booked");
                     } else {
-                        selectTimeSlotInterface.getTimeSlotDetail(null);
-                        selectDateTimeModelArrayList.get(position).setSelected(false);
+                        if (!selectDateTimeModelArrayList.get(position).isSelected()) {
+                            for (int i = 0; i < selectDateTimeModelArrayList.size(); i++) {
+                                selectDateTimeModelArrayList.get(i).setSelected(false);
+                            }
+                            selectDateTimeModelArrayList.get(position).setSelected(true);
+                            selectTimeSlotInterface.getTimeSlotDetail(selectDateTimeModelArrayList.get(position));
+
+                        } else {
+                            selectDateTimeModelArrayList.get(position).setSelected(false);
+                        }
+                        notifyDataSetChanged();
                     }
-                    notifyDataSetChanged();
                 }
 
             });

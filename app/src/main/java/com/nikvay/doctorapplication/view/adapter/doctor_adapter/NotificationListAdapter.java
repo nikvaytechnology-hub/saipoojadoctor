@@ -38,7 +38,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         //holder.textName.setText(notificationListModel.getPatient_name());
        // holder.textDate.setText(notificationListModel.getDate());
         holder.textDescription.setText(notificationListModel.getDescription());
-        holder.textTitle.setText("Hey"+","+doctor_name + " new notification received.");
+        holder.textTitle.setText("Hey"+","+doctor_name+"new notification received.");
 
     }
 

@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="15dp"
                         android:background="@drawable/shape_patient_profile">
 
                         <TextView
@@ -168,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="15dp"
                         android:background="@drawable/shape_patient_profile">
 
                         <TextView
@@ -223,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="15dp"
                         android:background="@drawable/shape_patient_profile">
 
 
@@ -279,7 +279,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="15dp"
                         android:background="@drawable/shape_patient_profile">
 
 
