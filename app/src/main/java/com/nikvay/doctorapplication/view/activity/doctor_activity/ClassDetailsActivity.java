@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.ClassModel;
@@ -18,7 +20,8 @@ public class ClassDetailsActivity extends AppCompatActivity {
     private ImageView iv_close;
     private Button btnEdit;
     private ClassModel classModel;
-    private String mTitle="Service Details";
+    private String mTitle="Class Details";
+    private RelativeLayout relativeLayoutSession;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +41,24 @@ public class ClassDetailsActivity extends AppCompatActivity {
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { Intent intent = new Intent(ClassDetailsActivity.this, NewClassActivity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(ClassDetailsActivity.this, NewClassActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
                 intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
                 startActivity(intent);
 
 
+            }
+        });
+        relativeLayoutSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ClassDetailsActivity.this,SessionListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
+                intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
+                startActivity(intent);
             }
         });
 
@@ -58,6 +72,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
         textDescription=findViewById(R.id.textDescription);
         iv_close=findViewById(R.id.iv_close);
         btnEdit=findViewById(R.id.btnEdit);
+        relativeLayoutSession=findViewById(R.id.relativeLayoutSession);
 
         Bundle bundle = getIntent().getExtras();
 

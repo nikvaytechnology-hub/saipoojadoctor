@@ -26,9 +26,19 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.admin_doctor_activity.AdminAddClassActivity"></activity>
-        <activity android:name=".view.activity.admin_doctor_activity.AdminClassListActivity" />
-        <activity android:name=".view.activity.admin_doctor_activity.AddServiceActivity" />
+
+        <activity android:name=".view.activity.doctor_activity.SessionDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.doctor_activity.SessionListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.doctor_activity.ClassTimeSlotActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.admin_doctor_activity.AdminAddClassActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.admin_doctor_activity.AdminClassListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.admin_doctor_activity.AddServiceActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".firebaseservice.MyFirebaseMessagingService"
@@ -38,8 +48,10 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".view.activity.admin_doctor_activity.AdminServiceListActivity" />
-        <activity android:name=".view.activity.admin_doctor_activity.AddAdminAppointmentActivity" />
+        <activity android:name=".view.activity.admin_doctor_activity.AdminServiceListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.admin_doctor_activity.AddAdminAppointmentActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.admin_doctor_activity.AddDepartmentActivity"
             android:screenOrientation="portrait" />

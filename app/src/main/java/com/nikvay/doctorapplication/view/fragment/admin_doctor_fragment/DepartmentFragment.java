@@ -157,11 +157,15 @@ public class DepartmentFragment extends Fragment {
                                     departmentListAdapter=new DepartmentListAdapter(mContext,departmentModelArrayList,false);
                                     recyclerDepartmentList.setAdapter(departmentListAdapter);
                                     //recyclerDepartmentList.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+                                    edt_search_patient.setEnabled(true);
                                     recyclerDepartmentList.setHasFixedSize(true);
+                                    departmentListAdapter.notifyDataSetChanged();
                                 }
                                 else
                                 {
                                     errorMessageDialog.showDialog("List is Empty");
+                                    edt_search_patient.setEnabled(false);
+                                    departmentListAdapter.notifyDataSetChanged();
                                 }
 
                             } else {

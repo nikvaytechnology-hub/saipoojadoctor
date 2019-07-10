@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activity.doctor_activity.SessionListActivity">
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rel_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/app_color">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_vector_back" />
+
+        <TextView
+            android:id="@+id/textTitleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Session"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edt_search_session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_edt_text"
+        android:drawableEnd="@drawable/ic_vector_search"
+        android:hint="Search Session"
+        android:inputType="text"
+        android:padding="10dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refreshSession"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-2dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recyclerSessionList" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/fabAddSession"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/app_color"
+            android:background="@color/app_color"
+            android:src="@drawable/add"
+            android:layout_marginBottom="10dp"/>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/nodatafound"
+            android:id="@+id/iv_no_data_found"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

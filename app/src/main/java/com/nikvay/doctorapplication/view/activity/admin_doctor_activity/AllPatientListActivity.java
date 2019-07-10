@@ -182,10 +182,12 @@ public class AllPatientListActivity extends AppCompatActivity {
                                     Collections.reverse(patientModelArrayList);
                                     allPatientListAdapter = new AllPatientListAdapter(AllPatientListActivity.this, patientModelArrayList);
                                     recyclerPatientList.setAdapter(allPatientListAdapter);
+                                    edt_search_patient.setEnabled(true);
                                     allPatientListAdapter.notifyDataSetChanged();
                                     // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
                                     iv_no_data_found.setVisibility(View.VISIBLE);
+                                    edt_search_patient.setEnabled(false);
                                     allPatientListAdapter.notifyDataSetChanged();
                                 }
 

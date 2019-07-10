@@ -163,6 +163,7 @@ public class DoctorServiceListActivity extends AppCompatActivity {
                                     doctorServiceListAdapter = new DoctorServiceListAdapter(DoctorServiceListActivity.this, serviceModelArrayList);
                                     recyclerViewServiceList.setAdapter(doctorServiceListAdapter);
                                     iv_no_data_found.setVisibility(View.GONE);
+
                                     doctorServiceListAdapter.notifyDataSetChanged();
                                     // recyclerViewServiceList.addItemDecoration(new DividerItemDecoration(ServiceListActivity.this, DividerItemDecoration.VERTICAL));
                                 }

@@ -48,10 +48,7 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
     public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, String date) {
         this.mContext = context;
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
-        this.serviceModel = serviceModel;
         this.date = date;
-        this.reschedule = reschedule;
-        this.appoinmentListModel = appoinmentListModel;
         errorMessageDialog = new ErrorMessageDialog(mContext);
 
     }
