@@ -18,7 +18,8 @@ import com.nikvay.doctorapplication.view.activity.doctor_activity.ServiceListAct
 public class SettingFragment extends Fragment {
 
     Context mContext;
-    private RelativeLayout relativeLayoutService,relativeLayoutChangePassword,relativeLayoutSetting,relativeLayoutClass;
+    private RelativeLayout relativeLayoutService,relativeLayoutChangePassword,
+            relativeLayoutSetting,relativeLayoutClass,relativeLayoutClassAppointment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +42,7 @@ public class SettingFragment extends Fragment {
         relativeLayoutChangePassword=view.findViewById(R.id.relativeLayoutChangePassword);
         relativeLayoutSetting=view.findViewById(R.id.relativeLayoutSetting);
         relativeLayoutClass=view.findViewById(R.id.relativeLayoutClass);
+        relativeLayoutClassAppointment=view.findViewById(R.id.relativeLayoutClassAppointment);
     }
 
 
@@ -70,6 +72,12 @@ public class SettingFragment extends Fragment {
             public void onClick(View v) {
                Intent intent=new Intent(mContext, ClassActivity.class);
                startActivity(intent);
+            }
+        });
+        relativeLayoutClassAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Class Appointment List", Toast.LENGTH_SHORT).show();
             }
         });
 
