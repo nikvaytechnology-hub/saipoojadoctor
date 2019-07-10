@@ -26,7 +26,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.doctor_activity.CreateSessionActivity"></activity>
+        <activity android:name=".view.activity.doctor_activity.ClassAppointmentListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.doctor_activity.CreateSessionActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.doctor_activity.SessionDetailsActivity"
             android:screenOrientation="portrait" />

@@ -14,33 +14,33 @@ import android.widget.Toast;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.interfaceutils.SelectTimeSlotInterface;
 import com.nikvay.doctorapplication.model.AppoinmentListModel;
+import com.nikvay.doctorapplication.model.ClassModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.AppointmentDetailsActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.ClassTimeSlotActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.CreateSessionActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PatientActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.SessionDetailsActivity;
 
 import java.util.ArrayList;
 
 public class ClassTimeSlotAdapter extends RecyclerView.Adapter<ClassTimeSlotAdapter.MyViewHolder> {
     private Context mContext;
     private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList;
-    private ServiceModel serviceModel;
     private String date;
     private ErrorMessageDialog errorMessageDialog;
-    private String reschedule;
-    private AppoinmentListModel appoinmentListModel;
-    private Boolean isDialog = false;
-    private SelectTimeSlotInterface selectTimeSlotInterface;
+    private ClassModel classModel;
 
 
-    public ClassTimeSlotAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, String date) {
+    public ClassTimeSlotAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, String date, ClassModel classModel) {
         this.mContext = context;
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
         this.date = date;
         errorMessageDialog = new ErrorMessageDialog(mContext);
-
+        this.classModel=classModel;
     }
 
 
@@ -71,13 +71,14 @@ public class ClassTimeSlotAdapter extends RecyclerView.Adapter<ClassTimeSlotAdap
                 if (selectDateTimeModel.getStatus().equals("1")) {
                     errorMessageDialog.showDialog("This Slot Is Already Booked");
                 } else {
-                  /*  Intent intent = new Intent(mContext, PatientActivity.class);
-                    intent.putExtra(StaticContent.IntentKey.APPOINTMENT, StaticContent.IntentValue.APPOINTMENT);
-                    intent.putExtra(StaticContent.IntentKey.SERVICE_DETAIL, serviceModel);
+                    Intent intent=new Intent(mContext, CreateSessionActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
                     intent.putExtra(StaticContent.IntentKey.DATE, date);
                     intent.putExtra(StaticContent.IntentKey.TIME, selectDateTimeModel.getTime());
-                    mContext.startActivity(intent);*/
-                    Toast.makeText(mContext, "Select Class Schedule", Toast.LENGTH_SHORT).show();
+                    intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
+                    mContext.startActivity(intent);
+
                 }
 
             }

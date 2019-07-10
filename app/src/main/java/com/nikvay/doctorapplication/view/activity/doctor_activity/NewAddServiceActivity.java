@@ -48,11 +48,11 @@ public class NewAddServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_add_service);
 
-        Find_All_ID();
+        find_All_ID();
         event();
     }
 
-    private void Find_All_ID() {
+    private void find_All_ID() {
 
         serviceTitle_name = findViewById(R.id.serviceTitle_name);
         textName = findViewById(R.id.textName);

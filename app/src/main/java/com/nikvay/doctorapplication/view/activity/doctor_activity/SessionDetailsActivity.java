@@ -75,7 +75,11 @@ public class SessionDetailsActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent=new Intent(SessionDetailsActivity.this,ClassTimeSlotActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
+                intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
                 startActivity(intent);
             }
         });

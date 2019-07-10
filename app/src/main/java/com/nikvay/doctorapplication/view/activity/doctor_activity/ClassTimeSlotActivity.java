@@ -17,6 +17,7 @@ import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
 import com.nikvay.doctorapplication.model.AppoinmentListModel;
+import com.nikvay.doctorapplication.model.ClassModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
@@ -50,6 +51,7 @@ public class ClassTimeSlotActivity extends AppCompatActivity {
     private ErrorMessageDialog errorMessageDialog;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private String  TAG = getClass().getSimpleName(), doctor_id, user_id;
+    private ClassModel classModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,14 @@ public class ClassTimeSlotActivity extends AppCompatActivity {
 
 
 
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            classModel = (ClassModel) bundle.getSerializable(StaticContent.IntentKey.CLASS_DETAIL);
+
+        }
+
+
 
         if (NetworkUtils.isNetworkAvailable(ClassTimeSlotActivity.this))
             callTimeSlot();
@@ -150,7 +160,7 @@ public class ClassTimeSlotActivity extends AppCompatActivity {
                             if (code.equalsIgnoreCase("1")) {
                                 selectDateTimeModelArrayList = successModel.getSelectDateTimeModelArrayList();
                                 if (selectDateTimeModelArrayList.size() != 0) {
-                                    classTimeSlotAdapter = new ClassTimeSlotAdapter(ClassTimeSlotActivity.this, selectDateTimeModelArrayList, date);
+                                    classTimeSlotAdapter = new ClassTimeSlotAdapter(ClassTimeSlotActivity.this, selectDateTimeModelArrayList, date,classModel);
                                     recyclerViewTime.setAdapter(classTimeSlotAdapter);
                                     textSlotNotFound.setVisibility(View.GONE);
                                     classTimeSlotAdapter.notifyDataSetChanged();
