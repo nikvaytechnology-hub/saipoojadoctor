@@ -32,6 +32,8 @@ import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.StaticContent;
+import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
+import com.nikvay.doctorapplication.utils.SuccessMessageDoctorDialog;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddServiceActivity;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.AllPatientListAdapter;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.MyDoctorDialogAdapter;
@@ -59,9 +61,10 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
     String TAG = getClass().getSimpleName();
     ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
 
-    private String doctor_id="",user_id="";
+    private String doctor_id="",user_id="",session_id="",doctor_idAssign="";
     private ShowProgress showProgress;
     private ErrorMessageDialog errorMessageDialog;
+    private SuccessMessageDialog successMessageDoctorDialog;
 
 
     //select Patient
@@ -111,6 +114,9 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
             textCost.setText(sessionListModel.getCost());
             textDate.setText(sessionListModel.getDate());
             textSeats.setText(sessionListModel.getNo_of_seats());
+            doctor_idAssign=sessionListModel.getDoctor_id();
+            session_id=sessionListModel.getSession_id();
+
         }
 
 
@@ -143,6 +149,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
         showProgress=new ShowProgress(SessionEditActivity.this);
         errorMessageDialog=new ErrorMessageDialog(SessionEditActivity.this);
+        successMessageDoctorDialog=new SuccessMessageDialog(SessionEditActivity.this);
 
     }
 
@@ -160,7 +167,6 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
                 if (NetworkUtils.isNetworkAvailable(SessionEditActivity.this))
                 {
                     callListPatient();
-
                 }
                 else
                     NetworkUtils.isNetworkNotAvailable(SessionEditActivity.this);
@@ -203,7 +209,18 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         });
 
 
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (NetworkUtils.isNetworkAvailable(SessionEditActivity.this))
+                {
+                    callEdiSession();
+                }
+                else
+                    NetworkUtils.isNetworkNotAvailable(SessionEditActivity.this);
 
+            }
+        });
 
     }
 
@@ -246,6 +263,53 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
                                     patientMultipleSelecationAdapter.notifyDataSetChanged();
                                 }
 
+                            } else {
+                                errorMessageDialog.showDialog("Response Not Working");
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<SuccessModel> call, Throwable t) {
+                showProgress.dismissDialog();
+                errorMessageDialog.showDialog(t.getMessage());
+            }
+        });
+    }
+
+    private void callEdiSession() {
+        //  showProgress.showDialog();
+        String patient_id = String.valueOf(getPatientIdArray());
+
+        Call<SuccessModel> call = apiInterface.editSession(session_id,patient_id,doctor_idAssign);
+
+
+
+        call.enqueue(new Callback<SuccessModel>() {
+            @Override
+            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+                showProgress.dismissDialog();
+                String str_response = new Gson().toJson(response.body());
+                Log.e("" + TAG, "Response >>>>" + str_response);
+
+                try {
+                    if (response.isSuccessful()) {
+                        SuccessModel successModel = response.body();
+                        patientModelArrayList.clear();
+                        String message = null, code = null;
+                        if (successModel != null) {
+                            message = successModel.getMsg();
+                            code = successModel.getError_code();
+
+
+                            if (code.equalsIgnoreCase("1")) {
+                                successMessageDoctorDialog.showDialog("Attendee Add Sucessfully");
                             } else {
                                 errorMessageDialog.showDialog("Response Not Working");
                             }

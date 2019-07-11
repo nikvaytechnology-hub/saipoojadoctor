@@ -15,9 +15,10 @@ public class SessionListModel  implements Serializable {
     private String no_of_seats;
     private String name;
     private String name_class;
+    private String doctor_id;
 
 
-    public SessionListModel(String session_id, String date, String time, String label, String cost, String no_of_seats, String name, String name_class) {
+    public SessionListModel(String session_id, String date, String time, String label, String cost, String no_of_seats, String name, String name_class,String doctor_id) {
         this.session_id = session_id;
         this.date = date;
         this.time = time;
@@ -26,6 +27,7 @@ public class SessionListModel  implements Serializable {
         this.no_of_seats = no_of_seats;
         this.name = name;
         this.name_class = name_class;
+        this.doctor_id=doctor_id;
     }
 
     public String getSession_id() {
@@ -90,5 +92,13 @@ public class SessionListModel  implements Serializable {
 
     public void setName_class(String name_class) {
         this.name_class = name_class;
+    }
+
+    public String getDoctor_id() {
+        return doctor_id;
+    }
+
+    public void setDoctor_id(String doctor_id) {
+        this.doctor_id = doctor_id;
     }
 }

@@ -41,4 +41,5 @@ public class EndApi extends BaseApi {
     public static final String CANCLEAPPOINTMENT = "ws-cancel-appointment-doctor";
     public static final String LIST_SESSION = "ws-list-session";
     public static final String EDIT_SESSION = "ws-edit-session";
+    public static final String ADMIN_CLASS_LIST = "ws-list-class-admin";
 }

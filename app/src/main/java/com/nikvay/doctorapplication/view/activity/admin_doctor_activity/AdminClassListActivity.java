@@ -137,7 +137,7 @@ public class AdminClassListActivity extends AppCompatActivity {
     private void callClassList() {
         showProgress.showDialog();
 
-        Call<SuccessModel> call = apiInterface.listClass(doctor_id,user_id);
+        Call<SuccessModel> call = apiInterface.adminCallList();
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {

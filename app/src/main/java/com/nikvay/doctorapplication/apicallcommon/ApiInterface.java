@@ -343,5 +343,6 @@ public interface ApiInterface {
                                    @Field("patient_id") String patient_id,
                                    @Field("doctor_id") String doctor_id);
 
-
+    @POST(EndApi.ADMIN_CLASS_LIST)
+    Call<SuccessModel> adminCallList();
 }
