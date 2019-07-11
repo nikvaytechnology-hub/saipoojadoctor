@@ -321,7 +321,16 @@ public interface ApiInterface {
                                       @Field("timeSlot") String timeSlot,
                                       @Field("day") String day,
                                       @Field("startTime") String startTime,
-                                      @Field("endTime") String endTime
+                                      @Field("endTime") String endTime);
+
+
+    @POST(EndApi.CANCLEAPPOINTMENT)
+    @FormUrlEncoded
+    Call<SuccessModel> cancelAppointment(@Field("doctor_id") String doctor_id,
+                                         @Field("user_id") String user_id,
+                                         @Field("date") String date,
+                                         @Field("start_time") String start_time,
+                                         @Field("end_time") String end_time
     );
 
 
