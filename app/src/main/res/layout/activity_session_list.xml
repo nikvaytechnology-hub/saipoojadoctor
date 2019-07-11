@@ -44,7 +44,7 @@
         android:layout_margin="5dp"
         android:background="@drawable/shape_edt_text"
         android:drawableEnd="@drawable/ic_vector_search"
-        android:hint="Search Session"
+        android:hint="Search Session(Using Date)"
         android:inputType="text"
         android:padding="10dp" />
 

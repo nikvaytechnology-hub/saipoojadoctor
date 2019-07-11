@@ -330,8 +330,18 @@ public interface ApiInterface {
                                          @Field("user_id") String user_id,
                                          @Field("date") String date,
                                          @Field("start_time") String start_time,
-                                         @Field("end_time") String end_time
-    );
+                                         @Field("end_time") String end_time);
+
+    @POST(EndApi.LIST_SESSION)
+    @FormUrlEncoded
+    Call<SuccessModel> listSession(@Field("class_id") String class_id);
+
+
+    @POST(EndApi.EDIT_SESSION)
+    @FormUrlEncoded
+    Call<SuccessModel> editSession(@Field("session_id") String session_id,
+                                   @Field("patient_id") String patient_id,
+                                   @Field("doctor_id") String doctor_id);
 
 
 }

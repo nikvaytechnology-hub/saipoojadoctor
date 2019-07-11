@@ -72,6 +72,9 @@ public class SuccessModel {
     @SerializedName("admin_service_list")
     ArrayList<ServiceListModel>serviceListModelArrayList;
 
+    @SerializedName("listSession")
+    ArrayList<SessionListModel> sessionListModelArrayList;
+
 
 
     public ArrayList<PaymentDetailModel> getPaymentDetailModelArrayList() {
@@ -262,6 +265,14 @@ public class SuccessModel {
 
     public void setServiceListModelArrayList(ArrayList<ServiceListModel> serviceListModelArrayList) {
         this.serviceListModelArrayList = serviceListModelArrayList;
+    }
+
+    public ArrayList<SessionListModel> getSessionListModelArrayList() {
+        return sessionListModelArrayList;
+    }
+
+    public void setSessionListModelArrayList(ArrayList<SessionListModel> sessionListModelArrayList) {
+        this.sessionListModelArrayList = sessionListModelArrayList;
     }
 
     public void setPatientModelArrayList(ArrayList<PatientModel> patientModelArrayList) {

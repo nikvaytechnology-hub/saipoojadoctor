@@ -215,7 +215,14 @@ public class PaymentActivity extends AppCompatActivity implements SelectPatientI
         imgSelectPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callListPatient();
+
+                if (NetworkUtils.isNetworkAvailable(PaymentActivity.this))
+                {
+                    callListPatient();
+
+                }
+                else
+                    NetworkUtils.isNetworkNotAvailable(PaymentActivity.this);
             }
         });
         btnOkDialogSC.setOnClickListener(new View.OnClickListener() {

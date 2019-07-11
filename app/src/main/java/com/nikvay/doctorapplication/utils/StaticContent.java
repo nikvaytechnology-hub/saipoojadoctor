@@ -31,6 +31,7 @@ public class StaticContent {
         public static final  String DATE="DATE";
         public static final  String TIME="TIME";
         public static final  String TIME_SLOT="TIME_SLOT";
+        public static final  String SESSION__DETAIL="Session_Detail";
     }
 
     public class IntentValue {

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -62,6 +63,9 @@ public class CancelAllAptActivity extends AppCompatActivity {
     private int year, month, day;
     ProgressDialog pd;
 
+    private ImageView iv_close;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +82,7 @@ public class CancelAllAptActivity extends AppCompatActivity {
         to_iv_endTime = findViewById(R.id.to_iv_endTime);
         from_iv_startTime = findViewById(R.id.from_iv_startTime);
         tv_txt_date = findViewById(R.id.tv_txt_date);
+        iv_close = findViewById(R.id.iv_close);
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -162,6 +167,14 @@ public class CancelAllAptActivity extends AppCompatActivity {
                     }
                 }, year, month, day);
                 datePickerDialog.show();
+            }
+        });
+
+
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

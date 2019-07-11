@@ -53,6 +53,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:background="@drawable/shape_select_dialog"
                     android:orientation="vertical">
 
                     <TextView
@@ -138,6 +140,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:padding="5dp"
+                android:background="@drawable/shape_select_dialog"
                 app:cardBackgroundColor="@color/cardview_light_background"
                 app:cardCornerRadius="@dimen/cardview_default_radius">
 
@@ -145,6 +149,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:background="@drawable/shape_select_dialog"
                     android:orientation="vertical">
 
                     <TextView
@@ -280,6 +286,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:background="@drawable/shape_select_dialog"
                     android:orientation="vertical">
 
                     <TextView
