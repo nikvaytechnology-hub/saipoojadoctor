@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rel_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/app_color">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_vector_back" />
+
+        <TextView
+            android:id="@+id/textAppointmentTitleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Setting"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/textSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:text="Update"
+            android:layout_margin="15dp"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_iv_Sunday"
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/iv_img_Sunday"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/appointment" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dp"
+                        android:layout_toEndOf="@+id/ll_iv_Sunday">
+
+                        <TextView
+                            android:id="@+id/iv_Sunday"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sunday"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_Sunday"
+                            android:orientation="horizontal"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="9:00AM"
+                                android:id="@+id/from_iv_Sunday"
+                                android:textColor="@color/black" />
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.2"
+                                android:src="@drawable/ic_vector_forward" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:gravity="right"
+                                android:text="9:00AM"
+                                android:id="@+id/to_iv_Sunday"
+                                android:textColor="@color/black" />
+
+                            <Switch
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:id="@+id/sw_Sunday"
+                                android:theme="@style/SCBSwitch" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_iv_Monday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_img_Monday"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/appointment" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:layout_toEndOf="@+id/ll_iv_Monday">
+
+                    <TextView
+                        android:id="@+id/iv_Monday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Monday"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_Monday"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="9:00AM"
+                            android:id="@+id/from_iv_Monday"
+                            android:textColor="@color/black" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:src="@drawable/ic_vector_forward" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="right"
+                            android:text="9:00AM"
+                            android:id="@+id/to_iv_Monday"
+                            android:textColor="@color/black" />
+
+                        <Switch
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:id="@+id/sw_Monday"
+                            android:theme="@style/SCBSwitch" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_iv_Tuesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_img_Tuesday"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/appointment" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:layout_toEndOf="@+id/ll_iv_Tuesday">
+
+                    <TextView
+                        android:id="@+id/iv_Tuesday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tuesday"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_Tuesday"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:id="@+id/from_iv_Tuesday"
+                            android:text="9:00AM"
+                            android:textColor="@color/black" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:src="@drawable/ic_vector_forward" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="right"
+                            android:id="@+id/to_iv_Tuesday"
+                            android:text="9:00AM"
+                            android:textColor="@color/black" />
+
+                        <Switch
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:id="@+id/sw_Tuesday"
+                            android:theme="@style/SCBSwitch" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_iv_Wednesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_img_Wednesday"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/appointment" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:layout_toEndOf="@+id/ll_iv_Wednesday">
+
+                    <TextView
+                        android:id="@+id/iv_Wednesday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Wednesday"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_Wednesday"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="9:00AM"
+                            android:id="@+id/from_iv_Wednesday"
+                            android:textColor="@color/black" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:src="@drawable/ic_vector_forward" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="right"
+                            android:id="@+id/to_iv_Wednesday"
+                            android:text="9:00AM"
+                            android:textColor="@color/black" />
+
+                        <Switch
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:id="@+id/sw_Wednesday"
+                            android:theme="@style/SCBSwitch" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_iv_Thirsday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_img_Thirsday"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/appointment" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:layout_toEndOf="@+id/ll_iv_Thirsday">
+
+                    <TextView
+                        android:id="@+id/iv_Thirsday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thirsday"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_Thirsday"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="9:00AM"
+                            android:id="@+id/from_iv_Thirsday"
+                            android:textColor="@color/black" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:src="@drawable/ic_vector_forward" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="right"
+                            android:text="9:00AM"
+                            android:id="@+id/to_iv_Thirsday"
+                            android:textColor="@color/black" />
+
+                        <Switch
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:id="@+id/sw_Thirsday"
+                            android:theme="@style/SCBSwitch" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_iv_Friday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_img_Friday"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/appointment" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:layout_toEndOf="@+id/ll_iv_Friday">
+
+                    <TextView
+                        android:id="@+id/iv_Friday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Friday"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_Friday"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="9:00AM"
+                            android:id="@+id/from_iv_Friday"
+                            android:textColor="@color/black" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:src="@drawable/ic_vector_forward" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="right"
+                            android:text="9:00AM"
+                            android:id="@+id/to_iv_Friday"
+                            android:textColor="@color/black" />
+
+                        <Switch
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:id="@+id/sw_Friday"
+                            android:theme="@style/SCBSwitch" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_iv_Saturaday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_img_Saturaday"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/appointment" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:layout_toEndOf="@+id/ll_iv_Saturaday">
+
+                    <TextView
+                        android:id="@+id/iv_Saturaday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Saturaday"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_Saturaday"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="9:00AM"
+                            android:id="@+id/from_iv_Saturaday"
+                            android:textColor="@color/black" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:src="@drawable/ic_vector_forward" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="right"
+                            android:text="9:00AM"
+                            android:id="@+id/to_iv_Saturaday"
+                            android:textColor="@color/black" />
+
+                        <Switch
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:id="@+id/sw_Saturaday"
+                            android:theme="@style/SCBSwitch" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_timeSlot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img_timeSlot"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/appointment" />
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp">
+                        <Spinner
+                            android:id="@+id/spinnerTimeSlot"
+                            style="@android:style/Widget.Spinner.DropDown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/gradient_spinner"
+                            android:entries="@array/appoinment_slot"
+                            android:gravity="center_vertical"
+                            android:spinnerMode="dropdown" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fabCancleAllApt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/app_color"
+                        android:backgroundTint="@color/app_color"
+                        android:src="@drawable/add" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

@@ -37,4 +37,5 @@ public class EndApi extends BaseApi {
     public static final String LIST_ADMIN_SERVICE= "ws-service-list";
     public static final String ADD_ADMIN_SERVICE= "ws-service-add";
     public static final String ADD_CLASS_SESSION= "ws-add-session";
+    public static final String DOCTORAPPOINTMENTSLOT = "ws-doctorAppointmentSlot";
 }

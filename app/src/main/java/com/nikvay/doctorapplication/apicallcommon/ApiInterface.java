@@ -313,4 +313,16 @@ public interface ApiInterface {
                                           @Field("description") String description);
 
 
+    @POST(EndApi.DOCTORAPPOINTMENTSLOT)
+    @FormUrlEncoded
+    Call<SuccessModel> addNewTimeSlot(@Field("doctor_id") String doctor_id,
+                                      @Field("user_id") String user_id,
+                                      @Field("dayStatus") String dayStatus,
+                                      @Field("timeSlot") String timeSlot,
+                                      @Field("day") String day,
+                                      @Field("startTime") String startTime,
+                                      @Field("endTime") String endTime
+    );
+
+
 }

@@ -10,4 +10,19 @@
         <item>Debit Card</item>
         <item>Cash</item>
     </string-array>
+
+
+
+    <string-array name="appoinment_slot">
+        <item>Time Slot</item>
+        <item>10 Min </item>
+        <item>15 Min </item>
+        <item>20 Min </item>
+        <item>30 Min </item>
+        <item>40 Min </item>
+        <item>50 Min </item>
+        <item>60 Min </item>
+    </string-array>
+
+
 </resources>

@@ -30,6 +30,7 @@ public class StaticContent {
         public static final String RESCHEDULE = "RESCHEDULE";
         public static final  String DATE="DATE";
         public static final  String TIME="TIME";
+        public static final  String TIME_SLOT="TIME_SLOT";
     }
 
     public class IntentValue {
