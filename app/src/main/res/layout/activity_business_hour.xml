@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
@@ -622,13 +623,14 @@
                 android:layout_height="1dp"
                 android:background="@color/gray" />
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="85dp">
 
                 <LinearLayout
                     android:id="@+id/ll_timeSlot"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
@@ -640,9 +642,12 @@
 
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="20dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/shape_select_dialog">
+
                         <Spinner
                             android:id="@+id/spinnerTimeSlot"
                             style="@android:style/Widget.Spinner.DropDown"
@@ -653,31 +658,48 @@
                             android:gravity="center_vertical"
                             android:spinnerMode="dropdown" />
 
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/arrow_drop_down"/>
+
                     </RelativeLayout>
 
 
                 </LinearLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp">
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fabCancleAllApt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/app_color"
-                        android:backgroundTint="@color/app_color"
-                        android:src="@drawable/add" />
-                </RelativeLayout>
+
 
             </RelativeLayout>
 
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+
+                android:layout_marginBottom="5dp">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fabCancleAllApt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:fabSize="mini"
+                    android:background="@color/app_color"
+                    android:backgroundTint="@color/app_color"
+                    android:src="@drawable/add" />
+            </RelativeLayout>
         </LinearLayout>
 
 

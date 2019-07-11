@@ -72,36 +72,38 @@ public class CancelAllAptActivity extends AppCompatActivity {
         events();
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        // TODO Auto-generated method stub
-        if (id == 999) {
-            return new DatePickerDialog(this,
-                    myDateListener, year, month, day);
+    private void find_All_IDs() {
+        calendarView = findViewById(R.id.calendarView);
+        textSave = findViewById(R.id.textSave);
+        to_iv_endTime = findViewById(R.id.to_iv_endTime);
+        from_iv_startTime = findViewById(R.id.from_iv_startTime);
+        tv_txt_date = findViewById(R.id.tv_txt_date);
+
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        doctorModelArrayList = SharedUtils.getUserDetails(CancelAllAptActivity.this);
+        doctor_id = doctorModelArrayList.get(0).getDoctor_id();
+        user_id = doctorModelArrayList.get(0).getUser_id();
+
+        errorMessageDialog = new ErrorMessageDialog(CancelAllAptActivity.this);
+        successMessageDialog = new SuccessMessageDialog(CancelAllAptActivity.this);
+       /* if (NetworkUtils.isNetworkAvailable(CancleAllAptActivity.this))
+        {
+            CancleAllAptCall(doctor_id,user_id,date);
         }
-        return null;
+        else
+            NetworkUtils.isNetworkNotAvailable(CancleAllAptActivity.this);*/
+
+
     }
-
-
-    private DatePickerDialog.OnDateSetListener myDateListener = new
-            DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker arg0,
-                                      int year, int month, int dayOfMonth) {
-
-
-                    CharSequence strDate = null;
-                    Time chosenDate = new Time();
-                    chosenDate.set(dayOfMonth, month, year);
-
-                    long dateAppointment = chosenDate.toMillis(true);
-                    strDate = DateFormat.format("yyyy-MM-dd", dateAppointment);
-                    date = (String) strDate;
-                    tv_txt_date.setText(date);
-
-
-                }
-            };
 
     private void events() {
 
@@ -137,43 +139,33 @@ public class CancelAllAptActivity extends AppCompatActivity {
         tv_txt_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog(999);
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(CancelAllAptActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+                        CharSequence strDate = null;
+                        Time chosenDate = new Time();
+                        chosenDate.set(day, month, year);
+
+                        long dateAttendance = chosenDate.toMillis(true);
+                        strDate = DateFormat.format("yyyy-MM-dd", dateAttendance);
+
+                        date = (String) strDate;
+                        tv_txt_date.setText(date);
+
+
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
             }
         });
     }
 
-    private void find_All_IDs() {
-        calendarView = findViewById(R.id.calendarView);
-        textSave = findViewById(R.id.textSave);
-        to_iv_endTime = findViewById(R.id.to_iv_endTime);
-        from_iv_startTime = findViewById(R.id.from_iv_startTime);
-        tv_txt_date = findViewById(R.id.tv_txt_date);
-
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
-
-        calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        doctorModelArrayList = SharedUtils.getUserDetails(CancelAllAptActivity.this);
-        doctor_id = doctorModelArrayList.get(0).getDoctor_id();
-        user_id = doctorModelArrayList.get(0).getUser_id();
-
-        errorMessageDialog = new ErrorMessageDialog(CancelAllAptActivity.this);
-        successMessageDialog = new SuccessMessageDialog(CancelAllAptActivity.this);
-       /* if (NetworkUtils.isNetworkAvailable(CancleAllAptActivity.this))
-        {
-            CancleAllAptCall(doctor_id,user_id,date);
-        }
-        else
-            NetworkUtils.isNetworkNotAvailable(CancleAllAptActivity.this);*/
-
-
-    }
 
     private void CancelAllAptCall(String doctor_id, String user_id, String date) {
         Call<SuccessModel> call = apiInterface.cancelAppointment(doctor_id, user_id, date, ConvertstartTime, ConvertendTime);

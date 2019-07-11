@@ -172,8 +172,8 @@ public class BusinessHourActivity extends AppCompatActivity {
         fabCancleAllApt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  Intent intent = new Intent(BusinessHourActivity.this, CancelAllAptActivity.class);
-               // startActivity(intent);
+                Intent intent = new Intent(BusinessHourActivity.this, CancelAllAptActivity.class);
+                startActivity(intent);
             }
         });
 
