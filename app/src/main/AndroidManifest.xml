@@ -26,7 +26,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.doctor_activity.SessionEditActivity"></activity>
+        <activity android:name=".view.activity.doctor_activity.SessionEditActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.doctor_activity.CancelAllAptActivity"
             android:screenOrientation="portrait" />

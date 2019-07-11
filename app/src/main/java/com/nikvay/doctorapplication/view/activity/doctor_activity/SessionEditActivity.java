@@ -185,8 +185,10 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         btnCancelDialogPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                patientModelArrayListSelected.clear();
                 editSearchPatient.setText("");
                 selectPatientDialog.dismiss();
+
             }
         });
 

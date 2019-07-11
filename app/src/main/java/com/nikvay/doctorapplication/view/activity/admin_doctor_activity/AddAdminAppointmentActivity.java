@@ -74,14 +74,14 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
     private SelectDateTimeAdapter selectDateTimeAdapter;
     private ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList = new ArrayList<>();
     private CalendarView calendarView;
-    private TextView textSlotNotFound,textcommentName;
+    private TextView textSlotNotFound, textcommentName;
     private String date;
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
-    private  String doctor_id="",service_id="",patient_id="",label="1",notification_type="1",time="",comment="",user_id,super_admin_id,TAG = getClass().getSimpleName();
+    private String doctor_id = "", service_id = "", patient_id = "", label = "1", notification_type = "1", time = "", comment = "", user_id, super_admin_id, TAG = getClass().getSimpleName();
     private SuccessMessageDialog successMessageDialog;
-    private TextView textPending,textConfirm,textLabelName,textTimeSlot;
+    private TextView textPending, textConfirm, textLabelName, textTimeSlot;
     private Button btnDone;
     private AppointmentDialog appointmentDialog;
     private SuccessMessageDoctorDialog successMessageDoctorDialog;
@@ -90,47 +90,46 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
     //Select Doctor
     private Dialog selectDoctorDialog;
     private EditText editSearchDoctor;
-    private Button btnCancelDialogDoctor,btnOkDialogDoctor;
+    private Button btnCancelDialogDoctor, btnOkDialogDoctor;
     private RecyclerView recyclerDialogDoctor;
     private ArrayList<DoctorListModel> doctorListModelArrayList = new ArrayList<>();
     ShowProgress showProgress;
     private DoctorListAdapter doctorListAdapter;
     private LinearLayout linearLayoutDoctorList;
-    private TextView  textDoctor;
+    private TextView textDoctor;
     private LinearLayout linearLayoutDoctor;
-
 
 
     //Select Service
     private Dialog selectServiceDialog;
     private EditText editSearchService;
-    private Button btnCancelDialogService,btnOkDialogService;
+    private Button btnCancelDialogService, btnOkDialogService;
     private RecyclerView recyclerDialogService;
     ArrayList<ServiceModel> serviceModelArrayList = new ArrayList<>();
     SelectDoctorServiceAdapter selectDoctorServiceAdapter;
     private LinearLayout linearLayoutServiceList;
-    private TextView  textService;
+    private TextView textService;
     private LinearLayout linearLayoutService;
-
 
 
     //select Patient
     private Dialog selectPatientDialog;
     private EditText editSearchPatient;
-    private Button btnCancelDialogPatient,btnOkDialogPatient;
+    private Button btnCancelDialogPatient, btnOkDialogPatient;
     private RecyclerView recyclerDialogPatient;
     private LinearLayout linearLayoutPatientList;
-    private TextView  textPatient;
+    private TextView textPatient;
     private LinearLayout linearLayoutPatient;
     ArrayList<PatientModel> patientModelArrayList = new ArrayList<>();
     private AllPatientListAdapter allPatientListAdapter;
 
 
     //Select Time Slot
-   private LinearLayout linearLayoutTimeSlot;
+    private LinearLayout linearLayoutTimeSlot;
 
-   //Select Label
-    private RelativeLayout relativeLayoutLabelHide,relativeLayoutComments,relativeLayoutCommentsHide;
+    //Select Label
+    private RelativeLayout relativeLayoutLabelHide, relativeLayoutComments, relativeLayoutCommentsHide;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,7 +168,6 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         user_id = doctorModelArrayList.get(0).getUser_id();
 
 
-
         //Select Doctor Start
 
         selectDoctorDialog = new Dialog(this);
@@ -196,7 +194,6 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         //select Doctor End
 
 
-
         //Select Service Start
 
         selectServiceDialog = new Dialog(this);
@@ -210,7 +207,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         recyclerDialogService = selectServiceDialog.findViewById(R.id.recyclerDialogService);
 
         linearLayoutServiceList = findViewById(R.id.linearLayoutServiceList);
-        textService= findViewById(R.id.textService);
+        textService = findViewById(R.id.textService);
         linearLayoutService = findViewById(R.id.linearLayoutService);
 
         LinearLayoutManager linearLayoutManagerService = new LinearLayoutManager(getApplicationContext());
@@ -218,8 +215,6 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
 
         Window windowService = selectServiceDialog.getWindow();
         windowService.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-
 
 
         //select Service End
@@ -238,7 +233,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         recyclerDialogPatient = selectPatientDialog.findViewById(R.id.recyclerDialogSC);
 
         linearLayoutPatientList = findViewById(R.id.linearLayoutPatientList);
-        textPatient= findViewById(R.id.textPatient);
+        textPatient = findViewById(R.id.textPatient);
         linearLayoutPatient = findViewById(R.id.linearLayoutPatient);
 
         LinearLayoutManager linearLayoutManagerPatient = new LinearLayoutManager(getApplicationContext());
@@ -252,19 +247,18 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         //select Patient End
 
 
+        //Select Time Slot
+        linearLayoutTimeSlot = findViewById(R.id.linearLayoutTimeSlot);
 
         //Select Time Slot
-        linearLayoutTimeSlot=findViewById(R.id.linearLayoutTimeSlot);
-
-        //Select Time Slot
-        relativeLayoutLabelHide=findViewById(R.id.relativeLayoutLabelHide);
+        relativeLayoutLabelHide = findViewById(R.id.relativeLayoutLabelHide);
 
 
         errorMessageDialog = new ErrorMessageDialog(AddAdminAppointmentActivity.this);
         successMessageDialog = new SuccessMessageDialog(AddAdminAppointmentActivity.this);
         showProgress = new ShowProgress(AddAdminAppointmentActivity.this);
-        appointmentDialog= new AppointmentDialog(AddAdminAppointmentActivity.this);
-        successMessageDoctorDialog=new SuccessMessageDoctorDialog(AddAdminAppointmentActivity.this,true);
+        appointmentDialog = new AppointmentDialog(AddAdminAppointmentActivity.this);
+        successMessageDoctorDialog = new SuccessMessageDoctorDialog(AddAdminAppointmentActivity.this, true);
         textLabelName.setTextColor(getResources().getColor(R.color.confirm));
         textLabelName.setText("Confirm");
 
@@ -321,21 +315,18 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
             @Override
             public void onClick(View v) {
 
-                if(!doctor_id.equalsIgnoreCase("")) {
+                if (!doctor_id.equalsIgnoreCase("")) {
                     if (NetworkUtils.isNetworkAvailable(AddAdminAppointmentActivity.this))
                         callServiceList();
                     else
                         NetworkUtils.isNetworkNotAvailable(AddAdminAppointmentActivity.this);
 
-                }
-                else
-                {
+                } else {
                     errorMessageDialog.showDialog("Please Select Doctor First");
                 }
 
             }
         });
-
 
 
         btnOkDialogDoctor.setOnClickListener(new View.OnClickListener() {
@@ -361,13 +352,12 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         btnCancelDialogDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /*  serviceModel = null;
-                linearService.setVisibility(View.GONE);*/
+                doctor_id = "";
+                linearLayoutDoctor.setVisibility(View.GONE);
                 editSearchDoctor.setText("");
                 selectDoctorDialog.dismiss();
             }
         });
-
 
 
         btnOkDialogService.setOnClickListener(new View.OnClickListener() {
@@ -393,8 +383,8 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         btnCancelDialogService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              // serviceModel = null;
-             //  linearLayoutService.setVisibility(View.GONE);
+                service_id = "";
+                linearLayoutService.setVisibility(View.GONE);
                 editSearchService.setText("");
                 selectServiceDialog.dismiss();
             }
@@ -424,8 +414,9 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         btnCancelDialogPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // serviceModel = null;
-                //  linearLayoutService.setVisibility(View.GONE);
+                patient_id = "";
+                linearLayoutPatient.setVisibility(View.GONE);
+
                 editSearchPatient.setText("");
                 selectPatientDialog.dismiss();
             }
@@ -448,7 +439,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         textPending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                label="0";
+                label = "0";
                 textLabelName.setText("Pending");
                 textLabelName.setTextColor(getResources().getColor(R.color.black));
 
@@ -457,7 +448,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         textConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                label="1";
+                label = "1";
                 textLabelName.setText("Confirm");
                 textLabelName.setTextColor(getResources().getColor(R.color.confirm));
             }
@@ -468,7 +459,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
             public void onClick(View v) {
 
 
-                if(validation()) {
+                if (validation()) {
                     if (NetworkUtils.isNetworkAvailable(AddAdminAppointmentActivity.this))
                         callAddAppoitment();
                     else
@@ -485,7 +476,6 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
                 commentDialog();
             }
         });
-
 
 
         //Search Method Start
@@ -549,21 +539,21 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         //Search Method End
 
 
-
     }
 
     private boolean validation() {
-        if(doctor_id.equalsIgnoreCase(""))
-        {
+        if (doctor_id.equalsIgnoreCase("")) {
             errorMessageDialog.showDialog("Please Select Doctor");
-        }else if(service_id.equalsIgnoreCase(""))
-        {
-
+            return false;
+        } else if (service_id.equalsIgnoreCase("")) {
             errorMessageDialog.showDialog("Please Select Service");
-        }else if(time.equalsIgnoreCase(""))
-        {
-
+            return false;
+        } else if (patient_id.equalsIgnoreCase("")) {
+            errorMessageDialog.showDialog("Please Patient Time");
+            return false;
+        } else if (time.equalsIgnoreCase("")) {
             errorMessageDialog.showDialog("Please Select Time");
+            return false;
         }
         return true;
     }
@@ -575,7 +565,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
     private void callTimeSlot() {
 
 
-        Call<SuccessModel> call = apiInterface.appointmentTimeSlot(date, doctor_id,user_id);
+        Call<SuccessModel> call = apiInterface.appointmentTimeSlot(date, doctor_id, user_id);
 
 
         call.enqueue(new Callback<SuccessModel>() {
@@ -598,7 +588,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
                             if (code.equalsIgnoreCase("1")) {
                                 selectDateTimeModelArrayList = successModel.getSelectDateTimeModelArrayList();
                                 if (selectDateTimeModelArrayList.size() != 0) {
-                                    selectDateTimeAdapter = new SelectDateTimeAdapter(AddAdminAppointmentActivity.this, selectDateTimeModelArrayList,true,AddAdminAppointmentActivity.this);
+                                    selectDateTimeAdapter = new SelectDateTimeAdapter(AddAdminAppointmentActivity.this, selectDateTimeModelArrayList, true, AddAdminAppointmentActivity.this);
                                     recyclerViewTime.setAdapter(selectDateTimeAdapter);
                                     textSlotNotFound.setVisibility(View.GONE);
                                     selectDateTimeAdapter.notifyDataSetChanged();
@@ -659,7 +649,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
 
                                 if (doctorListModelArrayList.size() != 0) {
                                     Collections.reverse(doctorListModelArrayList);
-                                    doctorListAdapter = new DoctorListAdapter(AddAdminAppointmentActivity.this, doctorListModelArrayList,true, AddAdminAppointmentActivity.this);
+                                    doctorListAdapter = new DoctorListAdapter(AddAdminAppointmentActivity.this, doctorListModelArrayList, true, AddAdminAppointmentActivity.this);
                                     recyclerDialogDoctor.setAdapter(doctorListAdapter);
                                     doctorListAdapter.notifyDataSetChanged();
                                     //recyclerViewDoctorList.addItemDecoration(new DividerItemDecoration(DoctorListActivity.this, DividerItemDecoration.VERTICAL));
@@ -688,9 +678,8 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         });
     }
 
-//Service List API call
-    private void callServiceList()
-    {
+    //Service List API call
+    private void callServiceList() {
         Call<SuccessModel> call = apiInterface.serviceList(doctor_id);
 
         call.enqueue(new Callback<SuccessModel>() {
@@ -717,7 +706,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
 
                                 if (serviceModelArrayList.size() != 0) {
 
-                                    selectDoctorServiceAdapter = new SelectDoctorServiceAdapter(getApplicationContext(), serviceModelArrayList, true,AddAdminAppointmentActivity.this );
+                                    selectDoctorServiceAdapter = new SelectDoctorServiceAdapter(getApplicationContext(), serviceModelArrayList, true, AddAdminAppointmentActivity.this);
 
                                     selectServiceDialog.show();
                                     Window window = selectServiceDialog.getWindow();
@@ -779,12 +768,12 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
                                 if (patientModelArrayList.size() != 0) {
 
                                     Collections.reverse(patientModelArrayList);
-                                    allPatientListAdapter = new AllPatientListAdapter(AddAdminAppointmentActivity.this, patientModelArrayList,true,AddAdminAppointmentActivity.this);
+                                    allPatientListAdapter = new AllPatientListAdapter(AddAdminAppointmentActivity.this, patientModelArrayList, true, AddAdminAppointmentActivity.this);
                                     recyclerDialogPatient.setAdapter(allPatientListAdapter);
                                     allPatientListAdapter.notifyDataSetChanged();
                                     // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
-                                 //  iv_no_data_found.setVisibility(View.VISIBLE);
+                                    //  iv_no_data_found.setVisibility(View.VISIBLE);
                                     allPatientListAdapter.notifyDataSetChanged();
                                 }
 
@@ -809,9 +798,9 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
 
     }
 
-//Call Add New Appointment
+    //Call Add New Appointment
     private void callAddAppoitment() {
-        Call<SuccessModel> call = apiInterface.addAppointment(doctor_id,user_id,service_id,patient_id,date,time,comment,label,notification_type);
+        Call<SuccessModel> call = apiInterface.addAppointment(doctor_id, user_id, service_id, patient_id, date, time, comment, label, notification_type);
 
 
         call.enqueue(new Callback<SuccessModel>() {
@@ -832,7 +821,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
 
                             if (code.equalsIgnoreCase("1")) {
 
-                                successMessageDoctorDialog.showDialog("Add Appointment Successfully !",true);
+                                successMessageDoctorDialog.showDialog("Add Appointment Successfully !", true);
 
                             } else {
                                 errorMessageDialog.showDialog("Wrong Appointment");
@@ -860,19 +849,19 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
     public void getDoctor(DoctorListModel DoctorListModel) {
         linearLayoutDoctor.setVisibility(View.VISIBLE);
         textDoctor.setText(DoctorListModel.getName());
-        doctor_id=DoctorListModel.getDoctor_id();
+        doctor_id = DoctorListModel.getDoctor_id();
 
-        service_id="";
+        service_id = "";
         textService.setText("");
         linearLayoutService.setVisibility(View.GONE);
 
 
-        patient_id="";
+        patient_id = "";
         textPatient.setText("");
         linearLayoutPatient.setVisibility(View.GONE);
 
 
-        time="";
+        time = "";
         textTimeSlot.setText("");
         linearLayoutTimeSlot.setVisibility(View.GONE);
 
@@ -889,7 +878,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
     public void getServiceDetail(ServiceModel serviceModel) {
         linearLayoutService.setVisibility(View.VISIBLE);
         textService.setText(serviceModel.getS_name());
-        service_id=serviceModel.getService_id();
+        service_id = serviceModel.getService_id();
     }
 
 
@@ -897,14 +886,14 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
     public void getPatientDetail(PatientModel patientModel) {
         linearLayoutPatient.setVisibility(View.VISIBLE);
         textPatient.setText(patientModel.getName());
-        patient_id=patientModel.getPatient_id();
+        patient_id = patientModel.getPatient_id();
     }
 
     @Override
     public void getTimeSlotDetail(SelectDateTimeModel selectDateTimeModel) {
         linearLayoutTimeSlot.setVisibility(View.VISIBLE);
         textTimeSlot.setText(selectDateTimeModel.getTime());
-        time=selectDateTimeModel.getTime();
+        time = selectDateTimeModel.getTime();
     }
 
 
@@ -916,15 +905,15 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         dialog.setCancelable(true);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        final TextInputEditText textComment= dialog.findViewById(R.id.textComment);
-        Button btn_done =dialog.findViewById(R.id.btn_done);
+        final TextInputEditText textComment = dialog.findViewById(R.id.textComment);
+        Button btn_done = dialog.findViewById(R.id.btn_done);
 
 
         btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                comment=textComment.getText().toString().trim();
+                comment = textComment.getText().toString().trim();
                 dialog.dismiss();
                 relativeLayoutCommentsHide.setVisibility(View.VISIBLE);
                 textcommentName.setText(comment);
