@@ -58,12 +58,12 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.My
 
         DoctorListModel txtDoctorName = doctorListModelArrayList.get(position);
 
-
         if (doctorListModelArrayList.get(position).isSelected()) {
             holder.ll_doctorDetail.setBackgroundColor(mContext.getResources().getColor(android.R.color.holo_green_light));
         } else {
             holder.ll_doctorDetail.setBackgroundColor(mContext.getResources().getColor(R.color.cardview_light_background));
         }
+
 
         final String doctor_id;
         holder.txtDoctorName.setText(txtDoctorName.getName());

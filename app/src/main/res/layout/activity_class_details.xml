@@ -68,22 +68,13 @@
                 android:layout_toEndOf="@+id/iv_session"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Session"
-                    android:textColor="@color/gray"
-                    android:textSize="15sp" />
-
 
                 <TextView
                     android:id="@+id/textSession"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:maxLines="1"
-                    android:text="Seesion count"
+                    android:text="Session"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 

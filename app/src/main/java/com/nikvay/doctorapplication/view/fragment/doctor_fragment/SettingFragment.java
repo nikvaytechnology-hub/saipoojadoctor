@@ -13,7 +13,9 @@ import android.widget.Toast;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.ChangePasswordActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.ClassActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.ClassAppointmentListActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.ServiceListActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.SettingActivity;
 
 public class SettingFragment extends Fragment {
 
@@ -24,8 +26,6 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
 
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         mContext = getActivity();
@@ -57,7 +57,8 @@ public class SettingFragment extends Fragment {
         relativeLayoutSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Setting Under Development", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(mContext, SettingActivity.class);
+                startActivity(intent);
             }
         });
         relativeLayoutChangePassword.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +78,8 @@ public class SettingFragment extends Fragment {
         relativeLayoutClassAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Class Appointment List", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(mContext, ClassAppointmentListActivity.class);
+                startActivity(intent);
             }
         });
 

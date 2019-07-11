@@ -292,4 +292,25 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<SuccessModel> listService(@Field("user_id") String user_id);
 
+
+    @POST(EndApi.ADD_CLASS_SESSION)
+    @FormUrlEncoded
+    Call<SuccessModel>  callSessionAdd(@Field("class_id") String class_id,
+                                       @Field("doctor_id") String doctor_id,
+                                       @Field("date") String date,
+                                       @Field("time") String time,
+                                       @Field("label") String label,
+                                       @Field("cost") String cost,
+                                       @Field("no_of_seats") String no_of_seats);
+
+    @POST(EndApi.ADD_ADMIN_SERVICE)
+    @FormUrlEncoded
+    Call<SuccessModel> addNewAdminService(@Field("doctor_id") String doctor_id,
+                                          @Field("user_id") String user_id,
+                                          @Field("s_name") String s_name,
+                                          @Field("service_cost") String service_cost,
+                                          @Field("service_time") String service_time,
+                                          @Field("description") String description);
+
+
 }
