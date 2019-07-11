@@ -165,6 +165,11 @@ public class AdminAddPatientActivity extends AppCompatActivity implements Select
         LinearLayoutManager linearLayoutManagerDoctor = new LinearLayoutManager(getApplicationContext());
         recyclerDialogDoctor.setLayoutManager(linearLayoutManagerDoctor);
 
+
+        Window window = selectDoctorDialog.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+
         //select Doctor End
 
 

@@ -112,6 +112,9 @@ public class AddDoctorActivity extends AppCompatActivity implements SelectDepart
         LinearLayoutManager linearLayoutManagerDepartment = new LinearLayoutManager(getApplicationContext());
         recyclerDialogDepartment.setLayoutManager(linearLayoutManagerDepartment);
 
+        Window window = selectDepartmentDialog.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
         //select Department End
         errorMessageDialog = new ErrorMessageDialog(AddDoctorActivity.this);
         successMessageDialog = new SuccessMessageDialog(AddDoctorActivity.this);

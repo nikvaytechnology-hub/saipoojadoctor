@@ -43,8 +43,6 @@ public class SuccessMessageDialog {
             @Override
             public void run() {
                 dialog.dismiss();
-                Intent intent=new Intent(mContext, MainActivity.class);
-                mContext.startActivity(intent);
                 ((Activity)mContext).finish();
             }
         }, 3000);

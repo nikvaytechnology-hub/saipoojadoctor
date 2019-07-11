@@ -27,10 +27,13 @@ import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.DoctorListAdapter;
+import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.MyDoctorDialogAdapter;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -47,9 +50,10 @@ public class AddServiceActivity extends AppCompatActivity  implements SelectDoct
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private String TAG = getClass().getSimpleName(), doctorName, user_id, service_desc, service_time, service_cost, service_name;
     private Dialog selectDoctorDialog;
-    private ArrayList<DoctorListModel> doctorListModelArrayList;
-    private ArrayList<DoctorListModel> doctorListModelArrayListshow = new ArrayList<>();
-    private DoctorListAdapter myDoctorDialogAdapter, myDoctorListDialogAdapter;
+    private ArrayList<DoctorListModel> doctorListModelArrayList=new ArrayList<>();
+    private ArrayList<DoctorListModel> doctorListModelArrayListSelected=new ArrayList<>();
+
+    private MyDoctorDialogAdapter myDoctorDialogAdapter, myDoctorListDialogAdapter;
     public DoctorListModel doctorListModel = null;
     private RecyclerView recyclerDialogDoctor, recyclerViewDoctorList;
     private AutoCompleteTextView txtDoctorName;
@@ -163,13 +167,14 @@ public class AddServiceActivity extends AppCompatActivity  implements SelectDoct
 
 
                             if (code.equalsIgnoreCase("1")) {
-
+                                doctorListModelArrayList.clear();
                                 doctorListModelArrayList = successModel.getDoctorListModelArrayList();
 
                                 if (doctorListModelArrayList.size() != 0) {
+                                    Collections.reverse(doctorListModelArrayList);
+                                    myDoctorDialogAdapter = new MyDoctorDialogAdapter(AddServiceActivity.this, doctorListModelArrayList, true, AddServiceActivity.this);
+                                   // doctorListModelArrayListSelected.clear();
 
-                                    myDoctorDialogAdapter = new DoctorListAdapter(AddServiceActivity.this, doctorListModelArrayList, true, AddServiceActivity.this);
-                                    doctorListModelArrayListshow.clear();
                                     selectDoctorDialog.show();
                                     Window window = selectDoctorDialog.getWindow();
                                     window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -226,7 +231,7 @@ public class AddServiceActivity extends AppCompatActivity  implements SelectDoct
 
                             if (code.equalsIgnoreCase("1")) {
 
-                                appointmentDialog.showDialog("Add Service Successfully !");
+                                successMessageDialog.showDialog("Add Service Successfully !");
 
                             } else {
                                 errorMessageDialog.showDialog("Wrong Service");
@@ -270,8 +275,8 @@ public class AddServiceActivity extends AppCompatActivity  implements SelectDoct
 
     private JSONArray getDoctorIdArray() {
         List<String> doctor_id_list = new ArrayList<>();
-        for (int i = 0; i < doctorListModelArrayListshow.size(); i++) {
-            doctor_id_list.add(doctorListModelArrayListshow.get(i).getDoctor_id());
+        for (int i = 0; i < doctorListModelArrayListSelected.size(); i++) {
+            doctor_id_list.add(doctorListModelArrayListSelected.get(i).getDoctor_id());
         }
         JSONArray ppJsonArray = new JSONArray(doctor_id_list);
         return ppJsonArray;
@@ -279,11 +284,11 @@ public class AddServiceActivity extends AppCompatActivity  implements SelectDoct
 
 
     @Override
-    public void getDoctor(DoctorListModel DoctorListModel) {
+    public void getDoctor(DoctorListModel doctorListModel) {
 
-        doctorListModelArrayListshow.add(doctorListModel);
-        if (doctorListModelArrayListshow.size() != 0) {
-            myDoctorListDialogAdapter = new DoctorListAdapter(AddServiceActivity.this, doctorListModelArrayListshow, false);
+        doctorListModelArrayListSelected.add(doctorListModel);
+        if (doctorListModelArrayListSelected.size() != 0) {
+            myDoctorListDialogAdapter = new MyDoctorDialogAdapter(AddServiceActivity.this, doctorListModelArrayListSelected, false,AddServiceActivity.this);
             recyclerViewDoctorList.setAdapter(myDoctorListDialogAdapter);
             recyclerViewDoctorList.setVisibility(View.VISIBLE);
 

@@ -189,6 +189,10 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         LinearLayoutManager linearLayoutManagerDoctor = new LinearLayoutManager(getApplicationContext());
         recyclerDialogDoctor.setLayoutManager(linearLayoutManagerDoctor);
 
+
+        Window window = selectDoctorDialog.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
         //select Doctor End
 
 
@@ -212,6 +216,12 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
         LinearLayoutManager linearLayoutManagerService = new LinearLayoutManager(getApplicationContext());
         recyclerDialogService.setLayoutManager(linearLayoutManagerService);
 
+        Window windowService = selectServiceDialog.getWindow();
+        windowService.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+
+
+
         //select Service End
 
 
@@ -233,6 +243,11 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
 
         LinearLayoutManager linearLayoutManagerPatient = new LinearLayoutManager(getApplicationContext());
         recyclerDialogPatient.setLayoutManager(linearLayoutManagerPatient);
+
+
+        Window windowPatient = selectPatientDialog.getWindow();
+        windowPatient.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
 
         //select Patient End
 
