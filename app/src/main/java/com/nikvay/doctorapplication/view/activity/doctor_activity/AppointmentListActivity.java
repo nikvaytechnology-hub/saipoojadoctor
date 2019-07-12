@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
-import com.nikvay.doctorapplication.model.AppoinmentListModel;
+import com.nikvay.doctorapplication.model.AppointmentListModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
@@ -48,7 +48,7 @@ public class AppointmentListActivity extends AppCompatActivity {
     private TextView textAppointmentTitleName;
     private RecyclerView recyclerViewAppointmentList;
     private ErrorMessageDialog errorMessageDialog;
-    private ArrayList<AppoinmentListModel> appoinmentListModelArrayList = new ArrayList<>();
+    private ArrayList<AppointmentListModel> appointmentListModelArrayList = new ArrayList<>();
     private AppointmentListAdapter appointmentListAdapter;
     private ApiInterface apiInterface;
     private ShowProgress showProgress;
@@ -199,14 +199,14 @@ public class AppointmentListActivity extends AppCompatActivity {
                         if (successModel != null) {
                             message = successModel.getMsg();
                             code = successModel.getError_code();
-                            appoinmentListModelArrayList.clear();
+                            appointmentListModelArrayList.clear();
                             if (code.equalsIgnoreCase("1")) {
 
-                                appoinmentListModelArrayList = successModel.getAppoinmentListModelArrayList();
+                                appointmentListModelArrayList = successModel.getAppoinmentListModelArrayList();
 
-                                if (appoinmentListModelArrayList.size() != 0) {
-                                    Collections.reverse(appoinmentListModelArrayList);
-                                    appointmentListAdapter = new AppointmentListAdapter(AppointmentListActivity.this, appoinmentListModelArrayList);
+                                if (appointmentListModelArrayList.size() != 0) {
+                                    Collections.reverse(appointmentListModelArrayList);
+                                    appointmentListAdapter = new AppointmentListAdapter(AppointmentListActivity.this, appointmentListModelArrayList);
                                     recyclerViewAppointmentList.setAdapter(appointmentListAdapter);
                                     iv_no_data_found.setVisibility(View.GONE);
                                     appointmentListAdapter.notifyDataSetChanged();

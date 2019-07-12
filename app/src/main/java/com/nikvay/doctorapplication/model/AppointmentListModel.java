@@ -2,7 +2,7 @@ package com.nikvay.doctorapplication.model;
 
 import java.io.Serializable;
 
-public class AppoinmentListModel implements Serializable {
+public class AppointmentListModel implements Serializable {
    private  String appointment_id;
    private  String date;
    private  String time;
@@ -19,7 +19,7 @@ public class AppoinmentListModel implements Serializable {
    private  String comment;
 
 
-    public AppoinmentListModel(String appointment_id, String date, String time, String service_id, String label, String s_name, String service_cost, String patient_id, String name, String email, String address, String phone_no,String service_time,String comment) {
+    public AppointmentListModel(String appointment_id, String date, String time, String service_id, String label, String s_name, String service_cost, String patient_id, String name, String email, String address, String phone_no, String service_time, String comment) {
         this.appointment_id = appointment_id;
         this.date = date;
         this.time = time;

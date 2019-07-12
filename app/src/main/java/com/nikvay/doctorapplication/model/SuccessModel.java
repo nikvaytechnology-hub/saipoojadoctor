@@ -31,7 +31,7 @@ public class SuccessModel {
 
 
     @SerializedName("appointment")
-    ArrayList<AppoinmentListModel> appoinmentListModelArrayList;
+    ArrayList<AppointmentListModel> appoinmentListModelArrayList;
 
     @SerializedName("classList")
     ArrayList<ClassModel> classModelArrayList;
@@ -131,11 +131,11 @@ public class SuccessModel {
         return patientModelArrayList;
     }
 
-    public ArrayList<AppoinmentListModel> getAppoinmentListModelArrayList() {
+    public ArrayList<AppointmentListModel> getAppoinmentListModelArrayList() {
         return appoinmentListModelArrayList;
     }
 
-    public void setAppoinmentListModelArrayList(ArrayList<AppoinmentListModel> appoinmentListModelArrayList) {
+    public void setAppoinmentListModelArrayList(ArrayList<AppointmentListModel> appoinmentListModelArrayList) {
         this.appoinmentListModelArrayList = appoinmentListModelArrayList;
     }
 

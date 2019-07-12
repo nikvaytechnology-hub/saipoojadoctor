@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
-import com.nikvay.doctorapplication.model.AppoinmentListModel;
+import com.nikvay.doctorapplication.model.AppointmentListModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
@@ -49,7 +49,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
     private ServiceModel serviceModel;
-    private AppoinmentListModel appoinmentListModel;
+    private AppointmentListModel appoinmentListModel;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private String mTitle, reschedule="", service_id, TAG = getClass().getSimpleName(), doctor_id, user_id;
 
@@ -120,7 +120,7 @@ public class DateTimeSelectActivity extends AppCompatActivity {
             mTitle = bundle.getString(StaticContent.IntentKey.ACTIVITY_TYPE);
             if (mTitle.equalsIgnoreCase(StaticContent.IntentValue.RESCHEDULE)) {
                 reschedule = StaticContent.IntentKey.RESCHEDULE;
-                appoinmentListModel= (AppoinmentListModel) bundle.getSerializable(StaticContent.IntentKey.APPOINTMENT);
+                appoinmentListModel= (AppointmentListModel) bundle.getSerializable(StaticContent.IntentKey.APPOINTMENT);
             } else {
                 serviceModel = (ServiceModel) bundle.getSerializable(StaticContent.IntentKey.SERVICE_DETAIL);
                 service_id = serviceModel.getService_id();

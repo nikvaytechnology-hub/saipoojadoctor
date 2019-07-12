@@ -9,21 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
-import com.nikvay.doctorapplication.interfaceutils.SelectTimeSlotInterface;
-import com.nikvay.doctorapplication.model.AppoinmentListModel;
 import com.nikvay.doctorapplication.model.ClassModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
-import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.StaticContent;
-import com.nikvay.doctorapplication.view.activity.doctor_activity.AppointmentDetailsActivity;
-import com.nikvay.doctorapplication.view.activity.doctor_activity.ClassTimeSlotActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.CreateSessionActivity;
-import com.nikvay.doctorapplication.view.activity.doctor_activity.PatientActivity;
-import com.nikvay.doctorapplication.view.activity.doctor_activity.SessionDetailsActivity;
 
 import java.util.ArrayList;
 

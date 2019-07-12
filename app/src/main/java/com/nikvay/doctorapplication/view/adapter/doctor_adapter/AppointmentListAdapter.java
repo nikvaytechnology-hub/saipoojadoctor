@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
-import com.nikvay.doctorapplication.model.AppoinmentListModel;
+import com.nikvay.doctorapplication.model.AppointmentListModel;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.AppointmentDetailsActivity;
 
@@ -25,9 +25,9 @@ import java.util.Date;
 
 public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentListAdapter.MyViewHolder> implements Filterable {
     private Context mContext;
-    private ArrayList<AppoinmentListModel> appoinmentListModelArrayList;
-    private ArrayList<AppoinmentListModel> arrayListFiltered;
-    public AppointmentListAdapter(Context mContext, ArrayList<AppoinmentListModel> appoinmentListModelArrayList) {
+    private ArrayList<AppointmentListModel> appoinmentListModelArrayList;
+    private ArrayList<AppointmentListModel> arrayListFiltered;
+    public AppointmentListAdapter(Context mContext, ArrayList<AppointmentListModel> appoinmentListModelArrayList) {
         this.mContext = mContext;
         this.appoinmentListModelArrayList = appoinmentListModelArrayList;
         this.arrayListFiltered = appoinmentListModelArrayList;
@@ -43,7 +43,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        AppoinmentListModel appoinmentListModel= appoinmentListModelArrayList.get(position);
+        AppointmentListModel appoinmentListModel= appoinmentListModelArrayList.get(position);
         String date=appoinmentListModel.getDate(),dayOfTheWeek = null;
        
         holder.textDay.setText(appoinmentListModel.getDate());
@@ -93,7 +93,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
                 if (charString.isEmpty() || charSequence.equals("")) {
                     appoinmentListModelArrayList = arrayListFiltered;
                 } else {
-                    ArrayList<AppoinmentListModel> filteredList = new ArrayList<>();
+                    ArrayList<AppointmentListModel> filteredList = new ArrayList<>();
                     for (int i = 0; i < appoinmentListModelArrayList.size(); i++) {
 
                         String serviceName=appoinmentListModelArrayList.get(i).getDate().replaceAll("\\s","").toLowerCase().trim();
@@ -116,7 +116,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                appoinmentListModelArrayList = (ArrayList<AppoinmentListModel>) filterResults.values;
+                appoinmentListModelArrayList = (ArrayList<AppointmentListModel>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

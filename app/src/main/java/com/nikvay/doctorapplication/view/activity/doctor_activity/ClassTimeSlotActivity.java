@@ -16,18 +16,15 @@ import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
-import com.nikvay.doctorapplication.model.AppoinmentListModel;
 import com.nikvay.doctorapplication.model.ClassModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
-import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.ClassTimeSlotAdapter;
-import com.nikvay.doctorapplication.view.adapter.doctor_adapter.SelectDateTimeAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

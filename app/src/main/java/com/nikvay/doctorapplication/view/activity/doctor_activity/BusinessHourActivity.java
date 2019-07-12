@@ -595,7 +595,7 @@ public class BusinessHourActivity extends AppCompatActivity {
     private boolean doValidation() {
         if (status == "1") {
             if (startTimeSunday == null || endTimeSunday == null) {
-                errorMessageDialog.showDialog("please select Sunday time");
+                errorMessageDialog.showDialog("please select Sunday Start And End Time");
                 return false;
             }
             return true;
@@ -603,7 +603,7 @@ public class BusinessHourActivity extends AppCompatActivity {
 
         if (status == "2") {
             if (startTimeMonday == null || endTimeMonday == null) {
-                errorMessageDialog.showDialog("please select Monday time");
+                errorMessageDialog.showDialog("please select Monday Start And End Time");
                 return false;
             }
             return true;
@@ -611,7 +611,7 @@ public class BusinessHourActivity extends AppCompatActivity {
 
         if (status == "3") {
             if (startTimeTuesday == null || endTimeTuesday == null) {
-                errorMessageDialog.showDialog("please select Tuesday time");
+                errorMessageDialog.showDialog("please select Tuesday Start And End Time");
                 return false;
             }
             return true;
@@ -619,28 +619,28 @@ public class BusinessHourActivity extends AppCompatActivity {
 
         if (status == "4") {
             if (startTimeWednesday == null || endTimeWednesday == null) {
-                errorMessageDialog.showDialog("please select Wednesday time");
+                errorMessageDialog.showDialog("please select Wednesday Start And End Time");
                 return false;
             }
             return true;
         }
         if (status == "5") {
             if (startTimeThirsday == null || endTimeThirsday == null) {
-                errorMessageDialog.showDialog("please select Thirsday time");
+                errorMessageDialog.showDialog("please select Thursday Start And End Time");
                 return false;
             }
             return true;
         }
         if (status == "6") {
             if (startTimeFriday == null || endTimeFriday == null) {
-                errorMessageDialog.showDialog("please select Friday time");
+                errorMessageDialog.showDialog("please select Friday Start And End Time");
                 return false;
             }
             return true;
         }
         if (status == "7") {
             if (startTimeSaturaday == null || endTimeSaturaday == null) {
-                errorMessageDialog.showDialog("please select Saturaday time");
+                errorMessageDialog.showDialog("please select saturday Start And End Time");
                 return false;
             }
             return true;

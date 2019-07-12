@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.interfaceutils.SelectTimeSlotInterface;
-import com.nikvay.doctorapplication.model.AppoinmentListModel;
+import com.nikvay.doctorapplication.model.AppointmentListModel;
 import com.nikvay.doctorapplication.model.SelectDateTimeModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
@@ -30,11 +30,11 @@ public class SelectDateTimeAdapter extends RecyclerView.Adapter<SelectDateTimeAd
     private String date;
     private ErrorMessageDialog errorMessageDialog;
     private String reschedule;
-    private AppoinmentListModel appoinmentListModel;
+    private AppointmentListModel appoinmentListModel;
     private Boolean isDialog = false;
     private SelectTimeSlotInterface selectTimeSlotInterface;
 
-    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, ServiceModel serviceModel, String date, String reschedule, AppoinmentListModel appoinmentListModel) {
+    public SelectDateTimeAdapter(Context context, ArrayList<SelectDateTimeModel> selectDateTimeModelArrayList, ServiceModel serviceModel, String date, String reschedule, AppointmentListModel appoinmentListModel) {
         this.mContext = context;
         this.selectDateTimeModelArrayList = selectDateTimeModelArrayList;
         this.serviceModel = serviceModel;

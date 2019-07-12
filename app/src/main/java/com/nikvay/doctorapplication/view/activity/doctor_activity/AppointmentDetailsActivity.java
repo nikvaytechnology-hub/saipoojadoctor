@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
-import com.nikvay.doctorapplication.model.AppoinmentListModel;
+import com.nikvay.doctorapplication.model.AppointmentListModel;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.AppointmentDialog;
@@ -34,7 +34,7 @@ import retrofit2.Response;
 
 public class AppointmentDetailsActivity extends AppCompatActivity {
 
-    private AppoinmentListModel appoinmentListModel;
+    private AppointmentListModel appoinmentListModel;
     private TextView textDateDay, textTime, textPatientName, textEmail, textContact, textServiceName, textDuration, textServiceCost, textcommentName, textLabelName, textPending, textConfirm, textCancel, textComplete;
     private ApiInterface apiInterface;
     private ImageView iv_close;
@@ -64,7 +64,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
                 isReschedule="1";
             }
 
-            appoinmentListModel = (AppoinmentListModel) bundle.getSerializable(StaticContent.IntentKey.APPOINTMENT);
+            appoinmentListModel = (AppointmentListModel) bundle.getSerializable(StaticContent.IntentKey.APPOINTMENT);
 
             date = appoinmentListModel.getDate();
             time = appoinmentListModel.getTime();
