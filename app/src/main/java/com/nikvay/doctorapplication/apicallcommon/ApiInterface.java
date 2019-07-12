@@ -17,6 +17,18 @@ public interface ApiInterface {
                                  @Field("device_token") String device_token);
 
 
+
+    @POST(EndApi.UPDATE_PROFILE)
+    @FormUrlEncoded
+    Call<SuccessModel> updateProfile(@Field("doctor_id") String doctor_id,
+                                 @Field("user_id") String user_id,
+                                 @Field("name") String name,
+                                 @Field("email") String email,
+                                 @Field("profile") String profile,
+                                 @Field("address") String address);
+
+
+
     @POST(EndApi.SERVICE_LIST)
     @FormUrlEncoded
     Call<SuccessModel> serviceList(@Field("doctor_id") String doctor_id);

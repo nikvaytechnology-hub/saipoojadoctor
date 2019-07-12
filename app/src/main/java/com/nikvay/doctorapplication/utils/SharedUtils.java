@@ -82,6 +82,16 @@ public class SharedUtils {
         userDetailsModuleArrayList.add(doctorModel);
         return userDetailsModuleArrayList;
     }
+    public static void updateProfile(Context mContext,String name,String email,String address,String profile)
+    {
+        preferences = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        editor.putString(StaticContent.UserData.NAME,name);
+        editor.putString(StaticContent.UserData.EMAIL, email);
+        editor.putString(StaticContent.UserData.ADDRESS, address);
+        editor.putString(StaticContent.UserData.PROFILE,profile);
+        editor.commit();
+    }
 
     public static boolean clearShareUtils(Context mContext){
         SharedPreferences settings = mContext.getSharedPreferences(StaticContent.UserData.MY_PREFERENCE, Activity.MODE_PRIVATE);

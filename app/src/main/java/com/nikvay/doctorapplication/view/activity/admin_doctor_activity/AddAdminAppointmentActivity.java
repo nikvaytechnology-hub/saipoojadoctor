@@ -717,6 +717,7 @@ public class AddAdminAppointmentActivity extends AppCompatActivity implements Se
                                     // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
                                     recyclerDialogService.setVisibility(View.VISIBLE);
+                                    errorMessageDialog.showDialog("No Any Service Available For This Doctor");
                                 }
 
                             } else {

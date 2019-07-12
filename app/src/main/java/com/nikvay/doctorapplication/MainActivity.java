@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewDrawer;
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
     private LinearLayout ll_header_profile;
+    private String doctorName,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +78,11 @@ public class MainActivity extends AppCompatActivity {
 
         doctorModelArrayList= SharedUtils.getUserDetails(MainActivity.this);
         doctor_id=doctorModelArrayList.get(0).getDoctor_id();
+        doctorName = doctorModelArrayList.get(0).getName();
+        email = doctorModelArrayList.get(0).getEmail();
         is_super_admin=doctorModelArrayList.get(0).getIs_super_admin();
-        textName.setText(doctorModelArrayList.get(0).getName());
-        textEmail.setText(doctorModelArrayList.get(0).getEmail());
+        textName.setText(doctorName);
+        //textEmail.setText(email);
 
         //Handle Null Pointer
         is_super_admin=is_super_admin==null?"":is_super_admin;

@@ -56,8 +56,6 @@ public class LogoutApplicationDialog {
                 mContext.startActivity(intent);
                 ((Activity)mContext).finish();
 
-
-
             }
         });
 

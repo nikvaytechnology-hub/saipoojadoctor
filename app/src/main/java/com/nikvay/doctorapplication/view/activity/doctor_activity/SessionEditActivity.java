@@ -214,16 +214,27 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (NetworkUtils.isNetworkAvailable(SessionEditActivity.this))
-                {
-                    callEdiSession();
-                }
-                else
-                    NetworkUtils.isNetworkNotAvailable(SessionEditActivity.this);
 
+
+
+                if(validation ()) {
+                    if (NetworkUtils.isNetworkAvailable(SessionEditActivity.this)) {
+                        callEdiSession();
+                    } else
+                        NetworkUtils.isNetworkNotAvailable(SessionEditActivity.this);
+                }
             }
         });
 
+    }
+
+    private boolean validation() {
+        if(patientModelArrayListSelected.size()==0)
+        {
+            errorMessageDialog.showDialog("Please Select Patient");
+            return false;
+        }
+        return true;
     }
 
 
