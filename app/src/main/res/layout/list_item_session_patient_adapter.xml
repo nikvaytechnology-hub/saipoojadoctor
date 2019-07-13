@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_marginTop="5dp"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Patient Name"
+        android:id="@+id/textPatientName"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>

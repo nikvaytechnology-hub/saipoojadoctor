@@ -353,8 +353,14 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<SuccessModel> editSession(@Field("session_id") String session_id,
                                    @Field("patient_id") String patient_id,
-                                   @Field("doctor_id") String doctor_id);
+                                   @Field("doctor_id") String doctor_id,
+                                   @Field("doctor_id") String no_of_seats);
 
     @POST(EndApi.ADMIN_CLASS_LIST)
     Call<SuccessModel> adminCallList();
+
+
+    @POST(EndApi.SESSION_ADDED_PATIENT_LIST)
+    @FormUrlEncoded
+    Call<SuccessModel>  listSessionPatientAdded(@Field("session_id") String session_id);
 }

@@ -75,6 +75,9 @@ public class SuccessModel {
     @SerializedName("listSession")
     ArrayList<SessionListModel> sessionListModelArrayList;
 
+    @SerializedName("listSessionPatient")
+    ArrayList<SessionPatientAddedModel> sessionPatientAddedModelArrayList;
+
 
 
     public ArrayList<PaymentDetailModel> getPaymentDetailModelArrayList() {
@@ -273,6 +276,14 @@ public class SuccessModel {
 
     public void setSessionListModelArrayList(ArrayList<SessionListModel> sessionListModelArrayList) {
         this.sessionListModelArrayList = sessionListModelArrayList;
+    }
+
+    public ArrayList<SessionPatientAddedModel> getSessionPatientAddedModelArrayList() {
+        return sessionPatientAddedModelArrayList;
+    }
+
+    public void setSessionPatientAddedModelArrayList(ArrayList<SessionPatientAddedModel> sessionPatientAddedModelArrayList) {
+        this.sessionPatientAddedModelArrayList = sessionPatientAddedModelArrayList;
     }
 
     public void setPatientModelArrayList(ArrayList<PatientModel> patientModelArrayList) {
