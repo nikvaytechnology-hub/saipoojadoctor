@@ -1,6 +1,9 @@
 package com.nikvay.doctorapplication;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +16,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +29,7 @@ import com.nikvay.doctorapplication.utils.RecyclerItemClickListener;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AdminMainActivity;
+import com.nikvay.doctorapplication.view.activity.common_activity.LoginActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.EnquiryActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PatientActivity;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
@@ -41,18 +46,22 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ImageView iv_menu_toolbar, iv_notification;
-    private String fragmentName = null,doctor_id,is_super_admin;
+    private String fragmentName = null, doctor_id, is_super_admin;
     private Fragment fragmentInstance;
     private FragmentManager fragmentManager;
-    private TextView textTitleName,textName,textEmail;
+    private TextView textTitleName, textName, textEmail;
 
     private boolean doubleBackToExitPressedOnce = false;
     ArrayList<DrawerItem> drawerItemArrayList;
     public static RecyclerView.Adapter drawerItemAdapter;
     private RecyclerView recyclerViewDrawer;
-    private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
+    private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private LinearLayout ll_header_profile;
-    private String doctorName,email;
+    private String doctorName, email;
+
+    //Logout Application
+    private Dialog dialog;
+    private TextView txt_cancel, txt_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,23 +85,22 @@ public class MainActivity extends AppCompatActivity {
         textEmail = findViewById(R.id.textEmail);
         ll_header_profile = findViewById(R.id.ll_header_profile);
 
-        doctorModelArrayList= SharedUtils.getUserDetails(MainActivity.this);
-        doctor_id=doctorModelArrayList.get(0).getDoctor_id();
+        doctorModelArrayList = SharedUtils.getUserDetails(MainActivity.this);
+        doctor_id = doctorModelArrayList.get(0).getDoctor_id();
         doctorName = doctorModelArrayList.get(0).getName();
         email = doctorModelArrayList.get(0).getEmail();
-        is_super_admin=doctorModelArrayList.get(0).getIs_super_admin();
+        is_super_admin = doctorModelArrayList.get(0).getIs_super_admin();
         textName.setText(doctorName);
         //textEmail.setText(email);
 
         //Handle Null Pointer
-        is_super_admin=is_super_admin==null?"":is_super_admin;
+        is_super_admin = is_super_admin == null ? "" : is_super_admin;
 
 
         drawerItemArrayList = new ArrayList<>();
         drawerItemArrayList.add(new DrawerItem(R.drawable.home, StaticContent.DrawerItem.DASHBOARD));
         drawerItemArrayList.add(new DrawerItem(R.drawable.profile_image, StaticContent.DrawerItem.MY_ACCOUNT));
-        if(is_super_admin.equalsIgnoreCase("1"))
-        {
+        if (is_super_admin.equalsIgnoreCase("1")) {
             drawerItemArrayList.add(new DrawerItem(R.drawable.admin, StaticContent.DrawerItem.ADMIN_PANEL));
         }
         drawerItemArrayList.add(new DrawerItem(R.drawable.appointment, StaticContent.DrawerItem.APPOINTMENT));
@@ -113,6 +121,18 @@ public class MainActivity extends AppCompatActivity {
         drawerItemAdapter.notifyDataSetChanged();
 
 
+        //Logout Application
+        dialog = new Dialog(MainActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_logout);
+        txt_cancel = dialog.findViewById(R.id.txt_cancel);
+        txt_logout = dialog.findViewById(R.id.txt_logout);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        Window window = dialog.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+
 
 
         loadFragment(new HomeFragment());
@@ -125,13 +145,12 @@ public class MainActivity extends AppCompatActivity {
             String title = intent.getStringExtra("TITLE");
             String description = intent.getStringExtra("DESCRIPTION");
             String redirectId = intent.getStringExtra("REDIRECT_ID");
-           // Toast.makeText(this, redirectId, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, redirectId, Toast.LENGTH_SHORT).show();
             redirectNotification(redirectId);
         }
 
 
     }
-
 
 
     public void loadFragment(Fragment fragment) {
@@ -222,6 +241,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        txt_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        txt_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedUtils.removeSharedUtils(MainActivity.this);
+                SharedUtils.clearShareUtils(MainActivity.this);
+                Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
     }
 
     private void displayActivity(String name) {
@@ -237,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case StaticContent.DrawerItem.MY_PATIENT:
-                Intent intent=new Intent(MainActivity.this, PatientActivity.class);
+                Intent intent = new Intent(MainActivity.this, PatientActivity.class);
                 startActivity(intent);
                 break;
 
@@ -250,16 +288,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case StaticContent.DrawerItem.ENQUIRY:
-                Intent intent_enquiry=new Intent(MainActivity.this, EnquiryActivity.class);
+                Intent intent_enquiry = new Intent(MainActivity.this, EnquiryActivity.class);
                 startActivity(intent_enquiry);
                 break;
 
             case StaticContent.DrawerItem.LOGOUT:
-                logoutApplication();
+                dialog.show();
                 break;
 
             case StaticContent.DrawerItem.ADMIN_PANEL:
-                Intent admin_dashboard_intent=new Intent(MainActivity.this, AdminMainActivity.class);
+                Intent admin_dashboard_intent = new Intent(MainActivity.this, AdminMainActivity.class);
                 startActivity(admin_dashboard_intent);
                 break;
 
@@ -301,17 +339,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void logoutApplication() {
-        LogoutApplicationDialog logout_application = new LogoutApplicationDialog(MainActivity.this);
-        logout_application.showDialog();
-    }
 
     private void redirectNotification(String redirectId) {
 
         if (redirectId != null) {
             switch (redirectId) {
                 case "1":
-                 loadFragment(new AppointmentFragment());
+                    loadFragment(new AppointmentFragment());
                     break;
             }
         }
