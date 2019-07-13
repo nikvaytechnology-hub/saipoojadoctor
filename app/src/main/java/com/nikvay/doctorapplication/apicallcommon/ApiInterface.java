@@ -354,7 +354,7 @@ public interface ApiInterface {
     Call<SuccessModel> editSession(@Field("session_id") String session_id,
                                    @Field("patient_id") String patient_id,
                                    @Field("doctor_id") String doctor_id,
-                                   @Field("doctor_id") String no_of_seats);
+                                   @Field("no_of_seats") String no_of_seats);
 
     @POST(EndApi.ADMIN_CLASS_LIST)
     Call<SuccessModel> adminCallList();

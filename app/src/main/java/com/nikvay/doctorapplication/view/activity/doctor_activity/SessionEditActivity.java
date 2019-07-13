@@ -254,7 +254,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         if (patientModelArrayListSelected.size() == 0) {
             errorMessageDialog.showDialog("Please Select Patient");
             return false;
-        } else if(patientModelArrayListSelected.size()==no_of_seats)
+        } else if(patientModelArrayListSelected.size()>no_of_seats)
         {
             errorMessageDialog.showDialog("Please select less or equal to Seats");
             return false;
@@ -397,12 +397,12 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
                                 if (sessionPatientAddedModelArrayList.size() != 0) {
                                     linearLayoutPatientAddedList.setVisibility(View.VISIBLE);
                                     sessionPatientAddedListAdapter = new SessionPatientAddedListAdapter(getApplicationContext(),sessionPatientAddedModelArrayList);
-                                    recyclerViewPatientAddList.setAdapter(patientMultipleSelecationAdapter);
+                                    recyclerViewPatientAddList.setAdapter(sessionPatientAddedListAdapter);
                                     sessionPatientAddedListAdapter.notifyDataSetChanged();
 
                                     // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
-                                    recyclerViewPatient.setVisibility(View.GONE);
+                                    recyclerViewPatientAddList.setVisibility(View.GONE);
                                     linearLayoutPatientAddedList.setVisibility(View.GONE);
                                     sessionPatientAddedListAdapter.notifyDataSetChanged();
                                 }
