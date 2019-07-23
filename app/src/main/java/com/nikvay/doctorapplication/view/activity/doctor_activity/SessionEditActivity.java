@@ -55,7 +55,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
     private ImageView iv_close;
     private TextView textClass, textCost, textDate, textSeats;
-    private Button btnEdit;
+   // private Button btnEdit;
     private SessionListModel sessionListModel;
     private LinearLayout linearLayoutPatient, linearLayoutSelectPatient;
     private RecyclerView recyclerViewPatient;
@@ -105,7 +105,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         textCost = findViewById(R.id.textCost);
         textDate = findViewById(R.id.textDate);
         textSeats = findViewById(R.id.textSeats);
-        btnEdit = findViewById(R.id.btnEdit);
+       // btnEdit = findViewById(R.id.btnEdit);
         recyclerViewPatient = findViewById(R.id.recyclerViewPatient);
 
         linearLayoutPatientAddedList = findViewById(R.id.linearLayoutPatientAddedList);
@@ -199,6 +199,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         btnOkDialogPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                callEdiSession();
                 editSearchPatient.setText("");
                 selectPatientDialog.dismiss();
 
@@ -234,7 +235,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         });
 
 
-        btnEdit.setOnClickListener(new View.OnClickListener() {
+       /* btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -247,7 +248,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
                 }
             }
         });
-
+*/
     }
 
     private boolean validation() {
@@ -369,7 +370,8 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
     }
 
 
-    private void callListPatientAdded() {
+    private void callListPatientAdded()
+    {
         //  showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.listSessionPatientAdded(session_id);
 
@@ -444,9 +446,11 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
     }
 
-    private JSONArray getPatientIdArray() {
+    private JSONArray getPatientIdArray()
+    {
         List<String> patient_id = new ArrayList<>();
-        for (int i = 0; i < patientModelArrayListSelected.size(); i++) {
+        for (int i = 0; i < patientModelArrayListSelected.size(); i++)
+        {
             patient_id.add(patientModelArrayListSelected.get(i).getPatient_id());
         }
         JSONArray ppJsonArray = new JSONArray(patient_id);

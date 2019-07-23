@@ -2,6 +2,7 @@ package com.nikvay.doctorapplication.view.adapter.doctor_adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,7 @@ public class SessionListAdapter extends RecyclerView.Adapter<SessionListAdapter.
     private Context mContext;
     private ArrayList<SessionListModel> sessionListModelArrayList;
     private ArrayList<SessionListModel> arrayListFiltered;
+    SharedPreferences sharedPreferences;
 
     public SessionListAdapter(Context mContext, ArrayList<SessionListModel> sessionListModelArrayList) {
         this.mContext = mContext;
@@ -47,7 +49,12 @@ public class SessionListAdapter extends RecyclerView.Adapter<SessionListAdapter.
         String date_time=sessionListModel.getDate()+"/"+sessionListModel.getTime();
         holder.textDate_time.setText(date_time);
         holder.textClassName.setText(sessionListModel.getName_class());
-
+        SharedPreferences sharedPreferences;
+        sharedPreferences=mContext.getSharedPreferences("className",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("className",sessionListModel.getName_class());
+        editor.apply();
+        editor.commit();
         holder.cardViewSessionList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

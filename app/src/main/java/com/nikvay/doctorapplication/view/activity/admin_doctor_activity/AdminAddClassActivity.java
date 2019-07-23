@@ -5,10 +5,12 @@ import android.os.Bundle;
 
 import com.nikvay.doctorapplication.R;
 
-public class AdminAddClassActivity extends AppCompatActivity {
+public class AdminAddClassActivity extends AppCompatActivity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_class);
     }

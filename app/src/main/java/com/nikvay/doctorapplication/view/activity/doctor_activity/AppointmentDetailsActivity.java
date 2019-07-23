@@ -32,7 +32,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AppointmentDetailsActivity extends AppCompatActivity {
+public class AppointmentDetailsActivity extends AppCompatActivity
+{
 
     private AppointmentListModel appoinmentListModel;
     private TextView textDateDay, textTime, textPatientName, textEmail, textContact, textServiceName, textDuration, textServiceCost, textcommentName, textLabelName, textPending, textConfirm, textCancel, textComplete;

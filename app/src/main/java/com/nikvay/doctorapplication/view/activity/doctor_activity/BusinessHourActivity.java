@@ -950,7 +950,7 @@ public class BusinessHourActivity extends AppCompatActivity {
         for (int i = 0; i < selectDoctorTimeModelArrayList.size(); i++) {
             dayList.add(selectDoctorTimeModelArrayList.get(i).getDay());
         }
-        JSONArray pJsonArray = new JSONArray(dayList);
+        JSONArray pJsonArray = new JSONArray(dayList)                                                                           ;
         return pJsonArray;
     }
 

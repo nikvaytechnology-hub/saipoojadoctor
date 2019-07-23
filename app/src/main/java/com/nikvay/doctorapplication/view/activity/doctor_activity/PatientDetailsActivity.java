@@ -57,15 +57,13 @@ public class PatientDetailsActivity extends AppCompatActivity {
 
         relativeLayoutPayment.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(PatientDetailsActivity.this, PaymentHistoryActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, patientModel);
                 intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_EDIT_PATIENT);
                 startActivity(intent);
-
-
             }
         });
 

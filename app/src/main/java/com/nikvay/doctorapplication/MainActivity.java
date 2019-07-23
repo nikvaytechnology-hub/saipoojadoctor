@@ -41,7 +41,8 @@ import com.nikvay.doctorapplication.view.fragment.doctor_fragment.SettingFragmen
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
 
     private DrawerLayout drawerLayout;

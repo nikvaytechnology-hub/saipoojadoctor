@@ -28,6 +28,7 @@ import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.adapter.DrawerItemAdapter;
 import com.nikvay.doctorapplication.view.fragment.admin_doctor_fragment.AdminHomeFragment;
+import com.nikvay.doctorapplication.view.fragment.doctor_fragment.SettingFragment;
 
 import java.util.ArrayList;
 
@@ -178,6 +179,9 @@ public class AdminMainActivity extends AppCompatActivity {
             case StaticContent.DrawerItemAdmin.LOGOUT:
                 logoutApplication();
                 break;
+            case  StaticContent.DrawerItemAdmin.SETTINGS:
+                new SettingFragment();
+                break;
 
         }
     }
@@ -209,7 +213,9 @@ public class AdminMainActivity extends AppCompatActivity {
                     doubleBackToExitPressedOnce = false;
                 }
             }, 1000);
-        } else {
+        }
+        else
+            {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -217,10 +223,9 @@ public class AdminMainActivity extends AppCompatActivity {
         }
     }
 
-    private void logoutApplication() {
+    private void logoutApplication()
+    {
         LogoutApplicationDialog logout_application = new LogoutApplicationDialog(AdminMainActivity.this);
         logout_application.showDialog();
     }
-
-
 }

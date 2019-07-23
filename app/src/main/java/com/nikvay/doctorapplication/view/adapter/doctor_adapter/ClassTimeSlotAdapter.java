@@ -64,6 +64,8 @@ public class ClassTimeSlotAdapter extends RecyclerView.Adapter<ClassTimeSlotAdap
                     errorMessageDialog.showDialog("This Slot Is Already Booked");
                 } else {
                     Intent intent=new Intent(mContext, CreateSessionActivity.class);
+                    intent.putExtra("date",date);
+                    intent.putExtra("time",selectDateTimeModel.getTime());
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
                     intent.putExtra(StaticContent.IntentKey.DATE, date);

@@ -1,6 +1,7 @@
 package com.nikvay.doctorapplication.view.activity.common_activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.MainActivity;
@@ -42,12 +44,12 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private ShowProgress showProgress;
     private String is_super_doctor;
-
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        sharedPreferences=getSharedPreferences("login_status",MODE_PRIVATE);
         find_All_Ids();
         events();
     }
@@ -167,7 +169,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginAdminIntent() {
-
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("login_status","admin");
+        editor.apply();
+        editor.commit();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -94,6 +95,9 @@ public class ClassTimeSlotActivity extends AppCompatActivity {
 
 
     private void find_All_Ids() {
+
+        doctor_id=getIntent().getStringExtra("doctor_id");
+        user_id=getIntent().getStringExtra("user_id");
         recyclerViewTime = findViewById(R.id.recyclerViewTime);
         iv_close = findViewById(R.id.iv_close);
         calendarView = findViewById(R.id.calendarView);
@@ -109,8 +113,8 @@ public class ClassTimeSlotActivity extends AppCompatActivity {
         calendarView.setMinDate(System.currentTimeMillis() - 1000);
 
         doctorModelArrayList = SharedUtils.getUserDetails(ClassTimeSlotActivity.this);
-        doctor_id = doctorModelArrayList.get(0).getDoctor_id();
-        user_id = doctorModelArrayList.get(0).getUser_id();
+       // doctor_id = doctorModelArrayList.get(0).getDoctor_id();
+       // user_id = doctorModelArrayList.get(0).getUser_id();
 
 
 
@@ -133,11 +137,11 @@ public class ClassTimeSlotActivity extends AppCompatActivity {
 
     private void callTimeSlot() {
 
+        Toast.makeText(ClassTimeSlotActivity.this, doctor_id+""+user_id, Toast.LENGTH_SHORT).show();
 
         Call<SuccessModel> call = apiInterface.appointmentTimeSlot(date, doctor_id,user_id);
-
-
         call.enqueue(new Callback<SuccessModel>() {
+
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
                 String str_response = new Gson().toJson(response.body());

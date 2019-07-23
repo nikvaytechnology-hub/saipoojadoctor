@@ -161,7 +161,6 @@ public class ClassActivity extends AppCompatActivity {
                                 classModelArrayList=successModel.getClassModelArrayList();
 
                                 if(classModelArrayList.size()!=0) {
-
                                     classAdapter = new ClassAdapter(ClassActivity.this, classModelArrayList);
                                     recyclerClassList.setAdapter(classAdapter);
                                     iv_no_data_found.setVisibility(View.GONE);

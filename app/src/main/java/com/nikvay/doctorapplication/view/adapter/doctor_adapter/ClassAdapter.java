@@ -2,6 +2,7 @@ package com.nikvay.doctorapplication.view.adapter.doctor_adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.ClassModel;
@@ -41,14 +43,32 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        ClassModel classModel=classModelArrayList.get(position);
+        final ClassModel classModel=classModelArrayList.get(position);
         holder.textClassName.setText(classModel.getName());
-        holder.textClassDate.setText(classModel.getDate());
+        final String class_id=classModel.getClass_id();
+        final String class_name=classModel.getName();
+        final String date=classModel.getDate();
+        final int count=classModel.getSession_count();
+
+        // holder.textClassDate.setText(classModel.getDate());
+        SharedPreferences sharedPreferences=mContext.getSharedPreferences("class_name",Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("class_name",class_name);
+        editor.putString("class_id",class_id);
 
         holder.relativeLayoutClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(mContext, ClassDetailsActivity.class);
+                intent.putExtra("class_id",class_id);
+                intent.putExtra("count",count);
+                editor.putString("count", String.valueOf(count));
+                editor.putString("date",date);
+
+                editor.apply();
+                editor.commit();
+                intent.putExtra("class_name",class_name);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL, classModelArrayList.get(position));
                 intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
@@ -110,7 +130,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textClassName=itemView.findViewById(R.id.textClassName);
-            textClassDate=itemView.findViewById(R.id.textClassDate);
+            //textClassDate=itemView.findViewById(R.id.textClassDate);
             relativeLayoutClass=itemView.findViewById(R.id.relativeLayoutClass);
         }
     }

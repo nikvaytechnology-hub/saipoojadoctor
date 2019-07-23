@@ -1,6 +1,7 @@
 package com.nikvay.doctorapplication.view.activity.doctor_activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +15,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
@@ -26,6 +29,7 @@ import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.StaticContent;
+import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddInstructor;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.ServiceListAdapter;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.SessionListAdapter;
 
@@ -42,18 +46,22 @@ public class SessionListActivity extends AppCompatActivity {
     private RecyclerView recyclerSessionList;
     private ArrayList<SessionListModel> sessionListModelArrayList=new ArrayList<>();
     private SessionListAdapter sessionListAdapter;
-    private FloatingActionButton fabAddSession;
+   // private FloatingActionButton fabAddSession;
     private ClassModel classModel;
+    private TextView tv_addSession;
     private ShowProgress showProgress;
+    String sClass_id,class_name;
     private String class_id,TAG = getClass().getSimpleName();
     private ApiInterface apiInterface;
     private ErrorMessageDialog errorMessageDialog;
     private SwipeRefreshLayout refreshSession;
-    private EditText edt_search_session;
+    SharedPreferences sharedPreferences;
+  //  private EditText edt_search_session;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_list);
 
@@ -62,13 +70,17 @@ public class SessionListActivity extends AppCompatActivity {
     }
 
     private void find_All_IDs() {
+        class_id=getIntent().getStringExtra("class_id");
+        class_name = getIntent().getStringExtra("class_name");
+        sharedPreferences=getSharedPreferences("className",MODE_PRIVATE);
+        tv_addSession=findViewById(R.id.tv_newSession);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         iv_close=findViewById(R.id.iv_close);
         iv_no_data_found=findViewById(R.id.iv_no_data_found);
         recyclerSessionList=findViewById(R.id.recyclerSessionList);
-        fabAddSession=findViewById(R.id.fabAddSession);
+        //fabAddSession=findViewById(R.id.fabAddSession);
         refreshSession=findViewById(R.id.refreshSession);
-        edt_search_session=findViewById(R.id.edt_search_session);
+        //edt_search_session=findViewById(R.id.edt_search_session);
         showProgress=new ShowProgress(SessionListActivity.this);
         errorMessageDialog=new ErrorMessageDialog(SessionListActivity.this);
         Bundle bundle = getIntent().getExtras();
@@ -98,6 +110,19 @@ public class SessionListActivity extends AppCompatActivity {
 
 
     private void events() {
+        tv_addSession.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(SessionListActivity.this, SessionDetailsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
+                intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
+                startActivity(intent);
+
+            }
+        });
         iv_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +130,7 @@ public class SessionListActivity extends AppCompatActivity {
             }
         });
 
-        fabAddSession.setOnClickListener(new View.OnClickListener() {
+/*        fabAddSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(SessionListActivity.this,SessionDetailsActivity.class);
@@ -114,7 +139,7 @@ public class SessionListActivity extends AppCompatActivity {
                 intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
                 startActivity(intent);
             }
-        });
+        });*/
         refreshSession.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -129,7 +154,7 @@ public class SessionListActivity extends AppCompatActivity {
         });
 
 
-        edt_search_session.addTextChangedListener(new TextWatcher() {
+     /*   edt_search_session.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -146,7 +171,7 @@ public class SessionListActivity extends AppCompatActivity {
 
             }
         });
-
+*/
     }
 
     private void callSessionList() {
