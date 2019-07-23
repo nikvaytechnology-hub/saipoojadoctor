@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 public class SuccessModel {
 
-     private  String  error_code;
-     private  String  msg;
-     private  String appointment_for_Pending;
-     private  String appointment_for_Confirmed;
-     private  String appointment_for_Cancelled;
-     private  String appointment_for_Completed;
-     private  String todays_appointment_count;
-     private  String img_base_url;
+    private  String  error_code;
+    private  String  msg;
+    private  String appointment_for_Pending;
+    private  String appointment_for_Confirmed;
+    private  String appointment_for_Cancelled;
+    private  String appointment_for_Completed;
+    private  String todays_appointment_count;
+    private  String img_base_url;
 
 
     @SerializedName("doctor_login")
-     ArrayList<DoctorModel> doctorModelArrayList;
+    ArrayList<DoctorModel> doctorModelArrayList;
 
 
     @SerializedName("service")
