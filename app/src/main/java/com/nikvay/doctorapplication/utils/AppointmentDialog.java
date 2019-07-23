@@ -43,8 +43,8 @@ public class AppointmentDialog {
             @Override
             public void run() {
                 dialog.dismiss();
-                Intent intent=new Intent(mContext, SessionEditActivity.class);
-                mContext.startActivity(intent);
+/*                Intent intent=new Intent(mContext, SessionEditActivity.class);
+                mContext.startActivity(intent);*/
             }
         }, 3000);
 

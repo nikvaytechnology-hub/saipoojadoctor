@@ -2,6 +2,7 @@ package com.nikvay.doctorapplication.view.activity.doctor_activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -29,6 +30,19 @@ public class SessionPatientActivity extends AppCompatActivity
         setContentView(R.layout.activity_session_patient);
 
         all_ids();
+        events();
+    }
+
+    private void events()
+    {
+        iv_close.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                onBackPressed();
+            }
+        });
     }
 
     private void all_ids()
