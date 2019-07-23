@@ -20,7 +20,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
 
     private TextView textClass,textCost,textSeats,textDescription;
     private ImageView iv_close;
-    private Button btnEdit;
+    //private Button btnEdit;
     TextView tvSessionCount,date_id;
     private ClassModel classModel;
     private String mTitle="Class Details";
@@ -43,7 +43,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
             }
         });
 
-        btnEdit.setOnClickListener(new View.OnClickListener() {
+/*        btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ClassDetailsActivity.this, NewClassActivity.class);
@@ -54,7 +54,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
         relativeLayoutSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -90,7 +90,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
         textSeats=findViewById(R.id.textSeats);
         textDescription=findViewById(R.id.textDescription);
         iv_close=findViewById(R.id.iv_close);
-        btnEdit=findViewById(R.id.btnEdit);
+        //btnEdit=findViewById(R.id.btnEdit);
         relativeLayoutSession=findViewById(R.id.relativeLayoutSession);
 
         Bundle bundle = getIntent().getExtras();

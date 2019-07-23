@@ -156,7 +156,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void loginIntent() {
-
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("login_status","doctor");
+        editor.apply();
+        editor.commit();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

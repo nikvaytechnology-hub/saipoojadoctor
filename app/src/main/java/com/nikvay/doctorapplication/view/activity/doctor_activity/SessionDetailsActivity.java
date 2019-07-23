@@ -28,6 +28,7 @@ public class SessionDetailsActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences sharedPreferences2;
     SharedPreferences sharedPreferences1;
+    String status;
 
 
     @Override
@@ -35,14 +36,15 @@ public class SessionDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_details);
 SharedPreferences sharedPreferences=getSharedPreferences("Class_name",MODE_PRIVATE);
- sharedPreferences2=getSharedPreferences("session_details",MODE_PRIVATE);
+
+        sharedPreferences2=getSharedPreferences("login_status",MODE_PRIVATE);
+        status=sharedPreferences2.getString("login_status","");
         find_All_IDs();
         events();
 
     }
 
     private void find_All_IDs() {
-
         doctor_id=getIntent().getStringExtra("doctor_id");
         user_id=getIntent().getStringExtra("user_id");
         textClass=findViewById(R.id.textClass);
@@ -100,14 +102,26 @@ SharedPreferences sharedPreferences=getSharedPreferences("Class_name",MODE_PRIVA
                 editor.putString("description",description);
                 editor.apply();
                 editor.commit();
-                sharedPreferences1=getSharedPreferences("login_status",MODE_PRIVATE);
+                if (status.equals("admin"))
+                {
+                    Intent intent=new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
+                    intent.putExtra("doctor_id",doctor_id);
+                    intent.putExtra("user_id",user_id);
+                    startActivity(intent);
+                }
+               else if (status.equals("doctor"))
+                {
+                    Intent intent=new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
+                    intent.putExtra("doctor_id",doctor_id);
+                    intent.putExtra("user_id",user_id);
+                    startActivity(intent);
+                }
+      /*          sharedPreferences1=getSharedPreferences("login_status",MODE_PRIVATE);
                 String status=sharedPreferences1.getString("login_status","");
                 if(status.equals("admin"))
                 {
                     Toast.makeText(SessionDetailsActivity.this, status+"", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(SessionDetailsActivity.this, AddInstructor.class);
-                    intent.putExtra("doctor_id",doctor_id);
-                    intent.putExtra("user_id",user_id);
+
                     // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //  intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
                     //  intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
@@ -119,11 +133,11 @@ SharedPreferences sharedPreferences=getSharedPreferences("Class_name",MODE_PRIVA
                     intent.putExtra("doctor_id",doctor_id);
                     intent.putExtra("user_id",user_id);
                     Toast.makeText(SessionDetailsActivity.this, doctor_id+""+user_id, Toast.LENGTH_SHORT).show();
-                 /*    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                 *//*    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                       intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
                       intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
-                 */   startActivity(intent);
-                }
+                 *//*
+                }*/
             }
         });
 

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.MainActivity;
@@ -56,7 +57,9 @@ public class SessionListActivity extends AppCompatActivity {
     private ErrorMessageDialog errorMessageDialog;
     private SwipeRefreshLayout refreshSession;
     SharedPreferences sharedPreferences;
-  //  private EditText edt_search_session;
+    SharedPreferences sharedPreferences2;
+    String status;
+    //  private EditText edt_search_session;
 
 
     @Override
@@ -70,6 +73,9 @@ public class SessionListActivity extends AppCompatActivity {
     }
 
     private void find_All_IDs() {
+        sharedPreferences2=getSharedPreferences("login_status",MODE_PRIVATE);
+    status=sharedPreferences2.getString("login_status","");
+
         class_id=getIntent().getStringExtra("class_id");
         class_name = getIntent().getStringExtra("class_name");
         sharedPreferences=getSharedPreferences("className",MODE_PRIVATE);
@@ -110,16 +116,27 @@ public class SessionListActivity extends AppCompatActivity {
 
 
     private void events() {
+
         tv_addSession.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent=new Intent(SessionListActivity.this, SessionDetailsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
-                intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
-                startActivity(intent);
+                if (status.equals("admin"))
+                {
+                    Intent intent=new Intent(SessionListActivity.this, AddInstructor.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(StaticContent.IntentKey.CLASS_DETAIL,classModel);
+                    intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent=new Intent(SessionListActivity.this,SessionDetailsActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(SessionListActivity.this, "doctor login", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });

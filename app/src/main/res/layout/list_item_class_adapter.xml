@@ -14,11 +14,11 @@
         android:background="@color/white">
 
         <ImageView
-            android:layout_width="50dp"
+            android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/iv_class"
             android:padding="10dp"
-            android:src="@drawable/ic_vector_class"/>
+            android:src="@drawable/clas"/>
 
 
         <LinearLayout

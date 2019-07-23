@@ -50,7 +50,7 @@ public class DoctorsAdapter extends RecyclerView.Adapter<DoctorsAdapter.MyViewHo
             @Override
             public void onClick(View v)
             {
-                Intent intent=new Intent(context, ClassTimeSlotActivity.class);
+                Intent intent=new Intent(context, SessionDetailsActivity.class);
                 intent.putExtra("doctor_id",txtDoctorName.getDoctor_id());
                 intent.putExtra("user_id",txtDoctorName.getUser_id());
 

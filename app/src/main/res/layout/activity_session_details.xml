@@ -61,7 +61,7 @@
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"
-                    android:src="@drawable/ic_vector_class" />
+                    android:src="@drawable/clas" />
 
 
                 <LinearLayout
@@ -139,6 +139,7 @@
                         android:layout_marginStart="10dp"
                         android:maxLines="1"
                         android:hint="Cost"
+                        android:text="0"
                         android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
@@ -245,6 +246,7 @@
                         android:layout_marginStart="10dp"
                         android:maxLines="1"
                         android:hint="Seats"
+                        android:text="0"
                         android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="17sp" />

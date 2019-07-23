@@ -10,7 +10,7 @@ public class ClassModel implements Serializable {
     private String seats;
     private String cost;
     private String date;
-private int session_count;
+    private int session_count;
     public ClassModel(String class_id, String name, String duration, String seats, String cost, String date,int session_count) {
         this.class_id = class_id;
         this.name = name;
@@ -79,14 +79,14 @@ private int session_count;
     public void setCost(String cost) {
         this.cost = cost;
     }
-public void setSession_count(int session_count)
-{
-    this.session_count=session_count;
-}
-public int getSession_count()
-{
-    return session_count;
-}
+    public void setSession_count(int session_count)
+    {
+        this.session_count=session_count;
+    }
+    public int getSession_count()
+    {
+        return session_count;
+    }
 
 
 }

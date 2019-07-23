@@ -1,6 +1,7 @@
 package com.nikvay.doctorapplication.view.activity.doctor_activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -47,12 +49,15 @@ public class ClassActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private EditText edt_search_class;
     private SwipeRefreshLayout refreshClass;
-
+    SharedPreferences sharedPreferenceslogin;
+    SharedPreferences sharedPreferences2;
+    String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class);
 
+        sharedPreferences2=getSharedPreferences("login_status",MODE_PRIVATE);
         find_All_IDs();
         events();
         if (NetworkUtils.isNetworkAvailable(ClassActivity.this))
@@ -121,14 +126,18 @@ public class ClassActivity extends AppCompatActivity {
         refreshClass = findViewById(R.id.refreshClass);
         edt_search_class = findViewById(R.id.edt_search_class);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ClassActivity.this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerClassList.setLayoutManager(linearLayoutManager);
         recyclerClassList.setHasFixedSize(true);
 
-        doctorModelArrayList = SharedUtils.getUserDetails(ClassActivity.this);
-        doctor_id = doctorModelArrayList.get(0).getDoctor_id();
-        user_id = doctorModelArrayList.get(0).getUser_id();
-        errorMessageDialog = new ErrorMessageDialog(ClassActivity.this);
-        showProgress = new ShowProgress(ClassActivity.this);
+ user=sharedPreferences2.getString("login_status","");
+
+    doctorModelArrayList = SharedUtils.getUserDetails(ClassActivity.this);
+    doctor_id = doctorModelArrayList.get(0).getDoctor_id();
+    user_id = doctorModelArrayList.get(0).getUser_id();
+    errorMessageDialog = new ErrorMessageDialog(ClassActivity.this);
+    showProgress = new ShowProgress(ClassActivity.this);
+
 
 
 
@@ -136,13 +145,24 @@ public class ClassActivity extends AppCompatActivity {
     }
 
     private void callClassList() {
-        showProgress.showDialog();
+//        showProgress.showDialog();
+        if (user.equals("doctor"))
+        {
+            SharedPreferences sharedPreferences=getSharedPreferences("user_id",MODE_PRIVATE);
+
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putString("doctor_id",doctor_id);
+            editor.putString("user_id",user_id);
+            Toast.makeText(this, user_id+""+doctor_id, Toast.LENGTH_SHORT).show();
+            editor.apply();
+            editor.commit();
+        }
 
         Call<SuccessModel> call = apiInterface.listClass(doctor_id,user_id);
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
-                showProgress.dismissDialog();
+              //  showProgress.dismissDialog();
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);
 

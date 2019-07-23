@@ -331,7 +331,7 @@
                                     android:layout_gravity="center"
                                     android:layout_weight="1.5"
                                     android:padding="10dp"
-                                    android:src="@drawable/ic_vector_class" />
+                                    android:src="@drawable/clas" />
 
 
                                 <TextView

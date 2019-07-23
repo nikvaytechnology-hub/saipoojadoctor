@@ -1,5 +1,6 @@
 package com.nikvay.doctorapplication.view.activity.doctor_activity;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -50,11 +51,13 @@ public class ClassTimeSlotActivity extends AppCompatActivity {
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private String  TAG = getClass().getSimpleName(), doctor_id, user_id;
     private ClassModel classModel;
-
+    SharedPreferences sharedPreferences2;
+String status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_time_slot);
+        sharedPreferences2=getSharedPreferences("login_status",MODE_PRIVATE);
 
         find_All_Ids();
         events();
@@ -135,8 +138,19 @@ public class ClassTimeSlotActivity extends AppCompatActivity {
 
     }
 
-    private void callTimeSlot() {
+    private void callTimeSlot()
+    {
+        status=sharedPreferences2.getString("login_status","");
+        if (status.equals("doctor"))
+        {
+            Toast.makeText(this, ""+status, Toast.LENGTH_SHORT).show();
 
+            SharedPreferences sharedPreferences=getSharedPreferences("user_id",MODE_PRIVATE);
+
+            doctor_id=sharedPreferences.getString("doctor_id","");
+            user_id=sharedPreferences.getString("user_id","");
+
+        }
         Toast.makeText(ClassTimeSlotActivity.this, doctor_id+""+user_id, Toast.LENGTH_SHORT).show();
 
         Call<SuccessModel> call = apiInterface.appointmentTimeSlot(date, doctor_id,user_id);
