@@ -36,6 +36,7 @@
             android:textSize="17sp" />
     </RelativeLayout>
 
+<!--
     <EditText
         android:id="@+id/edt_search_session"
         android:layout_width="match_parent"
@@ -47,7 +48,17 @@
         android:hint="Search Session(Using Date)"
         android:inputType="text"
         android:padding="10dp" />
-
+-->
+    <TextView
+        android:id="@+id/tv_newSession"
+        android:layout_marginTop="@dimen/margin_15"
+        android:textColor="@color/app_color"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:textSize="23dp"
+        android:layout_gravity="center_vertical"
+        android:text="+  New Session"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,7 +78,7 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
-        <android.support.design.widget.FloatingActionButton
+<!--        <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -77,7 +88,7 @@
             android:backgroundTint="@color/app_color"
             android:background="@color/app_color"
             android:src="@drawable/add"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"/>-->
 
 
         <ImageView

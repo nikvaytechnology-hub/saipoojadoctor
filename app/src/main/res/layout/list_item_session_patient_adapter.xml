@@ -3,17 +3,58 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_marginTop="5dp"
+    android:orientation="vertical"
+    android:id="@+id/ll_patient"
     android:padding="10dp"
     android:layout_height="wrap_content">
 
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:elevation="10dp"
+    android:layout_height="55dp">
 
+    <RelativeLayout
+        android:layout_gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/user"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_account_circle_black_24dp"
+            android:layout_width="50dp"
+            android:layout_height="36dp" />
     <TextView
+        android:layout_toRightOf="@+id/user"
+        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="Patient Name"
         android:id="@+id/textPatientName"
-        android:textSize="18sp"
+        android:textSize="15dp"
         android:textStyle="bold"/>
+<TextView
+    android:id="@+id/mobile_no"
+    android:layout_below="@id/textPatientName"
+    android:layout_toRightOf="@+id/user"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="5dp"
+    android:textSize="14sp"
+    android:text="Mobile number"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/email"
+            android:layout_below="@id/textPatientName"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentEnd="true"
+            android:text="Email"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/mobile_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
 </LinearLayout>

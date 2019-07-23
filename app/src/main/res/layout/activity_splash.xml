@@ -14,7 +14,7 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/splash_image" />
+        android:src="@drawable/sai_pooja_logo" />
 
 
     <TextView

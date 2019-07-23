@@ -139,6 +139,7 @@
                         android:layout_marginStart="10dp"
                         android:maxLines="1"
                         android:hint="Cost"
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 
@@ -152,6 +153,7 @@
                 android:layout_height="1dp"
                 android:background="@color/gray" />
 
+<!--
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -197,6 +199,7 @@
                 </LinearLayout>
 
             </RelativeLayout>
+-->
 
             <View
                 android:layout_width="match_parent"
@@ -242,6 +245,7 @@
                         android:layout_marginStart="10dp"
                         android:maxLines="1"
                         android:hint="Seats"
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 

@@ -30,8 +30,10 @@
             android:weightSum="2">
 
             <TextView
+                android:layout_marginTop="14dp"
+                android:layout_gravity="center_vertical"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/textClassName"
                 android:layout_marginStart="10dp"
                 android:textSize="17sp"
@@ -41,6 +43,7 @@
                 android:maxLines="1"
                 android:textColor="@color/black" />
 
+<!--
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -52,6 +55,7 @@
                 android:maxLines="1"
                 android:textColor="@color/black" />
 
+-->
 
         </LinearLayout>
 

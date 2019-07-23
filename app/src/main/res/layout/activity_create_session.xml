@@ -148,7 +148,7 @@
                 android:layout_height="1dp"
                 android:background="@color/gray" />
 
-            <RelativeLayout
+<!--            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="@color/white"
@@ -192,7 +192,7 @@
 
                 </LinearLayout>
 
-            </RelativeLayout>
+            </RelativeLayout>-->
 
             <View
                 android:layout_width="match_parent"
@@ -251,7 +251,7 @@
                 android:layout_height="1dp"
                 android:background="@color/gray" />
 
-            <RelativeLayout
+    <!--        <RelativeLayout
                 android:id="@+id/relativeLayoutLabelHide"
                 android:layout_width="match_parent"
                 android:layout_height="80dp">
@@ -359,7 +359,7 @@
 
             </LinearLayout>
 
-
+-->
             <Button
                 android:id="@+id/btnCreate"
                 android:layout_width="match_parent"

@@ -68,17 +68,30 @@
                 android:layout_toEndOf="@+id/iv_session"
                 android:orientation="vertical">
 
-
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/textSession"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Session"
+                    android:text="Sessions"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
-
-
+<TextView
+    android:layout_marginLeft="15dp"
+    android:id="@+id/tvsessionCount"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+</LinearLayout>
+                <TextView
+                    android:layout_marginLeft="18dp"
+                    android:textSize="14dp"
+                    android:id="@+id/date_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <ImageView
@@ -152,7 +165,7 @@
             android:layout_height="1dp"
             android:background="@color/gray" />
 
-        <RelativeLayout
+ <!--       <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/white"
@@ -197,12 +210,13 @@
             </LinearLayout>
 
         </RelativeLayout>
-
+-->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/gray" />
 
+<!--
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -248,6 +262,7 @@
             </LinearLayout>
 
         </RelativeLayout>
+-->
 
         <View
             android:layout_width="match_parent"
