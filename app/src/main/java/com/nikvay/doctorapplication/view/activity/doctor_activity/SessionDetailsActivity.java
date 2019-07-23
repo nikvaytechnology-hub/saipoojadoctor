@@ -35,7 +35,7 @@ public class SessionDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_details);
-SharedPreferences sharedPreferences=getSharedPreferences("Class_name",MODE_PRIVATE);
+        SharedPreferences sharedPreferences=getSharedPreferences("Class_name",MODE_PRIVATE);
         sharedPreferences1=getSharedPreferences("session_details",MODE_PRIVATE);
         sharedPreferences2=getSharedPreferences("login_status",MODE_PRIVATE);
         status=sharedPreferences2.getString("login_status","");

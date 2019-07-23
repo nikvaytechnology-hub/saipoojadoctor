@@ -160,7 +160,6 @@ public class CreateSessionActivity extends AppCompatActivity {
 
     private void callAddSession() {
         Call<SuccessModel> call =apiInterface.callSessionAdd(class_id,doctor_id,date,time,label,cost,no_of_seats);
-        Toast.makeText(this, "date "+date+"doctor id "+doctor_id+" time"+"label"+label, Toast.LENGTH_SHORT).show();
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {

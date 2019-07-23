@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
@@ -134,7 +133,6 @@ public class SessionListActivity extends AppCompatActivity {
                 {
                     Intent intent=new Intent(SessionListActivity.this,SessionDetailsActivity.class);
                     startActivity(intent);
-                    Toast.makeText(SessionListActivity.this, "doctor login", Toast.LENGTH_SHORT).show();
                 }
 
 

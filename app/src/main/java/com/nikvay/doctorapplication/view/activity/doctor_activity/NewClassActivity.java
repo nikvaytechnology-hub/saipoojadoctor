@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -133,7 +134,7 @@ public class NewClassActivity extends AppCompatActivity {
     }
 
     private void callAddClass() {
-
+        Toast.makeText(this, "class", Toast.LENGTH_SHORT).show();
         showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.addClass(doctor_id, user_id, textClassName, textClassCost, textClassDuration, textClassDescription, textClassSeats, textClassDate);
         call.enqueue(new Callback<SuccessModel>() {
@@ -182,7 +183,7 @@ public class NewClassActivity extends AppCompatActivity {
         textClassCost = textCost.getText().toString().trim();
         textClassSeats = textSeats.getText().toString().trim();
         textClassDescription = textDescription.getText().toString().trim();
-        textClassDate = textDate.getText().toString().trim();
+       // textClassDate = textDate.getText().toString().trim();
 
         if (textClassName.equalsIgnoreCase("")) {
             errorMessageDialog.showDialog("Class Name Can't Empty");
@@ -196,11 +197,12 @@ public class NewClassActivity extends AppCompatActivity {
         } else if (textClassCost.equalsIgnoreCase("")) {
             errorMessageDialog.showDialog("Cost Can't Empty");
             return false;
-        } else if (textClassDate.equalsIgnoreCase("")) {
+        }
+        /*else if (textClassDate.equalsIgnoreCase("")) {
             errorMessageDialog.showDialog("Date Can't Empty");
             return false;
         }
-
+*/
 
         return true;
     }

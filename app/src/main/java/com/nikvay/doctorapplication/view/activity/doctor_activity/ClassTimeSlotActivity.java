@@ -143,7 +143,6 @@ String status;
         status=sharedPreferences2.getString("login_status","");
         if (status.equals("doctor"))
         {
-            Toast.makeText(this, ""+status, Toast.LENGTH_SHORT).show();
 
             SharedPreferences sharedPreferences=getSharedPreferences("user_id",MODE_PRIVATE);
 
@@ -151,7 +150,6 @@ String status;
             user_id=sharedPreferences.getString("user_id","");
 
         }
-        Toast.makeText(ClassTimeSlotActivity.this, doctor_id+""+user_id, Toast.LENGTH_SHORT).show();
 
         Call<SuccessModel> call = apiInterface.appointmentTimeSlot(date, doctor_id,user_id);
         call.enqueue(new Callback<SuccessModel>() {

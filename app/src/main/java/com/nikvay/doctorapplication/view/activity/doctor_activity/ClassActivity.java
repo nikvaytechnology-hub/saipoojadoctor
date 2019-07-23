@@ -153,7 +153,6 @@ public class ClassActivity extends AppCompatActivity {
             SharedPreferences.Editor editor=sharedPreferences.edit();
             editor.putString("doctor_id",doctor_id);
             editor.putString("user_id",user_id);
-            Toast.makeText(this, user_id+""+doctor_id, Toast.LENGTH_SHORT).show();
             editor.apply();
             editor.commit();
         }
