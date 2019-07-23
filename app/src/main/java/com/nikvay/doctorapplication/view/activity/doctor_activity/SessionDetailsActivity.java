@@ -36,7 +36,7 @@ public class SessionDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_details);
 SharedPreferences sharedPreferences=getSharedPreferences("Class_name",MODE_PRIVATE);
-
+        sharedPreferences1=getSharedPreferences("session_details",MODE_PRIVATE);
         sharedPreferences2=getSharedPreferences("login_status",MODE_PRIVATE);
         status=sharedPreferences2.getString("login_status","");
         find_All_IDs();
@@ -96,7 +96,7 @@ SharedPreferences sharedPreferences=getSharedPreferences("Class_name",MODE_PRIVA
                 cost=textCost.getText().toString();
                 seats=textSeats.getText().toString();
                 description=textDescription.getText().toString();
-                SharedPreferences.Editor editor=sharedPreferences2.edit();
+                SharedPreferences.Editor editor=sharedPreferences1.edit();
                 editor.putString("cost",cost);
                 editor.putString("seats",seats);
                 editor.putString("description",description);

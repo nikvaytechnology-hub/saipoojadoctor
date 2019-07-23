@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.SessionEditActivity;
 
 public class AppointmentDialog {
 
@@ -42,7 +43,7 @@ public class AppointmentDialog {
             @Override
             public void run() {
                 dialog.dismiss();
-                Intent intent=new Intent(mContext, MainActivity.class);
+                Intent intent=new Intent(mContext, SessionEditActivity.class);
                 mContext.startActivity(intent);
             }
         }, 3000);

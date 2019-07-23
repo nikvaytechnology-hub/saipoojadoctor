@@ -44,14 +44,14 @@ public class CreateSessionActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private AppointmentDialog  appointmentDialog;
     private ErrorMessageDialog errorMessageDialog;
-SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences;
     SharedPreferences sharedPreferences2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_session);
-         sharedPreferences2=getSharedPreferences("session_details",MODE_PRIVATE);
+        sharedPreferences2=getSharedPreferences("session_details",MODE_PRIVATE);
 
         find_All_ID();
         event();
@@ -66,14 +66,14 @@ SharedPreferences sharedPreferences;
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         iv_close = findViewById(R.id.iv_close);
-       // textPending = findViewById(R.id.textPending);
+        // textPending = findViewById(R.id.textPending);
         //textConfirm = findViewById(R.id.textConfirm);
         btnCreate = findViewById(R.id.btnCreate);
         textLabelName = findViewById(R.id.textLabelName);
         textClass = findViewById(R.id.textClass);
         textClass.setText(class_name);
         textCost = findViewById(R.id.textCost);
-       // textDate = findViewById(R.id.textDate);
+        // textDate = findViewById(R.id.textDate);
         textSeats = findViewById(R.id.textSeats);
 
         cost=sharedPreferences2.getString("cost","");
