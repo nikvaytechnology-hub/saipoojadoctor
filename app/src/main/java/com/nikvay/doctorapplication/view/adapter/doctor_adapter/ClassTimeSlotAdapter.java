@@ -48,8 +48,9 @@ public class ClassTimeSlotAdapter extends RecyclerView.Adapter<ClassTimeSlotAdap
         final SelectDateTimeModel selectDateTimeModel = selectDateTimeModelArrayList.get(position);
         
         holder.textTime.setText(selectDateTimeModel.getTime());
+        String status=selectDateTimeModel.getStatus()==null?"":selectDateTimeModel.getStatus();
 
-        if (selectDateTimeModel.getStatus().equals("1")) {
+        if (status.equalsIgnoreCase("1")) {
             holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(R.color.app_color));
         } else {
             holder.cardViewTime.setBackgroundColor(mContext.getResources().getColor(R.color.white));

@@ -597,7 +597,9 @@ public class BusinessHourActivity extends AppCompatActivity {
   private boolean doValidation() {
     if (status == "1") {
       if (startTimeSunday == null || endTimeSunday == null) {
-        errorMessageDialog.showDialog("please select Sunday Start And End Time");
+        startTimeSunday="9:00";
+        endTimeSunday="21:00";
+        //errorMessageDialog.showDialog("please select Sunday Start And End Time");
         return false;
       }
       return true;
@@ -605,7 +607,9 @@ public class BusinessHourActivity extends AppCompatActivity {
 
     if (status == "2") {
       if (startTimeMonday == null || endTimeMonday == null) {
-        errorMessageDialog.showDialog("please select Monday Start And End Time");
+        startTimeMonday="9:00";
+        endTimeMonday="21:00";
+//        errorMessageDialog.showDialog("please select Monday Start And End Time");
         return false;
       }
       return true;
