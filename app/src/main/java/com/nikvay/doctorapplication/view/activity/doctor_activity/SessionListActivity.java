@@ -129,7 +129,7 @@ public class SessionListActivity extends AppCompatActivity {
                     intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
                     startActivity(intent);
                 }
-                else
+                else if(status.equals("doctor"))
                 {
                     Intent intent=new Intent(SessionListActivity.this,SessionDetailsActivity.class);
                     startActivity(intent);

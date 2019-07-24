@@ -12,9 +12,15 @@
     android:elevation="@dimen/txt_size_20"
     app:cardCornerRadius="5dp"
     android:layout_height="wrap_content">
+    <ImageView
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/doctor"
+        android:layout_width="50dp"
+        android:layout_height="40dp"/>
     <TextView
         android:id="@+id/tv_doctorName"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="100dp"
         android:layout_width="wrap_content"
         android:gravity="center_vertical"
         android:textSize="@dimen/txt_size_20"

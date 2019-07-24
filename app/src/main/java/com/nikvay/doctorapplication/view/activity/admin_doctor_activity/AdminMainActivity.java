@@ -80,7 +80,7 @@ public class AdminMainActivity extends AppCompatActivity {
         drawerItemArrayList.add(new DrawerItem(R.drawable.doctor, StaticContent.DrawerItemAdmin.MY_DASHBOARD));
         drawerItemArrayList.add(new DrawerItem(R.drawable.appointment, StaticContent.DrawerItemAdmin.APPOINTMENT));
         drawerItemArrayList.add(new DrawerItem(R.drawable.my_customer, StaticContent.DrawerItemAdmin.PATIENT));
-        drawerItemArrayList.add(new DrawerItem(R.drawable.ic_vector_settings, StaticContent.DrawerItemAdmin.SETTINGS));
+      //  drawerItemArrayList.add(new DrawerItem(R.drawable.ic_vector_settings, StaticContent.DrawerItemAdmin.SETTINGS));
         drawerItemArrayList.add(new DrawerItem(R.drawable.logout, StaticContent.DrawerItem.LOGOUT));
 
 

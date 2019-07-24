@@ -340,7 +340,7 @@
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="10dp"
                                     android:layout_weight="0.5"
-                                    android:text="class"
+                                    android:text="CLASS"
                                     android:textSize="14sp" />
 
                             </LinearLayout>
