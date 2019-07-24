@@ -50,16 +50,19 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
     final String date=classModel.getDate();
     final int count=classModel.getSession_count();
     final String dateString=classModel.getDate_string();
-
+    String createdBy=classModel.getDoctor_name();
+    holder.txtcreateBy.setText("Created by"+" "+createdBy);
     // holder.textClassDate.setText(classModel.getDate());
     SharedPreferences sharedPreferences=mContext.getSharedPreferences("class_name",Context.MODE_PRIVATE);
     final SharedPreferences.Editor editor=sharedPreferences.edit();
     editor.putString("class_name",class_name);
     editor.putString("class_id",class_id);
 
-    holder.relativeLayoutClass.setOnClickListener(new View.OnClickListener() {
+    holder.relativeLayoutClass.setOnClickListener(new View.OnClickListener()
+    {
       @Override
-      public void onClick(View v) {
+      public void onClick(View v)
+      {
 
         Intent intent = new Intent(mContext, ClassDetailsActivity.class);
         intent.putExtra("class_id",class_id);
@@ -125,7 +128,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
 
   public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView textClassName,textClassDate;
+    private TextView textClassName,textClassDate,txtcreateBy;
     private RelativeLayout relativeLayoutClass;
 
     public MyViewHolder(@NonNull View itemView) {
@@ -133,6 +136,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
       textClassName=itemView.findViewById(R.id.textClassName);
       //textClassDate=itemView.findViewById(R.id.textClassDate);
       relativeLayoutClass=itemView.findViewById(R.id.relativeLayoutClass);
+      txtcreateBy=itemView.findViewById(R.id.txtcreatedBy);
     }
   }
 }

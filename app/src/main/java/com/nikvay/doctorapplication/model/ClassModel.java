@@ -12,9 +12,10 @@ public class ClassModel implements Serializable {
     private String date;
     private int session_count;
     private String date_string;
+    private String doctor_name;
 
-
-    public ClassModel(String class_id, String name, String duration, String seats, String cost, String date, int session_count,String date_string) {
+    public ClassModel(String class_id, String name, String duration, String seats, String cost, String date, int session_count,String date_string,String doctor_name)
+    {
         this.class_id = class_id;
         this.name = name;
         this.description = duration;
@@ -23,6 +24,17 @@ public class ClassModel implements Serializable {
         this.date = date;
         this.session_count=session_count;
         this.date_string=date_string;
+        this.doctor_name=doctor_name;
+    }
+
+    public String getDoctor_name()
+    {
+        return doctor_name;
+    }
+
+    public void setDoctor_name(String doctor_name)
+    {
+        this.doctor_name = doctor_name;
     }
 
     public ClassModel() {
