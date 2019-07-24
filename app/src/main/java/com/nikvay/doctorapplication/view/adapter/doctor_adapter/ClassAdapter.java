@@ -49,6 +49,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
     final String class_name=classModel.getName();
     final String date=classModel.getDate();
     final int count=classModel.getSession_count();
+    final String dateString=classModel.getDate_string();
 
     // holder.textClassDate.setText(classModel.getDate());
     SharedPreferences sharedPreferences=mContext.getSharedPreferences("class_name",Context.MODE_PRIVATE);
@@ -63,9 +64,9 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
         Intent intent = new Intent(mContext, ClassDetailsActivity.class);
         intent.putExtra("class_id",class_id);
         intent.putExtra("count",count);
+        intent.putExtra("dateString",dateString);
         editor.putString("count", String.valueOf(count));
         editor.putString("date",date);
-
         editor.apply();
         editor.commit();
         intent.putExtra("class_name",class_name);

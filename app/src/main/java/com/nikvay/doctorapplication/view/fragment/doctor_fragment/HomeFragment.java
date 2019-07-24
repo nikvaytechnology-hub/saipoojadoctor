@@ -14,6 +14,7 @@ import com.nikvay.doctorapplication.MainActivity;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.utils.SharedUtils;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.ClassActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PatientActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PaymentActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PrescriptionActivity;
@@ -81,7 +82,7 @@ public class HomeFragment extends Fragment {
         cardViewService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ServiceListActivity.class);
+                Intent intent = new Intent(mContext, ClassActivity.class);
                 startActivity(intent);
             }
         });

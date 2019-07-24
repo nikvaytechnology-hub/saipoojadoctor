@@ -42,7 +42,7 @@ public class SettingFragment extends Fragment {
         relativeLayoutChangePassword=view.findViewById(R.id.relativeLayoutChangePassword);
         relativeLayoutSetting=view.findViewById(R.id.relativeLayoutSetting);
         relativeLayoutClass=view.findViewById(R.id.relativeLayoutClass);
-        relativeLayoutClassAppointment=view.findViewById(R.id.relativeLayoutClassAppointment);
+      //  relativeLayoutClassAppointment=view.findViewById(R.id.relativeLayoutClassAppointment);
     }
 
 
@@ -75,13 +75,13 @@ public class SettingFragment extends Fragment {
                startActivity(intent);
             }
         });
-        relativeLayoutClassAppointment.setOnClickListener(new View.OnClickListener() {
+       /* relativeLayoutClassAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, ClassAppointmentListActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
 

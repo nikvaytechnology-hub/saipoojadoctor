@@ -144,6 +144,14 @@ public class ClassActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        callClassList();
+    }
+
+
     private void callClassList() {
 //        showProgress.showDialog();
         if (user.equals("doctor"))

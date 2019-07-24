@@ -134,6 +134,14 @@ public class AdminClassListActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        callClassList();
+    }
+
+
     private void callClassList() {
         showProgress.showDialog();
 

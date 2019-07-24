@@ -1,5 +1,8 @@
 package com.nikvay.doctorapplication.view.activity.doctor_activity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.wifi.aware.SubscribeConfig;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +38,7 @@ public class CreateSessionActivity extends AppCompatActivity {
     private ImageView iv_close;
     private TextView textPending, textConfirm, textLabelName;
     private Button btnCreate;
+    Context context;
     private String label = "1", date = "", time = "", class_id = "",doctor_id,
             user_id,TAG = getClass().getSimpleName(),cost,no_of_seats,class_name;
     private String mTitle = "Class Details";
@@ -177,6 +181,9 @@ public class CreateSessionActivity extends AppCompatActivity {
 
                             if (errorCode.equalsIgnoreCase("1")) {
                                 appointmentDialog.showDialog("Session Add succesfully ");
+                                Intent intent=new Intent(CreateSessionActivity.this,SessionDetailsActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(CreateSessionActivity.this, "hii", Toast.LENGTH_SHORT).show();
                                 //finish();
                             } else if (errorCode.equalsIgnoreCase("3")) {
                                 errorMessageDialog.showDialog("Session is Already Sucessfully ");

@@ -44,6 +44,7 @@ public class SuccessMessageDialog {
             public void run() {
                 dialog.dismiss();
                 ((Activity)mContext).finish();
+
             }
         }, 3000);
 

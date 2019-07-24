@@ -233,7 +233,9 @@ public class AddDoctorActivity extends AppCompatActivity implements SelectDepart
 
     }
 
-    private void addNewDoctor() {
+
+    private void addNewDoctor()
+    {
 
         Call<SuccessModel> call = apiInterface.addNewDoctor(super_doctor_id,user_id, doctor_name, email,phone, address,profile,department_id,is_super_admin,gender);
 

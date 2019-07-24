@@ -130,6 +130,12 @@ public class DoctorListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        callDoctorList();
+    }
+
     private void callDoctorList() {
         showProgress.showDialog();
 

@@ -78,7 +78,6 @@ public class NewClassActivity extends AppCompatActivity {
                             NetworkUtils.isNetworkNotAvailable(NewClassActivity.this);
                     } else {
                         if (NetworkUtils.isNetworkAvailable(NewClassActivity.this)) {
-                            callAddClass();
                         } else
                             NetworkUtils.isNetworkNotAvailable(NewClassActivity.this);
                     }
@@ -134,7 +133,6 @@ public class NewClassActivity extends AppCompatActivity {
     }
 
     private void callAddClass() {
-        Toast.makeText(this, "class", Toast.LENGTH_SHORT).show();
         showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.addClass(doctor_id, user_id, textClassName, textClassCost, textClassDuration, textClassDescription, textClassSeats, textClassDate);
         call.enqueue(new Callback<SuccessModel>() {

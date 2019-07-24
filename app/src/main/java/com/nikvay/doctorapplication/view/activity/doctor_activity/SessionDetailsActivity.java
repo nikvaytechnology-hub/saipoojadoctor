@@ -81,41 +81,49 @@ public class SessionDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void events() {
+    private void events()
+    {
+cost=textCost.getText().toString();
+seats=textSeats.getText().toString();
+description=textDescription.getText().toString();
+if (cost.equals("0")&&seats.equals("0")&&description.equals("0"))
+{
+    Toast.makeText(this, "fields should not be 0", Toast.LENGTH_SHORT).show();
+}
+else
+{
 
-
-        iv_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
+    iv_close.setOnClickListener(new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v) {
+            onBackPressed();
+        }
+    });
+    btnNext.setOnClickListener(new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v) {
+            SharedPreferences.Editor editor=sharedPreferences1.edit();
+            editor.putString("cost",cost);
+            editor.putString("seats",seats);
+            editor.putString("description",description);
+            editor.apply();
+            editor.commit();
+            if (status.equals("admin"))
+            {
+                Intent intent=new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
+                intent.putExtra("doctor_id",doctor_id);
+                intent.putExtra("user_id",user_id);
+                startActivity(intent);
             }
-        });
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cost=textCost.getText().toString();
-                seats=textSeats.getText().toString();
-                description=textDescription.getText().toString();
-                SharedPreferences.Editor editor=sharedPreferences1.edit();
-                editor.putString("cost",cost);
-                editor.putString("seats",seats);
-                editor.putString("description",description);
-                editor.apply();
-                editor.commit();
-                if (status.equals("admin"))
-                {
-                    Intent intent=new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
-                    intent.putExtra("doctor_id",doctor_id);
-                    intent.putExtra("user_id",user_id);
-                    startActivity(intent);
-                }
-               else if (status.equals("doctor"))
-                {
-                    Intent intent=new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
-                    intent.putExtra("doctor_id",doctor_id);
-                    intent.putExtra("user_id",user_id);
-                    startActivity(intent);
-                }
+            else if (status.equals("doctor"))
+            {
+                Intent intent=new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
+                intent.putExtra("doctor_id",doctor_id);
+                intent.putExtra("user_id",user_id);
+                startActivity(intent);
+            }
       /*          sharedPreferences1=getSharedPreferences("login_status",MODE_PRIVATE);
                 String status=sharedPreferences1.getString("login_status","");
                 if(status.equals("admin"))
@@ -138,8 +146,10 @@ public class SessionDetailsActivity extends AppCompatActivity {
                       intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
                  *//*
                 }*/
-            }
-        });
+        }
+    });
+
+}
 
     }
 }

@@ -45,6 +45,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
     private ShowProgress showProgress;
     private String TAG = getClass().getSimpleName();
     ArrayList arrayList;
+    String date_string;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,6 +157,9 @@ public class ClassDetailsActivity extends AppCompatActivity {
     }
 
     private void find_All_IDs() {
+
+                date_string=getIntent().getStringExtra("dateString");
+
         class_id=getIntent().getStringExtra("class_id");
          class_name = getIntent().getStringExtra("class_name");
         SharedPreferences sharedPreferences=getSharedPreferences("class_name", Context.MODE_PRIVATE);
@@ -163,7 +167,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
         String date=sharedPreferences.getString("date","");
 
         date_id=findViewById(R.id.date_id);
-        date_id.setText(date);
+        date_id.setText(date_string);
         textClass=findViewById(R.id.textClass);
         textClass.setText(class_name);
         tvSessionCount=findViewById(R.id.tvsessionCount);

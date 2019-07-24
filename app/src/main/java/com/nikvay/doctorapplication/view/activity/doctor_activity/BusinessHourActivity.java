@@ -198,11 +198,13 @@ public class BusinessHourActivity extends AppCompatActivity {
       }
     });
 
-    textSave.setOnClickListener(new View.OnClickListener() {
+    textSave.setOnClickListener(new View.OnClickListener()
+    {
       @Override
       public void onClick(View v) {
         if (doValidation()) {
-          if (selectDoctorTimeModelArrayList.size() != 0) {
+          if (selectDoctorTimeModelArrayList.size() != 0)
+          {
             //  Toast.makeText(BusinessHourActivity.this, "Data" + selectDoctorTimeModelArrayList.get(0).getDay_Id(), Toast.LENGTH_SHORT).show();
             //    successMessageDialog.showDialog("Data Added Successfully");
 
@@ -611,7 +613,9 @@ public class BusinessHourActivity extends AppCompatActivity {
 
     if (status == "3") {
       if (startTimeTuesday == null || endTimeTuesday == null) {
-        errorMessageDialog.showDialog("please select Tuesday Start And End Time");
+       startTimeTuesday="9:00";
+        endTimeTuesday="21:00";
+        // errorMessageDialog.showDialog("please select Tuesday Start And End Time");
         return false;
       }
       return true;
@@ -619,32 +623,44 @@ public class BusinessHourActivity extends AppCompatActivity {
 
     if (status == "4") {
       if (startTimeWednesday == null || endTimeWednesday == null) {
-        errorMessageDialog.showDialog("please select Wednesday Start And End Time");
+        startTimeWednesday="9:00";
+                endTimeWednesday="21:00";
+        //errorMessageDialog.showDialog("please select Wednesday Start And End Time");
         return false;
       }
       return true;
     }
     if (status == "5") {
       if (startTimeThirsday == null || endTimeThirsday == null) {
-        errorMessageDialog.showDialog("please select Thursday Start And End Time");
+      startTimeThirsday="9:00";
+              endTimeThirsday="21:00";
+        //  errorMessageDialog.showDialog("please select Thursday Start And End Time");
         return false;
       }
       return true;
     }
     if (status == "6") {
       if (startTimeFriday == null || endTimeFriday == null) {
-        errorMessageDialog.showDialog("please select Friday Start And End Time");
+        startTimeFriday="9:00";
+                endTimeFriday="21:00";
+        // errorMessageDialog.showDialog("please select Friday Start And End Time");
         return false;
       }
       return true;
     }
-    if (status == "7") {
-      if (startTimeSaturaday == null || endTimeSaturaday == null) {
-        errorMessageDialog.showDialog("please select saturday Start And End Time");
+    if (status == "7")
+    {
+      if (startTimeSaturaday == null || endTimeSaturaday == null)
+      {
+        startTimeSaturaday="9:00";
+                endTimeSaturaday="21:00";
+        //errorMessageDialog.showDialog("please select saturday Start And End Time");
         return false;
       }
       return true;
-    } else if (((selectDoctorTimeModelArrayList.size() != 0) && (timeSlot == null))) {
+    }
+    else if (((selectDoctorTimeModelArrayList.size() != 0) && (timeSlot == null)))
+    {
       errorMessageDialog.showDialog("Please Select Time Slot");
       return false;
     }
@@ -653,14 +669,17 @@ public class BusinessHourActivity extends AppCompatActivity {
   }
 
 
-  private void showTimnePickerDialog() {
+  private void showTimnePickerDialog()
+  {
     final Calendar myCalender = Calendar.getInstance();
     int hour = myCalender.get(Calendar.HOUR_OF_DAY);
     int minute = myCalender.get(Calendar.MINUTE);
 
-    TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
+    TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener()
+    {
       @Override
-      public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+      public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+      {
         if (view.isShown()) {
 
           try {

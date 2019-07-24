@@ -11,7 +11,10 @@ public class ClassModel implements Serializable {
     private String cost;
     private String date;
     private int session_count;
-    public ClassModel(String class_id, String name, String duration, String seats, String cost, String date,int session_count) {
+    private String date_string;
+
+
+    public ClassModel(String class_id, String name, String duration, String seats, String cost, String date, int session_count,String date_string) {
         this.class_id = class_id;
         this.name = name;
         this.description = duration;
@@ -19,6 +22,7 @@ public class ClassModel implements Serializable {
         this.cost = cost;
         this.date = date;
         this.session_count=session_count;
+        this.date_string=date_string;
     }
 
     public ClassModel() {
@@ -88,5 +92,14 @@ public class ClassModel implements Serializable {
         return session_count;
     }
 
+    public String getDate_string()
+    {
+        return date_string;
+    }
+
+    public void setDate_string(String date_string)
+    {
+        this.date_string = date_string;
+    }
 
 }
