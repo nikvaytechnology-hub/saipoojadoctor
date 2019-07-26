@@ -54,10 +54,10 @@
 
                 <ImageView
                     android:id="@+id/iv_class"
-                    android:layout_width="50dp"
+                    android:layout_width="55dp"
                     android:layout_height="match_parent"
                     android:padding="10dp"
-                    android:src="@drawable/ic_vector_class" />
+                    android:src="@drawable/clas" />
 
 
                 <LinearLayout

@@ -23,6 +23,7 @@ import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.AppointmentListActivity;
+import com.nikvay.doctorapplication.view.activity.doctor_activity.CancelAllAptActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.ServiceListActivity;
 
 import java.text.SimpleDateFormat;
@@ -38,7 +39,7 @@ public class AppointmentFragment extends Fragment {
 
     Context mContext;
     private CardView cardViewPending, cardViewConfirmed, cardViewCancelled, cardViewArchive,cardViewTodayAppointment;
-    private FloatingActionButton fabAddNewAppointment;
+    private FloatingActionButton fabAddNewAppointment,fabCancelbtn;
     private TextView textPending, textConfirmed, textCancelled, textArchive,textPendingCount,textConfirmCount,textCancelCount,textArchiveCount,textTodayAppointment,textTodayCount;
     private ApiInterface apiInterface;
     private ArrayList<DoctorModel> doctorModelArrayList=new ArrayList<>();
@@ -66,7 +67,9 @@ public class AppointmentFragment extends Fragment {
 
 
 
-    private void find_All_IDs(View view) {
+    private void find_All_IDs(View view)
+    {
+        fabCancelbtn=view.findViewById(R.id.fabCalcelAppointment);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         cardViewPending = view.findViewById(R.id.cardViewPending);
         cardViewConfirmed = view.findViewById(R.id.cardViewConfirmed);
@@ -99,7 +102,17 @@ public class AppointmentFragment extends Fragment {
 
     }
 
-    private void events() {
+    private void events()
+    {
+        fabCancelbtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+             Intent intent=new Intent(mContext, CancelAllAptActivity.class);
+             startActivity(intent);
+            }
+        });
         cardViewPending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

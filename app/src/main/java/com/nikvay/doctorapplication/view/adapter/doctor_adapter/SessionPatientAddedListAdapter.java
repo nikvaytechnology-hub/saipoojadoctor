@@ -46,11 +46,13 @@ public class SessionPatientAddedListAdapter extends RecyclerView.Adapter<Session
         final String mno=sessionPatientAddedModel.getPhone_no();
         final String email=sessionPatientAddedModel.getEmail();
         final String name=sessionPatientAddedModel.getName();
+        final String patient_id=sessionPatientAddedModel.getPatient_id();
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 Intent intent=new Intent(mContext, SessionPatientActivity.class);
+                intent.putExtra("patient_id",patient_id);
                 intent.putExtra("mno",mno);
                 intent.putExtra("email",email);
                 intent.putExtra("name",name);

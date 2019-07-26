@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -172,6 +173,11 @@ public class PaymentHistoryActivity extends AppCompatActivity {
 
     private void paymentListCall(String doctor_id, String user_id,String patient_id, String date)
     {
+        if (patient_id==null)
+        {
+            patient_id=getIntent().getStringExtra("patient_id");
+        }
+        Toast.makeText(this, date+""+patient_id+""+doctor_id, Toast.LENGTH_SHORT).show();
         showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.patientPaymentDetails(doctor_id,user_id,patient_id, date);
 

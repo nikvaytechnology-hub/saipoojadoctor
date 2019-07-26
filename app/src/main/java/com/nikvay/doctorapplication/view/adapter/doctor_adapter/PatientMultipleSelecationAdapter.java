@@ -10,6 +10,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.interfaceutils.SelectAllPatientInterface;
@@ -27,7 +28,7 @@ public class PatientMultipleSelecationAdapter  extends RecyclerView.Adapter<Pati
     private ArrayList<PatientModel> arrayListFiltered;
     private SelectAllPatientInterface selectAllPatientInterface;
     private ArrayList<SessionPatientAddedModel> sessionPatientAddedModelArrayList=new ArrayList<>();
-
+ArrayList<String>arrayList=new ArrayList<>();
     View view;
     private   boolean isDialog;
     public PatientMultipleSelecationAdapter(Context context, ArrayList<PatientModel> patientModelArrayList,ArrayList<SessionPatientAddedModel> sessionPatientAddedModelArrayList, boolean isDialog, SelectAllPatientInterface selectAllPatientInterface)
@@ -52,9 +53,10 @@ public class PatientMultipleSelecationAdapter  extends RecyclerView.Adapter<Pati
     public void onBindViewHolder(@NonNull PatientMultipleSelecationAdapter.ViewHolder holder, final int position)
     {
         PatientModel patientModel = patientArrayList.get(position);
-
-        if(isDialog) {
-            if (patientArrayList.get(position).isSelected()) {
+        if(isDialog)
+        {
+            if (patientArrayList.get(position).isSelected())
+            {
                 holder.relativeLayoutPatient.setBackgroundColor(mContext.getResources().getColor(android.R.color.holo_green_light));
             } else {
                 holder.relativeLayoutPatient.setBackgroundColor(mContext.getResources().getColor(R.color.cardview_light_background));

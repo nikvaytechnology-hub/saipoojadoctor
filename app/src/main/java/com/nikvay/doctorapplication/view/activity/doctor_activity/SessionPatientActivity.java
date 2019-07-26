@@ -19,9 +19,10 @@ public class SessionPatientActivity extends AppCompatActivity
 {
     private ImageView iv_close, iv_patient_call, iv_patient_service, iv_patient_message, iv_patient_email;
     private TextView textName,textEmail,textContact,textTitleName;
-    private RelativeLayout relativeLayoutAppointment,relativeLayoutPrescription,relativeLayoutPayment;
+    private RelativeLayout relativeLayoutAppointment,relativeLayoutPayment;
     private PatientModel patientModel;
     String patient_id;
+    String id;
    // private Button btnEdit;
     private String mTitle="Add Customer";
 
@@ -31,6 +32,7 @@ public class SessionPatientActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_patient);
+
 
         all_ids();
         events();
@@ -49,6 +51,7 @@ public class SessionPatientActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SessionPatientActivity.this, AppointmentHistoryActivity.class);
+                intent.putExtra("patient_id",id);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, patientModel);
                 startActivity(intent);
@@ -62,23 +65,25 @@ public class SessionPatientActivity extends AppCompatActivity
             {
                 Intent intent = new Intent(SessionPatientActivity.this, PaymentHistoryActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("patient_id",id);
                 intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, patientModel);
                 intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_EDIT_PATIENT);
                 startActivity(intent);
             }
         });
 
-        relativeLayoutPrescription.setOnClickListener(new View.OnClickListener() {
+   /*     relativeLayoutPrescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(SessionPatientActivity.this, PrescriptionHistoryActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("patient_id",id);
                 intent.putExtra(StaticContent.IntentKey.PATIENT_DETAIL, patientModel);
                 startActivity(intent);
 
             }
-        });
+        });*/
 
         iv_patient_call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +140,7 @@ public class SessionPatientActivity extends AppCompatActivity
 
     private void all_ids()
     {
+        id=getIntent().getStringExtra("patient_id");
         email=getIntent().getStringExtra("email");
         mno=getIntent().getStringExtra("mno");
         name=getIntent().getStringExtra("name");
@@ -155,7 +161,7 @@ public class SessionPatientActivity extends AppCompatActivity
         textEmail.setText(email);
         textContact.setText(mno);
         relativeLayoutAppointment = findViewById(R.id.relativeLayoutAppointment);
-        relativeLayoutPrescription = findViewById(R.id.relativeLayoutPrescription);
+        //relativeLayoutPrescription = findViewById(R.id.relativeLayoutPrescription);
         relativeLayoutPayment = findViewById(R.id.relativeLayoutPayment);
 
     }

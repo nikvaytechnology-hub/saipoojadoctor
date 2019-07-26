@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -202,8 +203,9 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         btnOkDialogPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  callEdiSession();
-                sessionPatientAddedModelArrayList.clear();
+                callEdiSession();
+                callListPatientAdded();
+               // sessionPatientAddedModelArrayList.clear();
 
                 callListPatientAdded();
                 editSearchPatient.setText("");
@@ -301,13 +303,12 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
                                 if (patientModelArrayList.size() != 0) {
                                     selectPatientDialog.show();
-
-                                    Collections.reverse(patientModelArrayList);
-                                    callListPatientAdded();
+                              Collections.reverse(patientModelArrayList);
                                     patientMultipleSelecationAdapter = new PatientMultipleSelecationAdapter(getApplicationContext(), patientModelArrayList,sessionPatientAddedModelArrayList,true,SessionEditActivity.this);
                                     recyclerDialogPatient.setAdapter(patientMultipleSelecationAdapter);
+                                    patientMultipleSelecationAdapter.notifyDataSetChanged();
                                   //  edt_search_patient.setEnabled(true);
-                                    allPatientListAdapter.notifyDataSetChanged();
+                                   // allPatientListAdapter.notifyDataSetChanged();
                                     // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
                                /*     iv_no_data_found.setVisibility(View.VISIBLE);
@@ -391,7 +392,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         });*/
     }
 
-  /*  private void callEdiSession() {
+    private void callEdiSession() {
         //  showProgress.showDialog();
         String patient_id = String.valueOf(getPatientIdArray());
         String no_of_seat= String.valueOf(no_of_seats);
@@ -436,7 +437,6 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
             }
         });
     }
-*/
 
     private void callListPatientAdded()
     {
@@ -503,6 +503,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
         linearLayoutPatientList.setVisibility(View.VISIBLE);
         patientModelArrayListSelected.add(patientModel);
+
         if (patientModelArrayListSelected.size() != 0) {
             patientMultipleSelecationAdapter = new PatientMultipleSelecationAdapter(SessionEditActivity.this, patientModelArrayListSelected, sessionPatientAddedModelArrayList,false, SessionEditActivity.this);
            // recyclerViewPatient.setAdapter(patientMultipleSelecationAdapter);
@@ -513,6 +514,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         }
 
     }
+
 
     private JSONArray getPatientIdArray()
     {

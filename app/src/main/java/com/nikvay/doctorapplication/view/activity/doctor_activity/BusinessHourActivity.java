@@ -39,7 +39,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BusinessHourActivity extends AppCompatActivity {
+public class BusinessHourActivity extends AppCompatActivity
+{
 
 
   private LinearLayout ll_iv_Sunday, ll_iv_Monday, ll_iv_Tuesday, ll_iv_Wednesday, ll_iv_Thirsday, ll_iv_Friday, ll_iv_Saturaday;
@@ -69,15 +70,15 @@ public class BusinessHourActivity extends AppCompatActivity {
   private Switch sw_Sunday, sw_Monday, sw_Tuesday, sw_Wednesday,
           sw_Thirsday, sw_Friday, sw_Saturaday;
   private String day;
-  private String startTimeSunday, startTimeMonday, startTimeTuesday, startTimeWednesday, startTimeThirsday,
-          startTimeFriday, startTimeSaturaday;
-  private String endTimeSunday, endTimeMonday, endTimeTuesday, endTimeWednesday,
-          endTimeThirsday, endTimeFriday, endTimeSaturaday;
+  private String startTimeSunday="09:00", startTimeMonday="09:00", startTimeTuesday="09:00", startTimeWednesday="09:00", startTimeThirsday="09:00",
+          startTimeFriday="09:00", startTimeSaturaday="09:00";
+  private String endTimeSunday="21:00", endTimeMonday="21:00", endTimeTuesday="21:00", endTimeWednesday="21:00",
+          endTimeThirsday="21:00", endTimeFriday="21:00", endTimeSaturaday="21:00";
   private Spinner spinnerTimeSlot;
 
   private ApiInterface apiInterface;
   private String TAG = getClass().getSimpleName();
-  private String startTime = "00:00", endTime = "00:00";
+  private String startTime ="09:00", endTime="21:00";
   private String dayStatus = null, Evening = null, Whole_Day = null, mTitle = "", timeSlot, slotTime, doctor_id = "", user_id = "";
   private int hours, converstartminute, converendminute;
   private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
@@ -594,10 +595,11 @@ public class BusinessHourActivity extends AppCompatActivity {
     });
   }
 
-  private boolean doValidation() {
+  private boolean doValidation()
+  {
     if (status == "1") {
       if (startTimeSunday == null || endTimeSunday == null) {
-        startTimeSunday="9:00";
+        startTimeSunday="09:00";
         endTimeSunday="21:00";
         //errorMessageDialog.showDialog("please select Sunday Start And End Time");
         return false;
@@ -607,7 +609,7 @@ public class BusinessHourActivity extends AppCompatActivity {
 
     if (status == "2") {
       if (startTimeMonday == null || endTimeMonday == null) {
-        startTimeMonday="9:00";
+        startTimeMonday="09:00";
         endTimeMonday="21:00";
 //        errorMessageDialog.showDialog("please select Monday Start And End Time");
         return false;
@@ -617,7 +619,7 @@ public class BusinessHourActivity extends AppCompatActivity {
 
     if (status == "3") {
       if (startTimeTuesday == null || endTimeTuesday == null) {
-       startTimeTuesday="9:00";
+       startTimeTuesday="09:00";
         endTimeTuesday="21:00";
         // errorMessageDialog.showDialog("please select Tuesday Start And End Time");
         return false;
@@ -627,7 +629,7 @@ public class BusinessHourActivity extends AppCompatActivity {
 
     if (status == "4") {
       if (startTimeWednesday == null || endTimeWednesday == null) {
-        startTimeWednesday="9:00";
+        startTimeWednesday="09:00";
                 endTimeWednesday="21:00";
         //errorMessageDialog.showDialog("please select Wednesday Start And End Time");
         return false;
@@ -636,7 +638,7 @@ public class BusinessHourActivity extends AppCompatActivity {
     }
     if (status == "5") {
       if (startTimeThirsday == null || endTimeThirsday == null) {
-      startTimeThirsday="9:00";
+      startTimeThirsday="09:00";
               endTimeThirsday="21:00";
         //  errorMessageDialog.showDialog("please select Thursday Start And End Time");
         return false;
@@ -645,7 +647,7 @@ public class BusinessHourActivity extends AppCompatActivity {
     }
     if (status == "6") {
       if (startTimeFriday == null || endTimeFriday == null) {
-        startTimeFriday="9:00";
+        startTimeFriday="09:00";
                 endTimeFriday="21:00";
         // errorMessageDialog.showDialog("please select Friday Start And End Time");
         return false;
@@ -656,7 +658,7 @@ public class BusinessHourActivity extends AppCompatActivity {
     {
       if (startTimeSaturaday == null || endTimeSaturaday == null)
       {
-        startTimeSaturaday="9:00";
+        startTimeSaturaday="09:00";
                 endTimeSaturaday="21:00";
         //errorMessageDialog.showDialog("please select saturday Start And End Time");
         return false;

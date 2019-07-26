@@ -180,8 +180,7 @@ public class CreateSessionActivity extends AppCompatActivity {
 
                             if (errorCode.equalsIgnoreCase("1")) {
                                 appointmentDialog.showDialog("Session Add succesfully ");
-                                Intent intent=new Intent(CreateSessionActivity.this,SessionEditActivity.class);
-                                startActivity(intent);
+
                                 //finish();
                             } else if (errorCode.equalsIgnoreCase("3")) {
                                 errorMessageDialog.showDialog("Session is Already Sucessfully ");

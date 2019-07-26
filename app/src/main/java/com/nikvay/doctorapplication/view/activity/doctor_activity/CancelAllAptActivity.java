@@ -51,7 +51,7 @@ public class CancelAllAptActivity extends AppCompatActivity {
     private ErrorMessageDialog errorMessageDialog;
     private SuccessMessageDialog successMessageDialog;
 
-    String startTime = "00:00", endTime = "00:00";
+    String startTime = "09:00", endTime = "21:00";
 
     int hours, converstartminute, converendminute;
 

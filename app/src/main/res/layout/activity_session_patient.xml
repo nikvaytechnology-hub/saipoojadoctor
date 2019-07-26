@@ -293,7 +293,7 @@
                 android:background="@color/dark_gray" />
 
 
-            <RelativeLayout
+       <!--     <RelativeLayout
                 android:layout_width="match_parent"
                 android:id="@+id/relativeLayoutPrescription"
                 android:layout_height="80dp">
@@ -343,7 +343,7 @@
 
 
             </RelativeLayout>
-
+-->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

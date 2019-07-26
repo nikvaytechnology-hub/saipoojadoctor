@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -143,8 +144,12 @@ public class AppointmentHistoryActivity extends AppCompatActivity {
 
     }
 
-    private void appointmentListCall() {
-
+    private void appointmentListCall()
+    {
+        if (patient_id==null)
+        {
+            patient_id=getIntent().getStringExtra("patient_id");
+        }
 
         showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.patientAppointmentHistory(doctor_id,patient_id, date);

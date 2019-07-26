@@ -78,7 +78,7 @@ public class PrescriptionHistoryActivity extends AppCompatActivity {
 
         if (bundle != null) {
             patientModel = (PatientModel) bundle.getSerializable(StaticContent.IntentKey.PATIENT_DETAIL);
-            patient_id =patientModel.getPatient_id();
+         //   patient_id =patientModel.getPatient_id();
         }
 
        // Toast.makeText(this, patient_id, Toast.LENGTH_SHORT).show();
@@ -153,7 +153,10 @@ public class PrescriptionHistoryActivity extends AppCompatActivity {
 
         showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.prescriptionHistory(doctor_id,patient_id, user_id);
-
+        if (patient_id==null)
+        {
+            patient_id=getIntent().getStringExtra("id");
+        }
         call.enqueue(new Callback<SuccessModel>() {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response)
