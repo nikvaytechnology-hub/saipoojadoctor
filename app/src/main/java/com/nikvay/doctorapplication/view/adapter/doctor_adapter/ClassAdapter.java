@@ -21,6 +21,8 @@ import com.nikvay.doctorapplication.view.activity.doctor_activity.ClassDetailsAc
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder> implements Filterable {
 
   Context mContext;
@@ -53,7 +55,15 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
     String createdBy=classModel.getDoctor_name();
 //    holder.txtcreateBy.setText("Created by"+" "+createdBy);
     // holder.textClassDate.setText(classModel.getDate());
-    SharedPreferences sharedPreferences=mContext.getSharedPreferences("class_name",Context.MODE_PRIVATE);
+    SharedPreferences sharedPreferences2=mContext.getSharedPreferences("login_status",MODE_PRIVATE);
+    String status=sharedPreferences2.getString("login_status","");
+
+    if (status.equals("doctor"))
+    {
+      holder.txtcreateBy.setVisibility(View.GONE);
+    }
+    holder.txtcreateBy.setText(createdBy);
+    SharedPreferences sharedPreferences=mContext.getSharedPreferences("class_name", MODE_PRIVATE);
     final SharedPreferences.Editor editor=sharedPreferences.edit();
     editor.putString("class_name",class_name);
     editor.putString("class_id",class_id);
@@ -128,7 +138,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
 
   public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView textClassName,textClassDate;
+    private TextView textClassName,textClassDate,txtcreateBy;
     private RelativeLayout relativeLayoutClass;
 
     public MyViewHolder(@NonNull View itemView) {
@@ -136,7 +146,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.MyViewHolder
       textClassName=itemView.findViewById(R.id.textClassName);
       //textClassDate=itemView.findViewById(R.id.textClassDate);
       relativeLayoutClass=itemView.findViewById(R.id.relativeLayoutClass);
-     // txtcreateBy=itemView.findViewById(R.id.txtcreatedBy);
+      txtcreateBy=itemView.findViewById(R.id.txtcreatedBy);
     }
   }
 }

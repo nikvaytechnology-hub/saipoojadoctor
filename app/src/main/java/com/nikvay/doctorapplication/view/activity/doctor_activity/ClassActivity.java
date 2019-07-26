@@ -117,7 +117,9 @@ public class ClassActivity extends AppCompatActivity {
         });
     }
 
-    private void find_All_IDs() {
+    private void find_All_IDs()
+    {
+
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         recyclerClassList = findViewById(R.id.recyclerClassList);
         iv_close = findViewById(R.id.iv_close);

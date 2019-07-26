@@ -49,13 +49,13 @@ public class CreateSessionActivity extends AppCompatActivity {
     private AppointmentDialog  appointmentDialog;
     private ErrorMessageDialog errorMessageDialog;
     SharedPreferences sharedPreferences;
-    SharedPreferences sharedPreferences2;
+    SharedPreferences sharedSession_details;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_session);
-        sharedPreferences2=getSharedPreferences("session_details",MODE_PRIVATE);
+        sharedSession_details=getSharedPreferences("session_details",MODE_PRIVATE);
 
         find_All_ID();
         event();
@@ -80,9 +80,8 @@ public class CreateSessionActivity extends AppCompatActivity {
         // textDate = findViewById(R.id.textDate);
         textSeats = findViewById(R.id.textSeats);
 
-        cost=sharedPreferences2.getString("cost","");
-        no_of_seats=sharedPreferences2.getString("seats","");
-        Toast.makeText(this, cost+""+no_of_seats, Toast.LENGTH_SHORT).show();
+        cost=sharedSession_details.getString("cost"," ");
+        no_of_seats=sharedSession_details.getString("seats"," ");
         textCost.setText(cost);
         textSeats.setText(no_of_seats);
 
@@ -181,9 +180,8 @@ public class CreateSessionActivity extends AppCompatActivity {
 
                             if (errorCode.equalsIgnoreCase("1")) {
                                 appointmentDialog.showDialog("Session Add succesfully ");
-                                Intent intent=new Intent(CreateSessionActivity.this,SessionDetailsActivity.class);
+                                Intent intent=new Intent(CreateSessionActivity.this,SessionEditActivity.class);
                                 startActivity(intent);
-                                Toast.makeText(CreateSessionActivity.this, "hii", Toast.LENGTH_SHORT).show();
                                 //finish();
                             } else if (errorCode.equalsIgnoreCase("3")) {
                                 errorMessageDialog.showDialog("Session is Already Sucessfully ");

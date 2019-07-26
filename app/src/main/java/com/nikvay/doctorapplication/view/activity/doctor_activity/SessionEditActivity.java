@@ -3,6 +3,7 @@ package com.nikvay.doctorapplication.view.activity.doctor_activity;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -36,6 +37,7 @@ import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
 import com.nikvay.doctorapplication.utils.SuccessMessageDoctorDialog;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddServiceActivity;
+import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AllPatientListActivity;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.AllPatientListAdapter;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.MyDoctorDialogAdapter;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.MyPatientDialogAdapter;
@@ -45,6 +47,7 @@ import com.nikvay.doctorapplication.view.adapter.doctor_adapter.SessionPatientAd
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -58,7 +61,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
    // private Button btnEdit;
     private SessionListModel sessionListModel;
     private LinearLayout linearLayoutPatient, linearLayoutSelectPatient;
-    private RecyclerView recyclerViewPatient;
+  //  private RecyclerView recyclerViewPatient;
     private ApiInterface apiInterface;
     String TAG = getClass().getSimpleName();
     ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
@@ -69,7 +72,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
     private ErrorMessageDialog errorMessageDialog;
     private SuccessMessageDialog successMessageDoctorDialog;
 
-
+    AllPatientListAdapter allPatientListAdapter;
     //select Patient
     private Dialog selectPatientDialog;
     private EditText editSearchPatient;
@@ -106,14 +109,14 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         textDate = findViewById(R.id.textDate);
         textSeats = findViewById(R.id.textSeats);
        // btnEdit = findViewById(R.id.btnEdit);
-        recyclerViewPatient = findViewById(R.id.recyclerViewPatient);
+        //recyclerViewPatient = findViewById(R.id.recyclerViewPatient);
 
         linearLayoutPatientAddedList = findViewById(R.id.linearLayoutPatientAddedList);
         recyclerViewPatientAddList = findViewById(R.id.recyclerViewPatientAddList);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SessionEditActivity.this);
-        recyclerViewPatient.setLayoutManager(linearLayoutManager);
-        recyclerViewPatient.hasFixedSize();
+       // recyclerViewPatient.setLayoutManager(linearLayoutManager);
+       // recyclerViewPatient.hasFixedSize();
 
         doctorModelArrayList = SharedUtils.getUserDetails(SessionEditActivity.this);
         doctor_id = doctorModelArrayList.get(0).getDoctor_id();
@@ -199,14 +202,18 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         btnOkDialogPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callEdiSession();
+              //  callEdiSession();
+                sessionPatientAddedModelArrayList.clear();
+
+                callListPatientAdded();
                 editSearchPatient.setText("");
                 selectPatientDialog.dismiss();
 
             }
         });
 
-        btnCancelDialogPatient.setOnClickListener(new View.OnClickListener() {
+        btnCancelDialogPatient.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 patientModelArrayListSelected.clear();
@@ -266,8 +273,69 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
 
     private void callListPatient() {
+
+
+
+        Call<SuccessModel> call = apiInterface.patientListAdmin(user_id);
+
+        call.enqueue(new Callback<SuccessModel>() {
+            @Override
+            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+                showProgress.dismissDialog();
+                String str_response = new Gson().toJson(response.body());
+                Log.e("" + TAG, "Response >>>>" + str_response);
+
+                try {
+                    if (response.isSuccessful()) {
+                        SuccessModel successModel = response.body();
+                        patientModelArrayList.clear();
+                        String message = null, code = null;
+                        if (successModel != null) {
+                            message = successModel.getMsg();
+                            code = successModel.getError_code();
+
+
+                            if (code.equalsIgnoreCase("1")) {
+
+                                patientModelArrayList = successModel.getPatientModelArrayListAdmin();
+
+                                if (patientModelArrayList.size() != 0) {
+                                    selectPatientDialog.show();
+
+                                    Collections.reverse(patientModelArrayList);
+                                    callListPatientAdded();
+                                    patientMultipleSelecationAdapter = new PatientMultipleSelecationAdapter(getApplicationContext(), patientModelArrayList,sessionPatientAddedModelArrayList,true,SessionEditActivity.this);
+                                    recyclerDialogPatient.setAdapter(patientMultipleSelecationAdapter);
+                                  //  edt_search_patient.setEnabled(true);
+                                    allPatientListAdapter.notifyDataSetChanged();
+                                    // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
+                                } else {
+                               /*     iv_no_data_found.setVisibility(View.VISIBLE);
+                                    edt_search_patient.setEnabled(false);*/
+                                    allPatientListAdapter.notifyDataSetChanged();
+                                }
+
+                            } else {
+                                errorMessageDialog.showDialog("Response Not Working");
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<SuccessModel> call, Throwable t) {
+                showProgress.dismissDialog();
+                errorMessageDialog.showDialog(t.getMessage());
+            }
+        });
+
         //  showProgress.showDialog();
-        Call<SuccessModel> call = apiInterface.patientList(doctor_id);
+       /* Call<SuccessModel> call = apiInterface.patientList(doctor_id);
 
         call.enqueue(new Callback<SuccessModel>() {
             @Override
@@ -320,10 +388,10 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
                 showProgress.dismissDialog();
                 errorMessageDialog.showDialog(t.getMessage());
             }
-        });
+        });*/
     }
 
-    private void callEdiSession() {
+  /*  private void callEdiSession() {
         //  showProgress.showDialog();
         String patient_id = String.valueOf(getPatientIdArray());
         String no_of_seat= String.valueOf(no_of_seats);
@@ -368,7 +436,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
             }
         });
     }
-
+*/
 
     private void callListPatientAdded()
     {
@@ -402,7 +470,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
                                     recyclerViewPatientAddList.setAdapter(sessionPatientAddedListAdapter);
                                     sessionPatientAddedListAdapter.notifyDataSetChanged();
 
-                                    // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
+                                     recyclerViewPatientAddList.addItemDecoration(new DividerItemDecoration(SessionEditActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
                                     recyclerViewPatientAddList.setVisibility(View.GONE);
                                     linearLayoutPatientAddedList.setVisibility(View.GONE);
@@ -436,9 +504,9 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         linearLayoutPatientList.setVisibility(View.VISIBLE);
         patientModelArrayListSelected.add(patientModel);
         if (patientModelArrayListSelected.size() != 0) {
-            patientMultipleSelecationAdapter = new PatientMultipleSelecationAdapter(SessionEditActivity.this, patientModelArrayListSelected, false, SessionEditActivity.this);
-            recyclerViewPatient.setAdapter(patientMultipleSelecationAdapter);
-            recyclerViewPatient.setVisibility(View.VISIBLE);
+            patientMultipleSelecationAdapter = new PatientMultipleSelecationAdapter(SessionEditActivity.this, patientModelArrayListSelected, sessionPatientAddedModelArrayList,false, SessionEditActivity.this);
+           // recyclerViewPatient.setAdapter(patientMultipleSelecationAdapter);
+           // recyclerViewPatient.setVisibility(View.VISIBLE);
 
         } else {
             patientMultipleSelecationAdapter.notifyDataSetChanged();

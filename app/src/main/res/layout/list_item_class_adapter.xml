@@ -28,11 +28,13 @@
             android:orientation="vertical"
             android:layout_centerVertical="true"
             android:weightSum="2">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
             <TextView
                 android:layout_marginTop="14dp"
                 android:layout_gravity="center_vertical"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textClassName"
                 android:layout_marginStart="10dp"
@@ -42,7 +44,16 @@
                 android:text="Class Name"
                 android:maxLines="1"
                 android:textColor="@color/black" />
-
+<TextView
+    android:layout_marginStart="10dp"
+    android:textSize="17sp"
+    android:id="@+id/txtcreatedBy"
+    android:layout_marginTop="3sp"
+    android:layout_below="@+id/textClassName"
+    android:text="Created by:"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+</RelativeLayout>
 <!--
             <TextView
                 android:layout_width="match_parent"

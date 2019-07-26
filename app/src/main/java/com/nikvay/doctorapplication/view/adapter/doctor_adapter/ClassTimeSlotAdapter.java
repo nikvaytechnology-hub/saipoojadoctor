@@ -59,8 +59,8 @@ public class ClassTimeSlotAdapter extends RecyclerView.Adapter<ClassTimeSlotAdap
 
         holder.cardViewTime.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                 if (selectDateTimeModel.getStatus().equals("1")) {
                     errorMessageDialog.showDialog("This Slot Is Already Booked");
                 } else {

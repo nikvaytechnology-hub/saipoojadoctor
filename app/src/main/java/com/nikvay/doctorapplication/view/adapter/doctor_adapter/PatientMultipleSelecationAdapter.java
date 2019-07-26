@@ -15,6 +15,7 @@ import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.interfaceutils.SelectAllPatientInterface;
 import com.nikvay.doctorapplication.interfaceutils.SelectPatientInterface;
 import com.nikvay.doctorapplication.model.PatientModel;
+import com.nikvay.doctorapplication.model.SessionPatientAddedModel;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PaymentActivity;
 import com.nikvay.doctorapplication.view.activity.doctor_activity.PrescriptionActivity;
 
@@ -25,16 +26,18 @@ public class PatientMultipleSelecationAdapter  extends RecyclerView.Adapter<Pati
     private ArrayList<PatientModel> patientArrayList;
     private ArrayList<PatientModel> arrayListFiltered;
     private SelectAllPatientInterface selectAllPatientInterface;
+    private ArrayList<SessionPatientAddedModel> sessionPatientAddedModelArrayList=new ArrayList<>();
+
     View view;
     private   boolean isDialog;
-    public PatientMultipleSelecationAdapter(Context context, ArrayList<PatientModel> patientModelArrayList, boolean isDialog, SelectAllPatientInterface selectAllPatientInterface)
+    public PatientMultipleSelecationAdapter(Context context, ArrayList<PatientModel> patientModelArrayList,ArrayList<SessionPatientAddedModel> sessionPatientAddedModelArrayList, boolean isDialog, SelectAllPatientInterface selectAllPatientInterface)
     {
         this.mContext = context;
         this.patientArrayList = patientModelArrayList;
         this.arrayListFiltered = patientModelArrayList;
         this.selectAllPatientInterface = selectAllPatientInterface;
         this.isDialog= isDialog;
-
+        this.sessionPatientAddedModelArrayList=sessionPatientAddedModelArrayList;
     }
 
 
@@ -66,7 +69,8 @@ public class PatientMultipleSelecationAdapter  extends RecyclerView.Adapter<Pati
         holder.textContact.setText(contact);
         holder.textEmail.setText(email);
 
-        holder.relativeLayoutPatient.setOnClickListener(new View.OnClickListener() {
+        holder.relativeLayoutPatient.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 if(isDialog) {

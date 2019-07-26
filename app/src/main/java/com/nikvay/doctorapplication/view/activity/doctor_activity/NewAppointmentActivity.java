@@ -34,7 +34,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewAppointmentActivity extends AppCompatActivity {
+public class NewAppointmentActivity extends AppCompatActivity
+{
 
 
     private ImageView iv_close;

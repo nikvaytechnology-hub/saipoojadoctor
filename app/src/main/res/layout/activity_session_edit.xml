@@ -328,12 +328,12 @@
                 android:padding="@dimen/padding_10"
                 android:id="@+id/linearLayoutPatientList">
 
-                <android.support.v7.widget.RecyclerView
+              <!--  <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerViewPatient"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-
+-->
 
             </LinearLayout>
 

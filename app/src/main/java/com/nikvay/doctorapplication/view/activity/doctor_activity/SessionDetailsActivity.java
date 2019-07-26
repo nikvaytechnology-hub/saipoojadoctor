@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.ClassModel;
+import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddInstructor;
 
@@ -23,11 +24,12 @@ public class SessionDetailsActivity extends AppCompatActivity {
     private ClassModel classModel;
     private String mTitle="Class Details",cost,no_of_student,description,seats;
     private Button btnNext;
+    private ErrorMessageDialog errorMessageDialog;
     private ImageView iv_close;
     String doctor_id,user_id;
     SharedPreferences sharedPreferences;
     SharedPreferences sharedPreferences2;
-    SharedPreferences sharedPreferences1;
+    SharedPreferences sharedSession_details;
     String status;
 
 
@@ -36,7 +38,7 @@ public class SessionDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_details);
         SharedPreferences sharedPreferences=getSharedPreferences("Class_name",MODE_PRIVATE);
-        sharedPreferences1=getSharedPreferences("session_details",MODE_PRIVATE);
+        sharedSession_details=getSharedPreferences("session_details",MODE_PRIVATE);
         sharedPreferences2=getSharedPreferences("login_status",MODE_PRIVATE);
         status=sharedPreferences2.getString("login_status","");
         find_All_IDs();
@@ -45,6 +47,8 @@ public class SessionDetailsActivity extends AppCompatActivity {
     }
 
     private void find_All_IDs() {
+        errorMessageDialog=new ErrorMessageDialog(SessionDetailsActivity.this);
+
         doctor_id=getIntent().getStringExtra("doctor_id");
         user_id=getIntent().getStringExtra("user_id");
         textClass=findViewById(R.id.textClass);
@@ -83,17 +87,7 @@ public class SessionDetailsActivity extends AppCompatActivity {
 
     private void events()
     {
-cost=textCost.getText().toString();
-seats=textSeats.getText().toString();
-description=textDescription.getText().toString();
-if (cost.equals("0")&&seats.equals("0")&&description.equals("0"))
-{
-    Toast.makeText(this, "fields should not be 0", Toast.LENGTH_SHORT).show();
-}
-else
-{
-
-    iv_close.setOnClickListener(new View.OnClickListener()
+  iv_close.setOnClickListener(new View.OnClickListener()
     {
         @Override
         public void onClick(View v) {
@@ -104,26 +98,43 @@ else
     {
         @Override
         public void onClick(View v) {
-            SharedPreferences.Editor editor=sharedPreferences1.edit();
-            editor.putString("cost",cost);
-            editor.putString("seats",seats);
-            editor.putString("description",description);
+
+            cost=textCost.getText().toString();
+            seats=textSeats.getText().toString();
+            description=textDescription.getText().toString();
+            SharedPreferences.Editor editor = sharedSession_details.edit();
+            editor.putString("cost", cost);
+            editor.putString("seats", seats);
+            editor.putString("description", description);
             editor.apply();
             editor.commit();
-            if (status.equals("admin"))
+
+            int s=Integer.parseInt(seats);
+            int c = Integer.parseInt(cost);
+
+            if (c <= 0)
             {
-                Intent intent=new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
-                intent.putExtra("doctor_id",doctor_id);
-                intent.putExtra("user_id",user_id);
-                startActivity(intent);
+                errorMessageDialog.showDialog("Cost & Seats should not be zero ");
             }
-            else if (status.equals("doctor"))
+            else if (s<=0)
             {
-                Intent intent=new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
-                intent.putExtra("doctor_id",doctor_id);
-                intent.putExtra("user_id",user_id);
-                startActivity(intent);
+                errorMessageDialog.showDialog("Cost & Seats should not be zero ");
+
             }
+            else {
+                if (status.equals("admin")) {
+                    Intent intent = new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
+
+                    intent.putExtra("doctor_id", doctor_id);
+                    intent.putExtra("user_id", user_id);
+                    startActivity(intent);
+                } else if (status.equals("doctor")) {
+                    Intent intent = new Intent(SessionDetailsActivity.this, ClassTimeSlotActivity.class);
+
+                    intent.putExtra("doctor_id", doctor_id);
+                    intent.putExtra("user_id", user_id);
+                    startActivity(intent);
+                }
       /*          sharedPreferences1=getSharedPreferences("login_status",MODE_PRIVATE);
                 String status=sharedPreferences1.getString("login_status","");
                 if(status.equals("admin"))
@@ -146,10 +157,9 @@ else
                       intent.putExtra(StaticContent.IntentKey.ACTIVITY_TYPE, StaticContent.IntentValue.ACTIVITY_CLASS_DETAILS);
                  *//*
                 }*/
+            }
         }
     });
-
-}
-
     }
+
 }
