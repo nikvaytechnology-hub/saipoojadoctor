@@ -29,6 +29,7 @@ import com.nikvay.doctorapplication.model.PatientModel;
 import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SessionListModel;
 import com.nikvay.doctorapplication.model.SessionPatientAddedModel;
+import com.nikvay.doctorapplication.model.SessionPatientExistModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
@@ -39,6 +40,7 @@ import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
 import com.nikvay.doctorapplication.utils.SuccessMessageDoctorDialog;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddServiceActivity;
 import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AllPatientListActivity;
+import com.nikvay.doctorapplication.view.adapter.AddAttendeeAdapter;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.AllPatientListAdapter;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.MyDoctorDialogAdapter;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.MyPatientDialogAdapter;
@@ -66,7 +68,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
     private ApiInterface apiInterface;
     String TAG = getClass().getSimpleName();
     ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
-
+    ArrayList<SessionPatientExistModel>sessionPatientExistModelArrayList=new ArrayList<>();
     private String doctor_id = "", user_id = "", session_id = "", doctor_idAssign = "";
     private int no_of_seats;
     private ShowProgress showProgress;
@@ -94,7 +96,8 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_edit);
 
@@ -218,7 +221,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
         {
             @Override
             public void onClick(View v) {
-                patientModelArrayListSelected.clear();
+//                patientModelArrayListSelected.clear();
                 editSearchPatient.setText("");
                 selectPatientDialog.dismiss();
 
@@ -234,7 +237,7 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                patientMultipleSelecationAdapter.getFilter().filter(editSearchPatient.getText().toString());
+              //  patientMultipleSelecationAdapter.getFilter().filter(editSearchPatient.getText().toString());
             }
 
             @Override
@@ -278,9 +281,10 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
 
 
-        Call<SuccessModel> call = apiInterface.patientListAdmin(user_id);
+        Call<SuccessModel> call = apiInterface.list_session_patient(user_id,session_id);
 
-        call.enqueue(new Callback<SuccessModel>() {
+        call.enqueue(new Callback<SuccessModel>()
+        {
             @Override
             public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
                 showProgress.dismissDialog();
@@ -288,18 +292,26 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
                 Log.e("" + TAG, "Response >>>>" + str_response);
 
                 try {
-                    if (response.isSuccessful()) {
+                    if (response.isSuccessful())
+                    {
                         SuccessModel successModel = response.body();
                         patientModelArrayList.clear();
                         String message = null, code = null;
-                        if (successModel != null) {
+                        if (successModel != null)
+                        {
                             message = successModel.getMsg();
                             code = successModel.getError_code();
 
 
-                            if (code.equalsIgnoreCase("1")) {
-
-                                patientModelArrayList = successModel.getPatientModelArrayListAdmin();
+                            if (code.equalsIgnoreCase("1"))
+                            {
+                                Toast.makeText(SessionEditActivity.this, code+""+message, Toast.LENGTH_SHORT).show();
+                                selectPatientDialog.show();
+                                sessionPatientExistModelArrayList=successModel.getSessionPatientExistModelArrayList();
+                                AddAttendeeAdapter addAttendeeAdapter=new AddAttendeeAdapter(getApplicationContext(),sessionPatientExistModelArrayList);
+                                recyclerDialogPatient.setAdapter(addAttendeeAdapter);
+                                /*
+ patientModelArrayList = successModel.getPatientModelArrayListAdmin();
 
                                 if (patientModelArrayList.size() != 0) {
                                     selectPatientDialog.show();
@@ -311,10 +323,10 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
                                    // allPatientListAdapter.notifyDataSetChanged();
                                     // recyclerPatientList.addItemDecoration(new DividerItemDecoration(PatientActivity.this, DividerItemDecoration.VERTICAL));
                                 } else {
-                               /*     iv_no_data_found.setVisibility(View.VISIBLE);
-                                    edt_search_patient.setEnabled(false);*/
+                               *//*     iv_no_data_found.setVisibility(View.VISIBLE);
+                                    edt_search_patient.setEnabled(false);*//*
                                     allPatientListAdapter.notifyDataSetChanged();
-                                }
+                                }*/
 
                             } else {
                                 errorMessageDialog.showDialog("Response Not Working");
@@ -440,18 +452,23 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
     private void callListPatientAdded()
     {
+     
         //  showProgress.showDialog();
         Call<SuccessModel> call = apiInterface.listSessionPatientAdded(session_id);
 
-        call.enqueue(new Callback<SuccessModel>() {
+        call.enqueue(new Callback<SuccessModel>()
+        {
             @Override
-            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response)
+            {
                 showProgress.dismissDialog();
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);
 
-                try {
-                    if (response.isSuccessful()) {
+                try
+                {
+                    if (response.isSuccessful())
+                    {
                         SuccessModel successModel = response.body();
                         sessionPatientAddedModelArrayList.clear();
                         String message = null, code = null;
@@ -464,14 +481,17 @@ public class SessionEditActivity extends AppCompatActivity implements SelectAllP
 
                                 sessionPatientAddedModelArrayList = successModel.getSessionPatientAddedModelArrayList();
 
-                                if (sessionPatientAddedModelArrayList.size() != 0) {
+                                if (sessionPatientAddedModelArrayList.size() != 0)
+                                {
                                     linearLayoutPatientAddedList.setVisibility(View.VISIBLE);
                                     sessionPatientAddedListAdapter = new SessionPatientAddedListAdapter(getApplicationContext(),sessionPatientAddedModelArrayList);
                                     recyclerViewPatientAddList.setAdapter(sessionPatientAddedListAdapter);
                                     sessionPatientAddedListAdapter.notifyDataSetChanged();
 
                                      recyclerViewPatientAddList.addItemDecoration(new DividerItemDecoration(SessionEditActivity.this, DividerItemDecoration.VERTICAL));
-                                } else {
+                                }
+                                else
+                                    {
                                     recyclerViewPatientAddList.setVisibility(View.GONE);
                                     linearLayoutPatientAddedList.setVisibility(View.GONE);
                                     sessionPatientAddedListAdapter.notifyDataSetChanged();
