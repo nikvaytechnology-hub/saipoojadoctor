@@ -108,7 +108,7 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
     }
 
     private void find_All_IDs() {
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+            apiInterface = ApiClient.getClient().create(ApiInterface.class);
         iv_close = findViewById(R.id.iv_close);
         textClass = findViewById(R.id.textClass);
         textCost = findViewById(R.id.textCost);
@@ -295,7 +295,8 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);
 
-                try {
+                try
+                {
                     if (response.isSuccessful())
                     {
                         SuccessModel successModel = response.body();
@@ -312,7 +313,7 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
                                 Toast.makeText(SessionEditActivity.this, code+""+message, Toast.LENGTH_SHORT).show();
                                 selectPatientDialog.show();
                                 sessionPatientExistModelArrayList=successModel.getSessionPatientExistModelArrayList();
-                                AddAttendeeAdapter addAttendeeAdapter=new AddAttendeeAdapter(getApplicationContext(),sessionPatientExistModelArrayList,SessionEditActivity.this);
+                            AddAttendeeAdapter addAttendeeAdapter=new AddAttendeeAdapter(getApplicationContext(),sessionPatientExistModelArrayList,SessionEditActivity.this);
                                 recyclerDialogPatient.setAdapter(addAttendeeAdapter);
                                 /*
  patientModelArrayList = successModel.getPatientModelArrayListAdmin();
@@ -346,7 +347,8 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
 
 
             @Override
-            public void onFailure(Call<SuccessModel> call, Throwable t) {
+            public void onFailure(Call<SuccessModel> call, Throwable t)
+            {
                 showProgress.dismissDialog();
                 errorMessageDialog.showDialog(t.getMessage());
             }
@@ -355,9 +357,11 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
         //  showProgress.showDialog();
        /* Call<SuccessModel> call = apiInterface.patientList(doctor_id);
 
-        call.enqueue(new Callback<SuccessModel>() {
+        call.enqueue(new Callback<SuccessModel>()
+        {
             @Override
-            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response)
+             {
                 showProgress.dismissDialog();
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response >>>>" + str_response);

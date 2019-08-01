@@ -15,6 +15,16 @@ public class SuccessModel {
     private  String todays_appointment_count;
     private  String img_base_url;
 
+@SerializedName("timeSloat")
+ArrayList<ExistingTime>existingTimeArrayList;
+
+    public ArrayList<ExistingTime> getExistingTimeArrayList() {
+        return existingTimeArrayList;
+    }
+
+    public void setExistingTimeArrayList(ArrayList<ExistingTime> existingTimeArrayList) {
+        this.existingTimeArrayList = existingTimeArrayList;
+    }
 
     @SerializedName("doctor_login")
     ArrayList<DoctorModel> doctorModelArrayList;

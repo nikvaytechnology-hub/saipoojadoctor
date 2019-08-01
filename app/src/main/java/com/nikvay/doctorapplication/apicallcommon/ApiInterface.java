@@ -1,6 +1,7 @@
 package com.nikvay.doctorapplication.apicallcommon;
 
 
+import com.nikvay.doctorapplication.model.ExistingTime;
 import com.nikvay.doctorapplication.model.SuccessModel;
 
 import retrofit2.Call;
@@ -367,4 +368,11 @@ public interface ApiInterface {
     @POST(EndApi.SESSION_ADDED_PATIENT_LIST)
     @FormUrlEncoded
     Call<SuccessModel>  listSessionPatientAdded(@Field("session_id") String session_id);
+
+
+    @POST(EndApi.TIME_SLOT_EXISTING)
+    @FormUrlEncoded
+    Call<SuccessModel>get_existing_time(@Field("user_id")String user_id,
+                                        @Field("doctor_id")String doctor_id,
+                                        @Field("dayStatus")String dayStatus);
 }
