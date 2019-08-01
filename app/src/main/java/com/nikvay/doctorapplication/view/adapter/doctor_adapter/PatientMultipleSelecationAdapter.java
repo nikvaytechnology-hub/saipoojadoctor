@@ -74,11 +74,13 @@ ArrayList<String>arrayList=new ArrayList<>();
         holder.relativeLayoutPatient.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 if(isDialog) {
-                    if (!patientArrayList.get(position).isSelected()) {
+                    if (!patientArrayList.get(position).isSelected())
+                    {
                         patientArrayList.get(position).setSelected(true);
-                        selectAllPatientInterface.getPatientDetail(patientArrayList.get(position));
+                       // selectAllPatientInterface.getPatientDetail(patientArrayList.get(position));
                     } else {
                         patientArrayList.get(position).setSelected(false);
                     }

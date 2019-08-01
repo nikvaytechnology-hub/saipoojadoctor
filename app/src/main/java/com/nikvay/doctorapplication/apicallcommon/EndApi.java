@@ -42,5 +42,8 @@ public class EndApi extends BaseApi {
     public static final String LIST_SESSION = "ws-list-session";
     public static final String EDIT_SESSION = "ws-edit-session";
     public static final String ADMIN_CLASS_LIST = "ws-list-class-admin";
+
     public static final String SESSION_ADDED_PATIENT_LIST = "ws-list-session-patient";
+
+    public static final String PATIENTS_LIST_BY_SESSION_ID = "ws-list-patient-by-session-id";
 }

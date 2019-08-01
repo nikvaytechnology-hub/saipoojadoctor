@@ -21,11 +21,11 @@ public interface ApiInterface {
     @POST(EndApi.UPDATE_PROFILE)
     @FormUrlEncoded
     Call<SuccessModel> updateProfile(@Field("doctor_id") String doctor_id,
-                                 @Field("user_id") String user_id,
-                                 @Field("name") String name,
-                                 @Field("email") String email,
-                                 @Field("profile") String profile,
-                                 @Field("address") String address);
+                                     @Field("user_id") String user_id,
+                                     @Field("name") String name,
+                                     @Field("email") String email,
+                                     @Field("profile") String profile,
+                                     @Field("address") String address);
 
 
 
@@ -286,6 +286,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<SuccessModel> patientListAdmin(@Field("user_id") String user_id);
 
+    @POST(EndApi.PATIENTS_LIST_BY_SESSION_ID)
+    @FormUrlEncoded
+    Call<SuccessModel>list_session_patient(@Field("user_id") String user_id,
+                                           @Field("Session_id") String session_id);
 
     @POST(EndApi.ADD_PATIENT_ADMIN)
     @FormUrlEncoded

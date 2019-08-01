@@ -19,6 +19,16 @@ public class SuccessModel {
     @SerializedName("doctor_login")
     ArrayList<DoctorModel> doctorModelArrayList;
 
+    public ArrayList<SessionPatientExistModel> getSessionPatientExistModelArrayList() {
+        return sessionPatientExistModelArrayList;
+    }
+
+    public void setSessionPatientExistModelArrayList(ArrayList<SessionPatientExistModel> sessionPatientExistModelArrayList) {
+        this.sessionPatientExistModelArrayList = sessionPatientExistModelArrayList;
+    }
+
+    @SerializedName(("list_patient_by_session_id"))
+    ArrayList<SessionPatientExistModel>sessionPatientExistModelArrayList;
 
     @SerializedName("service")
     ArrayList<ServiceModel> serviceModelArrayList;
