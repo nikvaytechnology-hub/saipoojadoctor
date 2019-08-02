@@ -8,11 +8,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.nikvay.doctorapplication.R;
+import com.nikvay.doctorapplication.apicallcommon.ApiClient;
+import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
+import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.StaticContent;
+
+import retrofit2.Call;
 
 public class SettingActivity extends AppCompatActivity {
 
-
+ApiInterface apiInterface;
     private ImageView iv_close;
     RelativeLayout rel_business,rel_ll_appoinments,rel_ll_morning,rel_ll_Day,rel_ll_Evening;
     @Override
@@ -20,6 +25,7 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        apiInterface= ApiClient.getClient().create(ApiInterface.class);
         find_All_IDs();
         events();
     }
@@ -44,18 +50,25 @@ public class SettingActivity extends AppCompatActivity {
 
         rel_ll_Evening.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+
                 Intent intent= new Intent(SettingActivity.this,BusinessHourActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("day_Status","2");
+
                 intent.putExtra(StaticContent.IntentKey.TIME_SLOT, "2");
                 startActivity(intent);
             }
         });
-        rel_ll_Day.setOnClickListener(new View.OnClickListener() {
+        rel_ll_Day.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent= new Intent(SettingActivity.this,BusinessHourActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("day_Status","3");
                 intent.putExtra(StaticContent.IntentKey.TIME_SLOT, "3");
                 startActivity(intent);
             }
@@ -66,6 +79,8 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent= new Intent(SettingActivity.this,BusinessHourActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("day_Status","1");
+
                 intent.putExtra(StaticContent.IntentKey.TIME_SLOT, "1");
                 startActivity(intent);
             }

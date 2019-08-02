@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
@@ -22,6 +23,7 @@ import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.DoctorTimeModel;
+import com.nikvay.doctorapplication.model.ExistingTime;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
 import com.nikvay.doctorapplication.utils.SharedUtils;
@@ -49,11 +51,13 @@ public class BusinessHourActivity extends AppCompatActivity
           to_iv_Thirsday, from_iv_Friday, to_iv_Friday, from_iv_Saturaday, to_iv_Saturaday, textSave;
 
   private boolean isStartDate = false;
-  private String status, state;
+  private String status, state,day_Status;
   private ImageView iv_back;
   private ArrayList<DoctorTimeModel> selectDoctorTimeModelArrayList = new ArrayList<>();
 
   private FloatingActionButton fabCancleAllApt;
+
+  ArrayList<ExistingTime>existingTimeArrayList=new ArrayList<>();
 
   private DoctorTimeModel doctorTimeModel1;
   private DoctorTimeModel doctorTimeModel2;
@@ -88,10 +92,57 @@ public class BusinessHourActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_business_hour);
     find_All_ID();
+    set_default();
+
     event();
   }
 
-  private void find_All_ID() {
+  private void set_default()
+  {
+    Call<SuccessModel>call=apiInterface.get_existing_time(doctor_id,user_id,dayStatus);
+    call.enqueue(new Callback<SuccessModel>()
+    {
+      @Override
+      public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response)
+      {
+
+        String str_response=new Gson().toJson(response.body());
+
+      try
+      {
+      if (response.isSuccessful())
+      {
+        SuccessModel successModel= response.body();
+        String msg=successModel.getMsg();
+
+        existingTimeArrayList=successModel.getExistingTimeArrayList();
+         ExistingTime existingTime;
+        Toast.makeText(BusinessHourActivity.this, ""+msg, Toast.LENGTH_SHORT).show();
+         int size=existingTimeArrayList.size();
+         for (int i=0;i<=existingTimeArrayList.size();i++)
+         {
+           String endTime=existingTimeArrayList.get(i).getEndTime();
+           Toast.makeText(BusinessHourActivity.this, ""+endTime, Toast.LENGTH_SHORT).show();
+         }
+      }
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+      }
+
+      @Override
+      public void onFailure(Call<SuccessModel> call, Throwable t)
+      {
+
+      }
+    });
+  }
+
+  private void find_All_ID()
+  {
+    day_Status=getIntent().getStringExtra("day_Status");
     from_iv_Sunday = findViewById(R.id.from_iv_Sunday);
     from_iv_Monday = findViewById(R.id.from_iv_Monday);
     from_iv_Tuesday = findViewById(R.id.from_iv_Tuesday);

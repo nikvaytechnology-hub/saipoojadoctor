@@ -46,4 +46,7 @@ public class EndApi extends BaseApi {
     public static final String SESSION_ADDED_PATIENT_LIST = "ws-list-session-patient";
 
     public static final String PATIENTS_LIST_BY_SESSION_ID = "ws-list-patient-by-session-id";
+
+    public static final String TIME_SLOT_EXISTING = "ws-time-sloat-list";
+
 }
