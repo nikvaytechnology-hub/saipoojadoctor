@@ -275,7 +275,7 @@ public class SessionEditActivity extends AppCompatActivity implements MultipleSe
 
     private void callListPatient()
     {
-        Call<SuccessModel> call = apiInterface.list_session_patient(user_id,session_id);
+        Call<SuccessModel> call = apiInterface.list_session_patient(doctor_id,user_id,session_id);
         Toast.makeText(this, ""+session_id, Toast.LENGTH_SHORT).show();
         call.enqueue(new Callback<SuccessModel>()
         {

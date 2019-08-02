@@ -289,7 +289,8 @@ public interface ApiInterface {
 
     @POST(EndApi.PATIENTS_LIST_BY_SESSION_ID)
     @FormUrlEncoded
-    Call<SuccessModel>list_session_patient(@Field("user_id") String user_id,
+    Call<SuccessModel>list_session_patient(@Field("doctor_id") String doctor_id,
+                                            @Field("user_id") String user_id,
                                            @Field("Session_id") String session_id);
 
     @POST(EndApi.ADD_PATIENT_ADMIN)
