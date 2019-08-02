@@ -2,7 +2,6 @@ package com.nikvay.doctorapplication.view.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,21 +13,21 @@ import android.widget.Toast;
 
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.model.SessionPatientExistModel;
-import com.nikvay.doctorapplication.utils.MultimpleSelectinterface;
+import com.nikvay.doctorapplication.interfaceutils.MultipleSelectInterface;
 
 import java.util.ArrayList;
 
 public class AddAttendeeAdapter extends RecyclerView.Adapter<AddAttendeeAdapter.AttendeeVievholder>
 {
-    Context mContext;
-    ArrayList<SessionPatientExistModel>patientArraylist=new ArrayList<>();
-   ArrayList<SessionPatientExistModel>sessionPatientExistModelArrayList=new ArrayList<>();
-
-    public AddAttendeeAdapter(Context mContext, ArrayList<SessionPatientExistModel> sessionPatientExistModelArrayList, MultimpleSelectinterface multimpleSelectinterface)
-    {
-        this.mContext = mContext;
-        this.sessionPatientExistModelArrayList = sessionPatientExistModelArrayList;
-    }
+     private Context mContext;ArrayList<SessionPatientExistModel>patientArraylist=new ArrayList<>();
+     private ArrayList<SessionPatientExistModel>sessionPatientExistModelArrayList=new ArrayList<>();
+     private MultipleSelectInterface multipleSelectInterface;
+      public AddAttendeeAdapter(Context mContext, ArrayList<SessionPatientExistModel> sessionPatientExistModelArrayList, MultipleSelectInterface multipleSelectInterface)
+     {
+         this.mContext = mContext;
+         this.sessionPatientExistModelArrayList = sessionPatientExistModelArrayList;
+         this.multipleSelectInterface=multipleSelectInterface;
+     }
 
     @NonNull
     @Override
@@ -44,12 +43,18 @@ public class AddAttendeeAdapter extends RecyclerView.Adapter<AddAttendeeAdapter.
     {
         final SessionPatientExistModel sessionPatientExistModel=sessionPatientExistModelArrayList.get(i);
         Toast.makeText(mContext, ""+sessionPatientExistModel.getName(), Toast.LENGTH_SHORT).show();
-        if (sessionPatientExistModel.getStatus().equals("0"))
+        if (sessionPatientExistModel.getStatus().equals("1"))
         {
             attendeeVievholder.relativeLayout.setBackgroundColor(Color.RED);
         }
         else
         {
+            if (sessionPatientExistModelArrayList.get(i).isSelected())
+            {
+                attendeeVievholder.relativeLayout.setBackgroundColor(mContext.getResources().getColor(android.R.color.holo_green_light));
+            } else {
+                attendeeVievholder.relativeLayout.setBackgroundColor(mContext.getResources().getColor(R.color.cardview_light_background));
+            }
         }
         attendeeVievholder.attendee_name.setText(sessionPatientExistModel.getName());
         attendeeVievholder.email.setText(sessionPatientExistModel.getEmail());
@@ -59,12 +64,29 @@ public class AddAttendeeAdapter extends RecyclerView.Adapter<AddAttendeeAdapter.
             @Override
             public void onClick(View v)
             {
-            String status=sessionPatientExistModel.getStatus();
-               if (status.equals("1"))
+                String status=sessionPatientExistModel.getStatus();
+               if (status.equals("0"))
                {
                    attendeeVievholder.relativeLayout.setBackgroundColor(Color.GREEN);
                    Toast.makeText(mContext, ""+sessionPatientExistModel.getStatus(), Toast.LENGTH_SHORT).show();
                }
+            }
+        });
+
+        attendeeVievholder.relativeLayout.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                    if (!sessionPatientExistModelArrayList.get(i).isSelected())
+                    {
+                        sessionPatientExistModelArrayList.get(i).setSelected(true);
+                         multipleSelectInterface.getSessionPatientDetail(sessionPatientExistModelArrayList.get(i));
+                    } else {
+                        sessionPatientExistModelArrayList.get(i).setSelected(false);
+                    }
+                    notifyDataSetChanged();
             }
         });
     }

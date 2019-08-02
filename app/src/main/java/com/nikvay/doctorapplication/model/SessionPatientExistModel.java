@@ -3,6 +3,7 @@ package com.nikvay.doctorapplication.model;
 public class SessionPatientExistModel
 {
     String patient_id,doctor_id,name,email,gender,phone_no,status;
+    boolean isSelected;
 
     public SessionPatientExistModel(String patient_id, String doctor_id, String name, String email, String gender, String phone_no, String status)
     {
@@ -14,6 +15,16 @@ public class SessionPatientExistModel
         this.phone_no = phone_no;
         this.status = status;
     }
+
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
 
     public String getPatient_id() {
         return patient_id;

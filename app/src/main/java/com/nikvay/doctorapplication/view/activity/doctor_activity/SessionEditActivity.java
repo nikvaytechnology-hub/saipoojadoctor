@@ -22,43 +22,34 @@ import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.doctorapplication.apicallcommon.ApiClient;
 import com.nikvay.doctorapplication.apicallcommon.ApiInterface;
-import com.nikvay.doctorapplication.interfaceutils.SelectAllPatientInterface;
-import com.nikvay.doctorapplication.interfaceutils.SelectPatientInterface;
 import com.nikvay.doctorapplication.model.DoctorModel;
 import com.nikvay.doctorapplication.model.PatientModel;
-import com.nikvay.doctorapplication.model.ServiceModel;
 import com.nikvay.doctorapplication.model.SessionListModel;
 import com.nikvay.doctorapplication.model.SessionPatientAddedModel;
 import com.nikvay.doctorapplication.model.SessionPatientExistModel;
 import com.nikvay.doctorapplication.model.SuccessModel;
 import com.nikvay.doctorapplication.utils.ErrorMessageDialog;
-import com.nikvay.doctorapplication.utils.MultimpleSelectinterface;
+import com.nikvay.doctorapplication.interfaceutils.MultipleSelectInterface;
 import com.nikvay.doctorapplication.utils.NetworkUtils;
 import com.nikvay.doctorapplication.utils.SharedUtils;
 import com.nikvay.doctorapplication.utils.ShowProgress;
 import com.nikvay.doctorapplication.utils.StaticContent;
 import com.nikvay.doctorapplication.utils.SuccessMessageDialog;
-import com.nikvay.doctorapplication.utils.SuccessMessageDoctorDialog;
-import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AddServiceActivity;
-import com.nikvay.doctorapplication.view.activity.admin_doctor_activity.AllPatientListActivity;
 import com.nikvay.doctorapplication.view.adapter.AddAttendeeAdapter;
 import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.AllPatientListAdapter;
-import com.nikvay.doctorapplication.view.adapter.admin_doctor_adapter.MyDoctorDialogAdapter;
-import com.nikvay.doctorapplication.view.adapter.doctor_adapter.MyPatientDialogAdapter;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.PatientMultipleSelecationAdapter;
 import com.nikvay.doctorapplication.view.adapter.doctor_adapter.SessionPatientAddedListAdapter;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SessionEditActivity extends AppCompatActivity implements MultimpleSelectinterface
+public class SessionEditActivity extends AppCompatActivity implements MultipleSelectInterface
 {
 
     private ImageView iv_close;
@@ -71,19 +62,21 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
     String TAG = getClass().getSimpleName();
     ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     ArrayList<SessionPatientExistModel>sessionPatientExistModelArrayList=new ArrayList<>();
+    ArrayList<SessionPatientExistModel>sessionPatientExistModelSelectArrayList=new ArrayList<>();
     private String doctor_id = "", user_id = "", session_id = "", doctor_idAssign = "";
     private int no_of_seats;
     private ShowProgress showProgress;
     private ErrorMessageDialog errorMessageDialog;
     private SuccessMessageDialog successMessageDoctorDialog;
-
     AllPatientListAdapter allPatientListAdapter;
+
     //select Patient
     private Dialog selectPatientDialog;
     private EditText editSearchPatient;
     private Button btnCancelDialogPatient, btnOkDialogPatient;
     private RecyclerView recyclerDialogPatient;
  //   private LinearLayout linearLayoutPatientList;
+
     private TextView textPatient;
     ArrayList<PatientModel> patientModelArrayList = new ArrayList<>();
     ArrayList<SessionPatientExistModel> patientModelArrayListSelected = new ArrayList<>();
@@ -139,6 +132,7 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
             doctor_idAssign = sessionListModel.getDoctor_id();
             session_id = sessionListModel.getSession_id();
             no_of_seats = Integer.parseInt(sessionListModel.getNo_of_seats());
+            Toast.makeText(this, session_id+"", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -281,9 +275,6 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
 
     private void callListPatient()
     {
-
-
-
         Call<SuccessModel> call = apiInterface.list_session_patient(user_id,session_id);
         Toast.makeText(this, ""+session_id, Toast.LENGTH_SHORT).show();
         call.enqueue(new Callback<SuccessModel>()
@@ -299,7 +290,7 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
                     if (response.isSuccessful())
                     {
                         SuccessModel successModel = response.body();
-                        patientModelArrayList.clear();
+                        sessionPatientExistModelArrayList.clear();
                         String message = null, code = null;
                         if (successModel != null)
                         {
@@ -309,7 +300,6 @@ public class SessionEditActivity extends AppCompatActivity implements MultimpleS
 
                             if (code.equalsIgnoreCase("1"))
                             {
-                                Toast.makeText(SessionEditActivity.this, code+""+message, Toast.LENGTH_SHORT).show();
                                 selectPatientDialog.show();
                                 sessionPatientExistModelArrayList=successModel.getSessionPatientExistModelArrayList();
                                 AddAttendeeAdapter addAttendeeAdapter=new AddAttendeeAdapter(getApplicationContext(),sessionPatientExistModelArrayList,SessionEditActivity.this);
