@@ -57,6 +57,15 @@
             android:layout_weight="1.3"/>
 
 
+        <Spinner
+            android:id="@+id/spinnerScheduletype"
+            android:layout_width="match_parent"
+            android:entries="@array/schedule_type"
+            android:popupBackground="#E2CEECF0"
+            android:outlineAmbientShadowColor="@color/gray"
+            android:padding="10dp"
+            android:layout_height="wrap_content"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

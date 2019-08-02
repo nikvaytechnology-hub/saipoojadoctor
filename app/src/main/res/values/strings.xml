@@ -11,6 +11,12 @@
         <item>Cash</item>
     </string-array>
 
+    <string-array name="schedule_type">
+        <item>Morning</item>
+        <item>Evening</item>
+        <item>Whole Day</item>
+    </string-array>
+
 
     <string-array name="appoinment_slot">
         <item>Time Slot</item>

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -52,9 +53,9 @@ public class DateTimeSelectActivity extends AppCompatActivity {
     private AppointmentListModel appoinmentListModel;
     private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
     private String mTitle, reschedule="", service_id, TAG = getClass().getSimpleName(), doctor_id, user_id;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_time_select);
         find_All_Ids();

@@ -2,6 +2,7 @@ package com.nikvay.doctorapplication.view.activity.doctor_activity;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,8 @@ public class BusinessHourActivity extends AppCompatActivity
   private String status, state,day_Status;
   private ImageView iv_back;
   private ArrayList<DoctorTimeModel> selectDoctorTimeModelArrayList = new ArrayList<>();
+String from_sunday,to_sunday,from_monday,to_monday,from_tueday,to_tueday,from_thurday,to_thurday,
+        from_wedday,to_wedday,from_wed,from_friday,to_friday,from_saturday,to_satday,to_saturday;
 
   private FloatingActionButton fabCancleAllApt;
 
@@ -74,19 +77,19 @@ public class BusinessHourActivity extends AppCompatActivity
   private Switch sw_Sunday, sw_Monday, sw_Tuesday, sw_Wednesday,
           sw_Thirsday, sw_Friday, sw_Saturaday;
   private String day;
-  private String startTimeSunday="09:00", startTimeMonday="09:00", startTimeTuesday="09:00", startTimeWednesday="09:00", startTimeThirsday="09:00",
-          startTimeFriday="09:00", startTimeSaturaday="09:00";
-  private String endTimeSunday="21:00", endTimeMonday="21:00", endTimeTuesday="21:00", endTimeWednesday="21:00",
-          endTimeThirsday="21:00", endTimeFriday="21:00", endTimeSaturaday="21:00";
+  private String startTimeSunday, startTimeMonday, startTimeTuesday, startTimeWednesday, startTimeThirsday,
+          startTimeFriday, startTimeSaturaday;
+  private String endTimeSunday, endTimeMonday, endTimeTuesday, endTimeWednesday,
+          endTimeThirsday, endTimeFriday, endTimeSaturaday;
   private Spinner spinnerTimeSlot;
 
   private ApiInterface apiInterface;
   private String TAG = getClass().getSimpleName();
-  private String startTime ="09:00", endTime="21:00";
+  private String startTime, endTime;
   private String dayStatus = null, Evening = null, Whole_Day = null, mTitle = "", timeSlot, slotTime, doctor_id = "", user_id = "";
   private int hours, converstartminute, converendminute;
   private ArrayList<DoctorModel> doctorModelArrayList = new ArrayList<>();
-
+  SharedPreferences sharedPreferences;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -94,7 +97,9 @@ public class BusinessHourActivity extends AppCompatActivity
     find_All_ID();
     set_default();
 
+    sharedPreferences=getSharedPreferences("default_time",MODE_PRIVATE);
     event();
+      display_time();
   }
 
   private void set_default()
@@ -179,18 +184,22 @@ public class BusinessHourActivity extends AppCompatActivity
 
     Bundle bundle = getIntent().getExtras();
 
-    if (bundle != null) {
+    if (bundle != null)
+    {
       String day;
       day = bundle.getString(StaticContent.IntentKey.TIME_SLOT);
 
-      if (day.equalsIgnoreCase("1")) {
-        dayStatus = "Morning";
+      if (day.equalsIgnoreCase("1"))
+      {
+        dayStatus = "1";
       }
-      if (day.equalsIgnoreCase("2")) {
-        dayStatus = "Evening";
+      if (day.equalsIgnoreCase("2"))
+      {
+        dayStatus = "2";
       }
-      if (day.equalsIgnoreCase("3")) {
-        dayStatus = "Whole_Day";
+      if (day.equalsIgnoreCase("3"))
+      {
+        dayStatus = "3";
       }
     }
 
@@ -254,7 +263,9 @@ public class BusinessHourActivity extends AppCompatActivity
     {
       @Override
       public void onClick(View v) {
-        if (doValidation()) {
+        //getDefault_time();
+        if (doValidation())
+        {
           if (selectDoctorTimeModelArrayList.size() != 0)
           {
             //  Toast.makeText(BusinessHourActivity.this, "Data" + selectDoctorTimeModelArrayList.get(0).getDay_Id(), Toast.LENGTH_SHORT).show();
@@ -591,9 +602,11 @@ public class BusinessHourActivity extends AppCompatActivity
         showTimnePickerDialog();
       }
     });
-    to_iv_Saturaday.setOnClickListener(new View.OnClickListener() {
+    to_iv_Saturaday.setOnClickListener(new View.OnClickListener()
+    {
       @Override
-      public void onClick(View v) {
+      public void onClick(View v)
+      {
         isStartDate = false;
         status = "7";
         day = "Sat";
@@ -602,7 +615,84 @@ public class BusinessHourActivity extends AppCompatActivity
     });
   }
 
-  private void callAddTimeSlot() {
+  private void getDefault_time()
+  {
+    startTimeSunday=from_iv_Sunday.getText().toString().trim();
+    endTimeSunday=to_iv_Sunday.getText().toString().trim();
+
+    startTimeSaturaday=from_iv_Saturaday.getText().toString().trim();
+    endTimeSaturaday=to_iv_Saturaday.getText().toString().trim();
+
+    startTimeMonday=from_iv_Monday.getText().toString().trim();
+    endTimeMonday=to_iv_Monday.getText().toString().trim();
+
+    startTimeTuesday=from_iv_Tuesday.getText().toString().trim();
+    endTimeTuesday=to_iv_Tuesday.getText().toString().trim();
+
+    startTimeWednesday=from_iv_Wednesday.getText().toString().trim();
+    endTimeWednesday=to_iv_Wednesday.getText().toString().trim();
+
+    startTimeThirsday=from_iv_Thirsday.getText().toString().trim();
+    endTimeThirsday=to_iv_Thirsday.getText().toString().trim();
+
+    startTimeFriday=from_iv_Friday.getText().toString().trim();
+    endTimeFriday=to_iv_Friday.getText().toString().trim();
+
+    SharedPreferences.Editor editor=sharedPreferences.edit();
+    editor.putString("from_sunday",startTimeSunday);
+    editor.putString("to_sunday",endTimeSunday);
+
+    editor.putString("from_monday",startTimeMonday);
+    editor.putString("to_monday",endTimeMonday);
+
+    editor.putString("from_tueday",startTimeTuesday);
+    editor.putString("to_tueday",endTimeTuesday);
+
+    editor.putString("from_wed",startTimeWednesday);
+    editor.putString("to_wedday",endTimeWednesday);
+
+    editor.putString("from_thurday",startTimeThirsday);
+    editor.putString("to_thurday",endTimeThirsday);
+
+    editor.putString("from_friday",startTimeFriday);
+    editor.putString("to_friday",endTimeFriday);
+
+    editor.putString("from_saturday",startTimeSaturaday);
+    editor.putString("to_saturday",endTimeSaturaday);
+
+    editor.apply();
+    editor.commit();
+    display_time();
+  }
+
+  private void display_time()
+  {
+
+    from_iv_Sunday.setText(sharedPreferences.getString("from_sunday",""));
+    to_iv_Sunday.setText(sharedPreferences.getString("to_sunday",""));
+
+      from_iv_Monday.setText(sharedPreferences.getString("from_monday",""));
+      to_iv_Monday.setText(sharedPreferences.getString("to_monday",""));
+
+      from_iv_Tuesday.setText(sharedPreferences.getString("from_tueday",""));
+      to_iv_Tuesday.setText(sharedPreferences.getString("to_tueday",""));
+
+      from_iv_Wednesday.setText(sharedPreferences.getString("from_wed",""));
+      to_iv_Wednesday.setText(sharedPreferences.getString("to_wedday",""));
+
+      from_iv_Thirsday.setText(sharedPreferences.getString("from_thurday",""));
+      to_iv_Thirsday.setText(sharedPreferences.getString("to_thurday",""));
+
+      from_iv_Friday.setText(sharedPreferences.getString("from_friday",""));
+      to_iv_Friday.setText(sharedPreferences.getString("to_friday",""));
+
+      from_iv_Saturaday.setText(sharedPreferences.getString("from_saturday",""));
+      to_iv_Saturaday.setText(sharedPreferences.getString("to_saturday",""));
+
+  }
+
+  private void callAddTimeSlot()
+  {
     String day = String.valueOf(getDay());
     String startTime = String.valueOf(getStarTime());
     String endTime = String.valueOf(getEndTime());
@@ -611,13 +701,15 @@ public class BusinessHourActivity extends AppCompatActivity
 
     call.enqueue(new Callback<SuccessModel>() {
       @Override
-      public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
+      public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response)
+      {
 
         String str_response = new Gson().toJson(response.body());
         Log.e("" + TAG, "Response<<<<<<<<<<  " + str_response);
 
         try {
-          if (response.isSuccessful()) {
+          if (response.isSuccessful())
+          {
             SuccessModel BusinessModel = response.body();
             String message = null, errorCode = null;
 
