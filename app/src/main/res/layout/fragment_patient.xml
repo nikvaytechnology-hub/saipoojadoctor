@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.doctor_fragment.PatientFragment">
+    tools:context="com.nikvay.saipooja_doctor.view.fragment.doctor_fragment.PatientFragment">
 
    <RelativeLayout
        android:layout_width="match_parent"

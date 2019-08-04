@@ -102,7 +102,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
-                                android:text="09:00"
+                                android:text="9:00AM"
                                 android:id="@+id/from_iv_Sunday"
                                 android:textColor="@color/black" />
 
@@ -117,7 +117,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
                                 android:gravity="right"
-                                android:text="21:00"
+                                android:text="9:00AM"
                                 android:id="@+id/to_iv_Sunday"
                                 android:textColor="@color/black" />
 
@@ -186,7 +186,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="09:00"
+                            android:text="9:00AM"
                             android:id="@+id/from_iv_Monday"
                             android:textColor="@color/black" />
 
@@ -201,7 +201,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:gravity="right"
-                            android:text="21:00"
+                            android:text="9:00AM"
                             android:id="@+id/to_iv_Monday"
                             android:textColor="@color/black" />
 
@@ -267,7 +267,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:id="@+id/from_iv_Tuesday"
-                            android:text="09:00"
+                            android:text="9:00AM"
                             android:textColor="@color/black" />
 
                         <ImageView
@@ -282,7 +282,7 @@
                             android:layout_weight="2"
                             android:gravity="right"
                             android:id="@+id/to_iv_Tuesday"
-                            android:text="21:00"
+                            android:text="9:00AM"
                             android:textColor="@color/black" />
 
                         <Switch
@@ -346,7 +346,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="09:00"
+                            android:text="9:00AM"
                             android:id="@+id/from_iv_Wednesday"
                             android:textColor="@color/black" />
 
@@ -362,7 +362,7 @@
                             android:layout_weight="2"
                             android:gravity="right"
                             android:id="@+id/to_iv_Wednesday"
-                            android:text="21:00"
+                            android:text="9:00AM"
                             android:textColor="@color/black" />
 
                         <Switch
@@ -426,7 +426,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="09:00"
+                            android:text="9:00AM"
                             android:id="@+id/from_iv_Thirsday"
                             android:textColor="@color/black" />
 
@@ -441,7 +441,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:gravity="right"
-                            android:text="21:00"
+                            android:text="9:00AM"
                             android:id="@+id/to_iv_Thirsday"
                             android:textColor="@color/black" />
 
@@ -506,7 +506,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="09:00"
+                            android:text="9:00AM"
                             android:id="@+id/from_iv_Friday"
                             android:textColor="@color/black" />
 
@@ -521,7 +521,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:gravity="right"
-                            android:text="21:00"
+                            android:text="9:00AM"
                             android:id="@+id/to_iv_Friday"
                             android:textColor="@color/black" />
 
@@ -586,7 +586,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="09:00"
+                            android:text="9:00AM"
                             android:id="@+id/from_iv_Saturaday"
                             android:textColor="@color/black" />
 
@@ -601,7 +601,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:gravity="right"
-                            android:text="21:00"
+                            android:text="9:00AM"
                             android:id="@+id/to_iv_Saturaday"
                             android:textColor="@color/black" />
 

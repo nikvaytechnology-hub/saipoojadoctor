@@ -26,43 +26,43 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.doctor_activity.SessionEditActivity"
+        <activity android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.SessionEditActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.activity.doctor_activity.CancelAllAptActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.CancelAllAptActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.BusinessHourActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.BusinessHourActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.ClassAppointmentListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ClassAppointmentListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.CreateSessionActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.CreateSessionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.SessionDetailsActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.SessionDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.SessionListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.SessionListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.ClassTimeSlotActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ClassTimeSlotActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AdminAddClassActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AdminAddClassActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AdminClassListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AdminClassListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AddServiceActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AddServiceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AddInstructor"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AddInstructor"
             android:screenOrientation="portrait" />
         <service
-            android:name=".firebaseservice.MyFirebaseMessagingService"
+            android:name="com.nikvay.saipooja_doctor.firebaseservice.MyFirebaseMessagingService"
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -70,119 +70,119 @@
         </service>
 
         <activity
-            android:name=".view.activity.admin_doctor_activity.AdminServiceListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AdminServiceListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AddAdminAppointmentActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AddAdminAppointmentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.SessionPatientActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.SessionPatientActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AddDepartmentActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AddDepartmentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AdminAddPatientActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AdminAddPatientActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AllPatientListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AllPatientListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AddDoctorActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AddDoctorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.AdminMainActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AdminMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.DoctorAppointmentListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.DoctorAppointmentListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.DoctorPatientListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.DoctorPatientListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.DoctorServiceListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.DoctorServiceListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.DoctorListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.DoctorListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.SettingActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.admin_doctor_activity.DoctorSuperAdminActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.DoctorSuperAdminActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.PatientDocumentListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PatientDocumentListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.PhotoAndVideoGalleryActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PhotoAndVideoGalleryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.EnquiryReplyActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.EnquiryReplyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.EnquiryActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.EnquiryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.PrescriptionHistoryActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PrescriptionHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.AppointmentHistoryActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.AppointmentHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.PaymentHistoryActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PaymentHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.PrescriptionActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PrescriptionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.PaymentActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PaymentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.ChangePasswordActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ChangePasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.ClassDetailsActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ClassDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.AppointmentDetailsActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.AppointmentDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.NewAppointmentActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.NewAppointmentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.NewAddServiceActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.NewAddServiceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.PatientActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PatientActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.DateTimeSelectActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.DateTimeSelectActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.AppointmentListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.AppointmentListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.NewClassActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.NewClassActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.ClassActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ClassActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.ServiceDetailsActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ServiceDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.ServiceListActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ServiceListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.PatientDetailsActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PatientDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.doctor_activity.NewPatientActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.doctor_activity.NewPatientActivity"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".firebaseservice.MyFirebaseMessagingService"
+            android:name="com.nikvay.saipooja_doctor.firebaseservice.MyFirebaseMessagingService"
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -190,10 +190,10 @@
         </service>
 
         <activity
-            android:name=".view.activity.common_activity.LoginActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.common_activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.common_activity.SplashActivity"
+            android:name="com.nikvay.saipooja_doctor.view.activity.common_activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -202,7 +202,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.nikvay.saipooja_doctor.MainActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

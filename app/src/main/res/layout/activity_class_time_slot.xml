@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".view.activity.doctor_activity.ClassTimeSlotActivity">
+    tools:context="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ClassTimeSlotActivity">
 
 
     <RelativeLayout
@@ -56,7 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.3"/>
-
+<Spinner
+    android:id="@+id/spinnerSchedule"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></Spinner>
 
         <RelativeLayout
             android:layout_width="match_parent"

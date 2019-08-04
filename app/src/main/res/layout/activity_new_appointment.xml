@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.doctor_activity.NewAppointmentActivity">
+    tools:context="com.nikvay.saipooja_doctor.view.activity.doctor_activity.NewAppointmentActivity">
 
     <RelativeLayout
         android:id="@+id/rel_action_bar"
