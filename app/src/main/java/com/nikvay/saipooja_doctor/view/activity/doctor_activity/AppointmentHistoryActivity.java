@@ -34,7 +34,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AppointmentHistoryActivity extends AppCompatActivity {
+public class AppointmentHistoryActivity extends AppCompatActivity
+{
 
     private RecyclerView recyclerView_appointment;
     private ImageView iv_back, iv_date, iv_empty_list;

@@ -4,6 +4,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.nikvay.doctorapplication.R;
+import com.nikvay.saipooja_doctor.MainActivity;
 import com.nikvay.saipooja_doctor.apicallcommon.ApiClient;
 import com.nikvay.saipooja_doctor.apicallcommon.ApiInterface;
 import com.nikvay.saipooja_doctor.model.AppointmentListModel;
@@ -222,6 +226,8 @@ public class AppointmentDetailsActivity extends AppCompatActivity
 
                                 appointmentDialog.showDialog("Update Appointment Successfully !");
 
+                                Intent intent=new Intent(AppointmentDetailsActivity.this, MainActivity.class);
+                                startActivity(intent);
                             } else {
                                 errorMessageDialog.showDialog("Response Wrong");
                             }

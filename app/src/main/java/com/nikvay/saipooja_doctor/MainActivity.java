@@ -29,9 +29,11 @@ import com.nikvay.saipooja_doctor.utils.SharedUtils;
 import com.nikvay.saipooja_doctor.utils.StaticContent;
 import com.nikvay.saipooja_doctor.view.activity.admin_doctor_activity.AdminMainActivity;
 import com.nikvay.saipooja_doctor.view.activity.common_activity.LoginActivity;
+import com.nikvay.saipooja_doctor.view.activity.doctor_activity.ClassActivity;
 import com.nikvay.saipooja_doctor.view.activity.doctor_activity.EnquiryActivity;
 import com.nikvay.saipooja_doctor.view.activity.doctor_activity.PatientActivity;
 import com.nikvay.saipooja_doctor.view.adapter.DrawerItemAdapter;
+import com.nikvay.saipooja_doctor.view.fragment.FragmentPrivacyPolicies;
 import com.nikvay.saipooja_doctor.view.fragment.doctor_fragment.AppointmentFragment;
 import com.nikvay.saipooja_doctor.view.fragment.doctor_fragment.HomeFragment;
 import com.nikvay.saipooja_doctor.view.fragment.doctor_fragment.NotificationFragment;
@@ -106,6 +108,7 @@ public class MainActivity extends AppCompatActivity
     drawerItemArrayList.add(new DrawerItem(R.drawable.my_customer, StaticContent.DrawerItem.MY_PATIENT));
     drawerItemArrayList.add(new DrawerItem(R.drawable.ic_vector_settings, StaticContent.DrawerItem.SETTINGS));
     drawerItemArrayList.add(new DrawerItem(R.drawable.enquiry, StaticContent.DrawerItem.ENQUIRY));
+    drawerItemArrayList.add(new DrawerItem(R.drawable.enquiry, StaticContent.DrawerItem.PRIVACY_POLICY));
 
     drawerItemArrayList.add(new DrawerItem(R.drawable.logout, StaticContent.DrawerItem.LOGOUT));
 
@@ -157,6 +160,9 @@ public class MainActivity extends AppCompatActivity
     fragmentName = fragment.getClass().getSimpleName();
     switch (fragmentName) {
 
+      case "PRIVACY_POLICY":
+        textTitleName.setText("Privacy Policies");
+        break;
       case "NotificationFragment":
         textTitleName.setText(StaticContent.DrawerItem.NOTIFICATION);
         break;
@@ -269,6 +275,9 @@ public class MainActivity extends AppCompatActivity
         loadFragment(new HomeFragment());
         break;
 
+      case StaticContent.DrawerItem.PRIVACY_POLICY:
+          loadFragment(new FragmentPrivacyPolicies());
+        break;
       case StaticContent.DrawerItem.MY_ACCOUNT:
         loadFragment(new ProfileFragment());
         break;

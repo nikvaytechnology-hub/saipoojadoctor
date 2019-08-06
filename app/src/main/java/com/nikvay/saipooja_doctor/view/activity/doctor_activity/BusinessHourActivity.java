@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.nikvay.doctorapplication.R;
 import com.nikvay.saipooja_doctor.apicallcommon.ApiClient;
 import com.nikvay.saipooja_doctor.apicallcommon.ApiInterface;
@@ -229,15 +230,23 @@ public class BusinessHourActivity extends AppCompatActivity {
                         doctorTimeModel1.setDay("Sun");
                         doctorTimeModel1.setDay_Id("1");
                         doctorTimeModel1.setTimeSlot(timeSlot);
-
                         selectDoctorTimeModelArrayList.add(doctorTimeModel1);
                         state = "1";
                         disableFields(state);
                         Log.d("You are :", "Checked");
-                    } else {
+                    }
+                    else {
                         state = "1";
                         EnableFields(state);
-                        selectDoctorTimeModelArrayList.remove(doctorTimeModel1);
+                        doctorTimeModel1.setStartTime(startTimeSunday);
+                        doctorTimeModel1.setEndTime(endTimeSunday);
+                        doctorTimeModel1.setDay("Sun");
+                        doctorTimeModel1.setDay_Id("1");
+                        doctorTimeModel1.setTimeSlot(timeSlot);
+                        doctorTimeModel1.setStatus("0");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel1);
+
+                        //   selectDoctorTimeModelArrayList.remove(doctorTimeModel1);
                         Log.d("You are :", " Not Checked");
                     }
                 }
@@ -250,18 +259,19 @@ public class BusinessHourActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 status = "2";
-                if (doValidation()) {
+                if (doValidation())
+                {
 
-                    if (isChecked) {
+                    if (isChecked)
+                    {
 
-                        if (startTimeMonday.equalsIgnoreCase("") || endTimeMonday.equalsIgnoreCase("")) {
-                            errorMessageDialog.showDialog("Plz select time");
-                        }
+
                         doctorTimeModel2.setStartTime(startTimeMonday);
                         doctorTimeModel2.setEndTime(endTimeMonday);
                         doctorTimeModel2.setDay("Mon");
                         doctorTimeModel2.setDay_Id("2");
                         doctorTimeModel2.setTimeSlot(timeSlot);
+                        doctorTimeModel2.setStatus("1");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel2);
                         state = "2";
                         disableFields(state);
@@ -269,7 +279,15 @@ public class BusinessHourActivity extends AppCompatActivity {
                     } else {
                         state = "2";
                         EnableFields(state);
-                        selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
+                        doctorTimeModel2.setStartTime(startTimeMonday);
+                        doctorTimeModel2.setEndTime(endTimeMonday);
+                        doctorTimeModel2.setDay("Mon");
+                        doctorTimeModel2.setDay_Id("2");
+                        doctorTimeModel2.setTimeSlot(timeSlot);
+                        doctorTimeModel2.setStatus("0");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel2);
+
+                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
                         Log.d("You are :", " Not Checked");
                     }
                 }
@@ -277,56 +295,83 @@ public class BusinessHourActivity extends AppCompatActivity {
             }
         });
 
+
         sw_Tuesday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 status = "3";
-                if (doValidation()) {
+                if (doValidation())
+                {
 
-                    if (isChecked) {
+                    if (isChecked)
+                    {
+
+
                         doctorTimeModel3.setStartTime(startTimeTuesday);
                         doctorTimeModel3.setEndTime(endTimeTuesday);
                         doctorTimeModel3.setDay("Tue");
                         doctorTimeModel3.setDay_Id("3");
                         doctorTimeModel3.setTimeSlot(timeSlot);
+                        doctorTimeModel3.setStatus("1");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel3);
                         state = "3";
                         disableFields(state);
                         Log.d("You are :", "Checked");
-                    }
-                } else {
-                    state = "3";
-                    EnableFields(state);
-                    selectDoctorTimeModelArrayList.remove(doctorTimeModel3);
+                    } else {
+                        state = "3";
+                        EnableFields(state);
+                        doctorTimeModel3.setStartTime(startTimeTuesday);
+                        doctorTimeModel3.setEndTime(endTimeTuesday);
+                        doctorTimeModel3.setDay("Tue");
+                        doctorTimeModel3.setDay_Id("3");
+                        doctorTimeModel3.setTimeSlot(timeSlot);
+                        doctorTimeModel3.setStatus("0");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel3);
 
-                    Log.d("You are :", " Not Checked");
+                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
+                        Log.d("You are :", " Not Checked");
+                    }
                 }
+
             }
         });
+
 
         sw_Wednesday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                status = "4";
+                if (doValidation())
+                {
 
-                if (doValidation()) {
+                    if (isChecked)
+                    {
 
-                    if (isChecked) {
+
                         doctorTimeModel4.setStartTime(startTimeWednesday);
                         doctorTimeModel4.setEndTime(endTimeWednesday);
                         doctorTimeModel4.setDay("Wed");
                         doctorTimeModel4.setDay_Id("4");
                         doctorTimeModel4.setTimeSlot(timeSlot);
+                        doctorTimeModel4.setStatus("1");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel4);
                         state = "4";
                         disableFields(state);
                         Log.d("You are :", "Checked");
-                    }
-                } else {
-                    state = "4";
-                    EnableFields(state);
-                    selectDoctorTimeModelArrayList.remove(doctorTimeModel4);
+                    } else {
+                        state = "4";
+                        EnableFields(state);
+                        doctorTimeModel4.setStartTime(startTimeWednesday);
+                        doctorTimeModel4.setEndTime(endTimeWednesday);
+                        doctorTimeModel4.setDay("Wed");
+                        doctorTimeModel4.setDay_Id("4");
+                        doctorTimeModel4.setTimeSlot(timeSlot);
+                        doctorTimeModel4.setStatus("0");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel4);
 
-                    Log.d("You are :", " Not Checked");
+                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
+                        Log.d("You are :", " Not Checked");
+                    }
                 }
 
             }
@@ -335,81 +380,167 @@ public class BusinessHourActivity extends AppCompatActivity {
         sw_Thirsday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (doValidation()) {
+                status = "5";
+                if (doValidation())
+                {
 
-                    if (isChecked) {
+                    if (isChecked)
+                    {
+
+
                         doctorTimeModel5.setStartTime(startTimeThirsday);
                         doctorTimeModel5.setEndTime(endTimeThirsday);
                         doctorTimeModel5.setDay("Thu");
                         doctorTimeModel5.setDay_Id("5");
                         doctorTimeModel5.setTimeSlot(timeSlot);
+                        doctorTimeModel5.setStatus("1");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel5);
                         state = "5";
                         disableFields(state);
                         Log.d("You are :", "Checked");
-                    }
-                } else {
-                    state = "5";
-                    EnableFields(state);
-                    selectDoctorTimeModelArrayList.remove(doctorTimeModel5);
+                    } else {
+                        state = "5";
+                        EnableFields(state);
+                        doctorTimeModel5.setStartTime(startTimeThirsday);
+                        doctorTimeModel5.setEndTime(endTimeThirsday);
+                        doctorTimeModel5.setDay("Tue");
+                        doctorTimeModel5.setDay_Id("5");
+                        doctorTimeModel5.setTimeSlot(timeSlot);
+                        doctorTimeModel5.setStatus("0");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel5);
 
-                    Log.d("You are :", " Not Checked");
+                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
+                        Log.d("You are :", " Not Checked");
+                    }
                 }
+
             }
         });
 
         sw_Friday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (doValidation()) {
+                status = "6";
+                if (doValidation())
+                {
 
-                    if (isChecked) {
+                    if (isChecked)
+                    {
+
+
                         doctorTimeModel6.setStartTime(startTimeFriday);
                         doctorTimeModel6.setEndTime(endTimeFriday);
                         doctorTimeModel6.setDay("Fri");
                         doctorTimeModel6.setDay_Id("6");
                         doctorTimeModel6.setTimeSlot(timeSlot);
+                        doctorTimeModel6.setStatus("1");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel6);
                         state = "6";
                         disableFields(state);
                         Log.d("You are :", "Checked");
-                    }
-                } else {
-                    state = "6";
-                    EnableFields(state);
-                    selectDoctorTimeModelArrayList.remove(doctorTimeModel6);
+                    } else {
+                        state = "6";
+                        EnableFields(state);
+                        doctorTimeModel6.setStartTime(startTimeFriday);
+                        doctorTimeModel6.setEndTime(endTimeFriday);
+                        doctorTimeModel6.setDay("Fri");
+                        doctorTimeModel6.setDay_Id("6");
+                        doctorTimeModel6.setTimeSlot(timeSlot);
+                        doctorTimeModel6.setStatus("0");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel6);
 
-                    Log.d("You are :", " Not Checked");
+                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
+                        Log.d("You are :", " Not Checked");
+                    }
                 }
+
             }
         });
+
+
+
+        sw_Thirsday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                status = "5";
+                if (doValidation())
+                {
+
+                    if (isChecked)
+                    {
+
+
+                        doctorTimeModel5.setStartTime(startTimeThirsday);
+                        doctorTimeModel5.setEndTime(endTimeThirsday);
+                        doctorTimeModel5.setDay("Thu");
+                        doctorTimeModel5.setDay_Id("5");
+                        doctorTimeModel5.setTimeSlot(timeSlot);
+                        doctorTimeModel5.setStatus("1");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel5);
+                        state = "5";
+                        disableFields(state);
+                        Log.d("You are :", "Checked");
+                    } else {
+                        state = "5";
+                        EnableFields(state);
+                        doctorTimeModel5.setStartTime(startTimeThirsday);
+                        doctorTimeModel5.setEndTime(endTimeThirsday);
+                        doctorTimeModel5.setDay("Thu");
+                        doctorTimeModel5.setDay_Id("5");
+                        doctorTimeModel5.setTimeSlot(timeSlot);
+                        doctorTimeModel5.setStatus("0");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel5);
+
+                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
+                        Log.d("You are :", " Not Checked");
+                    }
+                }
+
+            }
+        });
+
 
         sw_Saturaday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                status = "7";
+                if (doValidation())
+                {
 
-                if (doValidation()) {
+                    if (isChecked)
+                    {
 
-                    if (isChecked) {
+
                         doctorTimeModel7.setStartTime(startTimeSaturaday);
                         doctorTimeModel7.setEndTime(endTimeSaturaday);
                         doctorTimeModel7.setDay("Sat");
                         doctorTimeModel7.setDay_Id("7");
                         doctorTimeModel7.setTimeSlot(timeSlot);
+                        doctorTimeModel7.setStatus("1");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel7);
                         state = "7";
                         disableFields(state);
                         Log.d("You are :", "Checked");
-                    }
-                } else {
-                    state = "7";
-                    EnableFields(state);
-                    selectDoctorTimeModelArrayList.remove(doctorTimeModel7);
+                    } else {
+                        state = "7";
+                        EnableFields(state);
+                        doctorTimeModel7.setStartTime(startTimeSaturaday);
+                        doctorTimeModel7.setEndTime(endTimeSaturaday);
+                        doctorTimeModel7.setDay("Sat");
+                        doctorTimeModel7.setDay_Id("7");
+                        doctorTimeModel7.setTimeSlot(timeSlot);
+                        doctorTimeModel7.setStatus("0");
+                        selectDoctorTimeModelArrayList.add(doctorTimeModel7);
 
-                    Log.d("You are :", " Not Checked");
+                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
+                        Log.d("You are :", " Not Checked");
+                    }
                 }
+
             }
         });
+
+
 
         from_iv_Sunday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -549,22 +680,26 @@ public class BusinessHourActivity extends AppCompatActivity {
         });
     }
 
-    private void callAddTimeSlot() {
+    private void callAddTimeSlot()
+    {
         String day = String.valueOf(getDay());
         String startTime = String.valueOf(getStarTime());
         String endTime = String.valueOf(getEndTime());
+        String status=String.valueOf(getStstus());
+        Call<SuccessModel> call = apiInterface.addNewTimeSlot(status,doctor_id, user_id, dayStatus, timeSlot, day, startTime, endTime);
 
-        Call<SuccessModel> call = apiInterface.addNewTimeSlot(doctor_id, user_id, dayStatus, timeSlot, day, startTime, endTime);
-
-        call.enqueue(new Callback<SuccessModel>() {
+        call.enqueue(new Callback<SuccessModel>()
+        {
             @Override
-            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response) {
-
+            public void onResponse(Call<SuccessModel> call, Response<SuccessModel> response)
+            {
                 String str_response = new Gson().toJson(response.body());
                 Log.e("" + TAG, "Response<<<<<<<<<<  " + str_response);
 
-                try {
-                    if (response.isSuccessful()) {
+                try
+                {
+                    if (response.isSuccessful())
+                    {
                         SuccessModel BusinessModel = response.body();
                         String message = null, errorCode = null;
 
@@ -596,58 +731,58 @@ public class BusinessHourActivity extends AppCompatActivity {
     private boolean doValidation() {
         if (status == "1") {
             if (startTimeSunday == null || endTimeSunday == null) {
-                errorMessageDialog.showDialog("please select Sunday Start And End Time");
-                return false;
+             //   errorMessageDialog.showDialog("please select Sunday Start And End Time");
+                return true;
             }
             return true;
         }
 
         if (status == "2") {
             if (startTimeMonday == null || endTimeMonday == null) {
-                errorMessageDialog.showDialog("please select Monday Start And End Time");
-                return false;
+              //  errorMessageDialog.showDialog("please select Monday Start And End Time");
+                return true;
             }
             return true;
         }
 
         if (status == "3") {
             if (startTimeTuesday == null || endTimeTuesday == null) {
-                errorMessageDialog.showDialog("please select Tuesday Start And End Time");
-                return false;
+              //  errorMessageDialog.showDialog("please select Tuesday Start And End Time");
+                return true;
             }
             return true;
         }
 
         if (status == "4") {
             if (startTimeWednesday == null || endTimeWednesday == null) {
-                errorMessageDialog.showDialog("please select Wednesday Start And End Time");
-                return false;
+             //   errorMessageDialog.showDialog("please select Wednesday Start And End Time");
+                return true;
             }
             return true;
         }
         if (status == "5") {
             if (startTimeThirsday == null || endTimeThirsday == null) {
-                errorMessageDialog.showDialog("please select Thursday Start And End Time");
-                return false;
+              //  errorMessageDialog.showDialog("please select Thursday Start And End Time");
+                return true;
             }
             return true;
         }
         if (status == "6") {
             if (startTimeFriday == null || endTimeFriday == null) {
-                errorMessageDialog.showDialog("please select Friday Start And End Time");
-                return false;
+              //  errorMessageDialog.showDialog("please select Friday Start And End Time");
+                return true;
             }
             return true;
         }
         if (status == "7") {
             if (startTimeSaturaday == null || endTimeSaturaday == null) {
-                errorMessageDialog.showDialog("please select saturday Start And End Time");
-                return false;
+              //  errorMessageDialog.showDialog("please select saturday Start And End Time");
+                return true;
             }
             return true;
         } else if (((selectDoctorTimeModelArrayList.size() != 0) && (timeSlot == null))) {
-            errorMessageDialog.showDialog("Please Select Time Slot");
-            return false;
+          //  errorMessageDialog.showDialog("Please Select Time Slot");
+            return true;
         }
 
         return true;
@@ -964,6 +1099,18 @@ public class BusinessHourActivity extends AppCompatActivity {
         return pJsonArray;
     }
 
+    private JSONArray getStstus()
+    {
+        List<String>statusList=new ArrayList<>();
+        for (int i=0;i<selectDoctorTimeModelArrayList.size();i++)
+        {
+            statusList.add(selectDoctorTimeModelArrayList.get(i).getStatus());
+        }
+        JSONArray sJsonArray = new JSONArray(statusList);
+
+
+        return sJsonArray;
+    }
     private JSONArray getEndTime() {
         List<String> endTimeList = new ArrayList<>();
         for (int i = 0; i < selectDoctorTimeModelArrayList.size(); i++) {

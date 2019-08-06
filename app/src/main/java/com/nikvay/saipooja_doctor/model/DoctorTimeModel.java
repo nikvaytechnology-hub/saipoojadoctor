@@ -8,6 +8,7 @@ public class DoctorTimeModel implements Serializable {
     String timeSlot;
     String startTime;
     String endTime;
+    String status;
     private boolean isSelected = false;
 
 
@@ -54,6 +55,14 @@ public class DoctorTimeModel implements Serializable {
 
     public String getEndTime() {
         return endTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setEndTime(String endTime) {

@@ -13,6 +13,8 @@ public class StaticContent {
         public static final String ACTIVITY = " Activity";
         public static final String ENQUIRY = " Enquiry";
         public static final String ADMIN_PANEL = "Admin Dashboard";
+        public static final String PRIVACY_POLICY = "Privacy Policies";
+
         public static final String LOGOUT = "Logout";
 
     }

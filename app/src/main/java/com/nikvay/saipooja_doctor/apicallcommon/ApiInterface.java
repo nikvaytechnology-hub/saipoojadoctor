@@ -333,7 +333,8 @@ public interface ApiInterface {
 
     @POST(EndApi.DOCTORAPPOINTMENTSLOT)
     @FormUrlEncoded
-    Call<SuccessModel> addNewTimeSlot(@Field("doctor_id") String doctor_id,
+    Call<SuccessModel> addNewTimeSlot(@Field("status") String status,
+                                       @Field("doctor_id") String doctor_id,
                                       @Field("user_id") String user_id,
                                       @Field("dayStatus") String dayStatus,
                                       @Field("timeSlot") String timeSlot,

@@ -109,11 +109,11 @@ public class SessionDetailsActivity extends AppCompatActivity {
             int s=Integer.parseInt(seats);
             int c = Integer.parseInt(cost);
 
-            if (c <= 0)
+         /*   if (c <= 0)
             {
                 errorMessageDialog.showDialog("Cost & Seats should not be zero ");
-            }
-            else if (s<=0)
+            }*/
+             if (s<=0)
             {
                 errorMessageDialog.showDialog("Cost & Seats should not be zero ");
 
