@@ -1,6 +1,7 @@
 package com.nikvay.saipooja_doctor.view.activity.doctor_activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -173,8 +174,10 @@ public class CreateSessionActivity extends AppCompatActivity {
                             message = serviceModel.getMsg();
                             errorCode = serviceModel.getError_code();
 
-                            if (errorCode.equalsIgnoreCase("1")) {
+                            if (errorCode.equalsIgnoreCase("1"))
+                            {
                                 appointmentDialog.showDialog("Session Add succesfully ");
+
 
                                 //finish();
                             } else if (errorCode.equalsIgnoreCase("3")) {

@@ -186,10 +186,12 @@ public class DateTimeSelectActivity extends AppCompatActivity implements Adapter
                                     selectDateTimeAdapter.notifyDataSetChanged();
                                 }
 
-                            } else if(code.equalsIgnoreCase("2")) {
+                            }
+                            else if(code.equalsIgnoreCase("2")) {
                                 textSlotNotFound.setVisibility(View.VISIBLE);
                                 selectDateTimeAdapter.notifyDataSetChanged();
-                            }else {
+                            }
+                            else {
                                 textSlotNotFound.setVisibility(View.VISIBLE);
                                 selectDateTimeAdapter.notifyDataSetChanged();
                             }

@@ -2,6 +2,7 @@ package com.nikvay.saipooja_doctor.utils;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.view.Window;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nikvay.doctorapplication.R;
+import com.nikvay.saipooja_doctor.view.activity.doctor_activity.ClassActivity;
 
 public class AppointmentDialog {
 
@@ -39,7 +41,7 @@ public class AppointmentDialog {
             @Override
             public void run() {
                 dialog.dismiss();
-/*                Intent intent=new Intent(mContext, SessionEditActivity.class);
+              /* Intent intent=new Intent(mContext, ClassActivity.class);
                 mContext.startActivity(intent);*/
             }
         }, 3000);

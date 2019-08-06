@@ -49,14 +49,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="2.3">
-
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.3"/>
-
-
         <Spinner
             android:id="@+id/spinnerScheduletype"
             android:layout_width="match_parent"
@@ -64,8 +56,14 @@
             android:outlineAmbientShadowColor="@color/gray"
             android:padding="10dp"
             android:layout_height="wrap_content"/>
+        <CalendarView
+            android:layout_marginTop="5dp"
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"/>
 
-        <RelativeLayout
+  <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

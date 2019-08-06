@@ -66,7 +66,6 @@ public class AddAttendeeAdapter extends RecyclerView.Adapter<AddAttendeeAdapter.
               /* if (status.equals("0"))
                {
                    attendeeVievholder.relativeLayout.setBackgroundColor(Color.GREEN);
-                   Toast.makeText(mContext, ""+sessionPatientExistModel.getStatus(), Toast.LENGTH_SHORT).show();
                }*/
             }
         });
