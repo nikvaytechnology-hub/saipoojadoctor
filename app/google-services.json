@@ -42,6 +42,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189420611609:android:c7da7bb5dfec99fb",
+        "android_client_info": {
+          "package_name": "com.nikvay.saipoojadoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189420611609-ng3udjttchnvgt5795om5rirhog2hdbl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlVzxFieN7BVfU9fHfj6kpzQ7kWYYB_hg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189420611609-ng3udjttchnvgt5795om5rirhog2hdbl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

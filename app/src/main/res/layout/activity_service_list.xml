@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/alice_blue"
-    tools:context="com.nikvay.saipooja_doctor.view.activity.doctor_activity.ServiceListActivity">
+    tools:context="com.nikvay.saipoojadoctor.view.activity.doctor_activity.ServiceListActivity">
 
 
     <RelativeLayout

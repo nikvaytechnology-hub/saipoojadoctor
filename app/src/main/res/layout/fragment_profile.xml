@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nikvay.saipooja_doctor.view.fragment.doctor_fragment.ProfileFragment">
+    tools:context="com.nikvay.saipoojadoctor.view.fragment.doctor_fragment.ProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.nikvay.saipooja_doctor.view.activity.doctor_activity.PaymentActivity">
+    tools:context="com.nikvay.saipoojadoctor.view.activity.doctor_activity.PaymentActivity">
 
 
     <RelativeLayout
