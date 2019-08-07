@@ -3,6 +3,7 @@ package com.nikvay.saipooja_doctor.view.activity.doctor_activity;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -76,7 +77,7 @@ public class BusinessHourActivity extends AppCompatActivity {
     private String endTimeSunday, endTimeMonday, endTimeTuesday, endTimeWednesday,
             endTimeThirsday, endTimeFriday, endTimeSaturaday;
     private Spinner spinnerTimeSlot;
-
+    SharedPreferences swpreferences;
     private ApiInterface apiInterface;
     private String TAG = getClass().getSimpleName();
     private String startTime = "00:00", endTime = "00:00";
@@ -93,6 +94,8 @@ public class BusinessHourActivity extends AppCompatActivity {
     }
 
     private void find_All_ID() {
+        swpreferences=getSharedPreferences("switch",MODE_PRIVATE);
+
         from_iv_Sunday = findViewById(R.id.from_iv_Sunday);
         from_iv_Monday = findViewById(R.id.from_iv_Monday);
         from_iv_Tuesday = findViewById(R.id.from_iv_Tuesday);
@@ -162,8 +165,77 @@ public class BusinessHourActivity extends AppCompatActivity {
     }
 
 
-    private void event() {
+    private void event()
+    {
+        final SharedPreferences.Editor editor=swpreferences.edit();
+if (!swpreferences.contains(""))
+{
+    String s_sunday=swpreferences.getString("sw_sunday"," ");
+    String s_Monday=swpreferences.getString("sw_Monday"," ");
+  //  String s_tuesday=swpreferences.getString("sw_Tuesday"," ");
+    String s_wedenesday=swpreferences.getString("sw_Wednesday"," ");
+    String s_thirsday=swpreferences.getString("sw_Thirsday"," ");
+    String s_friday=swpreferences.getString("sw_Friday"," ");
+    String s_saturday=swpreferences.getString("sw_Saturaday"," ");
 
+    if (s_sunday.equalsIgnoreCase("on"))
+    {
+        sw_Sunday.setChecked(true);
+    }
+    if (s_sunday.equalsIgnoreCase("off"))
+    {
+        sw_Sunday.setChecked(false);
+    }
+    if (s_Monday.equalsIgnoreCase("on"))
+    {
+        sw_Monday.setChecked(true);
+    }
+    if (s_Monday.equalsIgnoreCase("off"))
+    {
+        sw_Monday.setChecked(false);
+    }
+/*    if (s_tuesday.equalsIgnoreCase("on"))
+    {
+        sw_Tuesday.setChecked(true);
+    }
+    if (s_tuesday.equalsIgnoreCase("off"))
+    {
+        sw_Tuesday.setChecked(false);
+    }*/
+    if (s_wedenesday.equalsIgnoreCase("on"))
+{
+    sw_Wednesday.setChecked(true);
+}
+    if (s_wedenesday.equalsIgnoreCase("off"))
+    {
+        sw_Wednesday.setChecked(false);
+    }
+    if (s_thirsday.equalsIgnoreCase("on"))
+    {
+        sw_Thirsday.setChecked(true);
+    }
+    if (s_thirsday.equalsIgnoreCase("off"))
+    {
+        sw_Thirsday.setChecked(false);
+    }
+    if (s_friday.equalsIgnoreCase("on"))
+    {
+        sw_Friday.setChecked(true);
+    }
+    if (s_friday.equalsIgnoreCase("off"))
+    {
+        sw_Friday.setChecked(false);
+    }
+    if (s_saturday.equalsIgnoreCase("on"))
+    {
+        sw_Saturaday.setChecked(true);
+    }
+    if (s_friday.equalsIgnoreCase("off"))
+    {
+        sw_Saturaday.setChecked(false);
+    }
+
+}
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,20 +294,27 @@ public class BusinessHourActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 status = "1";
-                if (doValidation()) {
-                    if (isChecked) {
+                if (doValidation())
+                {
+
+                    if (isChecked)
+                    {
+
 
                         doctorTimeModel1.setStartTime(startTimeSunday);
                         doctorTimeModel1.setEndTime(endTimeSunday);
                         doctorTimeModel1.setDay("Sun");
                         doctorTimeModel1.setDay_Id("1");
                         doctorTimeModel1.setTimeSlot(timeSlot);
+                        doctorTimeModel1.setStatus("1");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel1);
                         state = "1";
                         disableFields(state);
+                        editor.putString("sw_sunday","on");
+                        editor.apply();
+                        editor.commit();
                         Log.d("You are :", "Checked");
-                    }
-                    else {
+                    } else {
                         state = "1";
                         EnableFields(state);
                         doctorTimeModel1.setStartTime(startTimeSunday);
@@ -245,16 +324,16 @@ public class BusinessHourActivity extends AppCompatActivity {
                         doctorTimeModel1.setTimeSlot(timeSlot);
                         doctorTimeModel1.setStatus("0");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel1);
-
-                        //   selectDoctorTimeModelArrayList.remove(doctorTimeModel1);
+                        editor.putString("sw_sunday","off");
+                        editor.apply();
+                        editor.commit();
+                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
                         Log.d("You are :", " Not Checked");
                     }
                 }
 
-
             }
         });
-
         sw_Monday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -275,6 +354,9 @@ public class BusinessHourActivity extends AppCompatActivity {
                         selectDoctorTimeModelArrayList.add(doctorTimeModel2);
                         state = "2";
                         disableFields(state);
+                        editor.putString("sw_Monday","on");
+                        editor.apply();
+                        editor.commit();
                         Log.d("You are :", "Checked");
                     } else {
                         state = "2";
@@ -286,7 +368,9 @@ public class BusinessHourActivity extends AppCompatActivity {
                         doctorTimeModel2.setTimeSlot(timeSlot);
                         doctorTimeModel2.setStatus("0");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel2);
-
+                        editor.putString("sw_Monday","off");
+                        editor.apply();
+                        editor.commit();
                         //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
                         Log.d("You are :", " Not Checked");
                     }
@@ -294,7 +378,6 @@ public class BusinessHourActivity extends AppCompatActivity {
 
             }
         });
-
 
         sw_Tuesday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -357,6 +440,9 @@ public class BusinessHourActivity extends AppCompatActivity {
                         selectDoctorTimeModelArrayList.add(doctorTimeModel4);
                         state = "4";
                         disableFields(state);
+                        editor.putString("sw_Wednesday","on");
+                        editor.apply();
+                        editor.commit();
                         Log.d("You are :", "Checked");
                     } else {
                         state = "4";
@@ -368,7 +454,9 @@ public class BusinessHourActivity extends AppCompatActivity {
                         doctorTimeModel4.setTimeSlot(timeSlot);
                         doctorTimeModel4.setStatus("0");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel4);
-
+                        editor.putString("sw_Wednesday","off");
+                        editor.apply();
+                        editor.commit();
                         //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
                         Log.d("You are :", " Not Checked");
                     }
@@ -397,6 +485,9 @@ public class BusinessHourActivity extends AppCompatActivity {
                         selectDoctorTimeModelArrayList.add(doctorTimeModel5);
                         state = "5";
                         disableFields(state);
+                        editor.putString("sw_Thirsday","on");
+                        editor.apply();
+                        editor.commit();
                         Log.d("You are :", "Checked");
                     } else {
                         state = "5";
@@ -408,7 +499,9 @@ public class BusinessHourActivity extends AppCompatActivity {
                         doctorTimeModel5.setTimeSlot(timeSlot);
                         doctorTimeModel5.setStatus("0");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel5);
-
+                        editor.putString("sw_Thirsday","off");
+                        editor.apply();
+                        editor.commit();
                         //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
                         Log.d("You are :", " Not Checked");
                     }
@@ -437,6 +530,9 @@ public class BusinessHourActivity extends AppCompatActivity {
                         selectDoctorTimeModelArrayList.add(doctorTimeModel6);
                         state = "6";
                         disableFields(state);
+                        editor.putString("sw_Friday","on");
+                        editor.apply();
+                        editor.commit();
                         Log.d("You are :", "Checked");
                     } else {
                         state = "6";
@@ -448,7 +544,9 @@ public class BusinessHourActivity extends AppCompatActivity {
                         doctorTimeModel6.setTimeSlot(timeSlot);
                         doctorTimeModel6.setStatus("0");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel6);
-
+                        editor.putString("sw_Friday","off");
+                        editor.apply();
+                        editor.commit();
                         //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
                         Log.d("You are :", " Not Checked");
                     }
@@ -479,18 +577,23 @@ public class BusinessHourActivity extends AppCompatActivity {
                         selectDoctorTimeModelArrayList.add(doctorTimeModel7);
                         state = "7";
                         disableFields(state);
+                        editor.putString("sw_Saturaday","on");
+                        editor.apply();
+                        editor.commit();
                         Log.d("You are :", "Checked");
                     } else {
                         state = "7";
                         EnableFields(state);
                         doctorTimeModel7.setStartTime(startTimeSaturaday);
                         doctorTimeModel7.setEndTime(endTimeSaturaday);
-                        doctorTimeModel7.setDay("Fri");
+                        doctorTimeModel7.setDay("Sat");
                         doctorTimeModel7.setDay_Id("7");
                         doctorTimeModel7.setTimeSlot(timeSlot);
                         doctorTimeModel7.setStatus("0");
                         selectDoctorTimeModelArrayList.add(doctorTimeModel7);
-
+                        editor.putString("sw_Saturaday","off");
+                        editor.apply();
+                        editor.commit();
                         //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
                         Log.d("You are :", " Not Checked");
                     }
