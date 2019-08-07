@@ -1,0 +1,98 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.nikvay.saipooja_doctor.view.fragment.FragmentPrivacyPolicies">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  
+<TextView
+    android:id="@+id/titlepolicy"
+    android:text="Privacy Policy:"
+    android:textSize="28dp"
+    android:layout_marginTop="30dp"
+    android:textStyle="bold"
+    android:textColor="@color/app_color"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+<TextView
+    android:padding="10dp"
+    android:textSize="16dp"
+    android:textStyle="bold"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="14dp"
+    android:text="@string/policytext"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textSize="28dp"
+        android:textColor="@color/app_color"
+        android:text="@string/info"
+        android:textStyle="bold"
+        android:layout_below="@+id/titlepolicy"
+        android:layout_marginTop="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/information"
+        android:layout_marginLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:text="Security:"
+        android:textSize="28dp"
+        android:textColor="@color/app_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="16dp"
+        android:text="@string/security"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="Contact Us"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        android:textColor="@color/app_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:text="@string/contactsite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textStyle="bold"
+            android:text="@string/copyright"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+</FrameLayout>

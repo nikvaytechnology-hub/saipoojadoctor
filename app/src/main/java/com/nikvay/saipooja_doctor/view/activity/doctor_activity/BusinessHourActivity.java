@@ -459,47 +459,6 @@ public class BusinessHourActivity extends AppCompatActivity {
 
 
 
-        sw_Thirsday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                status = "5";
-                if (doValidation())
-                {
-
-                    if (isChecked)
-                    {
-
-
-                        doctorTimeModel5.setStartTime(startTimeThirsday);
-                        doctorTimeModel5.setEndTime(endTimeThirsday);
-                        doctorTimeModel5.setDay("Thu");
-                        doctorTimeModel5.setDay_Id("5");
-                        doctorTimeModel5.setTimeSlot(timeSlot);
-                        doctorTimeModel5.setStatus("1");
-                        selectDoctorTimeModelArrayList.add(doctorTimeModel5);
-                        state = "5";
-                        disableFields(state);
-                        Log.d("You are :", "Checked");
-                    } else {
-                        state = "5";
-                        EnableFields(state);
-                        doctorTimeModel5.setStartTime(startTimeThirsday);
-                        doctorTimeModel5.setEndTime(endTimeThirsday);
-                        doctorTimeModel5.setDay("Thu");
-                        doctorTimeModel5.setDay_Id("5");
-                        doctorTimeModel5.setTimeSlot(timeSlot);
-                        doctorTimeModel5.setStatus("0");
-                        selectDoctorTimeModelArrayList.add(doctorTimeModel5);
-
-                        //selectDoctorTimeModelArrayList.remove(doctorTimeModel2);
-                        Log.d("You are :", " Not Checked");
-                    }
-                }
-
-            }
-        });
-
-
         sw_Saturaday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -526,7 +485,7 @@ public class BusinessHourActivity extends AppCompatActivity {
                         EnableFields(state);
                         doctorTimeModel7.setStartTime(startTimeSaturaday);
                         doctorTimeModel7.setEndTime(endTimeSaturaday);
-                        doctorTimeModel7.setDay("Sat");
+                        doctorTimeModel7.setDay("Fri");
                         doctorTimeModel7.setDay_Id("7");
                         doctorTimeModel7.setTimeSlot(timeSlot);
                         doctorTimeModel7.setStatus("0");
@@ -539,7 +498,6 @@ public class BusinessHourActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         from_iv_Sunday.setOnClickListener(new View.OnClickListener() {
